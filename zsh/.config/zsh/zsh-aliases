@@ -17,6 +17,7 @@ alias rm='rm -r -i -v'
 alias ls='ls --color=auto'
 alias l.='ls --color=auto -a'
 alias lsl='ls --color=auto -l'
+alias lsl.='ls --color=auto -l -a'
 
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
@@ -26,6 +27,8 @@ alias gst='git status'
 alias gal='git add .'
 alias ga='git add'
 alias gct='git commit'
+alias gpso='git push origin'
+alias gplo='git pull origin'
 
 #youtube-dl
 alias ydl='youtube-dl'
