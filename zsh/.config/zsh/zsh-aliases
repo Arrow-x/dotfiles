@@ -1,6 +1,7 @@
 #!/bin/sh
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
-alias nvimrc='nvim ~/.config/nvim/'
+alias nvimrc='cd ~/.config/nvim/ && nvim .'
+alias zshrc='cd ~/.config/zsh/ && nvim .'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -8,9 +9,32 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+alias cp="cp -i -v"
+alias mv='mv -i -v'
+alias rm='rm -r -i -v'
+
+# ls colors
+alias ls='ls --color=auto'
+alias l.='ls --color=auto -a'
+alias lsl='ls --color=auto -l'
+
+# mkdir recursiv by default
+alias mkdir='mkdir -v -p'
+
+# git 
+alias gst='git status'
+alias gal='git add .'
+alias ga='git add'
+alias gct='git commit'
+
+#youtube-dl
+alias ydl='youtube-dl'
+alias ydlb='youtube-dl -f best'
+alias ydlF='youtube-dl -F'
+alias ydlf='youtube-dl -f'
+
+#Neovim
+alias nvimg='nvim --listen godothost .'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
