@@ -3,8 +3,6 @@ require'lspconfig'.gdscript.setup{capabilities = require('cmp_nvim_lsp').update_
 EOF
 
 func! GodotSettings() abort
-    setlocal foldmethod=expr
-    setlocal tabstop=4
     nnoremap <buffer> <F4> :GodotRunLast<CR>
     nnoremap <buffer> <F5> :GodotRun<CR>
     nnoremap <buffer> <F6> :GodotRunCurrent<CR>
