@@ -36,7 +36,6 @@ filetype plugin on
 
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-"Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
