@@ -37,8 +37,11 @@ filetype plugin on
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'gruvbox-community/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+
+Plug 'hoob3rt/lualine.nvim'
+
 Plug 'mbbill/undotree' 
 Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
@@ -65,9 +68,9 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+"let g:airline_theme='gruvbox'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
 
 colorscheme gruvbox
 
