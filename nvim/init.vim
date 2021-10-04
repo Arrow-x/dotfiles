@@ -47,8 +47,6 @@ Plug 'https://github.com/nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' 
 Plug 'habamax/vim-godot' 
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neovim/nvim-lspconfig' 
 Plug 'kabouzeid/nvim-lspinstall'
 
