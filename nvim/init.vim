@@ -41,6 +41,7 @@ Plug 'gruvbox-community/gruvbox'
 "Plug 'vim-airline/vim-airline-themes'
 
 Plug 'hoob3rt/lualine.nvim'
+Plug 'jose-elias-alvarez/buftabline.nvim'
 
 Plug 'mbbill/undotree' 
 Plug 'tpope/vim-fugitive' 
