@@ -19,7 +19,6 @@ set nowrap
 
 set noswapfile
 set nobackup
-set undodir=~/.local/share/nvim/undodir 
 set undodir=~/.cache/nvim/undodir 
 set undofile
 
@@ -37,24 +36,27 @@ filetype plugin on
 
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+"Themes
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'gruvbox-community/gruvbox'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-
+"UI plugins
 Plug 'hoob3rt/lualine.nvim'
-Plug 'jose-elias-alvarez/buftabline.nvim'
-
+Plug 'kyazdani42/nvim-tree.lua'
+"Lsp Plugings
+Plug 'neovim/nvim-lspconfig' 
+Plug 'kabouzeid/nvim-lspinstall'
+"Core vim utils
 Plug 'mbbill/undotree' 
+"Git
 Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
+"telescope and it's requarments
 Plug 'nvim-lua/plenary.nvim'
 Plug 'https://github.com/nvim-telescope/telescope.nvim' 
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
-Plug 'nvim-treesitter/nvim-treesitter' 
-Plug 'habamax/vim-godot' 
-Plug 'neovim/nvim-lspconfig' 
-Plug 'kabouzeid/nvim-lspinstall'
-
+"TreeSitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Completions
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
@@ -63,11 +65,8 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-vinegar'
-
-" requires
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+"Lang specific
+Plug 'habamax/vim-godot' 
 call plug#end()
 
 "let g:airline_theme='gruvbox'
