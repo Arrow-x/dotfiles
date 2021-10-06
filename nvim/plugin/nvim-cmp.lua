@@ -37,6 +37,6 @@ cmp.setup{
     { name = 'buffer' },
   },
   formatting= {
-    format = lspkind.cmp_format({with_text = false})
+    format = lspkind.cmp_format({with_text = true})
   }
 }

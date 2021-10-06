@@ -3,7 +3,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-
 syntax enable
 
 "Finding FIles
@@ -21,7 +20,7 @@ set noswapfile
 set nobackup
 set undodir=~/.cache/nvim/undodir 
 set undofile
-
+    
 set incsearch
 set termguicolors
 set scrolloff=12
@@ -62,6 +61,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
 " For vsnip user. I have no Idea how to use snippets
+Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -69,10 +69,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Lang specific
 Plug 'habamax/vim-godot' 
 call plug#end()
-
-"let g:airline_theme='gruvbox'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
 
 colorscheme gruvbox
 
