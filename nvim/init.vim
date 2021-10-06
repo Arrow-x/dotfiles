@@ -20,6 +20,7 @@ set nowrap
 set noswapfile
 set nobackup
 set undodir=~/.local/share/nvim/undodir 
+set undodir=~/.cache/nvim/undodir 
 set undofile
 
 set incsearch
