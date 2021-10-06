@@ -1,7 +1,8 @@
 -- Setup nvim-cmp.
 local cmp = require'cmp'
+local lspkind = require('lspkind')
 
-cmp.setup({
+cmp.setup{
   snippet = {
     expand = function(args)
       -- For `vsnip` user.
@@ -34,5 +35,8 @@ cmp.setup({
     -- { name = 'ultisnips' },
 
     { name = 'buffer' },
+  },
+  formatting= {
+    format = lspkind.cmp_format({with_text = false})
   }
-})
+}
