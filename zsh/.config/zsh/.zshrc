@@ -1,7 +1,7 @@
 
 export ZDOTDIR=$HOME/.config/zsh
 
-HISTFILE=~/.cache/zsh/zsh_history
+HISTFILE=~/.cache/zsh/.zsh_history
 setopt appendhistory
 
 # some useful options (man zshoptions)
