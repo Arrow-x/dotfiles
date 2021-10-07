@@ -41,6 +41,7 @@ Plug 'gruvbox-community/gruvbox'
 "UI plugins
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'jose-elias-alvarez/buftabline.nvim'
 "Lsp Plugings
 Plug 'neovim/nvim-lspconfig' 
 Plug 'kabouzeid/nvim-lspinstall'
@@ -92,3 +93,6 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+
+" Close buffer
+nnoremap <leader>q :bw<Enter>
