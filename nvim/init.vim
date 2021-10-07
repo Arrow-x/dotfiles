@@ -96,3 +96,9 @@ vnoremap <leader>P "+P
 
 " Close buffer
 nnoremap <leader>q :bw<Enter>
+
+" Telescope
+nnoremap <leader>ff :Telescope find_files<Enter>
+nnoremap <leader>fg :Telescope live_grep<Enter>
+nnoremap <leader>fb :Telescope buffers<Enter>
+nnoremap <leader>fh :Telescope help_tags<Enter>
