@@ -30,6 +30,7 @@ set sidescrolloff=30
 set signcolumn=yes
 
 set cmdheight=1
+set timeoutlen=80 
 
 filetype plugin on
 
