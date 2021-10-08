@@ -12,3 +12,6 @@ export ZDOTDIR=$HOME/.config/zsh
 
 # Turn Off the Beebs
 xset b off
+
+#check for bing picture of the day and set it
+python ~/Hossam/Projects/Scripts/bing_daily_wallpaper_autochanger/changer.py
