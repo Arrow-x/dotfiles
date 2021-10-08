@@ -47,6 +47,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 "Core vim utils
 Plug 'mbbill/undotree' 
+Plug 'jiangmiao/auto-pairs'
 "Git
 Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
@@ -96,6 +97,9 @@ vnoremap <leader>P "+P
 
 " Close buffer
 nnoremap <leader>q :bw<Enter>
+
+" StepOver One in insert mode
+inoremap <leader><Tab> <Escape>la
 
 " Telescope
 nnoremap <leader>ff :Telescope find_files<Enter>
