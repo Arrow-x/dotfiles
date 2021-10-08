@@ -3,7 +3,7 @@ local buftabline = require("buftabline")
 local u = require("utils")
 
 buftabline.setup({
-    tab_format = " #{n}: #{b}#{f} #{i} 🭬",
+    tab_format = "🭬 #{n}: #{b}#{f} #{i} ",
     icon_colors = "normal",
 })
 

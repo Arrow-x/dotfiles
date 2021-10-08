@@ -23,6 +23,7 @@ set undofile
     
 set incsearch
 set termguicolors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set scrolloff=12
 set sidescroll=1
 set sidescrolloff=30
@@ -30,7 +31,7 @@ set sidescrolloff=30
 set signcolumn=yes
 
 set cmdheight=1
-set timeoutlen=80 
+set timeoutlen=200
 
 filetype plugin on
 
@@ -39,6 +40,9 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 "Themes
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'gruvbox-community/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jacoborus/tender.vim'
 "UI plugins
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -73,7 +77,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'habamax/vim-godot' 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme nord 
 
 highlight Normal guibg=none
 
