@@ -87,10 +87,6 @@ highlight Normal guibg=none
 "Neovim Keymap
 let mapleader = " "
 
-"Remap the Escape key
-inoremap jk <Esc>
-cnoremap jk <C-C>
-
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -119,4 +115,4 @@ nnoremap <leader>tw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
 nnoremap <leader>td <cmd>TroubleToggle lsp_document_diagnostics<cr>
 nnoremap <leader>tq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>tl <cmd>TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+nnoremap <leader>tr <cmd>TroubleToggle lsp_references<cr>
