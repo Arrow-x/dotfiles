@@ -31,7 +31,6 @@ set sidescrolloff=30
 set signcolumn=yes
 
 set cmdheight=1
-set timeoutlen=200
 
 filetype plugin on
 
@@ -50,6 +49,7 @@ Plug 'jose-elias-alvarez/buftabline.nvim'
 "Lsp Plugings
 Plug 'neovim/nvim-lspconfig' 
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'folke/trouble.nvim'
 "Core vim utils
 Plug 'mbbill/undotree' 
 Plug 'jiangmiao/auto-pairs'
@@ -63,16 +63,19 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim'
 "TreeSitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Completions
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
-" For vsnip user. I have no Idea how to use snippets
 Plug 'rafamadriz/friendly-snippets'
+"sources
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'octaltree/cmp-look'
+Plug 'hrsh7th/cmp-calc'
+Plug 'f3fora/cmp-spell'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Lang specific
 Plug 'habamax/vim-godot' 
 call plug#end()
@@ -99,15 +102,21 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
-
 " Close buffer
 nnoremap <leader>q :bw<Enter>
 
 " StepOver One in insert mode
 inoremap <Tab><Tab> <Escape>la
 
-" Telescope
+" Telescope I should move these to there file
 nnoremap <leader>ff :Telescope find_files<Enter>
 nnoremap <leader>fg :Telescope live_grep<Enter>
 nnoremap <leader>fb :Telescope buffers<Enter>
 nnoremap <leader>fh :Telescope help_tags<Enter>
+"Trouble Keybinds
+nnoremap <leader>tt <cmd>TroubleToggle<cr>
+nnoremap <leader>tw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
+nnoremap <leader>td <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>tq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>tl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
