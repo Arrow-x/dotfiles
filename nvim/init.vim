@@ -104,7 +104,7 @@ vnoremap <leader>P "+P
 nnoremap <leader>q :bw<Enter>
 
 " StepOver One in insert mode
-inoremap <leader><Tab> <Escape>la
+inoremap <Tab><Tab> <Escape>la
 
 " Telescope
 nnoremap <leader>ff :Telescope find_files<Enter>
