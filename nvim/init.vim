@@ -58,14 +58,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 "telescope and it's requarments
 Plug 'nvim-lua/plenary.nvim'
-Plug 'https://github.com/nvim-telescope/telescope.nvim' 
+Plug 'nvim-telescope/telescope.nvim' 
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
 "TreeSitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Completions
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'Arrow-x/friendly-snippets'
 "sources
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
