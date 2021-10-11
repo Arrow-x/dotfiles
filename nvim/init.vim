@@ -19,9 +19,10 @@ Plug 'folke/trouble.nvim'
 "Core vim utils
 Plug 'mbbill/undotree' 
 Plug 'jiangmiao/auto-pairs'
+Plug 'b3nj5m1n/kommentary'
 "Git
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 "telescope and it's requarments
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim' 
