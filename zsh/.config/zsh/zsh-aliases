@@ -1,6 +1,6 @@
 #!/bin/sh
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
-alias nvimrc='cd ~/.config/nvim/ && nvim .'
+alias vimrc='cd ~/.config/nvim/ && nvim .'
 alias zshrc='cd ~/.config/zsh/ && nvim .'
 
 # Colorize grep output (good for log files)
@@ -38,8 +38,10 @@ alias ydlb='youtube-dl -f best'
 alias ydlF='youtube-dl -F'
 alias ydlf='youtube-dl -f'
 
+alias vim='nvim'
+
 #Neovim for Godot 
-alias nvimg='nvim --listen godothost .'
+alias vimg='nvim --listen godothost .'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
