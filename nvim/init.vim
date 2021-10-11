@@ -32,6 +32,8 @@ set signcolumn=yes
 
 set cmdheight=1
 
+set updatetime=50
+
 filetype plugin on
 
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
