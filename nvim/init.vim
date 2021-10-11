@@ -20,7 +20,7 @@ Plug 'folke/trouble.nvim'
 Plug 'mbbill/undotree' 
 Plug 'jiangmiao/auto-pairs'
 "Git
-Plug 'tpope/vim-fugitive' 
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'airblade/vim-gitgutter'
 "telescope and it's requarments
 Plug 'nvim-lua/plenary.nvim'
@@ -31,7 +31,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Completions
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
-Plug 'Arrow-x/friendly-snippets'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'ray-x/lsp_signature.nvim'
 "sources
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
