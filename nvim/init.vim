@@ -1,13 +1,12 @@
 filetype plugin on
 
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 "Themes
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'gruvbox-community/gruvbox'
+"Plug 'gruvbox-community/gruvbox'
 Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'jacoborus/tender.vim'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'jacoborus/tender.vim'
 "UI plugins
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
