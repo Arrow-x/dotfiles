@@ -1,4 +1,4 @@
 require('lualine').setup {
-    options = {theme = 'nord'};
+    options = {theme = 'gruvbox_material'};
     extensions = {'nvim-tree','fugitive','fzf'};
 }

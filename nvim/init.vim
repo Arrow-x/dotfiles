@@ -3,10 +3,11 @@ filetype plugin on
 call plug#begin('/home/arrowx/.local/share/nvim/plugged') 
 "Themes
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
-"Plug 'gruvbox-community/gruvbox'
-Plug 'arcticicestudio/nord-vim'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'jacoborus/tender.vim'
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'jacoborus/tender.vim'
+Plug 'sainnhe/gruvbox-material'
 "UI plugins
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -15,6 +16,7 @@ Plug 'jose-elias-alvarez/buftabline.nvim'
 Plug 'neovim/nvim-lspconfig' 
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'folke/trouble.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 "Core vim utils
 Plug 'mbbill/undotree' 
 Plug 'jiangmiao/auto-pairs'
@@ -32,8 +34,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
 Plug 'rafamadriz/friendly-snippets'
-Plug 'ray-x/lsp_signature.nvim'
-"sources
+"cmp sources
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -44,7 +45,6 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 "Lang specific
-Plug 'habamax/vim-godot' 
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox-material
