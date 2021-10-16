@@ -34,4 +34,4 @@ set cmdheight=1
 
 set updatetime=50
 
-highlight Normal guibg=none
+"highlight Normal guibg=none
