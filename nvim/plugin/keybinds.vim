@@ -19,6 +19,9 @@ nnoremap <leader>q :bw<Enter>
 " StepOver One in insert mode
 inoremap <Tab><Tab> <Escape>la
 
+" Window managment with tab
+nnoremap <Tab> <C-w>
+
 "nvim tree bindings
 nnoremap <leader>e :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
