@@ -19,6 +19,10 @@ nnoremap <leader>q :bw<Enter>
 " StepOver One in insert mode
 inoremap <Tab><Tab> <Escape>la
 
+"nvim tree bindings
+nnoremap <leader>e :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+
 " Telescope 
 nnoremap <leader>ff :Telescope find_files<Enter>
 nnoremap <leader>fg :Telescope live_grep<Enter>
