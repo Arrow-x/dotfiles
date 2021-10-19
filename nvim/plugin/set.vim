@@ -32,6 +32,6 @@ set signcolumn=yes
 
 set cmdheight=1
 
-set updatetime=50
-set timeoutlen=100
+set updatetime=250
+
 "highlight Normal guibg=none
