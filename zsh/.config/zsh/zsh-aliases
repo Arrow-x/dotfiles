@@ -14,10 +14,10 @@ alias mv='mv -i -v'
 alias rm='rm -r -v'
 
 # ls colors
-alias ls='ls --color=auto'
-alias l.='ls --color=auto -a'
-alias lsl='ls --color=auto -l'
-alias lsl.='ls --color=auto -l -a'
+alias ls='ls --color=auto -h'
+alias l.='ls --color=auto -a -h'
+alias lsl='ls --color=auto -l -h'
+alias lsl.='ls --color=auto -l -a -h'
 
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
