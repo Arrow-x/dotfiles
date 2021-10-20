@@ -49,28 +49,27 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 nnoremap <leader>q :bw<CR>
 
 " StepOver One in insert mode
-inoremap <Tab><Tab> <Esc>la
+inoremap jk <Esc>la
 
 " Window management with tab
 nnoremap <Tab> <C-w>
 
+" Better resize 
+nnoremap <M-j> :resize -2<CR>
+nnoremap <M-k> :resize +2<CR>
+nnoremap <M-h> :vertical resize -2<CR>
+nnoremap <M-l> :vertical resize +2<CR>
+
 " nvim tree bindings
 nnoremap <leader>e :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
 
 " Telescope 
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
-
-" Trouble Key binds
-nnoremap <leader>tt <cmd>TroubleToggle<CR>
-nnoremap <leader>tw <cmd>TroubleToggle lsp_workspace_diagnostics<CR>
-nnoremap <leader>td <cmd>TroubleToggle lsp_document_diagnostics<CR>
-nnoremap <leader>tq <cmd>TroubleToggle quickfix<CR>
-nnoremap <leader>tl <cmd>TroubleToggle loclist<CR>
-nnoremap <leader>tr <cmd>TroubleToggle lsp_references<CR>
+nnoremap <leader>fd :Telescope lsp_document_diagnostics<CR>
+nnoremap <leader>fD :Telescope lsp_workspace_diagnostics<CR>
 
 " lsp key binds 
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>

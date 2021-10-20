@@ -15,7 +15,6 @@ Plug 'jose-elias-alvarez/buftabline.nvim'
 "Lsp Plugings
 Plug 'neovim/nvim-lspconfig' 
 Plug 'kabouzeid/nvim-lspinstall'
-Plug 'folke/trouble.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'folke/lsp-colors.nvim'
 "Core vim utils
