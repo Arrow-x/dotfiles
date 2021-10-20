@@ -22,6 +22,7 @@ Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'b3nj5m1n/kommentary'
 Plug 'folke/which-key.nvim'
+Plug 'tpope/vim-surround'
 "Git
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'tpope/vim-fugitive'
