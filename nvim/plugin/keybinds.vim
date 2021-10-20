@@ -47,6 +47,7 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
 " Close buffer
 nnoremap <leader>q :bw<CR>
+nnoremap <leader>Q :%bd\|e#<CR> 
 
 " StepOver One in insert mode
 inoremap jk <Esc>la
@@ -70,6 +71,7 @@ nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>fd :Telescope lsp_document_diagnostics<CR>
 nnoremap <leader>fD :Telescope lsp_workspace_diagnostics<CR>
+nnoremap <leader>fa :Telescope lsp_code_actions<CR>
 
 " lsp key binds 
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
