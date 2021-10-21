@@ -34,12 +34,12 @@ inoremap ? ?<C-g>u
 inoremap = =<C-g>u
 
 " Moving around text
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
-inoremap <C-k> <Esc>:m .-2<CR>==i
-inoremap <C-j> <Esc>:m .+1<CR>==i
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==i 
+inoremap <M-k> <Esc>:m .-2<CR>==i
 
 " Jumplist mutation
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
@@ -56,10 +56,10 @@ inoremap jk <Esc>la
 nnoremap <Tab> <C-w>
 
 " Better resize 
-nnoremap <M-j> :resize -2<CR>
-nnoremap <M-k> :resize +2<CR>
-nnoremap <M-h> :vertical resize -2<CR>
-nnoremap <M-l> :vertical resize +2<CR>
+nnoremap <C-j> :resize -2<CR>
+nnoremap <C-k> :resize +2<CR>
+nnoremap <C-h> :vertical resize -2<CR>
+nnoremap <C-l> :vertical resize +2<CR>
 
 " nvim tree bindings
 nnoremap <leader>e :NvimTreeToggle<CR>
