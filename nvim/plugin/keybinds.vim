@@ -56,10 +56,10 @@ inoremap jk <Esc>la
 nnoremap <Tab> <C-w>
 
 " Better resize 
-nnoremap <C-j> :resize -2<CR>
-nnoremap <C-k> :resize +2<CR>
-nnoremap <C-h> :vertical resize -2<CR>
-nnoremap <C-l> :vertical resize +2<CR>
+nnoremap <C-M-k> :resize -2<CR>
+nnoremap <C-M-j> :resize +2<CR>
+nnoremap <C-M-h> :vertical resize -2<CR>
+nnoremap <C-M-l> :vertical resize +2<CR>
 
 " nvim tree bindings
 nnoremap <leader>e :NvimTreeToggle<CR>
