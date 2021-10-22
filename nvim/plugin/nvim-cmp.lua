@@ -2,7 +2,6 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append "c"
-
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local lspkind = require('lspkind')
@@ -24,6 +23,7 @@ cmp.setup{
 
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'luasnip' },
         { name = 'buffer', keyword_length = 5 },
         { name = 'path' },
@@ -33,7 +33,8 @@ cmp.setup{
     },
 
     formatting= {
-        format = lspkind.cmp_format({with_text = true})
+        format = lspkind.cmp_format({with_text = true,
+        })
     },
 
     experimental = {
