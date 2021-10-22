@@ -3,7 +3,7 @@ local function getWords()
 end
 
 require('lualine').setup {
-    options = {theme = 'gruvbox_material'};
+    options = {theme = 'auto'};
     extensions = {'nvim-tree','fugitive','fzf'};
     sections = {
         lualine_b = {{'branch', icon = ''}, 'diff'},
