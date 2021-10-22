@@ -1,3 +1,8 @@
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Don't show the dumb matching stuff.
+vim.opt.shortmess:append "c"
+
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local lspkind = require('lspkind')
@@ -20,7 +25,7 @@ cmp.setup{
   sources = {
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 5 },
     { name = 'path' },
     { name = 'calc' },
     { name = 'spell' },
