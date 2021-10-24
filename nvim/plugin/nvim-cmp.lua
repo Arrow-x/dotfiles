@@ -33,8 +33,7 @@ cmp.setup{
     },
 
     formatting= {
-        format = lspkind.cmp_format({with_text = true,
-        })
+        format = lspkind.cmp_format({with_text = true,})
     },
 
     experimental = {
