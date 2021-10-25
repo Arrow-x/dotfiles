@@ -25,7 +25,7 @@ cmp.setup{
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
-        { name = 'buffer', keyword_length = 5 },
+        { name = 'buffer' },
         { name = 'path' },
         { name = 'calc' },
         { name = 'spell' },
