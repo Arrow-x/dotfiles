@@ -1,6 +1,6 @@
 "Tabing option, this if for Godot and Python, Lua too?
-" set tabstop=4
-" set shiftwidth=4
+set tabstop=4
+set shiftwidth=4
 " set expandtab
 " set smartindent
 syntax enable
