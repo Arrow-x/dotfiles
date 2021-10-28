@@ -16,8 +16,8 @@ xset b off
 #swith the escape and caps
 setxkbmap -option caps:swapescape
 
-#check for bing picture of the day and set it
-python ~/Hossam/Projects/Scripts/bing_daily_wallpaper_autochanger/changer.py
-
 #Start redshift
 redshift
+
+#check for bing picture of the day and set it
+python ~/Hossam/Projects/Scripts/XFCE4-auto-Bing-wallpapers/changer.py
