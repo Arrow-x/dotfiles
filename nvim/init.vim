@@ -35,8 +35,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Completions
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
-Plug 'rafamadriz/friendly-snippets'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
 "cmp sources
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -47,7 +47,6 @@ Plug 'hrsh7th/cmp-calc'
 Plug 'f3fora/cmp-spell'
 "Formatter
 Plug 'mhartington/formatter.nvim'
-"Lang specific
 call plug#end()
 
 colorscheme gruvbox-material 

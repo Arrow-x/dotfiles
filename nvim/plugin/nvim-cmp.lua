@@ -1,5 +1,7 @@
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+require("luasnip/loaders/from_vscode").load()
+
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append "c"
 -- Setup nvim-cmp.
