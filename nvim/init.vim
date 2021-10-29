@@ -45,6 +45,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'octaltree/cmp-look'
 Plug 'hrsh7th/cmp-calc'
 Plug 'f3fora/cmp-spell'
+"Formatter
+Plug 'mhartington/formatter.nvim'
 "Lang specific
 call plug#end()
 
