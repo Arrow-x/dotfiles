@@ -36,11 +36,11 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
 
-#youtube-dl
-alias ydl='youtube-dl'
-alias ydlb='youtube-dl -f best'
-alias ydlF='youtube-dl -F'
-alias ydlf='youtube-dl -f'
+#yt-dlp usage
+alias ydl='yt-dlp'
+alias ydla='yt-dlp -f 251'
+alias ydlF='yt-dlp -F'
+alias ydlf='yt-dlp -f'
 
 alias vim='nvim'
 
