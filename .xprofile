@@ -18,6 +18,6 @@ setxkbmap -option caps:swapescape
 
 #Start redshift
 redshift
-
+#r
 #check for bing picture of the day and set it
-python ~/Hossam/Projects/Scripts/XFCE4-auto-Bing-wallpapers/changer.py
+#python ~/Hossam/Projects/Scripts/XFCE4-auto-Bing-wallpapers/changer.py
