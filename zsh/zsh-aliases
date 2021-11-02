@@ -47,6 +47,23 @@ alias vim='nvim'
 #Neovim for Godot 
 alias vimg='nvim --listen godothost .'
 
+#fzf usages
+pcd(){
+	cd "$(find -type d | fzf)"
+}
+
+open(){
+	xdg-open "$(find -type f | fzf)"
+}
+
+copypath(){
+	find -type "$1" | fzf | sed "s/^../'/;s/$/'/" | tr -d '\n' | xclip -selection c
+}
+
+getpath(){
+	find -type "$1" | fzf | sed "s/^../'/;s/$/'/" | tr -d '\n'
+}
+
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
