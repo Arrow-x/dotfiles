@@ -53,7 +53,7 @@ pcd(){
 }
 
 open(){
-	xdg-open "$(find -type f | fzf)"
+	getpath f | xargs -0 -I arg sh -c "nohup xdg-open arg &"
 }
 
 copypath(){
