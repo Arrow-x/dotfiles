@@ -64,6 +64,22 @@ getpath(){
 	find -type "$1" | fzf | sed "s/^../'/;s/$/'/" | tr -d '\n'
 }
 
+#Pacman and yay stuff
+alias pacin='sudo pacman -S'
+alias pacdo='yay -Qtdq | yay -Rns -'
+
+pacsd(){
+	expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n "$1"
+}
+
+yaysa(){
+	yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'
+}
+
+pacsa(){
+	sudo pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
+}
+
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
