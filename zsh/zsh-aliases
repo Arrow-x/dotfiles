@@ -66,6 +66,7 @@ getpath(){
 
 #Pacman and yay stuff
 alias pacin='sudo pacman -S'
+alias yayin='yay -S'
 alias pacdo='yay -Qtdq | yay -Rns -'
 
 pacsd(){
