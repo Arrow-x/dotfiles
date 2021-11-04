@@ -81,6 +81,10 @@ pacsa(){
 	sudo pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
 }
 
+trackpad(){
+	xinput set-prop 14 "Device Enabled" $1
+}
+
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
