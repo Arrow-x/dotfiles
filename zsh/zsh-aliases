@@ -49,7 +49,7 @@ alias vimg='nvim --listen godothost .'
 
 #fzf usages
 pcd(){
-	cd "$(find -type d | fzf)"
+	cd "$(fd -t d -HI --exclude .git | fzf)"
 }
 
 open(){
@@ -57,11 +57,11 @@ open(){
 }
 
 copypath(){
-	find -type "$1" | fzf | sed "s/^../'/;s/$/'/" | tr -d '\n' | xclip -selection c
+	fd -t "$1" | fzf | sed "s/^/'/;s/$/'/" | tr -d '\n' | xclip -selection c
 }
 
 getpath(){
-	find -type "$1" | fzf | sed "s/^../'/;s/$/'/" | tr -d '\n'
+	fd -t "$1" | fzf | sed "s/^/'/;s/$/'/" | tr -d '\n'
 }
 
 #Pacman and yay stuff
