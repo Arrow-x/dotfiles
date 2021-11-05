@@ -9,6 +9,7 @@ setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
+. /usr/share/LS_COLORS/dircolors.sh
 
 # completions
 autoload -Uz compinit && compinit
