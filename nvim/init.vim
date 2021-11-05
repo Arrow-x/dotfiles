@@ -14,7 +14,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'jose-elias-alvarez/buftabline.nvim'
 "Lsp Plugings
 Plug 'neovim/nvim-lspconfig' 
-Plug 'kabouzeid/nvim-lspinstall'
+" Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'folke/lsp-colors.nvim'
 "Core vim utils
@@ -45,6 +46,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'octaltree/cmp-look'
 Plug 'hrsh7th/cmp-calc'
 Plug 'f3fora/cmp-spell'
+Plug 'hrsh7th/cmp-cmdline'
 "Formatter
 Plug 'mhartington/formatter.nvim'
 call plug#end()
