@@ -11,7 +11,7 @@ alias fgrep='fgrep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i -v"
 alias mv='mv -i -v'
-alias rm='rm -r -v'
+alias rm='trash-put -f -v'
 
 # ls colors
 alias ls='ls --color=auto -h'
