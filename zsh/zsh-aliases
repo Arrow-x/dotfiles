@@ -2,6 +2,7 @@
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias vimrc='cd ~/.config/nvim/ && nvim .'
 alias zshrc='cd ~/.config/zsh/ && nvim .'
+alias i3rc='cd ~/.config/i3 && nvim .'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
