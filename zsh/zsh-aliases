@@ -57,15 +57,15 @@ open(){
 }
 
 copypath(){
-	fd -t "$1" -HI --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n' | xclip -selection c
+	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n' | xclip -selection c
 }
 
 getpath(){
-	fd -t "$1" -HI --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n'
+	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n'
 }
 
 openh(){
-	fd -t d | fzf --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place "$FZF_PREVIEW_COLUMNS""x""$FZF_PREVIEW_LINES@"$FZF_PREVIEW_COLUMNS"x1" --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg sxiv 'arg'
+	fd -t d | fzf --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg sxiv 'arg'
 }
 
 #Pacman and yay stuff
