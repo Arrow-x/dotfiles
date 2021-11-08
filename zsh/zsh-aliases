@@ -54,7 +54,7 @@ pcd(){
 }
 
 open(){
-	getpath f | xargs -0 -I arg sh -c "nohup xdg-open arg &"
+	getpath f | xargs -0 -I arg sh -c "nohup mimeo arg &"
 }
 
 copypath(){
