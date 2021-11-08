@@ -136,6 +136,9 @@ bindcode $mod+Shift+80 	 move container to workspace  $ws8
 bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
+#move focused workspace to other monitor
+bindsym $mod+m move workspace to output next
+
 # resize window (you can also use the mouse for that):
 #mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
@@ -301,9 +304,9 @@ set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6"
-set $ws7 "7"
+set $ws5 "5:"
+set $ws6 "6:🤖"
+set $ws7 "7:"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -322,7 +325,9 @@ assign [class="kitty"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Thunderbird"] $ws4
-assign [class="TelegramDesktop"] $ws5
+assign [class="Foliate"] $ws5
+assign [class="Godot"] $ws6
+assign [class="Blender"] $ws7
 
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -331,6 +336,9 @@ for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 for_window [class=Thunderbird] focus
 for_window [class=TelegramDesktop] focus
+for_window [class=Foliate] focus
+for_window [class=Godot] focus
+for_window [class=Blender] focus
 
 #############################################
 # autostart applications/services on login: #
@@ -366,7 +374,7 @@ exec --no-startup-id picom -CGb
 exec --no-startup-id nm-applet
 
 # set wallpaper
-# exec --no-startup-id nitrogen --restore
+exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 #set powersavings for display:
@@ -514,3 +522,5 @@ exec "setxkbmap -option 'grp:alt_shift_toggle'"
 #####################################
 
 bindsym $mod+v exec copyq menu
+
+
