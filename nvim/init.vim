@@ -5,9 +5,9 @@ call plug#begin('/home/arrowx/.local/share/nvim/plugged')
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 " Plug 'gruvbox-community/gruvbox'
 " Plug 'arcticicestudio/nord-vim'
-" Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'jacoborus/tender.vim'
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
 "UI plugins
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -51,4 +51,4 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'mhartington/formatter.nvim'
 call plug#end()
 
-colorscheme gruvbox-material 
+colorscheme dracula
