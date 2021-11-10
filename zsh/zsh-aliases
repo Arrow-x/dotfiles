@@ -66,7 +66,7 @@ getpath(){
 }
 
 openh(){
-	fd -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg sxiv 'arg' 
+	fd -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg nsxiv 'arg' 
 }
 
 #Pacman and yay stuff
