@@ -58,7 +58,7 @@ open(){
 }
 
 copypath(){
-	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n' | xclip -selection c
+	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi |  tr -d '\n' | xclip -selection c
 }
 
 getpath(){
