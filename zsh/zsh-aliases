@@ -37,6 +37,7 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
 alias gcth="git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1}'"
+
 #yt-dlp usage
 alias ydl='yt-dlp'
 alias ydla='yt-dlp -f 251'
@@ -57,11 +58,11 @@ open(){
 	getpath f | xargs -0 -I arg sh -c "nohup mimeo arg &"
 }
 
-copypath(){
+cppt(){
 	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi |  tr -d '\n' | xclip -selection c
 }
 
-getpath(){
+getpt(){
 	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n'
 }
 
@@ -69,22 +70,23 @@ openh(){
 	fd -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg nsxiv 'arg' 
 }
 
-#Pacman and yay stuff
-alias pacin='sudo pacman -S'
-alias yayin='yay -S'
+#yay stuff
+alias pacin='yay -S'
+#delelte all orphans
 alias pacdo='yay -Qtdq | yay -Rns -'
 
+#show installed packages and sort them by installed date 
 pacsd(){
 	expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n "$1"
 }
 
-yaysa(){
+#Show all installed packages 
+pacsa(){
 	yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'
 }
 
-pacsa(){
-	sudo pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
-}
+# For when keys break
+alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 trackpad(){
 	xinput set-prop 14 "Device Enabled" $1
@@ -102,6 +104,3 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
-
-# For when keys break
-alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
