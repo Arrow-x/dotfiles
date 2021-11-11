@@ -55,7 +55,7 @@ pcd(){
 }
 
 open(){
-	getpath f | xargs -0 -I arg sh -c "nohup mimeo arg &"
+	getpt f | xargs -0 -I arg sh -c "nohup mimeo arg &"
 }
 
 cppt(){
@@ -104,3 +104,5 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+alias anime='ani-cli -q 270'
