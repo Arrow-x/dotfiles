@@ -449,16 +449,15 @@ bar {
 strip_workspace_numbers yes
 ##strip_workspace_name no
 
-		    colors {
-		    separator          $purple
-		    background         $darkgrey
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
+colors {
+	separator          $purple
+		background         $darkgrey
+		statusline         $white
+#                      		border 		        bg		txt		indicator
 		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
 		urgent_workspace	$urgentred	    	$urgentred	$white		$purple 
-	}
 }
 
 # you can add different bars for multidisplay setups on each display:
@@ -522,5 +521,3 @@ exec "setxkbmap -option 'grp:alt_shift_toggle'"
 #####################################
 
 bindsym $mod+v exec copyq menu
-
-
