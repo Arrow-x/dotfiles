@@ -95,6 +95,8 @@ trackpad(){
 #replace default programmes with better ones that have diffrent way of use
 alias rename='perl-rename'
 
+alias aria='aria2c --check-integrity=true'
+
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
