@@ -63,7 +63,7 @@ cppt(){
 }
 
 getpt(){
-	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed "s/^/'/;s/$/'/" | tr -d '\n'
+	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
 openh(){
