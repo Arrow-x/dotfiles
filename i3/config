@@ -374,7 +374,7 @@ exec --no-startup-id picom -CGb
 exec --no-startup-id nm-applet
 
 # set wallpaper
-exec --no-startup-id nitrogen --restore
+# exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 #set powersavings for display:
