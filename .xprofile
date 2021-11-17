@@ -14,4 +14,4 @@ xset b off
 setxkbmap -option caps:swapescape
 
 #check for bing picture of the day and set it
-python /home/arrowx/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py
+# python /home/arrowx/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py
