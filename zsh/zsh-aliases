@@ -92,7 +92,7 @@ pacsa(){
 alias pacme='yay -S --asexplicit'
 
 # For when keys break
-alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
+alias archlinx-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
 
 trackpad(){
 	xinput set-prop 14 "Device Enabled" $1
