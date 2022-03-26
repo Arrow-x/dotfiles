@@ -306,7 +306,7 @@ set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:🤖"
 set $ws7 "7:"
-set $ws8 "8"
+set $ws8 "8:🖌️"
 set $ws9 "9"
 set $ws10 "10"
 
@@ -327,6 +327,7 @@ assign [class="Thunderbird"] $ws4
 assign [class="Foliate"] $ws5
 assign [class="Godot"] $ws6
 assign [class="Blender"] $ws7
+assign [class="krita"] $ws8
 
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -337,6 +338,7 @@ for_window [class=Thunderbird] focus
 for_window [class=Foliate] focus
 for_window [class=Godot] focus
 for_window [class=Blender] focus
+for_window [class=krita] focus
 
 #############################################
 # autostart applications/services on login: #
