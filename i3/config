@@ -195,10 +195,6 @@ bindsym $mod+Shift+r restart
 # keybinding list in editor:
 bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
-# Backlight control
-#bindsym XF86MonBrightnessUp exec xbacklight +10
-#bindsym XF86MonBrightnessDown exec xbacklight -10
-
 # change focus
 # bindsym $mod+j focus left
 # bindsym $mod+k focus down
@@ -338,7 +334,6 @@ for_window [class=kitty] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 for_window [class=Thunderbird] focus
-for_window [class=TelegramDesktop] focus
 for_window [class=Foliate] focus
 for_window [class=Godot] focus
 for_window [class=Blender] focus
