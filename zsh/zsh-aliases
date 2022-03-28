@@ -48,7 +48,7 @@ alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp -f'
 
 alias vim='nvim'
-
+alias nsxiv='nsxiv -a'
 #Neovim for Godot 
 alias vimg='nvim --listen godothost .'
 
