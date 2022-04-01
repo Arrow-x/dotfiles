@@ -10,6 +10,9 @@ export ZDOTDIR=$HOME/.config/zsh
 # Turn Off the Beebs
 xset b off
 
+setxkbmap -layout us,ara
+stxkbmap -option 'grp:alt_shift_toggle'
+
 #swith the escape and caps
 setxkbmap -option caps:swapescape
 

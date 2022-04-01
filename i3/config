@@ -513,8 +513,8 @@ bindsym F10 exec rofi -show window \
 #####################################
 #Keyboard layout:                   #
 #####################################
-exec "setxkbmap -layout us,ar"
-exec "setxkbmap -option 'grp:alt_shift_toggle'"
+# exec setxkbmap -layout us,ara"
+# exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 #####################################
 # Clipboard                         #
