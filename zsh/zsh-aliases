@@ -54,7 +54,7 @@ alias vimg='nvim --listen godothost .'
 
 #fzf usages
 pcd(){
-	cd "$(fd -t d -HI --exclude .git | fzf)"
+	cd "$(fd -t d -HI --exclude .git -E Homework -E .cashe | fzf)"
 }
 
 open(){
@@ -62,15 +62,15 @@ open(){
 }
 
 cppt(){
-	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi |  tr -d '\n' | xclip -selection c
+	fd -t "$1" -HI --exclude .cache -E Homework --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi |  tr -d '\n' | xclip -selection c
 }
 
 getpt(){
-	fd -t "$1" -HI --exclude .cache --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed 's/^/"/;s/$/"/' | tr -d '\n'
+	fd -t "$1" -HI --exclude .cache -E Homework --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
 openh(){
-	fd -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg nsxiv 'arg' 
+	fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg nsxiv 'arg' 
 }
 
 #yay stuff
