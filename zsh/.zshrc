@@ -51,3 +51,4 @@ bindkey "^k" up-line-or-beginning-search # Up
 bindkey "^j" down-line-or-beginning-search # Down
 
 autoload edit-command-line; zle -N edit-command-line
+eval $(thefuck --alias)
