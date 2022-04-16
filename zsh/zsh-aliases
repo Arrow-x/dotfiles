@@ -70,7 +70,16 @@ getpt(){
 }
 
 openh(){
-	fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | xargs -I arg nsxiv 'arg' 
+	fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | sed 's/^/"/;s/$/"/' | xargs nsxiv 
+}
+
+changewall(){
+	ls -td /home/arrowx/Pictures | fzf --prompt 'All> ' \
+             --header 'CTRL-H: hentai / CTRL-W: Wallhaven / CTRL-B Bing'  \
+             --bind 'ctrl-h:change-prompt(hentai> )+reload(ls -td /home/arrowx/File/Pictures/NSFW/*/*)' \
+             --bind 'ctrl-w:change-prompt(wallhaven> )+reload(ls -td /home/arrowx/.local/share/wallhaven/*)' \
+			 --bind 'ctrl-b:change-prompt(bing> )+reload(ls -td /home/arrowx/Pictures/Bing/*)' \
+			 --preview-window='up,30' --preview='kitty icat --clear --transfer-mode file; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x1" --transfer-mode file {}' | xargs nitrogen --set-auto
 }
 
 #yay stuff
