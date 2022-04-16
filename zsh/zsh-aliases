@@ -88,8 +88,9 @@ pacsa(){
 	yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'
 }
 
-alias monrest='xrandr --output LVDS-1 --mode 1400x900'
-alias monorig='xrandr --output LVDS-1 --mode 1600x900'
+alias monset='xrandr --output LVDS-1 --mode 1400x900'
+alias monrest='xrandr --output LVDS-1 --mode 1600x900'
+
 #use yay to make package explicitly installed
 alias pacme='yay -S --asexplicit'
 
