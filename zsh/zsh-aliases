@@ -58,7 +58,7 @@ pcd(){
 }
 
 open(){
-	getpt f | xargs -0 -I arg sh -c "nohup mimeo arg &"
+	getpt f | xargs mimeo
 }
 
 cppt(){
