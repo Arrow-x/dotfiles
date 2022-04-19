@@ -446,7 +446,7 @@ bar {
 # When strip_workspace_numbers is set to yes, 
 # any workspace that has a name of the form 
 # “[n][:][NAME]” will display only the name.
-strip_workspace_numbers yes
+strip_workspace_numbers no
 ##strip_workspace_name no
 
 colors {
