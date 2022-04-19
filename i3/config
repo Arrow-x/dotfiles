@@ -456,7 +456,6 @@ bar {
 # any workspace that has a name of the form 
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers no
-##strip_workspace_name no
 
 ##EndeavourOS Defualt
 # colors {
