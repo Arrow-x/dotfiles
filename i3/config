@@ -404,27 +404,36 @@ for_window [class="Pamac-manager"] floating enable
 ######################################
 # color settings for bar and windows #
 ######################################
- 
-# Define colors variables: 
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
+# EndeavourOS Default 
+# # Define colors variables: 
+# set $darkbluetrans	#08052b
+# set $darkblue		#08052b
+# set $lightblue		#8be9fd
+# set $urgentred		#e53935
+# set $white		#ffffff
+# set $black		#000000
+# set $purple		#e345ff
+# set $darkgrey		#383c4a
+# set $grey		#b0b5bd
+# set $mediumgrey		#8b8b8b
+# set $yellowbrown	#e1b700
 
-# define colors for windows:
-#class		        	border		bground		text		indicator	child_border
-client.focused		    $lightblue	$darkblue	$white		$purple		$mediumgrey
-client.unfocused	    $darkblue	$darkblue	$grey		$purple		$darkgrey
-client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$black
-client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
+# # define colors for windows:
+# #class		        	border		bground		text		indicator	child_border
+# client.focused		    $lightblue	$darkblue	$white		$purple		$mediumgrey
+# client.unfocused	    $darkblue	$darkblue	$grey		$purple		$darkgrey
+# client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$black
+# client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 
+##Dracula
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -449,16 +458,28 @@ bar {
 strip_workspace_numbers no
 ##strip_workspace_name no
 
+##EndeavourOS Defualt
+# colors {
+# 	separator          $purple
+# 		background         $darkgrey
+# 		statusline         $white
+# #                      		border 		        bg		txt		indicator
+# 		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
+# 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+# 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
+# 		urgent_workspace	$urgentred	    	$urgentred	$white		$purple 
+# }
 colors {
-	separator          $purple
-		background         $darkgrey
-		statusline         $white
-#                      		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple 
-}
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
 }
 # you can add different bars for multidisplay setups on each display:
 # set output HDMI-0 to the display you want the bar, --transparency can be set.
