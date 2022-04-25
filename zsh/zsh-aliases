@@ -105,7 +105,7 @@ alias monrest='xrandr --output LVDS-1 --mode 1600x900'
 alias pacme='yay -S --asexplicit'
 
 # For when keys break
-alias pacman-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
+alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 trackpad(){
 	xinput set-prop 14 "Device Enabled" $1
