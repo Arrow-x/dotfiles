@@ -36,6 +36,7 @@ zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
+source "$ZDOTDIR/colorschemes/zsh-syntax-highlighting.sh"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "arrow-x/zsh-colored-man-pages"
