@@ -49,7 +49,7 @@ alias ydl='yt-dlp'
 alias ydla='yt-dlp -f 251'
 alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp -f'
-
+alias ydl720='yt-dlp -f 247+250'
 alias vim='nvim'
 alias nsxiv='nsxiv -a'
 #Neovim for Godot 
