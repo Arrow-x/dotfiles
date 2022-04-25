@@ -6,6 +6,8 @@ alias i3rc='nvim ~/.config/i3'
 alias kittyrc='nvim ~/.config/kitty/'
 alias xprc='nvim ~/.xprofile'
 
+alias cddf='cd ~/File/Projects/dotfiles'
+
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
