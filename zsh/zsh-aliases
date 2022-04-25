@@ -85,6 +85,8 @@ changewall(){
 			 --preview-window='up,30' --preview='kitty icat --clear --transfer-mode file; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x1" --transfer-mode file {}' | xargs nitrogen --set-auto
 }
 
+alias bing='python ~/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py'
+
 #yay stuff
 alias pacin='yay -S'
 #delelte all orphans
