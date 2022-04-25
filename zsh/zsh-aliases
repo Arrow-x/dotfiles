@@ -51,7 +51,7 @@ alias ydlf='yt-dlp -f'
 alias vim='nvim'
 alias nsxiv='nsxiv -a'
 #Neovim for Godot 
-alias vimg='nvim --listen /tmp/godothost.pipe .'
+alias vimg='nvim --listen /tmp/godothost.pipe ~/File/Projects/Godot/Mushroom-Dialogs-System/DialogSystem'
 
 #fzf usages
 pcd(){
