@@ -356,6 +356,9 @@ exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 # num lock activated
 exec --no-startup-id numlockx on
 
+# Dynamic Tiling 
+exec --no-startup-id autotiling
+
 # start conky: 
 #exec_always --no-startup-id conky
 
