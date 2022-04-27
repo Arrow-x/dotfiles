@@ -87,10 +87,10 @@ changewall(){
 
 alias bing='python ~/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py'
 
-#yay stuff
-alias pacin='yay -S'
+#paru stuff
+alias pacin='paru -S'
 #delelte all orphans
-alias pacdo='yay -Qtdq | yay -Rns -'
+alias pacdo='paru -Qtdq | paru -Rns -'
 
 #show installed packages and sort them by installed date 
 pacsd(){
@@ -99,14 +99,14 @@ pacsd(){
 
 #Show all installed packages 
 pacsa(){
-	yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'
+	paru -Qq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | less)'
 }
 
 alias monset='xrandr --output LVDS-1 --mode 1400x900'
 alias monreset='xrandr --output LVDS-1 --mode 1600x900'
 
-#use yay to make package explicitly installed
-alias pacme='yay -S --asexplicit'
+#use paru to make package explicitly installed
+alias pacme='paru -S --asexplicit'
 
 # For when keys break
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
