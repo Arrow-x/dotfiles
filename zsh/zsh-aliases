@@ -57,8 +57,13 @@ alias nsxiv='nsxiv -a'
 alias vimg='nvim --listen /tmp/godothost.pipe ~/File/Projects/Godot/Mushroom-Dialogs-System/DialogSystem'
 
 #fzf usages
+fdrc(){
+	fd -t $1 -HI --exclude .cache -E Homework -E Total.War.v2/ --exclude .npm/ --exclude .git --color=always | fzf --ansi
+}
+
 pcd(){
-	cd "$(fd -t d -HI --exclude .git -E Homework -E .cashe | fzf)"
+	# cd "$(fd -t d -HI --exclude .git -E Homework -E .cashe | fzf)"
+	cd "$(fdrc d)"
 }
 
 open(){
@@ -66,11 +71,11 @@ open(){
 }
 
 cppt(){
-	fd -t "$1" -HI --exclude .cache -E Homework --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi |  tr -d '\n' | xclip -selection c
+	fdrc $1 |  tr -d '\n' | xclip -selection c
 }
 
 getpt(){
-	fd -t "$1" -HI --exclude .cache -E Homework --exclude .npm/_cacache/ --exclude .git --color=always | fzf --ansi | sed 's/^/"/;s/$/"/' | tr -d '\n'
+	fdrc $1 | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
 openh(){
