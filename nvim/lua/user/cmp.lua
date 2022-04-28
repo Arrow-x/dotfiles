@@ -46,6 +46,18 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
+
+local border = {
+	{ "╭", "CmpBorder" },
+	{ "─", "CmpBorder" },
+	{ "╮", "CmpBorder" },
+	{ "│", "CmpBorder" },
+	{ "╯", "CmpBorder" },
+	{ "─", "CmpBorder" },
+	{ "╰", "CmpBorder" },
+	{ "│", "CmpBorder" },
+}
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -82,6 +94,19 @@ cmp.setup({
 			"s",
 		}),
 	}),
+
+	window = {
+		completion = {
+			border = border,
+			scrollbar = "┃",
+			-- scrollbar = "║",
+		},
+		documentation = {
+			border = border,
+			-- scrollbar = "║",
+			scrollbar = "┃",
+		},
+	},
 
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
