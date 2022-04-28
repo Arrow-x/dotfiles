@@ -1,3 +1,4 @@
 .zcompdump
 plugins/
 nvim/spell/
+nvim/plugin/
