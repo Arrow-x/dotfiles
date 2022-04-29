@@ -47,16 +47,48 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
+-- local border = {
+-- 	{ "┏", "FloatBorder" },
+-- 	{ "━", "FloatBorder" },
+-- 	{ "┓", "FloatBorder" },
+-- 	{ "┃", "FloatBorder" },
+-- 	{ "┛", "FloatBorder" },
+-- 	{ "━", "FloatBorder" },
+-- 	{ "┗", "FloatBorder" },
+-- 	{ "┃", "FloatBorder" },
+-- }
+
+-- local border = {
+-- 	{ "╔", "FloatBorder" },
+-- 	{ "═", "FloatBorder" },
+-- 	{ "╗", "FloatBorder" },
+-- 	{ "║", "FloatBorder" },
+-- 	{ "╝", "FloatBorder" },
+-- 	{ "═", "FloatBorder" },
+-- 	{ "╚", "FloatBorder" },
+-- 	{ "║", "FloatBorder" },
+-- }
+
 local border = {
-	{ "╭", "CmpBorder" },
-	{ "─", "CmpBorder" },
-	{ "╮", "CmpBorder" },
-	{ "│", "CmpBorder" },
-	{ "╯", "CmpBorder" },
-	{ "─", "CmpBorder" },
-	{ "╰", "CmpBorder" },
-	{ "│", "CmpBorder" },
+    { "╭", "CmpBorder" },
+    { "─", "CmpBorder" },
+    { "╮", "CmpBorder" },
+    { "│", "CmpBorder" },
+    { "╯", "CmpBorder" },
+    { "─", "CmpBorder" },
+    { "╰", "CmpBorder" },
+    { "│", "CmpBorder" },
 }
+-- local border = {
+-- 	{ "╭", "FloatBorder" },
+-- 	{ "─", "FloatBorder" },
+-- 	{ "╮", "FloatBorder" },
+-- 	{ "│", "FloatBorder" },
+-- 	{ "╯", "FloatBorder" },
+-- 	{ "─", "FloatBorder" },
+-- 	{ "╰", "FloatBorder" },
+-- 	{ "│", "FloatBorder" },
+-- }
 
 cmp.setup({
 	snippet = {
@@ -94,6 +126,10 @@ cmp.setup({
 			"s",
 		}),
 	}),
+
+	view = {
+		entries = "custom", -- can be "custom", "wildmenu" or "native"
+	},
 
 	window = {
 		completion = {
@@ -138,28 +174,27 @@ cmp.setup({
 	-- formatting= {
 	--     format = lspkind.cmp_format({with_text = true,})
 	-- },
-
-	cmp.setup.filetype("gitcommit", {
-		sources = cmp.config.sources({
-			{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
-		}, {
-			{ name = "buffer" },
-		}),
+})
+cmp.setup.filetype("gitcommit", {
+	sources = cmp.config.sources({
+		{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+	}, {
+		{ name = "buffer" },
 	}),
+})
 
-	-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-	cmp.setup.cmdline("/", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = { name = "buffer" },
-	}),
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = { name = "buffer" },
+})
 
-	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "path" },
-		}, {
-			{ name = "cmdline" },
-		}),
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
 	}),
 })
