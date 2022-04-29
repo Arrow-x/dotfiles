@@ -90,12 +90,13 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
-	use("folke/which-key.nvim")
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/toggleterm.nvim")
 	use("ahmedkhalf/project.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("goolord/alpha-nvim")
+	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
+	use("folke/which-key.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

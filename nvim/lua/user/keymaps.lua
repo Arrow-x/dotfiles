@@ -22,7 +22,7 @@ vim.g.maplocalleader = " "
 -- Better window navigation
 keymap("n", "<Tab>", "<C-w>", opts)
 
-keymap("n", "<leader>e", ":Lex 20<cr>", opts)
+-- keymap("n", "<leader>e", ":Lex 20<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -35,7 +35,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- close buffers
-keymap("n", "<leader>q", ":Bdelete<CR>", opts)
+-- keymap("n", "<leader>q", ":Bdelete<CR>", opts)
 --keymap("n","<leader>Q", ":%bd\|e#<CR>", opts)
 
 -- Quicklist nice navigation
@@ -63,7 +63,7 @@ keymap("n", "Y", "y$", opts)
 --nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
 -- quickly fix formatting
-keymap("n", "<leader>=", "gg<S-v>G=", opts)
+-- keymap("n", "<leader>=", "gg<S-v>G=", opts)
 
 -- Insert --
 -- Press jk to step over one in insert mode
@@ -119,28 +119,28 @@ keymap("v", "<leader>p", '"+p', opts)
 keymap("v", "<leader>P", '"+P', opts)
 
 -- nvim tree bindings
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
-keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
-keymap("n", "<leader>fa", ":Telescope lsp_code_actions<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+-- keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+-- keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+-- keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+-- keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+-- keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
+-- keymap("n", "<leader>fa", ":Telescope lsp_code_actions<CR>", opts)
+-- keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 
 -- Lsp
-keymap("n", "<leader>vd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "<leader>vc", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "<leader>vi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap("n", "<leader>vr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap("n", "<leader>vH", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-keymap("n", "<leader>vR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "<leader>va", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("n", "<leader>vn", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-keymap("n", "<leader>vp", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-keymap("n", "<leader>vh", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-keymap("n", "<leader>vq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+-- keymap("n", "<leader>vd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+-- keymap("n", "<leader>vc", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+-- keymap("n", "<leader>vi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+-- keymap("n", "<leader>vr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+-- keymap("n", "<leader>vH", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+-- keymap("n", "<leader>vR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+-- keymap("n", "<leader>va", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+-- keymap("n", "<leader>vn", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+-- keymap("n", "<leader>vp", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+-- keymap("n", "<leader>vh", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+-- keymap("n", "<leader>vq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
