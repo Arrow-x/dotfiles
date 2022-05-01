@@ -17,7 +17,7 @@ null_ls.setup {
 		formatting.stylua,
 
 		diagnostics.alex,
-		diagnostics.gdlint,
+		-- diagnostics.gdlint,
 		diagnostics.flake8,
 	},
 }
