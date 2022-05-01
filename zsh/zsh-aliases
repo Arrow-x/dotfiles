@@ -20,10 +20,10 @@ alias rm='trash-put -f -v'
 alias xdg-open='mimeo'
 
 # ls colors
-alias ls='ls --color=auto -h'
-alias l.='ls --color=auto -a -h'
-alias lsl='ls --color=auto -l -h'
-alias lsl.='ls --color=auto -l -a -h'
+alias ls='lsd'
+alias ls.='lsd -a'
+alias lsl='lsd -l'
+alias lsl.='lsd -l -a'
 
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
