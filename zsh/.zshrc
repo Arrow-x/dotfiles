@@ -1,8 +1,16 @@
 
 export ZDOTDIR=$HOME/.config/zsh
 
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
 HISTFILE=~/.local/share/zsh/.zsh_history
-setopt appendhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+
+# never beep
+setopt NO_BEEP
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
