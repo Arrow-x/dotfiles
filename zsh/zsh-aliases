@@ -6,6 +6,9 @@ alias i3rc='nvim ~/.config/i3'
 alias kittyrc='nvim ~/.config/kitty/'
 alias xprc='nvim ~/.xprofile'
 
+#Neovim for Godot 
+alias vimg='nvim --listen /tmp/godothost.pipe'
+
 alias cddf='cd ~/File/Projects/dotfiles'
 
 # Colorize grep output (good for log files)
@@ -53,8 +56,6 @@ alias ydlf='yt-dlp -f'
 alias ydl720='yt-dlp -f 247+250'
 alias vim='nvim'
 alias nsxiv='nsxiv -a'
-#Neovim for Godot 
-alias vimg='nvim --listen /tmp/godothost.pipe ~/File/Projects/Godot/Mushroom-Dialogs-System/DialogSystem'
 
 #fzf usages
 fdrc(){
