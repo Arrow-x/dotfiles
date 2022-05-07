@@ -1,0 +1,74 @@
+# -- feeds ---------------------------------------------------------------------
+auto-reload yes
+reload-time 120
+reload-threads 4
+download-retries 4
+download-timeout 10
+prepopulate-query-feeds yes
+
+# -- display -------------------------------------------------------------------
+show-read-feeds no
+feed-sort-order unreadarticlecount-asc
+always-display-description true
+
+#color info default default reverse
+#color listnormal_unread yellow default
+#color listfocus blue default reverse bold
+#color listfocus_unread blue default reverse bold
+text-width 80
+
+color listnormal cyan default
+color listfocus black yellow standout bold
+color listnormal_unread blue default
+color listfocus_unread yellow default bold
+color info red black bold
+color article cyan default
+
+highlight article "^Feed:.*" color5 color0
+highlight article "^Title:.*" color3 color0 bold
+highlight article "^Author:.*" color2 color0
+highlight article "^Date:.*" color223 color0
+highlight article "^Link:.*" color4 color0
+highlight article "^Flags:.*" color9 color0
+highlight article "\\[[0-9][0-9]*\\]" color66 default bold
+highlight article "\\[image [0-9][0-9]*\\]" color109 default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
+
+# -- navigation ----------------------------------------------------------------
+goto-next-feed no
+
+#browser "lynx %u"
+
+bind-key j down feedlist
+bind-key k up feedlist
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key j down article
+bind-key k up article
+
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key ESCAPE quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+bind-key c toggle-show-read-feeds
+
+#--Macros----------------------------------------------------------------------
+macro V set browser "mpv --profile=480p '%u'&" ; open-in-browser ; set browser "firefox %u"
+macro v set browser "mpv --profile=480p '%u'&" 
+macro i set browser "nsxiv-url %u&"
+macro f set browser "firefox %u"
+
+notify-always yes
+notify-program notify-send
+
