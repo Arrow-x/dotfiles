@@ -1,4 +1,2 @@
 .zcompdump
-plugins/
-nvim/spell/
-nvim/plugin/
+zsh/.config/zsh/plugins/
