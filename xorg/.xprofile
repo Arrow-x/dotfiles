@@ -3,6 +3,7 @@ export EDITOR=/usr/bin/nvim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export DOTFILES=$HOME/dotfiles
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
@@ -15,6 +16,3 @@ setxkbmap -option 'grp:alt_shift_toggle'
 
 #swith the escape and caps
 setxkbmap -option caps:swapescape
-
-#check for bing picture of the day and set it
-# python /home/arrowx/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py
