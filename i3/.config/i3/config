@@ -253,7 +253,7 @@ bindsym $mod+a focus parent
 # open new empty workspace
 bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace.sh
 
-bindsym $mod+Tab exec rofi -show window
+bindsym $mod+grave exec tdrop -am -y 3% kitty --class dropdown
 ## Multimedia Keys
 
 # volume
