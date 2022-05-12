@@ -72,6 +72,9 @@ return packer.startup(function(use)
 	use("williamboman/nvim-lsp-installer")
 
 	use("jose-elias-alvarez/null-ls.nvim")
+	--Debug
+	use("mfussenegger/nvim-dap")
+	use("mfussenegger/nvim-dap-python")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

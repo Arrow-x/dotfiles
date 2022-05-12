@@ -9,7 +9,9 @@ local servers = {
 	"prosemd_lsp",
 	"sumneko_lua",
 	"rust_analyzer",
-	"pyright",
+	-- "pyright",
+	-- "jedi_language_server",
+	"pylsp",
 }
 
 lsp_installer.setup({
