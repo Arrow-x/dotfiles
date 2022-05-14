@@ -1,3 +1,4 @@
 .zcompdump
+nvim/.config/nvim/plugin
 zsh/.config/zsh/plugins/
 newsboat/.config/newsboat/cache.db
