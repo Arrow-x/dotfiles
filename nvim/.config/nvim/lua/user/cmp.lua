@@ -170,7 +170,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		-- { name = 'calc' },
-		-- { name = 'spell' },
+		{ name = "spell" },
 		-- { name = 'look'},
 	}),
 
