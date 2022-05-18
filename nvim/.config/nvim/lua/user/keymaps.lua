@@ -39,12 +39,13 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 --keymap("n","<leader>Q", ":%bd\|e#<CR>", opts)
 
 -- Quicklist nice navigation
-keymap("n", "<C-j>", ":cnext<CR>zzzv", opts)
-keymap("n", "<C-k>", ":cprevious<CR>zzzv", opts)
+-- keymap("n", "<C-j>", ":cnext<CR>zzzv", opts)
+-- keymap("n", "<C-k>", ":cprevious<CR>zzzv", opts)
 
--- Quicklist nice navigation
-keymap("n", "<C-j>", ":cnext<CR>zzzv", opts)
-keymap("n", "<C-k>", ":cprevious<CR>zzzv", opts)
+keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+keymap("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
+keymap("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
+keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- Move text up and Down
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)

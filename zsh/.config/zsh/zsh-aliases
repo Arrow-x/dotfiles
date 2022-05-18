@@ -1,13 +1,13 @@
 #!/bin/sh
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
-alias vimrc='nvim ~/.config/nvim/' 
+alias virc='nvim ~/.config/nvim/' 
 alias zshrc='nvim ~/.config/zsh/'
 alias i3rc='nvim ~/.config/i3' 
 alias kittyrc='nvim ~/.config/kitty/'
 alias xprc='nvim ~/.xprofile'
 
 #Neovim for Godot 
-alias vimg='nvim --listen /tmp/godothost.pipe'
+alias vig='nvim --listen /tmp/godothost.pipe'
 
 alias cddf='cd ~/File/Projects/dotfiles'
 
@@ -54,8 +54,13 @@ alias ydla='yt-dlp -f 251'
 alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp -f'
 alias ydl720='yt-dlp -f 247+250'
-alias vim='nvim'
+alias vi='nvim'
 alias nsxiv='nsxiv -a'
+
+alias mpv4='mpv --profile=480p'
+alias mpv7='mpv --profile=720p'
+alias mpv18='mpv --profile=1080p'
+alias mpva='mpv --profile=a'
 
 #fzf usages
 fdrc(){
@@ -138,3 +143,4 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

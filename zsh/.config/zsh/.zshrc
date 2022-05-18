@@ -42,14 +42,17 @@ zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
+
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-# source "$ZDOTDIR/colorschemes/zsh-syntax-highlighting.sh"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zsh-users/zsh-completions"
 zsh_add_plugin "hlissner/zsh-autopair"
-zsh_add_plugin "arrow-x/zsh-colored-man-pages"
-zsh_add_plugin "ChrisPenner/copy-pasta"
-#source $ZDOTDIR/plugins/zsh-colored-man-pages/colored-man-pages.plugin.zsh 
+
+# zsh_add_plugin "arrow-x/zsh-colored-man-pages"
+# zsh_add_plugin "ChrisPenner/copy-pasta"
+# zsh_add_plugin "jeffreytse/zsh-vi-mode"
+
 # zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
@@ -61,3 +64,4 @@ bindkey "^j" down-line-or-beginning-search # Down
 
 autoload edit-command-line; zle -N edit-command-line
 eval $(thefuck --alias)
+# zvm_after_init_commands+=("bindkey '^J' up-line-or-search" "bindkey '^K' down-line-or-search")
