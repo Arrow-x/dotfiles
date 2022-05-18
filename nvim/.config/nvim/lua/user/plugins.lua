@@ -76,9 +76,15 @@ return packer.startup(function(use)
 	--Debug
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-dap-python")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use({ "theHamsta/nvim-dap-virtual-text" })
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 
 	-- Treesitter
 	use({
