@@ -146,7 +146,16 @@ local mappings = {
 	},
 	f = {
 		name = "Search",
-		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+		f = {
+			function()
+				local opts = {} -- define here if you want to define something
+				local ok = pcall(require("telescope.builtin").git_files, opts)
+				if not ok then
+					require("telescope.builtin").find_files(opts)
+				end
+			end,
+			"Find Files",
+		},
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
