@@ -50,10 +50,7 @@ return packer.startup(function(use)
 	use("tpope/vim-surround")
 
 	-- ColorSchemes
-	use("dracula/vim")
 	use("folke/tokyonight.nvim")
-	use("LunarVim/onedarker.nvim")
-	use("ellisonleao/gruvbox.nvim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp")
@@ -73,6 +70,7 @@ return packer.startup(function(use)
 	use("williamboman/nvim-lsp-installer")
 
 	use("jose-elias-alvarez/null-ls.nvim")
+
 	--Debug
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-dap-python")

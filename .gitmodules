@@ -1,0 +1,3 @@
+[submodule "shinyvim"]
+	path = nvim/.config/nvim
+	url = https://github.com/Arrow-x/shinyvim.git
