@@ -148,10 +148,10 @@ local mappings = {
 		name = "Search",
 		f = {
 			function()
-				local opts = {} -- define here if you want to define something
-				local ok = pcall(require("telescope.builtin").git_files, opts)
+				local fopts = { hidden = true } -- define here if you want to define something
+				local ok = pcall(require("telescope.builtin").git_files)
 				if not ok then
-					require("telescope.builtin").find_files(opts)
+					require("telescope.builtin").find_files(fopts)
 				end
 			end,
 			"Find Files",

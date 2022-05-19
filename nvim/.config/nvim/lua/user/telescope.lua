@@ -6,6 +6,7 @@ end
 --telescope.load_extension('media_files')
 
 local actions = require("telescope.actions")
+require("telescope").load_extension("fzf")
 
 telescope.setup({
 	defaults = {
@@ -78,7 +79,21 @@ telescope.setup({
 				["?"] = actions.which_key,
 			},
 		},
+
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			-- "--hidden",
+			-- "--follow",
+			-- "--ignore-vcs",
+		},
 	},
+
 	pickers = {
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
@@ -97,7 +112,6 @@ telescope.setup({
 			-- the default case_mode is "smart_case"
 		},
 	},
-	require("telescope").load_extension("fzf"),
 	--	media_files = {
 	-- filetypes whitelist
 	-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
