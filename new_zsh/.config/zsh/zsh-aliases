@@ -1,0 +1,147 @@
+#!/bin/zsh
+alias virc='nvim ~/.config/nvim/init.lua' 
+alias zshrc='nvim ~/.config/zsh/.zshrc'
+alias i3rc='nvim ~/.config/i3/config' 
+alias kittyrc='nvim ~/.config/kitty/kitty.conf'
+alias xprc='nvim ~/.xprofile'
+
+#Neovim for Godot 
+alias vig='nvim --listen /tmp/godothost.pipe'
+
+alias cddf='cd ~/dotfiles'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias rg='rg --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# confirm before overwriting something
+alias cp="cp -i -v"
+alias mv='mv -i -v'
+alias rm='trash-put -f -v'
+alias xdg-open='mimeo'
+
+# ls colors
+alias ls='lsd'
+alias ls.='lsd -a'
+alias lsl='lsd -l'
+alias lsl.='lsd -l -a'
+
+# mkdir recursiv by default
+alias mkdir='mkdir -v -p'
+
+# git 
+alias gst='git status'
+alias gal='git add .'
+alias ga='git add'
+alias grs='git restore --staged'
+alias grsa='git restore --staged .'
+alias gct='git commit'
+alias gps='git push'
+alias gpso='git push origin'
+alias gpl='git pull'
+alias gplo='git pull origin'
+alias gd='git diff'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gbr='git branch'
+alias gcth="git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy'"
+
+#yt-dlp usage
+alias ydl='yt-dlp'
+alias ydla='yt-dlp -f 251'
+alias ydlF='yt-dlp -F'
+alias ydlf='yt-dlp -f'
+alias ydl720='yt-dlp -f 247+250'
+alias vi='nvim'
+alias nsxiv='nsxiv -a'
+
+alias mpv4='mpv --profile=480p'
+alias mpv7='mpv --profile=720p'
+alias mpv18='mpv --profile=1080p'
+alias mpva='mpv --profile=a'
+
+#fzf usages
+fdrc(){
+	fd -t $1 -HI --exclude .cache -E Homework -E Total.War.v2/ --exclude .npm/ --exclude .git --color=always | fzf --ansi
+}
+
+pcd(){
+	# cd "$(fd -t d -HI --exclude .git -E Homework -E .cashe | fzf)"
+	cd "$(fdrc d)"
+}
+
+open(){
+	getpt f | xargs mimeo
+}
+
+cppt(){
+	fdrc $1 |  tr -d '\n' | xclip -selection c
+}
+
+getpt(){
+	fdrc $1 | sed 's/^/"/;s/$/"/' | tr -d '\n'
+}
+
+openh(){
+	fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | sed 's/^/"/;s/$/"/' | xargs nsxiv 
+}
+
+changewall(){
+	fd -t f -0 . $HOME/Pictures -E Vertical | xargs --null ls -t | fzf --prompt 'All> ' \
+             --header 'CTRL-w: Waifus/ CTRL-a: Anime/ CTRL-b Bing/ CTRL-g Games/ CTRL-l Landscapes'  \
+             --bind 'ctrl-w:change-prompt(Waifus> )+reload(fd -t f -0 . $HOME/Pictures/Waifus -E /Vertical | xargs --null ls -t)' \
+             --bind 'ctrl-a:change-prompt(Anime> )+reload(fd -t f -0 . $HOME/Pictures/Anime -E /Vertical | xargs --null ls -t)' \
+			 --bind 'ctrl-b:change-prompt(Bing> )+reload(fd -t f -0 . $HOME/Pictures/Bing -E /Vertical | xargs --null ls -t)' \
+			 --bind 'ctrl-g:change-prompt(Games> )+reload(fd -t f -0 . $HOME/Pictures/Games -E /Vertical | xargs --null ls -t)' \
+			 --bind 'ctrl-l:change-prompt(Landscapes> )+reload(fd -t f -0 . $HOME/Pictures/Landscapes -E /Vertical | xargs --null ls -t)' \
+			 --preview-window='up,30' --preview='kitty icat --clear --transfer-mode file; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x1" --transfer-mode file {}' | xargs nitrogen --set-auto --save
+}
+
+alias bing='python ~/File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py'
+
+#paru stuff
+alias pacin='paru -S'
+#delelte all orphans
+alias pacdo='paru -Qtdq | paru -Rns -'
+
+#show installed packages and sort them by installed date 
+pacsd(){
+	expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n "$1"
+}
+
+#Show all installed packages 
+pacsa(){
+	paru -Qq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | less)'
+}
+
+alias monset='xrandr --output LVDS-1 --mode 1400x900'
+alias monreset='xrandr --output LVDS-1 --mode 1600x900'
+
+#use paru to make package explicitly installed
+alias pacme='paru -S --asexplicit'
+
+# For when keys break
+alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
+
+trackpad(){
+	xinput set-prop 14 "Device Enabled" $1
+}
+
+#replace default programmes with better ones that have diffrent way of use
+alias rename='perl-rename'
+
+alias aria='aria2c --check-integrity=true'
+
+# easier to read disk
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
