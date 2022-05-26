@@ -90,12 +90,6 @@ openh(){
 
 changewall(){
 	fd -t f -0 . $HOME/Pictures -E Vertical | xargs --null ls -t | fzf --prompt 'All> ' \
-             --header 'CTRL-w: Waifus/ CTRL-a: Anime/ CTRL-b Bing/ CTRL-g Games/ CTRL-l Landscapes'  \
-             --bind 'ctrl-w:change-prompt(Waifus> )+reload(fd -t f -0 . $HOME/Pictures/Waifus -E /Vertical | xargs --null ls -t)' \
-             --bind 'ctrl-a:change-prompt(Anime> )+reload(fd -t f -0 . $HOME/Pictures/Anime -E /Vertical | xargs --null ls -t)' \
-			 --bind 'ctrl-b:change-prompt(Bing> )+reload(fd -t f -0 . $HOME/Pictures/Bing -E /Vertical | xargs --null ls -t)' \
-			 --bind 'ctrl-g:change-prompt(Games> )+reload(fd -t f -0 . $HOME/Pictures/Games -E /Vertical | xargs --null ls -t)' \
-			 --bind 'ctrl-l:change-prompt(Landscapes> )+reload(fd -t f -0 . $HOME/Pictures/Landscapes -E /Vertical | xargs --null ls -t)' \
 			 --preview-window='up,30' --preview='kitty icat --clear --transfer-mode file; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x1" --transfer-mode file {}' | xargs nitrogen --set-auto --save
 }
 
