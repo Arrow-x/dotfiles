@@ -31,6 +31,8 @@ alias lsl.='lsd -l -a'
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
 
+alias lf='lfu'
+
 # git 
 alias gst='git status'
 alias gal='git add .'
