@@ -1,6 +1,7 @@
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+# export XDG_STATE_HOME=${$XDG_STATE_HOME:="$HOME/.local/state"}
 
 export DOTFILES=$HOME/dotfiles
 
@@ -19,22 +20,20 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
-
-# Disable files
-export LESSHISTFILE=-
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
 export VISUAL="nvim"
-export TERMINAL="kitty"
+export TERMINAL="st"
 export BROWSER="firefox"
 export VIDEO="mpv"
 export IMAGE="nsxiv"
 export COLORTERM="truecolor"
 export OPENER="mimeo"
 export PAGER="bat"
-# export WM="bspwm"
 
 # Path
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
