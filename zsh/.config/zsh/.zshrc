@@ -34,7 +34,7 @@ source ~/Git/zsh-snap/znap.zsh  # Start Znap
 #  }}}
 
 # Completion Menu Options {{{
-zstyle ':autocomplete:*' widget-style menu-complete
+zstyle ':autocomplete:*' widget-style menu-select
 #}}}
 
 # Making the cursor a beam in normal mode and a line in insert mode {{{
@@ -76,6 +76,8 @@ bindkey -M menuselect '^h' vi-backward-char
 bindkey -M menuselect '^l' vi-forward-char
 bindkey -M menuselect '^P' vi-up-line-or-history
 bindkey -M menuselect '^N' vi-down-line-or-history
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^j' vi-down-line-or-history
 
 bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-select
