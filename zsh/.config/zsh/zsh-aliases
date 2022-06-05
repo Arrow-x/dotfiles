@@ -34,6 +34,7 @@ alias mkdir='mkdir -v -p'
 alias lf='lfu'
 
 # git 
+alias lg='lazygit'
 alias gst='git status'
 alias gal='git add .'
 alias ga='git add'

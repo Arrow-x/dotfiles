@@ -1,0 +1,88 @@
+[user]
+	email = Houssem.kun26@gmail.com
+	name = Arrow-x
+[color]
+	ui = true
+[maintenance]
+	repo = /home/arrowx/Git/zsh-autocomplete
+	repo = /home/arrowx/Git/zsh-autosuggestions
+	repo = /home/arrowx/Git/zsh-snap
+	repo = /home/arrowx/Git/zsh-syntax-highlighting
+	repo = /home/arrowx/Git/pure
+	repo = /home/arrowx/Git/zsh-autopair
+	repo = /home/arrowx/Git/zsh-completions
+[color "status"]
+	branch = 14 normal
+	added = 10 normal
+	updated = 10 normal
+	localbranch = 14 normal
+	changed = 11 normal
+	header = normal
+	remotebranch = 13 normal
+	nobranch = 1 normal italic
+	unmerged = 9 normal
+	untracked = normal dim
+[color "branch"]
+	plain = 14 normal dim
+	remote = 13 normal dim
+	current = 14 normal
+	local = 14 normal dim
+	upstream = 13 normal
+[color "remote"]
+	hint = normal dim
+	success = 2 normal
+	error = 1 normal
+	warning = 3 normal
+[color "interactive"]
+	header = 8 normal bold
+	prompt = 15 4
+	help = 8 normal
+	error = 1 normal italic
+[color "diff"]
+	commit = yellow bold
+	newMoved = 14 normal
+	oldMovedAlternativeDimmed = 4 normal dim
+	frag = magenta bold
+	oldMovedAlternative = 12 normal dim
+	contextBold = normal bold
+	newBold = 10 normal bold
+	context = normal
+	oldMoved = 14 normal dim
+	oldBold = 9 normal dim bold
+	newMovedDimmed = 6 normal
+	func = 146 bold
+	meta = yellow
+	newDimmed = 2 normal
+	newMovedAlternative = 12 normal
+	new = green bold
+	newMovedAlternativeDimmed = 4 normal
+	whitespace = red reverse
+	oldMovedDimmed = 6 normal dim
+	oldDimmed = 1 normal dim
+	old = red bold
+[color "decorate"]
+	branch = 14 normal
+	tag = 3 normal
+	remotebranch = 13 normal
+	stash = 8 normal
+	grafted = 1 normal italic
+	HEAD = 14 normal dim
+[diff]
+	colorMoved = zebra
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[diff-so-fancy]
+	first-run = false
+[alias]
+    patch = !git --no-pager diff --no-color

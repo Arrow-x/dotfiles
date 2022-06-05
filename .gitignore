@@ -4,3 +4,5 @@ zsh/.config/zsh/plugins/
 newsboat/.config/newsboat/cache.db
 mpv/.config/mpv/watch_later/
 newsboat/.config/newsboat/cache.db
+
+git/.config/lazygit/state.yml
