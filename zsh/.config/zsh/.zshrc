@@ -56,7 +56,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 #  }}}
 
 # Initialazing the prmompt {{{
-znap prompt sindresorhus/pure
+znap prompt ivan-volnov/pure
 #  }}}
 
 # Sourcing aliases file {{{
