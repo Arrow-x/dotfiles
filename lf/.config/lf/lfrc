@@ -20,13 +20,14 @@ cmd setwallpaper ${{nitrogen --set-zoom-fill "$f"}}
 
 # Archive bindings
 cmd unarchive ${{
-  case "$f" in
-      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
-      *) echo "Unsupported format" ;;
-  esac
+  7z x "$f"
+#  case "$f" in
+#      *.zip) unzip "$f" ;;
+#      *.tar.gz) tar -xzvf "$f" ;;
+#      *.tar.bz2) tar -xjvf "$f" ;;
+#      *.tar) tar -xvf "$f" ;;
+#      *) echo "Unsupported format" ;;
+#  esac
 }}
 
 # Execute exe
