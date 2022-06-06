@@ -33,7 +33,7 @@ export VIDEO="mpv"
 export IMAGE="nsxiv"
 export COLORTERM="truecolor"
 export OPENER="mimeo"
-export PAGER="bat"
+export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
 
 # Path
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
