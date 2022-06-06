@@ -70,8 +70,6 @@ map "'"
 map '"'
 map d
 
-map c $vscodium "$f"
-
 map au unarchive
 map ae execute
 
@@ -81,7 +79,7 @@ map DD delete
 map p paste
 map x cut
 map y copy
-map <enter> open
+map <enter> copen
 map R reload
 map mf mkfile
 map md mkdir
@@ -92,13 +90,10 @@ map dd trash
 map dr restore_trash
 
 # Movement
-map gd cd ~/documents
-map gD cd ~/downloads
-map gp cd ~/pictures
+map gD cd ~/File/Documents
+map gd cd ~/Downloads
+map gp cd ~/Pictures
 map gc cd ~/.config
-map gr cd ~/repos
-map gv cd ~/videos/recordings
-map gs cd ~/.local/bin
 
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh

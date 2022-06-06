@@ -4,7 +4,7 @@ alias zshrc='nvim ~/.config/zsh/.zshrc'
 alias i3rc='nvim ~/.config/i3/config' 
 alias kittyrc='nvim ~/.config/kitty/kitty.conf'
 alias xprc='nvim ~/.xprofile'
-alias df='nvim ~/dotfiles'
+alias dfrc='nvim ~/dotfiles'
 
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
