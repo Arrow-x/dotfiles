@@ -37,6 +37,12 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       ffmpegthumbnailer -i "$file" -o "$cache" -s 0
       draw "$cache" "$@"
       ;;
+    audio/*)
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+      ffmpegthumbnailer -i "$file" -o "$cache" -s 0
+      draw "$cache" "$@"
+      ;;
   esac
 fi
 
