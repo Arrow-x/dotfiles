@@ -30,6 +30,13 @@ cmd unarchive ${{
 #  esac
 }}
 
+cmd copen ${{
+    case "$f" in
+      *.sh) (sh "$f" &);;
+      *) mimeo "$f";;
+    esac
+}}
+
 # Execute exe
 cmd execute ${{
 	wine "$f"
