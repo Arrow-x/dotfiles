@@ -102,6 +102,9 @@ pacsa(){
 	paru -Qq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | less)'
 }
 
+pacei(){
+	paru -Qetq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | bat -n)'
+}
 alias monset='xrandr --output LVDS-1 --mode 1400x900'
 alias monreset='xrandr --output LVDS-1 --mode 1600x900'
 
