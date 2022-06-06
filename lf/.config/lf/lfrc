@@ -16,7 +16,7 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
-cmd setwallpaper %cp "$f" ~/.config/wall.jpg && xwallpaper --zoom "$f"
+cmd setwallpaper ${{nitrogen --set-zoom-fill "$f"}}
 
 # Archive bindings
 cmd unarchive ${{
