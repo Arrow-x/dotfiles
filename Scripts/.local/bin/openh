@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+export FIFO_UEBERZUG="${TMPDIR:-/tmp}/wall-ueberzug-$$"
+
+cleanup() {
+      exec 3>&-
+      rm "$FIFO_UEBERZUG"
+    }
+
+mkfifo "$FIFO_UEBERZUG"
+ueberzug layer -s <"$FIFO_UEBERZUG" &
+exec 3>"$FIFO_UEBERZUG"
+trap cleanup EXIT
+
+function preview() {
+  path="$(printf '%s' "$5")"
+  printf '{"action": "add", "identifier": "preview", "x": %d, "y": %d, "width": %d, "height": %d, "scaler": "contain", "scaling_position_x": 0.5, "scaling_position_y": 0.5, "path": "%s"}\n' \
+  "$1" "$2" "$3" "$4" "$5" >"$FIFO_UEBERZUG"
+  exit 1
+}
+
+export -f preview
+fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'bash -c "preview $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
+    {}$(ls -b {} | head -n1)"' | \
+        xargs -I f printf 'nsxiv \"%s\" &' f | sh
