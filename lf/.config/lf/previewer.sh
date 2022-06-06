@@ -43,6 +43,9 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       ffmpegthumbnailer -i "$file" -o "$cache" -s 0
       draw "$cache" "$@"
       ;;
+    text/*)
+      bat -n --color always --wrap never "$file"
+      ;;
   esac
 fi
 
