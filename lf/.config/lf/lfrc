@@ -61,6 +61,67 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename $fs)"
+    else
+        fs="$(ls)"
+    fi
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
+cmd bulkrenamevimv ${{
+    vimv --git -- $(basename -a -- $fx)
+
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
+}}
+
+#cmd paste %{{
+#    set -- $(cat ~/.local/share/lf/files)
+#    mode="$1"
+#    shift
+#    case "$mode" in
+#        copy) cp -r --backup=numbered -- "$@" .;;
+#        move) mv --backup=numbered -- "$@" .;;
+#    esac
+#    rm ~/.local/share/lf/files
+#    lf -remote "send clear"
+#}}
+
+cmd paste &{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    case "$mode" in
+        copy)
+            rsync -av --ignore-existing --progress -- "$@" . |
+            stdbuf -i0 -o0 -e0 tr '\r' '\n' |
+            while IFS= read -r line; do
+                lf -remote "send $id echo $line"
+            done
+            ;;
+        move) mv -n -- "$@" .;;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+
 # Bindings
 # Remove some defaults
 map m
@@ -85,6 +146,7 @@ map mf mkfile
 map md mkdir
 map bg setwallpaper
 map C clear
+map <f-2> bulk-rename
 
 map dd trash
 map dr restore_trash
@@ -94,6 +156,9 @@ map gD cd ~/File/Documents
 map gd cd ~/Downloads
 map gp cd ~/Pictures
 map gc cd ~/.config
+map gF cd ~/File
+map gH cd ~/File/Homework/H-Games
+map gp cd ~/File/Projects
 
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh
