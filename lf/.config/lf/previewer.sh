@@ -19,7 +19,8 @@ file="$1"
 shift
 
 if [ -n "$FIFO_UEBERZUG" ]; then
-  case "$(file -Lb --mime-type -- "$file")" in
+  # case "$(file -Lb --mime-type -- "$file")" in
+  case "$(mimetype -b "$file")" in
     image/*)
       orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
       if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
@@ -43,9 +44,29 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       ffmpegthumbnailer -i "$file" -o "$cache" -s 0
       draw "$cache" "$@"
       ;;
-    text/*)
-      bat -n --color always --wrap never "$file"
+    application/epub+zip)
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+      gnome-epub-thumbnailer "$file" "$cache"
+      draw "$cache" "$@"
+	    ;;
+    application/pdf)
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+	    gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
+      draw "$cache" "$@"
+	    ;;
+    application/x-blender)
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+      blender-thumbnailer "$file" "$cache"
+      draw "$cache" "$@"
       ;;
+    application/x-compressed-tar) tar tf "$file" ;;
+    application/zip) unzip -l "$file" ;;
+    application/vnd.rar) 7z l "$file" ;;
+    application/x-7z-compressed) 7z l "$file" ;;
+    text/*) bat -n --color always --wrap never "$file" ;;
   esac
 fi
 
