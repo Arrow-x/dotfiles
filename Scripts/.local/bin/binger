@@ -23,7 +23,7 @@ def main():
 
     if os.path.isfile(bwp + file_name):
         print("file already exist")
-        # change_wallpaper(bwp, file_name)
+        change_wallpaper(bwp, file_name)
 
         return None
 
@@ -32,7 +32,7 @@ def main():
     with open(bwp + file_name, "wb") as f:
         f.write(r_url.content)
 
-    # change_wallpaper(bwp, file_name)
+    change_wallpaper(bwp, file_name)
 
     return None
 
