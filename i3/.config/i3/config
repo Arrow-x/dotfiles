@@ -260,7 +260,7 @@ bindsym $mod+grave exec tdrop -am -y 3% st -c dropdown
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86Mail exec thunderbird
-bindsym XF86HomePage exec thunar ~/
+bindsym XF86HomePage exec nemo ~/
 
 # Pulse Audio controls
 
@@ -292,7 +292,7 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
-bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+n exec /usr/bin/nemo
 bindsym $mod+m exec /usr/bin/thunderbird
 
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
@@ -326,7 +326,7 @@ set $ws10 "10"
 # bind program to workspace and focus to them on startup:
 assign [class="st"] $ws1
 assign [class="(?i)firefox"] $ws2
-assign [class="Thunar"] $ws3
+assign [class="Nemo"] $ws3
 assign [class="Thunderbird"] $ws4
 assign [class="Foliate"] $ws5
 assign [class="Godot"] $ws6
@@ -337,7 +337,7 @@ assign [class="krita"] $ws8
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=st] focus
 for_window [class=(?i)firefox] focus
-for_window [class=Thunar] focus
+for_window [class=Nemo] focus
 for_window [class=Thunderbird] focus
 for_window [class=Foliate] focus
 for_window [class=Godot] focus
@@ -384,7 +384,7 @@ exec --no-startup-id nm-applet
 # set wallpaper
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
-exec --no-startup-id python File/Projects/Scripts/i3-auto-bing-wallpapers/changer.py
+exec --no-startup-id binger
 #set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
 
