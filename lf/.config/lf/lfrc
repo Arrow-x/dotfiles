@@ -120,8 +120,8 @@ map "'"
 map '"'
 map d
 
-# map au unarchive
-map ae execute
+map au unarchive
+# map ae execute
 
 # Basic Functions
 map . set hidden!
