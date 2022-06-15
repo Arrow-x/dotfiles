@@ -21,8 +21,3 @@ function preview() {
 
 export -f preview
 fd -t f -0 . ~/Pictures -E Vertical | xargs --null ls -t | fzf --preview-window='up,30' --preview='bash -c "preview  1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}"' | xargs nitrogen --set-zoom-fill --save
-
-openh(){
-    fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'kitty icat --transfer-mode file --clear ; kitty icat --place $FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES@$(expr $FZF_PREVIEW_COLUMNS + 6)x1 --transfer-mode file {}/$(ls {} | head -n1)' | sed 's/^/"/;s/$/"/' | xargs nsxiv
-}
-
