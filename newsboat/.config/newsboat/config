@@ -64,8 +64,12 @@ bind-key x pb-delete
 bind-key c toggle-show-read-feeds
 
 #--Macros----------------------------------------------------------------------
-macro v set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser firefox
-macro V set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal"
+macro y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser firefox
+macro Y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal"
+
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser firefox
+macro V set browser "setsid -f mpv --really-quiet --no-terminal"
+
 macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "firefox"
 macro I set browser "setsid -f nsxiv-url"
 
