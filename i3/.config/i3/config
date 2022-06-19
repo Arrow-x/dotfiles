@@ -182,7 +182,7 @@ bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 
 # Lock the system
 # lock with a picture:
-#bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
+# bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
 
 bindsym $mod+shift+p exec ~/.local/bin/i3lock-fancy
@@ -359,7 +359,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 
 # num lock activated
-exec --no-startup-id numlockx on
+# exec --no-startup-id numlockx on
 
 exec --no-startup-id nitrogen --restore
 # Dynamic Tiling 
@@ -375,11 +375,11 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 # start blueberry app for managing bluetooth devices from tray:
 exec --no-startup-id blueberry-tray
 
-#transparency 
+# transparency 
 #exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 exec --no-startup-id picom -CGb
 
-#networkmanager-applet
+# networkmanager-applet
 exec --no-startup-id nm-applet
 
 # set wallpaper
@@ -540,4 +540,4 @@ bindsym F10 exec rofi -show window \
 # Clipboard                         #
 #####################################
 
-bindsym $mod+v exec copyq menu
+#bindsym $mod+v exec copyq menu

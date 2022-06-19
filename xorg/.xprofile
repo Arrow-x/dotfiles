@@ -1,3 +1,5 @@
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
 # Turn Off the Beebs
 xset b off
 
@@ -7,8 +9,3 @@ setxkbmap -option 'grp:alt_shift_toggle'
 #swith the escape and caps
 setxkbmap -option caps:swapescape
 
-# MPD daemon start (if no other user instance exists)
-#[ ! -s ~/.config/mpd/pid ] && mpd
-
-ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-#export LD_PRELOAD=$HOME/File/Software/libemotify-stderr/build/libemotify-stderr.so
