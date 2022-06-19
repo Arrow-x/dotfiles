@@ -12,3 +12,4 @@ xset r rate 210 40
 #swith the escape and caps
 setxkbmap -option caps:swapescape
 
+numlockx on
