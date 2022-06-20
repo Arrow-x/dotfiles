@@ -525,11 +525,13 @@ bindsym F9 exec rofi -modi drun -show drun \
 		
 ## rofi bindings for window menu (two bindings F10/$mod+t)
 
-bindsym $mod+Tab exec rofi -show window \
+bindsym $mod+semicolon exec rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
 
 bindsym F10 exec rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
+# Vanilla rofi run 
+bindsym $mod+r exec rofi -show run
 #####################################
 #Keyboard layout:                   #
 #####################################
