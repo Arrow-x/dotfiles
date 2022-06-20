@@ -1,15 +1,17 @@
+!! Transparency (0-1):
+st.alpha: 0.8
+
+!! Set a default font and font size as below:
+! st.font: Monospace-16;
+! st.fontalt0 :
+
+! st.termname: st-256color
 st.borderpx: 3
-! *.mousescrollincrement : 3
 
-!-- values between 0.1  - 1.0 --! 
-st.alpha: 0.8 
-
-! st.font:           FiraCode Nerd Font:style:medium:pixelsize=16
-! ! TokyoNight colors for Xresources
-
+!! Set the background, foreground and cursor colors as below:
+! TokyoNight colors for Xresources
 *background: #1a1b26
 *foreground: #c0caf5
-
 *color0: #15161E
 *color1: #f7768e
 *color2: #9ece6a
@@ -18,7 +20,6 @@ st.alpha: 0.8
 *color5: #bb9af7
 *color6: #7dcfff
 *color7: #a9b1d6
-
 *color8: #414868
 *color9: #f7768e
 *color10: #9ece6a
@@ -27,66 +28,3 @@ st.alpha: 0.8
 *color13: #bb9af7
 *color14: #7dcfff
 *color15: #c0caf5
-
-! AfterGlow
-! *.foreground:  #d0d0d0
-! *.background:  #212121
-! *.cursorColor: #d0d0d0
-! !
-! ! Black
-! *.color0:      #151515
-! *.color8:      #505050
-! !
-! ! Red
-! *.color1:      #ac4142
-! *.color9:      #ac4142
-! !
-! ! Green
-! *.color2:      #7e8e50
-! *.color10:     #7e8e50
-! !
-! ! Yellow
-! *.color3:      #e5b567
-! *.color11:     #e5b567
-! !
-! ! Blue
-! *.color4:      #6c99bb
-! *.color12:     #6c99bb
-! !
-! ! Magenta
-! *.color5:      #9f4e85
-! *.color13:     #9f4e85
-! !
-! ! Cyan
-! *.color6:      #7dd6cf
-! *.color14:     #7dd6cf
-! !
-! ! White
-! *.color7:      #d0d0d0
-! *.color15:     #f5f5f5
-! !
-! ! Bold, Italic, Underline
-! *.colorBD:     #d0d0d0
-! *.colorIT:
-! *.colorUL:
-
-! Dracula Xresources palette
-! *.foreground: #F8F8F2
-! *.background: #282A36
-! *.color0:     #000000
-! *.color8:     #4D4D4D
-! *.color1:     #FF5555
-! *.color9:     #FF6E67
-! *.color2:     #50FA7B
-! *.color10:    #5AF78E
-! *.color3:     #F1FA8C
-! *.color11:    #F4F99D
-! *.color4:     #BD93F9
-! *.color12:    #CAA9FA
-! *.color5:     #FF79C6
-! *.color13:    #FF92D0
-! *.color6:     #8BE9FD
-! *.color14:    #9AEDFE
-! *.color7:     #BFBFBF
-! *.color15:    #E6E6E6
-!
