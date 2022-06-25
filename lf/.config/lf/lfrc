@@ -118,7 +118,8 @@ map '"'
 map d
 
 map au unarchive
-# map ae execute
+map ae copen
+map aw execute
 
 # Basic Functions
 map . set hidden!
@@ -126,7 +127,6 @@ map DD delete
 map p paste
 map x cut
 map y copy
-map <enter> copen
 map R reload
 map mf mkfile
 map md mkdir
