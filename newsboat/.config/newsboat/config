@@ -37,7 +37,7 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
 # -- navigation ----------------------------------------------------------------
 goto-next-feed no
 
-#browser "lynx %u"
+browser "setsid -f firefox"
 
 bind-key j down feedlist
 bind-key k up feedlist
@@ -64,16 +64,16 @@ bind-key x pb-delete
 bind-key c toggle-show-read-feeds
 
 #--Macros----------------------------------------------------------------------
-macro y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser firefox
+macro y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 macro Y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal"
 
-macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser firefox
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 macro V set browser "setsid -f mpv --really-quiet --no-terminal"
 
-macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "firefox"
+macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f firefox"
 macro I set browser "setsid -f nsxiv-url"
 
-#macro f set browser "firefox"
+#macro f set browser "setsid -f firefox"
 
 notify-always yes
 notify-program notify-send
