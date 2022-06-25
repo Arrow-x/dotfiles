@@ -411,6 +411,7 @@ for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enabl
 for_window [class="Pamac-manager"] floating enable
 for_window [instance="Godot_Editor"] floating disable
 for_window [instance="Godot_Engine"] floating enable
+for_window [instance="TogglDesktop"] floating enable
 
 ######################################
 # color settings for bar and windows #
