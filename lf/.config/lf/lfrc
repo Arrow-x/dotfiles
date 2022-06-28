@@ -33,7 +33,7 @@ cmd unarchive ${{
 
 cmd copen ${{
     case "$f" in
-      *.sh) (sh "$f" &);;
+      *.sh) (setsid -f sh "$f");;
       *) mimeo "$f";;
     esac
 }}
