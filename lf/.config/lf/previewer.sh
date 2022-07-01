@@ -21,6 +21,12 @@ shift
 if [ -n "$FIFO_UEBERZUG" ]; then
   # case "$(file -Lb --mime-type -- "$file")" in
   case "$(mimetype -b "$file")" in
+    image/gif)
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+      ffmpegthumbnailer -i "$file" -o "$cache" -s 0
+      draw "$cache" "$@"
+      ;;
     image/*)
       orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
       if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
