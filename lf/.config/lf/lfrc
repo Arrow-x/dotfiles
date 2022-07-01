@@ -21,14 +21,14 @@ cmd setwallpaper ${{nitrogen --set-zoom-fill --save "$f"}}
 
 # Archive bindings
 cmd unarchive ${{
-  7z x "$f"
-#  case "$f" in
+  
+ case "$f" in
 #      *.zip) unzip "$f" ;;
-#      *.tar.gz) tar -xzvf "$f" ;;
-#      *.tar.bz2) tar -xjvf "$f" ;;
-#      *.tar) tar -xvf "$f" ;;
-#      *) echo "Unsupported format" ;;
-#  esac
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) 7z x "$f";;
+  esac
 }}
 
 cmd copen ${{
