@@ -9,8 +9,6 @@ alias dfrc='nvim ~/dotfiles'
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
 
-alias cddf='cd ~/dotfiles'
-
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias rg='rg --color=auto'
