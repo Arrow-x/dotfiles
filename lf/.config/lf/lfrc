@@ -17,7 +17,7 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
-cmd setwallpaper ${{nitrogen --set-zoom-fill "$f"}}
+cmd setwallpaper ${{nitrogen --set-zoom-fill --save "$f"}}
 
 # Archive bindings
 cmd unarchive ${{
