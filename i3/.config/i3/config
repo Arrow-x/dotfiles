@@ -552,5 +552,4 @@ bindsym $mod+r exec rofi -show run
 #####################################
 # Clipboard                         #
 #####################################
-
-#bindsym $mod+v exec copyq menu
+bindsym $mod+v exec copyq menu
