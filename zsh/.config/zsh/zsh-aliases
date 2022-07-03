@@ -104,27 +104,12 @@ pacsa(){
 pacei(){
 	paru -Qetq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | bat -n)'
 }
-alias monset='xrandr --output LVDS-1 --mode 1400x900 ; xrandr --output LVDS-1 --mode 1600x900'
-# alias monreset='xrandr --output LVDS-1 --mode 1600x900'
 
 #use paru to make package explicitly installed
 alias pacme='paru -S --asexplicit'
 
 # For when keys break
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
-
-TOGGLE=$HOME/.local/state/touchpad/.toggle_touchpad
-trackpad(){
-	if [ ! -e $TOGGLE ]; then
-		touch $TOGGLE
-		xinput disable SynPS/2\ Synaptics\ TouchPad 
-		notify-send -u low -i mouse --icon=/usr/share/icons/HighContrast/256x256/status/touchpad-disabled.png "Trackpad disabled"
-	else
-		trash-put $TOGGLE
-		xinput enable SynPS/2\ Synaptics\ TouchPad 
-		notify-send -u low -i mouse --icon=/usr/share/icons/HighContrast/256x256/devices/input-touchpad.png "Trackpad enabled"
-	fi
-}
 
 #replace default programmes with better ones that have diffrent way of use
 alias rename='perl-rename'
