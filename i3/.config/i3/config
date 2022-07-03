@@ -527,22 +527,18 @@ colors {
 #####################################
 
 ## rofi bindings fancy application menu (two bindings F9/$mod+d)
-
-bindsym $mod+d exec rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofidmenu.rasi
-                
 bindsym F9 exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
-		
-## rofi bindings for window menu (two bindings F10/$mod+t)
 
-bindsym $mod+semicolon exec rofi -show window \
-		-config ~/.config/rofi/rofidmenu.rasi 
+## rofi bindings for window menu (two bindings F10/$mod+t)
 
 bindsym F10 exec rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
+
 # Vanilla rofi run 
-bindsym $mod+r exec rofi -show run
+bindsym $mod+semicolon exec rofi -show window -window-thumbnail
+bindsym $mod+d exec rofi -terminal st -show-icons -show drun
+bindsym $mod+r exec rofi -terminal st -show-icons -show run
 #####################################
 #Keyboard layout:                   #
 #####################################
