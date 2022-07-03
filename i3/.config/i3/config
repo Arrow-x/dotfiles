@@ -300,7 +300,11 @@ bindsym XF86AudioPrev exec playerctl previous
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+n exec /usr/bin/nemo
-bindsym $mod+m exec /usr/bin/thunderbird
+# bindsym $mod+m exec /usr/bin/thunderbird
+
+bindsym $mod+p exec ~/.local/bin/trackpad
+bindsym $mod+m exec ~/.local/bin/monset
+
 
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
 bindsym Print exec "flameshot gui"
