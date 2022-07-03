@@ -65,7 +65,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/x-blender)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-      blender-thumbnailer "$file" "$cache"
+      ~/.local/bin/blender-thumbnailer.py "$file" "$cache"
       draw "$cache" "$@"
       ;;
     application/x-compressed-tar) tar tf "$file" ;;
