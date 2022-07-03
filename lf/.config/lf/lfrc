@@ -24,8 +24,9 @@ cmd unarchive ${{
   
  case "$f" in
 #      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar.gz) tar -xvf "$f" ;;
+      *.tar.bz2) tar -xvf "$f" ;;
+      *.tar.xz) tar -xvf "$f" ;;
       *.tar) tar -xvf "$f" ;;
       *) 7z x "$f";;
   esac
