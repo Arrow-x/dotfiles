@@ -48,7 +48,10 @@ alias gd='git diff'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
-alias gcth="git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy'"
+
+gcth(){
+	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}~ {+1})'
+}
 
 #yt-dlp usage
 alias ydl='yt-dlp'
