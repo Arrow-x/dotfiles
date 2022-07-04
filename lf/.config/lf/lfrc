@@ -142,11 +142,13 @@ map dR restore_trash
 map gD cd ~/File/Documents
 map gd cd ~/Downloads
 map gp cd ~/Pictures
+map gl cd ~/.local
 map gc cd ~/.config
 map gF cd ~/File
 map gH cd ~/File/Homework/H-Games
 map gp cd ~/File/Projects
 map gt cd ~/File/Tutorials
+map gr cd ~/File/Examples\ and\ Refrences
 
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh
