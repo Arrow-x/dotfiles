@@ -13,13 +13,4 @@ list=$(xsetwacom list devices)
 pad=$(echo "${list}" | awk '/pad/{print $9}')
 stylus=$(echo "${list}" | xsetwacom list devices | awk '/stylus/{print $9}')
 
-# if [ -z "${pad}" ]; then
-# 	echo "exiting"
-#     exit 0
-# fi
-
-# configure the buttons on ${stylus} with your xsetwacom commands...
-#xsetwacom set "${stylus}" Button 2 11
-#...
-echo "about to set"
 xsetwacom set "${stylus}" area 0 0 21600 12150
