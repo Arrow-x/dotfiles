@@ -32,7 +32,7 @@ export BROWSER="firefox"
 export VIDEO="mpv"
 export IMAGE="nsxiv"
 export COLORTERM="truecolor"
-export OPENER="mimeo"
+export OPENER="mimeopen"
 export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
 
 # Path
