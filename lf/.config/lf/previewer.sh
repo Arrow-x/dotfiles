@@ -76,6 +76,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     text/*) bat -n --color always --wrap never "$file" ;;
     application/x-shellscript) bat -n --color always --wrap never "$file" ;;
     application/json) bat -n --color always --wrap never "$file" ;;
+    application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
   esac
 fi
 
