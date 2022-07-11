@@ -30,7 +30,7 @@ alias lsl.='lsd -l -a'
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
 
-alias lf='lfu'
+# alias lf='lfu'
 
 # git 
 alias lg='lazygit'
@@ -130,3 +130,18 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+# LFcd
+lfcd(){
+    tmp="$(mktemp)"
+    lfu -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}

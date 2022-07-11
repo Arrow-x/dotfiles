@@ -104,6 +104,7 @@ map n
 map "'"
 map '"'
 map d
+map w
 
 map au unarchive
 map ae copen
