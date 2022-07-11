@@ -145,3 +145,5 @@ lfcd(){
         fi
     fi
 }
+
+alias reload_st='xrdb -load ~/.Xresources ; pgrep "\bst\b" | xargs kill ; setsid -f st' 
