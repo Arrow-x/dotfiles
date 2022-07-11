@@ -30,7 +30,7 @@ alias lsl.='lsd -l -a'
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
 
-# alias lf='lfu'
+alias lf='lfcd'
 
 # git 
 alias lg='lazygit'

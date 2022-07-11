@@ -83,7 +83,7 @@ bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-select
 #  }}}
 
-bindkey -s '^o' 'lfcd\n'
+# bindkey -s '^o' 'lfcd\n'
 
 # `znap eval` caches and runs any kind of command output for you.
 # znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
