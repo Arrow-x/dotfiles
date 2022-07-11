@@ -18,7 +18,7 @@ cmd unarchive ${{
       *) 7z x "$f";;
   esac
 }}
-
+# TODO figure out how to execute a bin
 cmd copen ${{
     case "$f" in
       *.sh) (setsid -f sh "$f");;
@@ -81,6 +81,16 @@ cmd bulkrenamevimv ${{
     lf -remote "send $id unselect"
 }}
 
+cmd chmod_plus_x ${{
+  echo "$fx" | sed "s/\$\'\\n\'//g" | sed 's/\"/\\"/g' | sed 's/$/"/;s/^/"/'| xargs chmod +x
+  lf -remote "send $id reload"
+}}
+
+cmd chmod_minus_x ${{
+  echo "$fx" | sed "s/\$\'\\n\'//g" | sed 's/\"/\\"/g' | sed 's/$/"/;s/^/"/'| xargs chmod -x
+  lf -remote "send $id reload"
+}}
+
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
 cmd dragon-individual %dragon-drop $fx
@@ -109,6 +119,9 @@ map w
 map au unarchive
 map ae copen
 map aw execute
+
+map ma chmod_plus_x
+map mr chmod_minus_x
 
 # Basic Functions
 map . set hidden!
