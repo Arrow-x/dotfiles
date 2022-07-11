@@ -26,11 +26,6 @@ cmd copen ${{
     esac
 }}
 
-# Execute exe
-cmd execute ${{
-	wine "$f"
-}}
-
 # Trash bindings
 cmd trash ${{
   files=$(printf "$fx" | tr '\n' ';')
@@ -118,7 +113,6 @@ map w
 
 map au unarchive
 map ae copen
-map aw execute
 
 map ma chmod_plus_x
 map mr chmod_minus_x
