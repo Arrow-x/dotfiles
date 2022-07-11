@@ -18,7 +18,7 @@ alias fgrep='fgrep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i -v"
 alias mv='mv -i -v'
-alias rm='trash-put -f -v'
+# alias rm='trash-put -f -v'
 alias xdg-open='mimeo'
 
 # ls colors
