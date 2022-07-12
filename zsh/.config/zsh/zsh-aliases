@@ -147,3 +147,6 @@ lfcd(){
 }
 
 alias reload_st='xrdb -load ~/.Xresources ; pgrep "\bst\b" | xargs kill ; setsid -f st' 
+t(){
+	termdown "$1"m ; notify-send "$2" ; mpv Music/deemix\ Music/80s\ Happy\ Hits/a-ha\ -\ The\ Sun\ Always\ Shines\ on\ T.V.mp3
+}
