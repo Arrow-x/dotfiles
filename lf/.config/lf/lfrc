@@ -18,13 +18,9 @@ cmd unarchive ${{
       *) 7z x "$f";;
   esac
 }}
-# TODO figure out how to execute a bin
-cmd copen ${{
-    case "$f" in
-      *.sh) (setsid -f sh "$f");;
-      *) setsid -f sh -c "$f" ;;
-    esac
-}}
+
+# all of this just to disable the flickering
+cmd open %setsid -f sh -c '(case $(mimetype -M -b "$f") in application/x-sharedlib) (setsid -f "$f" >/dev/null 2>&1);; application/x-shellscript) (setsid -f sh -c "$f" >/dev/null 2>&1);; application/x-executable) (setsid -f "$f" >/dev/null 2>&1);; *) (setsid -f mimeopen -n -M "$f" >/dev/null 2>&1);; esac)' >/dev/null 2>&1
 
 # Trash bindings
 cmd trash ${{
@@ -112,7 +108,6 @@ map d
 map w
 
 map au unarchive
-map ae copen
 
 map ma chmod_plus_x
 map mr chmod_minus_x
