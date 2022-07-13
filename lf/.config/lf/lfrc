@@ -66,10 +66,9 @@ cmd bulk-rename ${{
 }}
 
 cmd bulkrenamevimv ${{
-    vimv --git -- $(basename -a -- $fx)
-
-    lf -remote "send $id load"
-    lf -remote "send $id unselect"
+  echo "$fx" | vimv --stdin
+  lf -remote "send $id load"
+  lf -remote "send $id unselect"
 }}
 
 cmd chmod_plus_x ${{
