@@ -21,4 +21,4 @@ function preview() {
 
 export -f preview
 fd . '/home/arrowx/File/Homework/H-Manga' -t d | fzf --preview-window wrap --preview 'bash -c "preview $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
-    {}$(ls -b {} | head -n1 | xargs shell-quote)"' --print0 | xargs -0 setsid -f $IMAGE
+    {}$(ls -b {} | head -n1 | sed "s/\"/\\\"/g" | sed "s/$/\"/;s/^/\"/")"' --print0 | xargs -0 setsid -f $IMAGE
