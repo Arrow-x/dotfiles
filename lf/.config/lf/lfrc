@@ -5,7 +5,7 @@ set ignorecase true
 set icons true
 
 # Custom Functions
-cmd setwallpaper ${{nitrogen --set-zoom-fill --save "$f"}}
+cmd setwallpaper %nitrogen --set-zoom-fill --save "$f" >/dev/null 2>&1
 
 # Archive bindings
 cmd unarchive ${{
