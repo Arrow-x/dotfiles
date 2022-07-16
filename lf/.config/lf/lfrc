@@ -4,6 +4,11 @@ set hidden true
 set ignorecase true
 set icons true
 
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"  # default already
+
 # Custom Functions
 cmd setwallpaper %nitrogen --set-zoom-fill --save "$f" >/dev/null 2>&1
 
