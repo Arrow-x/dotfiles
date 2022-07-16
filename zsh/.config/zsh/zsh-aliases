@@ -77,7 +77,7 @@ pcd(){
 }
 
 open(){
-	getpt f | xargs mimeo
+	getpt f | xargs -I _ setsid -f $OPENER _ >/dev/null 2>&1
 }
 
 cppt(){
