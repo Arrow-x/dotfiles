@@ -20,7 +20,7 @@ shift
 
 if [ -n "$FIFO_UEBERZUG" ]; then
   # case "$(file -Lb --mime-type -- "$file")" in
-  case "$(mimetype -b "$file")" in
+  case "$(mimetype -L -b "$file")" in
     image/gif)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
