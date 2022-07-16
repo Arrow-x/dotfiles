@@ -69,7 +69,7 @@ alias mpva='mpv --profile=a'
 
 #fzf usages
 fdrc(){
-	fd -t $1 --color=always | fzf --ansi
+	fd -t $1 --color=always | fzf --ansi -i
 }
 
 pcd(){
