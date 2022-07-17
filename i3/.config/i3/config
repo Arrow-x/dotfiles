@@ -267,7 +267,7 @@ bindsym $mod+grave exec tdrop -m -y 4% st -n dropdown
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86Mail exec thunderbird
-bindsym XF86HomePage exec nemo ~/
+bindsym XF86HomePage exec pcmanfm ~/
 
 # Pulse Audio controls
 
@@ -299,7 +299,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
-bindsym $mod+n exec /usr/bin/nemo
+bindsym $mod+n exec /usr/bin/pcmanfm
 # bindsym $mod+m exec /usr/bin/thunderbird
 
 bindsym $mod+p exec ~/.local/bin/trackpad
@@ -337,7 +337,7 @@ set $ws10 "10"
 # bind program to workspace and focus to them on startup:
 assign [class="st"] $ws1
 assign [class="(?i)firefox"] $ws2
-assign [class="Nemo"] $ws3
+assign [class="Pcmanfm"] $ws3
 assign [class="Thunderbird"] $ws4
 assign [class="Foliate"] $ws5
 assign [class="Godot"] $ws6
@@ -348,7 +348,7 @@ assign [class="krita"] $ws8
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=st] focus
 for_window [class=(?i)firefox] focus
-for_window [class=Nemo] focus
+for_window [class=Pcmanfm] focus
 for_window [class=Thunderbird] focus
 for_window [class=Foliate] focus
 for_window [class=Godot] focus
