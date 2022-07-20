@@ -47,18 +47,18 @@ cmd restore_trash ${{
 }}
 
 cmd bulkrenamevimv ${{
-  echo "$fx" | vimv --stdin
+  vimv --git -- $fx
   lf -remote "send $id load"
   lf -remote "send $id unselect"
 }}
 
 cmd chmod_plus_x ${{
-  echo "$fx" | sed "s/\$\'\\n\'//g" | sed 's/\"/\\"/g' | sed 's/$/"/;s/^/"/'| xargs chmod +x
+  chmod +x $fx
   lf -remote "send $id reload"
 }}
 
 cmd chmod_minus_x ${{
-  echo "$fx" | sed "s/\$\'\\n\'//g" | sed 's/\"/\\"/g' | sed 's/$/"/;s/^/"/'| xargs chmod -x
+  chmod -x $fx
   lf -remote "send $id reload"
 }}
 
