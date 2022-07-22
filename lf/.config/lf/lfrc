@@ -82,6 +82,8 @@ cmd link %{{
     lf -remote "send clear"
 }}
 
+cmd git_pull %git pull origin 
+
 map P :link
 
 cmd dragon %dragon-drop -a -x $fx
@@ -113,6 +115,7 @@ map au unarchive
 
 map ma chmod_plus_x
 map mr chmod_minus_x
+map mp git_pull
 
 # Basic Functions
 map . set hidden!
