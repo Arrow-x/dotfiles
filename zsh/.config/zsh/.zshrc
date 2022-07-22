@@ -22,15 +22,18 @@ zle_highlight=('paste:none')
 autoload -Uz colors && colors
 # }}}
 
-# zstyle ':znap:*' repos-dir # Costum Folder for repos
+# zstyle ':znap:*' 
+
+# repos-dir # Costum Folder for repos
+zsh_plugs="$XDG_DATA_HOME/zsh/Plugins"
 
 # Downloading and Initialazing the plugin manager {{{
 # Download Znap, if it's not there yet.
-[[ -f ~/Git/zsh-snap/znap.zsh ]] ||
+[[ -f $zsh_plugs/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/Git/zsh-snap
+        https://github.com/marlonrichert/zsh-snap.git $zsh_plugs/zsh-snap
 
-source ~/Git/zsh-snap/znap.zsh  # Start Znap
+source $zsh_plugs/zsh-snap/znap.zsh  # Start Znap
 #  }}}
 
 # Completion Menu Options {{{
