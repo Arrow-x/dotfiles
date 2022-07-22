@@ -74,8 +74,8 @@ macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsi
 macro I set browser "setsid -f nsxiv-url"
 macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f firefox"
 
-macro m set browser "setsid -f gallery-dl --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f firefox"
-macro M set browser "setsid -f gallery-dl --exec-after 'nsxiv {}'" 
+macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f firefox"
+macro M set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" 
 
 notify-always yes
 notify-program notify-send
