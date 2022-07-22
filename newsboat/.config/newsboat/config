@@ -64,18 +64,17 @@ bind-key x pb-delete
 bind-key c toggle-show-read-feeds
 
 #--Macros----------------------------------------------------------------------
-macro y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 macro Y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal"
+macro y set browser "setsid -f mpv --profile=480p --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 
-macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 macro V set browser "setsid -f mpv --really-quiet --no-terminal"
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
 
-macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f firefox"
 macro I set browser "setsid -f nsxiv-url"
 macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f firefox"
 
-macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f firefox"
 macro M set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" 
+macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f firefox"
 
 notify-always yes
 notify-program notify-send
