@@ -72,11 +72,10 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/zip) unzip -l "$file" ;;
     application/vnd.rar) 7z l "$file" ;;
     application/x-7z-compressed) 7z l "$file" ;;
+    application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
+    application/*) bat -n --color always --wrap never "$file" ;;
     text/markdown) glow "$file";;
     text/*) bat -n --color always --wrap never "$file" ;;
-    application/x-shellscript) bat -n --color always --wrap never "$file" ;;
-    application/json) bat -n --color always --wrap never "$file" ;;
-    application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
   esac
 fi
 
