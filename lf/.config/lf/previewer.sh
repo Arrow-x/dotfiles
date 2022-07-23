@@ -73,6 +73,8 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/vnd.rar) 7z l "$file" ;;
     application/x-7z-compressed) 7z l "$file" ;;
     application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
+    application/x-sharedlib) echo bin;;
+    application/x-executable) echo bin;;
     application/*) bat -n --color always --wrap never "$file" ;;
     text/markdown) glow "$file";;
     text/*) bat -n --color always --wrap never "$file" ;;
