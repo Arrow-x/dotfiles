@@ -135,8 +135,6 @@ bindcode $mod+Shift+80 	 move container to workspace  $ws8
 bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
-
-
 workspace_auto_back_and_forth yes
 bindsym $mod+Control+l workspace next
 bindsym $mod+Control+h workspace prev
@@ -230,6 +228,11 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+bindsym $mod+Mod1+k resize shrink height 10 px or 5 ppt
+bindsym $mod+Mod1+j resize grow height 10 px or 5 ppt
+bindsym $mod+Mod1+l resize shrink width 10 px or 5 ppt
+bindsym $mod+Mod1+h resize grow width 10 px or 5 ppt
 
 # split in horizontal orientation
 # bindsym $mod+h split h
