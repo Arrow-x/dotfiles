@@ -129,8 +129,6 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
-
 # LFcd
 lfcd(){
     tmp="$(mktemp)"
@@ -147,6 +145,7 @@ lfcd(){
 }
 
 alias reload_st='xrdb -load ~/.Xresources ; pkill "\bst\b" ; setsid -f st' 
+
 t(){
 	termdown "$1"m ; notify-send "$2" ; mpv Music/deemix\ Music/80s\ Happy\ Hits/a-ha\ -\ The\ Sun\ Always\ Shines\ on\ T.V.mp3
 }
