@@ -22,4 +22,4 @@ function preview() {
 export -f preview
 FD="fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td"
 fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td | fzf --preview-window wrap --preview 'bash -c "preview $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
-    {}$(ls -b {} | head -n 1)"' --bind 'ctrl-d:reload(trash {};fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td )' --header 'CTRL-d to Delete' --print0 | xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&1
+    {}$(ls -b {} | head -n 1)"' --bind 'ctrl-d:reload(trash {};fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td )' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-d to Delete | CTRL-l to open without closing' --print0 | xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&1
