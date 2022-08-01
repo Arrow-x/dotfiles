@@ -531,12 +531,12 @@ colors {
 #####################################
 
 ## rofi bindings fancy application menu (two bindings F9/$mod+d)
-bindsym F9 exec rofi -modi drun -show drun \
+bindsym F9 exec rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings for window menu (two bindings F10/$mod+t)
 
-bindsym F10 exec rofi -show window \
+bindsym F10 exec rofi -terminal st -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
 
 # Vanilla rofi run 
