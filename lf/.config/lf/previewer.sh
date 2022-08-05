@@ -75,6 +75,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
     application/x-sharedlib) echo bin;;
     application/x-executable) echo bin;;
+    application/x-object) echo bin;;
     application/*) bat -n --color always --wrap never "$file" ;;
     text/markdown) glow "$file";;
     text/*) bat -n --color always --wrap never "$file" ;;
