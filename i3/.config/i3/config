@@ -176,7 +176,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec st -c st
+bindsym $mod+Return exec st -c st tmux
 
 # kill focused window
 bindsym $mod+c kill
