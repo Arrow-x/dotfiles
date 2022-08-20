@@ -142,6 +142,7 @@ map gH cd ~/File/Homework/H-Games
 map gp cd ~/File/Projects
 map gt cd ~/File/Tutorials
 map gr cd ~/File/Examples\ and\ Refrences
+map gm cd /run/media/arrowx/
 
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh
