@@ -341,7 +341,7 @@ set $ws10 "10"
 assign [class="st"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="Pcmanfm"] $ws3
-assign [class="Thunderbird"] $ws4
+assign [class="thunderbird"] $ws4
 assign [class="Foliate"] $ws5
 assign [class="Godot"] $ws6
 assign [class="Blender"] $ws7
@@ -352,7 +352,7 @@ assign [class="krita"] $ws8
 for_window [class=st] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Pcmanfm] focus
-for_window [class=Thunderbird] focus
+for_window [class=thunderbird] focus
 for_window [class=Foliate] focus
 for_window [class=Godot] focus
 for_window [class=Blender] focus
