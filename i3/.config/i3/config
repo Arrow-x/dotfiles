@@ -541,8 +541,10 @@ bindsym F10 exec rofi -terminal st -show window \
 
 # Vanilla rofi run 
 bindsym $mod+semicolon exec rofi -show window -window-thumbnail
-bindsym $mod+d exec rofi -terminal st -show-icons -show drun
-bindsym $mod+r exec rofi -terminal st -show-icons -show run
+# bindsym $mod+d exec rofi -terminal st -show-icons -show drun
+bindsym $mod+d exec dmenu_run
+# bindsym $mod+r exec rofi -terminal st -show-icons -show run
+bindsym $mod+r exec dmenu
 #####################################
 #Keyboard layout:                   #
 #####################################
