@@ -2,8 +2,8 @@
 st.alpha: 0.85
 
 !! Set a default font and font size as below:
-! st.font: Monospace-16;
-! st.fontalt0 :
+st.font: FiraCode Nerd Font:style=Regular:pixelsize=16:antialias=true
+
 
 ! st.termname: st-256color
 st.borderpx: 3
