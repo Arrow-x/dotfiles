@@ -14,13 +14,16 @@ cmd setwallpaper %nitrogen --set-zoom-fill --save "$f" >/dev/null 2>&1
 
 # Archive bindings
 cmd unarchive ${{
- case "$f" in
-#      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xvf "$f" ;;
-      *.tar.bz2) tar -xvf "$f" ;;
-      *.tar.xz) tar -xvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
-      *) 7z x "$f";;
+ case "$fx" in
+#      *.zip) unzip "$fx" ;;
+      *.tar.gz) tar -xvf "$fx" ;;
+      *.tar.bz2) tar -xvf "$fx" ;;
+      *.tar.xz) tar -xvf "$fx" ;;
+      *.tar) tar -xvf "$fx" ;;
+      *) for arc in $fx 
+      do
+        7z x "$arc"
+      done;;
   esac
 }}
 
