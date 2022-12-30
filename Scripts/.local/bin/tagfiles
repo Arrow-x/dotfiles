@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# clear
+printf "Tags: "
+the_tag=""
+read -r the_tag
+tmsu tag --tags "$the_tag" $fx
+# TODO Find someway to make the string input be in lf

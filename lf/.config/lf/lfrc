@@ -62,15 +62,6 @@ cmd chmod_minus_x ${{
   lf -remote "send $id reload"
 }}
 
-cmd tag_file ${{
-  the_tag=""
-  clear
-  printf "Tags: "
-  read -r the_tag
-  tmsu tag --tags "$the_tag" $fx
-  # TODO Find someway to make the string input be in lf
-}}
-
 # y (select for copy) and P to paste soft-link
 # d (select for cut) and P to paste hard-link
 cmd link %{{
@@ -125,7 +116,7 @@ map au unarchive
 map ma chmod_plus_x
 map mr chmod_minus_x
 map mp git_pull
-map mt tag_file
+map mt %tagfiles $fx
 
 # Basic Functions
 map . set hidden!
