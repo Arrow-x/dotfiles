@@ -54,11 +54,11 @@ gcth(){
 }
 
 #yt-dlp usage
-alias ydl='yt-dlp'
-alias ydla='yt-dlp -f 251'
+alias ydl='yt-dlp  --embed-metadata'
+alias ydla='yt-dlp --embed-thumbnail --embed-metadata -f 140'
 alias ydlF='yt-dlp -F'
-alias ydlf='yt-dlp -f'
-alias ydl720='yt-dlp -f 247+250'
+alias ydlf='yt-dlp --embed-thumbnail --embed-metadata -f'
+alias ydl720='yt-dlp --embed-thumbnail --embed-metadata -f 247+250'
 alias vi='nvim'
 alias nsxiv='nsxiv -a'
 
