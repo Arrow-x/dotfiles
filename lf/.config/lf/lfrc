@@ -65,8 +65,6 @@ cmd chmod_minus_x ${{
   lf -remote "send $id reload"
 }}
 
-# y (select for copy) and P to paste soft-link
-# d (select for cut) and P to paste hard-link
 cmd link %{{
     set -- $(cat ~/.local/share/lf/files)
     mode="$1"
