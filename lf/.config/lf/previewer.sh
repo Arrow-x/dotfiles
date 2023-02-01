@@ -41,7 +41,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     video/*)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-      ffmpegthumbnailer -i "$file" -o "$cache" -s 0
+      ffmpegthumbnailer -m -i "$file" -o "$cache" -s 0
       draw "$cache" "$@"
       ;;
     audio/*)
