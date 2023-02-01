@@ -82,6 +82,12 @@ cmd link %{{
     rm ~/.local/share/lf/files
     lf -remote "send clear"
 }}
+cmd tagfiles %{{
+printf "Tags: "
+the_tag=""
+read -r the_tag
+tmsu tag --tags "$the_tag" $fx
+}}
 
 cmd git_pull %git pull origin 
 
@@ -117,7 +123,7 @@ map au unarchive
 map ma chmod_plus_x
 map mr chmod_minus_x
 map mp git_pull
-map mt %tagfiles $fx
+map mt tagfiles $fx
 
 # Basic Functions
 map . set hidden!
