@@ -24,30 +24,25 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     image/gif)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-      ffmpegthumbnailer -i "$file" -o "$cache" -s 0
+      ffmpegthumbnailer -i "$file" -o "$cache" -s 512
       draw "$cache" "$@"
       ;;
     image/*)
-      orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
-      if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
-        cache="$(hash "$file").jpg"
-        cache "$cache" "$@"
-        convert -- "$file" -auto-orient "$cache"
-        draw "$cache" "$@"
-      else
-        draw "$file" "$@"
-      fi
+      cache="$(hash "$file").jpg"
+      cache "$cache" "$@"
+      convert -- "$file" -auto-orient -resize 512x512 "$cache"
+      draw "$cache" "$@"
       ;;
     video/*)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-      ffmpegthumbnailer -m -i "$file" -o "$cache" -s 0
+      ffmpegthumbnailer -m -i "$file" -o "$cache" -s 512
       draw "$cache" "$@"
       ;;
     audio/*)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-      ffmpegthumbnailer -i "$file" -o "$cache" -s 0
+      ffmpegthumbnailer -i "$file" -o "$cache" -s 265
       draw "$cache" "$@"
       ;;
     application/epub+zip)
@@ -59,7 +54,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/pdf)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-	    gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
+	  gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
       draw "$cache" "$@"
 	    ;;
     application/x-blender)
