@@ -55,7 +55,8 @@ gcth(){
 
 #yt-dlp usage
 alias ydl='yt-dlp  --embed-metadata'
-alias ydla='yt-dlp --embed-thumbnail --embed-metadata -f 140'
+alias ydlm='yt-dlp --embed-thumbnail --embed-metadata -f 140'
+alias ydla='yt-dlp --embed-thumbnail --embed-metadata -f 250'
 alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp --embed-thumbnail --embed-metadata -f'
 alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
