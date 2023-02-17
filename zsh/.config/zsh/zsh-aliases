@@ -1,4 +1,6 @@
 #!/bin/zsh
+alias x="exit
+"
 alias vi='nvim'
 alias virc='nvim ~/.config/nvim/init.lua' 
 alias zshrc='nvim ~/.config/zsh/.zshrc'
