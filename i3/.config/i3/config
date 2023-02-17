@@ -547,6 +547,9 @@ bindsym $mod+semicolon exec rofi -show window -window-thumbnail
 bindsym $mod+d exec dmenu_run
 # bindsym $mod+r exec rofi -terminal st -show-icons -show run
 bindsym $mod+r exec dmenu
+
+bindsym $mod+i exec rofimoji 
+#--selector-args="-theme ~/.config/rofi/emojigrid.rasi"
 #####################################
 #Keyboard layout:                   #
 #####################################
@@ -556,4 +559,4 @@ bindsym $mod+r exec dmenu
 #####################################
 # Clipboard                         #
 #####################################
-bindsym $mod+v exec copyq menu
+bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
