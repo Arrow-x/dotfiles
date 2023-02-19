@@ -86,6 +86,7 @@ bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-select
 #  }}}
 
+bindkey -M menuselect '^_' .undo
 # bindkey -s '^o' 'lfcd\n'
 
 # `znap eval` caches and runs any kind of command output for you.
