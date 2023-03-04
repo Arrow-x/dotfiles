@@ -559,4 +559,9 @@ bindsym $mod+i exec rofimoji
 #####################################
 # Clipboard                         #
 #####################################
-bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# clipboard tool
+exec --no-startup-id greenclip daemon>/dev/null
+# bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
+
+bindsym $mod+v exec rofi -modi "clipboard:~/.local/bin/rofipaste" -show clipboard
