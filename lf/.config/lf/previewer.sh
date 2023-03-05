@@ -54,7 +54,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/pdf)
       cache="$(hash "$file").jpg"
       cache "$cache" "$@"
-	  gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
+	    gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
       draw "$cache" "$@"
 	    ;;
     application/x-blender)
