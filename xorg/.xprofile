@@ -1,7 +1,7 @@
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 numlockx on
-xhost +local:root
+# xhost +local:root
 
 # Turn Off the Beebs
 xset b off
