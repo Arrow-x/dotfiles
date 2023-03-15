@@ -1,13 +1,13 @@
 #!/bin/zsh
-alias x="exit
-"
+
+alias x="exit"
 alias vi='nvim'
-alias virc='nvim ~/.config/nvim/init.lua' 
-alias zshrc='nvim ~/.config/zsh/.zshrc'
-alias i3rc='nvim ~/.config/i3/config' 
-alias kittyrc='nvim ~/.config/kitty/kitty.conf'
+alias virc='cd ~/.config/nvim; nvim init.lua' 
+alias zshrc='cd ~/.config/zsh; nvim .zshrc'
+alias i3rc='cd ~/.config/i3; nvim config' 
+alias kittyrc='cd ~/.config/kitty; nvim kitty.conf'
 alias xprc='nvim ~/.xprofile'
-alias dfrc='nvim ~/dotfiles'
+alias dfrc='cd ~/dotfiles; nvim README.md'
 
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
@@ -74,7 +74,7 @@ alias mpv18='mpv --profile=1080p --really-quiet --no-terminal'
 alias mpva='mpv --profile=a'
 
 #Weather
-alias weather="curl 'https://wttr.in/Djelfa'"
+alias wttr="curl 'https://wttr.in/Djelfa'"
 
 #fzf usages
 fdrc(){
