@@ -27,7 +27,7 @@ export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 
 # Default Apps
 export EDITOR="nvim"
-export READER="zathura"
+export READER="xreader"
 export VISUAL="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
