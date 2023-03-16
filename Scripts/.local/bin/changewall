@@ -20,4 +20,4 @@ function preview() {
 }
 
 export -f preview
-fd -t f -L -0 . ~/Pictures -E Vertical | xargs --null ls -t | fzf --preview-window='up,30' --preview='bash -c "preview  1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}"' | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
+fd -t f -L -0 . ~/Pictures -E Vertical | xargs --null ls -t | fzf --preview-window='up,30' --preview='bash -c "preview  1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}"' --bind 'ctrl-l:execute(nsxiv {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . ~/Pictures | xargs --null ls -t )' --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
