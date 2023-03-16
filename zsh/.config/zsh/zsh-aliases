@@ -85,6 +85,10 @@ pcd(){
 	cd "$(fdrc d)"
 }
 
+opp(){
+	 nvim "$(fd -t d -d=1 --search-path "/home/arrowx/Public" --search-path "/home/arrowx/File/Projects/Godot" --search-path "/home/arrowx/File/Projects/Scripts" . | fzf --ansi -i)"
+}
+
 open(){
 	getpt f | xargs -I _ setsid -f $OPENER _ >/dev/null 2>&1
 }
