@@ -149,9 +149,12 @@ map gF cd ~/File
 map gH cd ~/File/Homework/H-Games
 map gp cd ~/File/Projects
 map gt cd ~/File/Tutorials
-map gr cd ~/File/Examples\ and\ Refrences
 map gm cd /run/media/arrowx/
-map ga cd ~/File/Examples\ and\ Refrences/AnimeArt/Random/NSFW
+map grr cd ~/File/Examples\ and\ Refrences
+map gra cd ~/File/Examples\ and\ Refrences/AnimeArt/Random/
+map grp cd ~/File/Examples\ and\ Refrences/pixel\ art
+map grn cd ~/File/Examples\ and\ Refrences/NPR
+map grc cd ~/File/Examples\ and\ Refrences/Cool\ 3d
 
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh
