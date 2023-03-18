@@ -2,12 +2,12 @@
 
 alias x="exit"
 alias vi='nvim'
-alias virc='cd ~/.config/nvim; nvim init.lua' 
-alias zshrc='cd ~/.config/zsh; nvim .zshrc'
-alias i3rc='cd ~/.config/i3; nvim config' 
-alias kittyrc='cd ~/.config/kitty; nvim kitty.conf'
+alias virc='nvim ~/.config/nvim/init.lua' 
+alias zshrc='nvim ~/.config/zsh/.zshrc'
+alias i3rc='nvim ~/.config/i3/config' 
+alias kittyrc='nvim ~/.config/kitty/kitty.conf'
 alias xprc='nvim ~/.xprofile'
-alias dfrc='cd ~/dotfiles; nvim . '
+alias dfrc='nvim ~/dotfiles '
 
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
