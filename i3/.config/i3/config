@@ -272,7 +272,7 @@ bindsym $mod+grave exec tdrop -m -y 4% st -n dropdown
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86Mail exec thunderbird
-bindsym XF86HomePage exec pcmanfm ~/
+bindsym XF86HomePage exec firefox
 
 # Pulse Audio controls
 
