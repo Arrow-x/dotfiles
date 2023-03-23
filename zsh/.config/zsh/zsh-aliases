@@ -2,7 +2,7 @@
 
 alias x="exit"
 alias vi='nvim'
-alias virc='nvim ~/.config/nvim/init.lua' 
+alias virc='nvim ~/.config/nvim/' 
 alias zshrc='nvim ~/.config/zsh/.zshrc'
 alias i3rc='nvim ~/.config/i3/config' 
 alias kittyrc='nvim ~/.config/kitty/kitty.conf'
