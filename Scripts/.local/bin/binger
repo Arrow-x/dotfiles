@@ -1,15 +1,18 @@
 #!/bin/python3
+
 import subprocess
 import requests
 import json
 import os
 
-# TODO use a config file for what programme to change the wallpaper the screen the folder where the wallpapers are saved
+# TODO: use a config file for what programme to change the wallpaper the screen
+# the folder where the wallpapers are saved
+
 bwp = "/home/arrowx/Pictures/Bing/"
 
 
 def main():
-    # TODO Some sort of safty here
+    # TODO: Some sort of safty here
     r = requests.get(
         "https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=zh-CN"
     )
