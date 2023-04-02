@@ -6,3 +6,4 @@ mpv/.config/mpv/watch_later/
 newsboat/.config/newsboat/cache.db
 
 git/.config/lazygit/state.yml
+tmux/.config/tmux/plugins/tpm
