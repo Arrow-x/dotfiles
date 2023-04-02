@@ -87,6 +87,8 @@ printf "Tags: "
 the_tag=""
 read -r the_tag
 tmsu tag --tags "$the_tag" $fx
+
+# tmsu tags | rofi -dmenu | xargs -I _ tmsu tag --tags _ $fx
 }}
 
 cmd git_pull %git pull origin 
@@ -120,8 +122,8 @@ map w
 
 map au unarchive
 
-map ma chmod_plus_x
-map mr chmod_minus_x
+map mx chmod_plus_x
+map mX chmod_minus_x
 map mp git_pull
 map mt tagfiles $fx
 
