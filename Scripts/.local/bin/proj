@@ -1,0 +1,7 @@
+#!/bin/sh
+
+search="$(fd -t d -d=1 --search-path "/home/arrowx/Public" --search-path "/home/arrowx/File/Projects/Godot" --search-path "/home/arrowx/File/Projects/Scripts" . | fzf --ansi -i)"
+if [[ -z $search ]]; then
+	exit
+fi
+nvim $search
