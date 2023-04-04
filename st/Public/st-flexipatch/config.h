@@ -327,6 +327,8 @@ ResourcePref resources[] = {
 		#endif // ALPHA_PATCH
 		#if ALPHA_FOCUS_HIGHLIGHT_PATCH
 		{ "alphaUnfocused",FLOAT,  &alphaUnfocused },
+		{ "bgUnfocused", FLOAT, &bgUnfocused},
+		{ "bgFoucesd", FLOAT, &bg},
 		#endif // ALPHA_FOCUS_HIGHLIGHT_PATCH
 };
 #endif // XRESOURCES_PATCH

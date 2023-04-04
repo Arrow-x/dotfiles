@@ -1,5 +1,6 @@
 !! Transparency (0-1):
 st.alpha: 0.85
+st.alphaUnfocused: 0.9
 
 !! Set a default font and font size as below:
 st.font: FiraCode Nerd Font:style=Regular:pixelsize=16:antialias=true
@@ -12,6 +13,8 @@ st.borderpx: 3
 ! TokyoNight colors for Xresources
 *background: #1a1b26
 *foreground: #c0caf5
+st.bgFoucesd: #1a1b26
+st.bgUnfocused: #1a1b26
 *color0: #15161E
 *color1: #f7768e
 *color2: #9ece6a
