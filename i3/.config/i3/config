@@ -374,8 +374,12 @@ exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 # exec --no-startup-id numlockx on
 
 exec --no-startup-id nitrogen --restore
-# Dynamic Tiling 
-exec --no-startup-id autotiling
+
+# Dynamic Tiling Alternate
+# exec --no-startup-id autotiling
+
+# Dynamic Tiling master-stack
+exec --no-startup-id stacki3 45
 
 # start conky: 
 #exec_always --no-startup-id conky
