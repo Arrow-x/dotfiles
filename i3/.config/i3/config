@@ -343,11 +343,11 @@ set $ws10 "10"
 
 # bind program to workspace and focus to them on startup:
 assign [class="st"] $ws1
-assign [class="(?i)firefox"] $ws6
+assign [class="Godot"] $ws2
 assign [class="Pcmanfm"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Foliate"] $ws5
-assign [class="Godot"] $ws2
+assign [class="(?i)firefox"] $ws6
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
 
@@ -384,14 +384,14 @@ exec --no-startup-id nitrogen --restore
 # exec --no-startup-id autotiling
 
 # Dynamic Tiling master-stack
-exec --no-startup-id stacki3 45
+exec stacki3 45
 
 # start conky: 
 #exec_always --no-startup-id conky
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.screenlayout/monitor.sh
+# exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # start blueberry app for managing bluetooth devices from tray:
 # exec --no-startup-id blueberry-tray
@@ -552,7 +552,6 @@ bindsym F9 exec rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings for window menu (two bindings F10/$mod+t)
-
 bindsym F10 exec rofi -terminal st -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
 
