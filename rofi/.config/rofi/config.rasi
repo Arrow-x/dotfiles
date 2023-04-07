@@ -1,7 +1,21 @@
-/*Dracula theme based on the Purple official rofi theme*/
+configuration {
+    kb-mode-complete:               "Control+L";
+    kb-row-up:                      "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+    kb-row-down:                    "Down,Control+j";
+    kb-row-left:                    "Control+h";
+    kb-row-right:                   "Control+l";
+    kb-accept-entry:                "Control+m,Return,KP_Enter";
+    terminal:                       "st";
+    kb-remove-to-eol:               "Control+Shift+e";
+    kb-mode-next:                   "Shift+Right,Control+Tab,Control+n";
+    kb-mode-previous:               "Shift+Left,Control+Shift+Tab,Control+p";
+    kb-remove-char-back:            "BackSpace";
+}
+
+/*dracula theme based on the Purple official rofi theme*/
 
 * {
-    font: "Jetbrains Mono 12";
+    font: "FiraCode Nerd Font 11";
     foreground: #f8f8f2;
     background: #282a36;
     active-background: #6272a4;
