@@ -29,6 +29,8 @@ font pango: FiraCode Nerd Font 11
 # set the mod key to the winkey:
 set $mod Mod4
 
+focus_follows_mouse no
+
 #####################
 # workspace layout: #
 #####################
