@@ -312,6 +312,9 @@ bindsym $mod+m exec ~/.local/bin/monset
 
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
 bindsym Print exec "flameshot gui"
+
+bindsym F1 [instance="scratch_cmus"] scratchpad show; [instance="scratch_cmus"] move position center
+bindsym F4 [instance="scratch_btop"] scratchpad show; [instance="scratch_btop"] move position center
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
@@ -410,6 +413,9 @@ exec --no-startup-id python3 ~/.local/bin/binger
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 
+exec --no-startup-id st -n scratch_cmus cmus
+exec --no-startup-id st -n scratch_btop btop
+
 # Autostart apps as you like
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
@@ -429,6 +435,14 @@ for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enabl
 for_window [class="Pamac-manager"] floating enable
 for_window [instance="TogglDesktop"] floating enable
 for_window [instance="dropdown"] floating enable
+
+for_window [instance="scratch_cmus"] floating enable
+for_window [instance="scratch_cmus"] resize set 1200 700
+for_window [instance="scratch_cmus"] move scratchpad
+
+for_window [instance="scratch_btop"] floating enable
+for_window [instance="scratch_btop"] resize set 1200 700
+for_window [instance="scratch_btop"] move scratchpad
 
 ######################################
 # color settings for bar and windows #
