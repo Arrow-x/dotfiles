@@ -144,7 +144,9 @@ map dR restore_trash
 map gD cd ~/File/Documents
 map gd cd ~/Downloads
 map gp cd ~/Pictures
-map gl cd ~/.local
+map glb cd ~/.local/bin
+map gls cd ~/.local/share
+map glt cd ~/.local/state
 map gc cd ~/.config
 map gF cd ~/File
 map gH cd ~/File/Homework/H-Games
