@@ -38,6 +38,14 @@ source $zsh_plugs/zsh-snap/znap.zsh  # Start Znap
 
 # Completion Menu Options {{{
 zstyle ':autocomplete:*' widget-style menu-select
+
+# Override history menu.
+zstyle ':autocomplete:history-search-backward:*' list-lines 20
+
+# Override history search.
+zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 20
+
+bindkey -M menuselect '\r' .accept-line
 #}}}
 
 # Making the cursor a beam in normal mode and a line in insert mode {{{
@@ -85,9 +93,6 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-select
 #  }}}
-
-bindkey -M menuselect '^_' .undo
-# bindkey -s '^o' 'lfcd\n'
 
 # `znap eval` caches and runs any kind of command output for you.
 # znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
