@@ -563,8 +563,7 @@ bindsym $mod+semicolon exec rofi -show window -window-thumbnail \
 bindsym $mod+d exec rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
-bindsym $mod+r exec rofi -show run \
-		-config ~/.config/rofi/rofidmenu.rasi 
+bindsym $mod+r exec dmenu_run
 
 bindsym $mod+i exec rofimoji --selector-args="-theme ~/.config/rofi/rofidmenu.rasi"
 
