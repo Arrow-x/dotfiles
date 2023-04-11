@@ -1,9 +1,9 @@
 configuration {
     kb-mode-complete:               "Control+L";
-    kb-row-up:                      "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
-    kb-row-down:                    "Down,Control+j";
-    kb-row-left:                    "Control+h";
-    kb-row-right:                   "Control+l";
+    kb-row-up:                      "Up,Alt+k,Shift+Tab,Shift+ISO_Left_Tab";
+    kb-row-down:                    "Down,Alt+j";
+    kb-row-left:                    "Alt+h";
+    kb-row-right:                   "Alt+l";
     kb-accept-entry:                "Control+m,Return,KP_Enter";
     terminal:                       "st";
     kb-remove-to-eol:               "Control+Shift+e";
