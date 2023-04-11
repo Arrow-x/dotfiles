@@ -84,9 +84,9 @@ cmd link %{{
 }}
 
 cmd tagfiles %{{
-    TAGS=$(tmsu tags | rofi -dmenu)
+    TAGS=$(tmsu tags | dmenu)
     for f in $fx; do
-        tmsu tag $f $TAGS
+        echo $TAGS | xargs tmsu tag $f
     done
 }}
 
