@@ -1,0 +1,2 @@
+#!/bin/sh
+xdotool type --delay 0ms $(grep -v "^#" ~/Notes-And-Tasks/bookmarks | rofi -dmenu -p "Bookmarks" -matching fuzzy | cut -d ' ' -f1)
