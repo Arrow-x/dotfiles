@@ -1,13 +1,3 @@
-ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-
-numlockx on
-# xhost +local:root
-
-# Turn Off the Beebs
-xset b off
-# speedy keyboard
-# xset r rate 210 40
-
 setxkbmap -layout us,ara
 setxkbmap -option 'grp:alt_shift_toggle'
 # swith the escape and caps
