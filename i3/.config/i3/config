@@ -28,6 +28,12 @@ font pango: FiraCode Nerd Font 12
 
 # set the mod key to the winkey:
 set $mod Mod4
+set $alt Mod1
+
+set $left  h
+set $down  j
+set $up    k
+set $right l
 
 focus_follows_mouse no
 
@@ -138,8 +144,8 @@ bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 # workspace_auto_back_and_forth yes
-bindsym $mod+Control+l workspace next
-bindsym $mod+Control+h workspace prev
+bindsym $mod+Control+$right workspace next
+bindsym $mod+Control+$left workspace prev
 
 #move focused workspace to other monitor
 # bindsym $mod+m move workspace to output next
@@ -163,16 +169,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-bindsym $mod+h exec --no-startup-id i3viswiz left
-bindsym $mod+j exec --no-startup-id i3viswiz down
-bindsym $mod+k exec --no-startup-id i3viswiz up
-bindsym $mod+l exec --no-startup-id i3viswiz right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left exec --no-startup-id i3viswiz left
-bindsym $mod+Down exec --no-startup-id i3viswiz down
-bindsym $mod+Up exec --no-startup-id i3viswiz up
-bindsym $mod+Right exec --no-startup-id i3viswiz right
+bindsym $mod+$left exec --no-startup-id i3viswiz left
+bindsym $mod+$down exec --no-startup-id i3viswiz down
+bindsym $mod+$up exec --no-startup-id i3viswiz up
+bindsym $mod+$right exec --no-startup-id i3viswiz right
 
 # switching between tabs
 bindsym $mod+Tab exec --no-startup-id i3flip next
