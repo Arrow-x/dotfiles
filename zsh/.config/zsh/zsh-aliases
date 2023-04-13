@@ -8,6 +8,7 @@ alias i3rc='nvim ~/.config/i3/config'
 alias kittyrc='nvim ~/.config/kitty/kitty.conf'
 alias xprc='nvim ~/.xprofile'
 alias dfrc='nvim ~/dotfiles '
+alias nrc='nvim ~/Notes-And-Tasks'
 
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
