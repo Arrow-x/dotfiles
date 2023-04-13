@@ -232,7 +232,8 @@ bindsym $mod+p exec --no-startup-id  ~/.local/bin/trackpad
 bindsym $mod+m exec --no-startup-id  ~/.local/bin/monset
 
 bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
-bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark
+bindsym $mod+w exec --no-startup-id  ~/.local/bin/select_bookmark -b
+bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -t
 
 ## Multimedia Keys
 # volume
