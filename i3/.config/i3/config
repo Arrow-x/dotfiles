@@ -180,22 +180,54 @@ bindsym $mod+Shift+Tab exec --no-startup-id i3flip prev
 
 # bindsym $mod+w exec --no-startup-id i3flip --move next
 # bindsym $mod+q exec --no-startup-id i3flip --move prev
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# move a window                   | i3Kornhe move
+# -----------------------------------------------
+bindsym $mod+Shift+$left      exec --no-startup-id i3Kornhe move --speed 0 left
+bindsym $mod+Shift+$down      exec --no-startup-id i3Kornhe move --speed 0 down
+bindsym $mod+Shift+$up        exec --no-startup-id i3Kornhe move --speed 0 up
+bindsym $mod+Shift+$right     exec --no-startup-id i3Kornhe move --speed 0 right
 
-bindsym $mod+Mod1+k resize shrink height 10 px or 5 ppt
-bindsym $mod+Mod1+j resize grow height 10 px or 5 ppt
-bindsym $mod+Mod1+l resize shrink width 10 px or 5 ppt
-bindsym $mod+Mod1+h resize grow width 10 px or 5 ppt
+# resize a window                 | i3Kornhe size
+# -----------------------------------------------
+bindsym $mod+$alt+$left    exec --no-startup-id i3Kornhe size --speed 30 left
+bindsym $mod+$alt+$down    exec --no-startup-id i3Kornhe size --speed 30 down
+bindsym $mod+$alt+$up      exec --no-startup-id i3Kornhe size --speed 30 up
+bindsym $mod+$alt+$right   exec --no-startup-id i3Kornhe size --speed 30 right
+
+# "sizemode" is needed for i3Kornhe to work. It is
+# entered automatically if the window is floating
+# and i3Kornhe move/size is executed
+mode "sizemode" {
+  bindsym $left               exec --no-startup-id i3Kornhe --speed 30 left
+  bindsym $down               exec --no-startup-id i3Kornhe --speed 30 down
+  bindsym $up                 exec --no-startup-id i3Kornhe --speed 30 up
+  bindsym $right              exec --no-startup-id i3Kornhe --speed 30 right
+
+  bindsym Shift+$left         exec --no-startup-id i3Kornhe --speed 5 left
+  bindsym Shift+$down         exec --no-startup-id i3Kornhe --speed 5 down
+  bindsym Shift+$up           exec --no-startup-id i3Kornhe --speed 5 up
+  bindsym Shift+$right        exec --no-startup-id i3Kornhe --speed 5 right
+
+  bindsym $mod+Control+$left  exec --no-startup-id i3Kornhe size left
+  bindsym $mod+Control+$down  exec --no-startup-id i3Kornhe size down
+  bindsym $mod+Control+$up    exec --no-startup-id i3Kornhe size up
+  bindsym $mod+Control+$right exec --no-startup-id i3Kornhe size right
+
+  bindsym m exec --no-startup-id i3Kornhe move --speed 0 left
+
+  bindsym 1 exec --no-startup-id i3Kornhe 1
+  bindsym 2 exec --no-startup-id i3Kornhe 2
+  bindsym 3 exec --no-startup-id i3Kornhe 3
+  bindsym 4 exec --no-startup-id i3Kornhe 4
+  bindsym 5 exec --no-startup-id i3Kornhe 5
+  bindsym 6 exec --no-startup-id i3Kornhe 6
+  bindsym 7 exec --no-startup-id i3Kornhe 7
+  bindsym 8 exec --no-startup-id i3Kornhe 8
+  bindsym 9 exec --no-startup-id i3Kornhe 9
+
+  bindsym Escape exec --no-startup-id i3Kornhe x
+}
 
 # split toggle
 bindsym $mod+t split toggle
