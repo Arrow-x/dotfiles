@@ -140,16 +140,17 @@ map dR restore_trash
 # Movement
 map gD cd ~/File/Documents
 map gd cd ~/Downloads
-map gp cd ~/Pictures
+map gp cd ~/Public
 map glb cd ~/.local/bin
 map gls cd ~/.local/share
 map glt cd ~/.local/state
 map gc cd ~/.config
-map gF cd ~/File
+map gf cd ~/File
 map gH cd ~/File/Homework/H-Games
-map gp cd ~/File/Projects
+map gP cd ~/File/Projects
 map gt cd ~/File/Tutorials
 map gm cd /run/media/arrowx/
+
 map grr cd ~/File/Examples\ and\ Refrences
 map gra cd ~/File/Examples\ and\ Refrences/AnimeArt/Random/
 map grp cd ~/File/Examples\ and\ Refrences/pixel\ art
