@@ -90,8 +90,6 @@ cmd tagfiles %{{
     done
 }}
 
-cmd git_pull %git pull origin 
-
 map P :link
 
 cmd dragon %dragon-drop -a -x $fx
@@ -123,7 +121,6 @@ map au unarchive
 
 map mx chmod_plus_x
 map mX chmod_minus_x
-map mp git_pull
 map mt tagfiles $fx
 
 # Basic Functions
