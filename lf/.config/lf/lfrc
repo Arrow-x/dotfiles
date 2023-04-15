@@ -132,7 +132,7 @@ map y copy
 map R reload
 map bg setwallpaper
 map C clear
-map <f-2> bulkrenamevimv
+map b bulkrenamevimv
 
 map dd trash
 map dR restore_trash
