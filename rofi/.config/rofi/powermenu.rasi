@@ -3,12 +3,12 @@
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
  *******************************************************/
 configuration {
-    font:                           "Sourcecode Pro Regular 10";
+    font:				            "FiraCode Nerd Font 12";
     show-icons:                     false;
-    icon-theme: 		    "Arc-X-D";
+    icon-theme: 		            "Arc-X-D";
     scroll-method:                  0;
     disable-history:                false;
-    sidebar-mode: 		    false;
+    sidebar-mode: 		            false;
 }
 
 @import "~/.config/rofi/arc_dark_transparent_colors.rasi"
@@ -20,7 +20,7 @@ window {
     transparency:                   "real";
     width:                          120px;
     location:                       north east;
-	y-offset:                       23;
+	y-offset:                       29;
 	x-offset:	                    -20;
     transparency:                   "real";
 }

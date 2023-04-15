@@ -3,7 +3,7 @@
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
  *******************************************************/
 configuration {
-    font:                           "Sourcecode Pro Regular 10";
+    font:				            "FiraCode Nerd Font 12";
     show-icons:                     false;
     icon-theme: 		    "Arc-X-D";
     scroll-method:                  0;
@@ -20,8 +20,8 @@ window {
     transparency:                   "real";
     width:                          100px;
     location:                       north east;
-	y-offset:                       23;
-	x-offset:	                    -180;
+	y-offset:                       29;
+	x-offset:	                    -280;
     transparency:                   "real";
 }
 listview {
