@@ -265,7 +265,7 @@ bindsym $mod+m exec --no-startup-id  ~/.local/bin/monset
 
 bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
 bindsym $mod+w exec --no-startup-id  ~/.local/bin/select_bookmark -b
-bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -t
+# bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -t
 
 ## Multimedia Keys
 # volume
@@ -401,9 +401,6 @@ bindsym F9 exec --no-startup-id rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 bindsym F10 exec --no-startup-id rofi -terminal st -show window \
-		-config ~/.config/rofi/rofidmenu.rasi 
-
-bindsym $mod+semicolon exec --no-startup-id rofi -show window -window-thumbnail \
 		-config ~/.config/rofi/rofidmenu.rasi 
 
 bindsym $mod+d exec --no-startup-id rofi -terminal st -modi drun -show drun \
