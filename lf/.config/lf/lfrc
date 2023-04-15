@@ -84,7 +84,7 @@ cmd link %{{
 }}
 
 cmd tagfiles %{{
-    TAGS=$(tmsu tags | dmenu | sed "s/,/\n/g")
+    TAGS=$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")
     for f in $fx; do
         echo $TAGS | xargs tmsu tag $f
     done
