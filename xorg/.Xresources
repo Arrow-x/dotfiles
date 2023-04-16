@@ -10,7 +10,7 @@ st.alphaUnfocused: 0.9
 
 
 ! st.termname: st-256color
-*borderpx: 3
+*borderpx: 0
 
 !! Set the background, foreground and cursor colors as below:
 ! TokyoNight colors for Xresources
