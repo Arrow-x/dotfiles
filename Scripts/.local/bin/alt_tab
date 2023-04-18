@@ -1,0 +1,2 @@
+#! /bin/sh
+rofi -show window -kb-accept-entry "!Alt-Tab,!Alt+Alt_L" -kb-row-down "Alt+Tab" -selected-row 1
