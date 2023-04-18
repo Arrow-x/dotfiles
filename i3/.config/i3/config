@@ -284,8 +284,6 @@ bindsym XF86Mail exec --no-startup-id thunderbird
 bindsym XF86HomePage exec --no-startup-id firefox
 bindsym Print exec --no-startup-id "flameshot gui"
 
-bindsym F1 [instance="scratch_cmus"] scratchpad show; [instance="scratch_cmus"] move position center
-bindsym F4 [instance="scratch_btop"] scratchpad show; [instance="scratch_btop"] move position center
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
@@ -421,16 +419,21 @@ bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:~/.local/bin/rofipaste
 ####################################
 # Scratchpads                      #
 ####################################
-exec --no-startup-id st -n scratch_cmus cmus
-exec --no-startup-id st -n scratch_btop btop
+bindsym $mod+semicolon exec --no-startup-id i3run --summon --instance scratch_cmus -- st -n scratch_cmus cmus
+bindsym $mod+apostrophe exec --no-startup-id i3run --summon --instance scratch_btop -- st -n scratch_btop btop
+bindsym $mod+n exec --no-startup-id "i3run --summon --instance scratch_lf -- st -n scratch_lf zsh -c 'source /home/arrowx/.config/zsh/.zshrc; lfu'"
 
 for_window [instance="scratch_cmus"] floating enable
 for_window [instance="scratch_cmus"] resize set 1200 700
-for_window [instance="scratch_cmus"] move scratchpad
-
+for_window [instance="scratch_cmus"] move position center
+#
 for_window [instance="scratch_btop"] floating enable
 for_window [instance="scratch_btop"] resize set 1200 700
-for_window [instance="scratch_btop"] move scratchpad
+for_window [instance="scratch_btop"] move position center
+#
+for_window [instance="scratch_lf"] floating enable
+for_window [instance="scratch_lf"] resize set 1200 700
+for_window [instance="scratch_lf"] move position center
 
 ####################################
 # Rules                            #
