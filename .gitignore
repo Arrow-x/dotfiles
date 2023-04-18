@@ -7,3 +7,4 @@ newsboat/.config/newsboat/cache.db
 
 git/.config/lazygit/state.yml
 tmux/.config/tmux/plugins/tpm
+mpv/.config/mpv/history.log
