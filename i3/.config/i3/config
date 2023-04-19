@@ -250,8 +250,6 @@ bindsym $mod+a focus parent
 # open new empty workspace
 # bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
 
-bindsym $mod+grave exec --no-startup-id tdrop -m -y 4% st -n dropdown
-
 # Redirect sound to headphones
 # bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
@@ -422,6 +420,7 @@ bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:~/.local/bin/rofipaste
 bindsym $mod+semicolon exec --no-startup-id i3run --summon --instance scratch_cmus -- st -n scratch_cmus cmus
 bindsym $mod+apostrophe exec --no-startup-id i3run --summon --instance scratch_btop -- st -n scratch_btop btop
 bindsym $mod+n exec --no-startup-id "i3run --summon --instance scratch_lf -- st -n scratch_lf zsh -c 'source /home/arrowx/.config/zsh/.zshrc; lfu'"
+bindsym $mod+grave exec --no-startup-id i3run --summon --instance scratch_drop -- st -n scratch_drop
 
 for_window [instance="scratch_cmus"] floating enable
 for_window [instance="scratch_cmus"] resize set 1200 700
@@ -434,6 +433,10 @@ for_window [instance="scratch_btop"] move position center
 for_window [instance="scratch_lf"] floating enable
 for_window [instance="scratch_lf"] resize set 1200 700
 for_window [instance="scratch_lf"] move position center
+
+for_window [instance="scratch_drop"] floating enable
+for_window [instance="scratch_drop"] resize set 1593 400
+for_window [instance="scratch_drop"] move position 4 30
 
 ####################################
 # Rules                            #
@@ -451,7 +454,6 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [instance="TogglDesktop"] floating enable
-for_window [instance="dropdown"] floating enable
 
 ######################################
 # color settings for bar and windows #
