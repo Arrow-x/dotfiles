@@ -14,8 +14,7 @@ HISTSIZE=999
 stty stop undef		# Disable ctrl-s to freeze terminal.
 #}}}
 
-# zsh Colors and theri plugins {{{
-
+# zsh Colors and thier plugins {{{
 zle_highlight=('paste:none')
 . /usr/share/LS_COLORS/dircolors.sh
 
