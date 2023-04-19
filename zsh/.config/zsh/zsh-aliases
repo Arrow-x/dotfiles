@@ -100,10 +100,6 @@ getpt(){
 	fdrc $1 | sed 's/"/\\"/g' | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
-#paru stuff
-alias pacin='paru -S'
-#delelte all orphans
-alias pacdo='paru -Qtdq | paru -Rns -'
 
 #show installed packages and sort them by installed date 
 pacsd(){
@@ -119,6 +115,9 @@ pacei(){
 	paru -Qetq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | bat -n)'
 }
 
+#delelte all orphans
+alias pacdo='paru -Qtdq | paru -Rns -'
+
 #use paru to make package explicitly installed
 alias pacme='paru -S --asexplicit'
 
@@ -133,6 +132,7 @@ alias aria='aria2c --check-integrity=true'
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
+alias du='du -h'
 
 # get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
