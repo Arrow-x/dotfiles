@@ -77,7 +77,7 @@ alias mpv18='mpv --profile=1080p --really-quiet --no-terminal'
 alias mpva='mpv --profile=a'
 
 #Weather
-alias wttr="curl 'https://wttr.in/Djelfa'"
+alias wttr="curl 'https://wttr.in/Djelfa.Djelfa'"
 
 #fzf usages
 fdrc(){
