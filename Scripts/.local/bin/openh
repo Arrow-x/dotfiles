@@ -7,7 +7,6 @@ UB_PID=$!
 sleep 0.2
 
 export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
-export X=$(($(tput cols) / 2 + 1))
 
 fzf --preview-window wrap --preview 'ueberzugpp cmd $SOCKET $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
     {}/"$(ls {} | head -n 1)"' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-l to open without closing' --print0 | \

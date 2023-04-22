@@ -6,7 +6,6 @@ UB_PID=$!
 sleep 0.2
 
 export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
-export X=$(($(tput cols) / 2 + 1))
 
 # TODO: support a config file for the folder of pictures
 
