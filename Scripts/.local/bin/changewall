@@ -1,28 +1,21 @@
 #!/bin/bash
+ueberzugpp layer --no-stdin --silent &
+UB_PID=$!
 
-# TODO: turn this to a bin that everyone can use?
-set -e
-export FIFO_UEBERZUG="${TMPDIR:-/tmp}/wall-ueberzug-$$"
+# sleep some time for U++ startup
+sleep 0.2
 
-cleanup() {
-      exec 3>&-
-      rm "$FIFO_UEBERZUG"
-    }
-
-mkfifo "$FIFO_UEBERZUG"
-ueberzug layer -s <"$FIFO_UEBERZUG" &
-exec 3>"$FIFO_UEBERZUG"
-trap cleanup EXIT
-
-function preview() {
-  path="$(printf '%s' "$5" | sed 's/\\/\\\\/g;s/"/\\"/g')" 
-  printf '{"action": "add", "identifier": "preview", "x": %d, "y": %d, "width": %d, "height": %d, "scaler": "contain", "scaling_position_x": 0.5, "scaling_position_y": 0.5, "path": "%s"}\n' \
-  "$1" "$2" "$3" "$4" "$5" >"$FIFO_UEBERZUG"
-  exit 1
-}
+export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
+export X=$(($(tput cols) / 2 + 1))
 
 # TODO: support a config file for the folder of pictures
-# TODO: use the global var for the image reader rather then hardcoding it, but have a fallback, or just use xdg-open 
-export -f preview
-pics="/home/arrowx/Pictures/"
-fd -t f -L -0 . $pics -E Vertical | xargs --null ls -t | fzf --preview-window='up,30' --preview='bash -c "preview  1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}"' --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $pics | xargs --null ls -t )' --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
+
+PICS="/home/arrowx/Pictures/"
+
+fd -t f -L -0 . $PICS -E Vertical | xargs --null ls -t | fzf \
+    --preview-window='up,30' \
+    --preview='ueberzugpp cmd $SOCKET 1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}' \
+    --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $PICS | xargs --null ls -t )' \
+    --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
+
+kill -TERM $UB_PID
