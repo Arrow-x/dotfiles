@@ -1,24 +1,16 @@
 #!/bin/bash
-set -e
-export FIFO_UEBERZUG="${TMPDIR:-/tmp}/wall-ueberzug-$$"
 
-cleanup() {
-      exec 3>&-
-      rm "$FIFO_UEBERZUG"
-    }
+ueberzugpp layer --no-stdin --silent &
+UB_PID=$!
 
-mkfifo "$FIFO_UEBERZUG"
-ueberzug layer -s <"$FIFO_UEBERZUG" &
-exec 3>"$FIFO_UEBERZUG"
-trap cleanup EXIT
+# sleep some time for U++ startup
+sleep 0.2
 
-function preview() {
-  path="$(printf '%s' "$5")"
-  printf '{"action": "add", "identifier": "preview", "x": %d, "y": %d, "width": %d, "height": %d, "scaler": "contain", "scaling_position_x": 0.5, "scaling_position_y": 0.5, "path": "%s"}\n' \
-  "$1" "$2" "$3" "$4" "$5" >"$FIFO_UEBERZUG"
-  exit 1
-}
+export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
+export X=$(($(tput cols) / 2 + 1))
 
-export -f preview
-fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td | fzf --preview-window wrap --preview 'bash -c "preview $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
-    {}$(ls -b {} | head -n 1)"' --bind 'ctrl-d:reload(trash {};fd -t d -L0 . ~/File/Homework/H-Manga | xargs --null ls -td )' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-d to Delete | CTRL-l to open without closing' --print0 | xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&1
+fzf --preview-window wrap --preview 'ueberzugpp cmd $SOCKET $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
+    {}/"$(ls {} | head -n 1)"' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-l to open without closing' --print0 | \
+        xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&2
+
+kill -TERM $UB_PID
