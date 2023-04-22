@@ -14,14 +14,14 @@ cmd mkdir %{{
   printf "Directory Name: "
   read ans
   mkdir $ans
-  lf -remote "send clear"
+  lf -remote "send select \"$ans\""
 }}
 
 cmd mkfile %{{
   printf "File Name: "
   read ans
   touch $ans
-  lf -remote "send clear"
+  lf -remote "send select \"$ans\""
 }}
 
 # Custom Functions
