@@ -139,6 +139,9 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 lf(){
+	if [ $TMUX ]; then
+		tmux rename-window lf
+	fi
    tmp="$(mktemp)"
     lfu -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
@@ -152,8 +155,13 @@ lf(){
     fi
 }
 
-alias reload_st='xrdb -load ~/.Xresources ; pkill "\bst\b" ; setsid -f st' 
+tmux-window-name(){
+	if [ $TMUX ]; then
+		tmux rename-window "$(basename $PWD)"
+	fi
+}
 
+add-zsh-hook chpwd tmux-window-name
 t(){
 	termdown "$1"m ; notify-send "$2" ; mpv Music/deemix\ Music/80s\ Happy\ Hits/a-ha\ -\ The\ Sun\ Always\ Shines\ on\ T.V.mp3
 }
