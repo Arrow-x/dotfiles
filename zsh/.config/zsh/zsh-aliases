@@ -34,8 +34,6 @@ alias lsl.='lsd -l -a'
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
 
-alias lf='lfcd'
-
 # git 
 alias lg='lazygit'
 alias gst='git status'
@@ -140,9 +138,8 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# LFcd
-lfcd(){
-    tmp="$(mktemp)"
+lf(){
+   tmp="$(mktemp)"
     lfu -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
