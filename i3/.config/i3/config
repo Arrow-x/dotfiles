@@ -35,6 +35,7 @@ set $down  j
 set $up    k
 set $right l
 
+set $BROWSER qutebrowser
 focus_follows_mouse no
 
 #####################
@@ -254,7 +255,7 @@ bindsym $mod+a focus parent
 # bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+w exec --no-startup-id /usr/bin/$BROWSER
 bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
 # bindsym $mod+m exec --no-startup-id  /usr/bin/thunderbird
 
@@ -281,7 +282,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
 #Top non-standard fn keys
 bindsym XF86Mail exec --no-startup-id thunderbird
-bindsym XF86HomePage exec --no-startup-id firefox
+bindsym XF86HomePage exec --no-startup-id $BROWSER
 bindsym Print exec --no-startup-id "flameshot gui"
 
 ##########################################
@@ -316,14 +317,14 @@ assign [class="Godot"] $ws2
 assign [class="Pcmanfm"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Foliate"] $ws5
-assign [class="(?i)firefox"] $ws6
+assign [class="(?i)$BROWSER"] $ws6
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
 
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=st] focus
-for_window [class=(?i)firefox] focus
+for_window [class=(?i)$BROWSER] focus
 for_window [class=Pcmanfm] focus
 for_window [class=thunderbird] focus
 for_window [class=Foliate] focus
