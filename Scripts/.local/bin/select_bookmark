@@ -10,7 +10,7 @@ case $1 in
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
-		$BROWSER "$bookmark";;
+		xdg-open "$bookmark" &;;
 	*) echo "Wrong argument expect either t or b">&2
 		exit 1
 esac
