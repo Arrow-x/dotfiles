@@ -394,13 +394,13 @@ exec --no-startup-id python3 ~/.local/bin/binger
 # Application menu handled by rofi: #
 #####################################
 
-bindsym F9 exec --no-startup-id rofi -terminal st -modi drun -show drun -drun-use-desktop-cache\
+bindsym F9 exec --no-startup-id rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 bindsym F10 exec --no-startup-id rofi -terminal st -show window \
 		-config ~/.config/rofi/rofidmenu.rasi 
 
-bindsym $mod+d exec --no-startup-id rofi -terminal st -modi drun -show drun -drun-use-desktop-cache\
+bindsym $mod+d exec --no-startup-id rofi -terminal st -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 bindsym $mod+r exec --no-startup-id rofi -show run
