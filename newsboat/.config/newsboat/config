@@ -37,7 +37,7 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
 # -- navigation ----------------------------------------------------------------
 goto-next-feed no
 
-browser "setsid -f firefox"
+browser "setsid -f $BROWSER"
 
 bind-key j down feedlist
 bind-key k up feedlist
@@ -65,17 +65,16 @@ bind-key c toggle-show-read-feeds
 
 #--Macros----------------------------------------------------------------------
 macro Y set browser "setsid -f mpv --profile=720pmp4 --really-quiet --no-terminal"
-macro y set browser "setsid -f mpv --profile=720pmp4 --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
+macro y set browser "setsid -f mpv --profile=720pmp4 --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f $BROWSER"
 
 macro V set browser "setsid -f mpv --really-quiet --no-terminal"
-macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f firefox"
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f $BROWSER"
 
 macro I set browser "setsid -f nsxiv-url"
-macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f firefox"
+macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f $BROWSER"
 
-macro M set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" 
-macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f firefox"
+macro M set browser "setsid -f gallery-dl -q --exec 'nsxiv {}; echo done'" 
+macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f $BROWSER"
 
 notify-always yes
 notify-program notify-send
-
