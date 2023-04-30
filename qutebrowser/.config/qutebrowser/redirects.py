@@ -61,6 +61,7 @@ map = {
     "www.youtube.com": invid,
 
     # "twitter.com": nitter,
+    # "www.twitter.com": nitter,
     # "mobile.twitter.com": nitter,
 
     "imgur.com": rimgo,
@@ -78,7 +79,7 @@ map = {
 
     "www.goodreads.com": o(s, 'bl.vern.cc'),
     "genius.com": o(s, 'db.vern.cc'),
-    "stackoverflow.com": o(s, 'ao.vern.cc'),
+    "stackoverflow.com": o(s, 'code.whatever.social'),
 }
 
 
