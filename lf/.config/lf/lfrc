@@ -13,7 +13,7 @@ set filesep "\n"  # default already
 cmd mkdir %{{
   printf "Directory Name: "
   read ans
-  mkdir $ans
+  mkdir -p $ans
   lf -remote "send select \"$ans\""
 }}
 
