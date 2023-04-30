@@ -272,9 +272,9 @@ bindsym $mod+s exec --no-startup-id zsh -c "~/.local/bin/pass-menu -g -- dmenu"
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer sset 'Master' toggle
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl --list-all | dmenu -n | xargs -I _ playerctl --player=_ play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl --list-all | dmenu -n | xargs -I _ playerctl --player=_ next
+bindsym XF86AudioPrev exec --no-startup-id playerctl --list-all | dmenu -n | xargs -I _ playerctl --player=_ previous
 
 #Brightness control
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
