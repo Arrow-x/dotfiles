@@ -64,8 +64,6 @@ alias ydlf='yt-dlp --embed-thumbnail --embed-metadata -f'
 alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
 alias ydl720mp4='yt-dlp --embed-thumbnail --embed-metadata -f 22'
 
-alias ytfzf="ytfzf -f -t -l --async-thumbnails"
-
 alias nsxiv='nsxiv -a'
 
 #Mpv
