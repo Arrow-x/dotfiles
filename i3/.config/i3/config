@@ -340,11 +340,7 @@ exec --no-startup-id xhost +local:root
 # Turn Off the Beebs
 exec --no-startup-id xset b off
 # speedy keyboard
-exec --no-startup-id xset r rate 210 40
-
-#############################################
-# autostart applications/services on login: #
-#############################################
+exec --no-startup-id xset r rate 400 35
 # Desktop notifications
 exec --no-startup-id cbus-launch dunst --config ~/.config/dunst/dunstrc
 #get auth work with polkit-gnome
