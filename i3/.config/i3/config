@@ -436,7 +436,7 @@ for_window [instance="scratch_lf"] move position center
 for_window [instance="scratch_drop"] floating enable
 for_window [instance="scratch_drop"] resize set 1593 400
 for_window [instance="scratch_drop"] move position 4 30
-
+for_window [instance="st_gal"] floating enable
 ####################################
 # Rules                            #
 ####################################
