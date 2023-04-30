@@ -35,7 +35,7 @@ set $down  j
 set $up    k
 set $right l
 
-set $BROWSER qutebrowser
+set $BROWSER firefox
 focus_follows_mouse no
 
 #####################
