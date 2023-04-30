@@ -1,0 +1,10 @@
+#!/bin/sh
+
+P=$(playerctl --list-all)
+S=$(echo "$P" | dmenu -n)
+
+if [ -z "$S" ]; then
+	exit 128
+fi
+
+playerctl --player="$S" "$1"
