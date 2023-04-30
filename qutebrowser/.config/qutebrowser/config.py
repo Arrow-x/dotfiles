@@ -4,6 +4,7 @@ config.load_autoconfig()
 config.bind(
     '<Ctrl+/>', 'hint links spawn --detach mpv --profile=720pmp4 {hint-url}')
 config.bind('<Ctrl+g>', 'hint links spawn --detach gallery-dl {hint-url}')
+config.bind('<Ctrl+p>', 'hint links spawn --detach mpv {hint-url}')
 
 
 # Aliases for commands. The keys of the given dictionary are the
@@ -28,12 +29,10 @@ def zooming(info: i.Request):
     if url.host() == 'archiveofourown.org':
         config.set('zoom.default', '140%')
         # c.zoom.default = '140%'
-        # config.val.zoom.default('140%')
 
     else:
         config.set('zoom.default', '115%')
         # c.zoom.default = '115%'
-        # config.val.zoom.default('115%')
 
 i.register(zooming)
 
