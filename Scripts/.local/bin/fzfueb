@@ -1,0 +1,31 @@
+#!/bin/bash
+
+ueberzugpp layer --no-stdin --silent &
+UB_PID=$!
+
+# sleep some time for U++ startup
+sleep 0.2
+
+export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
+
+
+imgs(){
+	export X=$(($(tput cols) / 2 + 2))
+	fzf --preview='ueberzugpp cmd $SOCKET $X 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}' --reverse "$@"
+}
+
+dirs(){
+	fzf --preview-window wrap --preview 'ueberzugpp cmd $SOCKET $(expr $FZF_PREVIEW_COLUMNS + 6) 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
+		{}/"$(ls {} | head -n 1)"' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-l to open without closing' --print0 | \
+			xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&2
+}
+
+# TODO: Auto detect if file or dir are passed
+# TODO: add docs and a help option
+case "$1" in
+	-d) dirs;;
+	-f) imgs;;
+	*) exit 1
+esac
+
+kill -TERM $UB_PID
