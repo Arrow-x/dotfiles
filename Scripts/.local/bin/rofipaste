@@ -1,5 +1,5 @@
 #!/bin/bash
 [ -z "$@" ] && greenclip print || {
 	greenclip print "$1"
-  	coproc (xdotool key --clearmodifiers "ctrl+v" &)
+  	coproc (xdotool key --clearmodifiers "ctrl+shift+v" &)
   	exit 0 ; }
