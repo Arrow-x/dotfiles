@@ -1,3 +1,4 @@
+# vim: filetype=sh
 # vim:fileencoding=utf-8:foldmethod=marker
 
 # zsh Histroy Options {{{
