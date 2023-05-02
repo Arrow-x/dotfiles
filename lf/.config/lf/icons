@@ -20,22 +20,33 @@
 # fi      -       # FILE
 
 # file types (with matching order)
-ln             # LINK
-or             # ORPHAN
-tw             # STICKY_OTHER_WRITABLE
-ow             # OTHER_WRITABLE
-st             # STICKY
-di             # DIR
-pi      |      # FIFO
-so      ﯲ       # SOCK
-bd      b       # BLK
-cd      c       # CHR
-su             # SETUID
-sg             # SETGID
-ex             # EXEC
-fi             # FILE
+ln              # LINK
+or              # ORPHAN
+tw              # STICKY_OTHER_WRITABLE
+ow              # OTHER_WRITABLE
+st              # STICKY
+di              # DIR
+pi       |       # FIFO
+so       󰛴       # SOCK
+bd       󰋊       # BLK
+cd       c       # CHR
+su              # SETUID
+sg              # SETGID
+ex              # EXEC
+fi              # FILE
 
-# fi= di= ln= pi=| so=ﯲ db= cd=c or= su= sg= tw= ow=w st= ex= 
+# fi= di= ln= pi=| so=󰛴 db=󰋊 cd=c or= su= sg= tw= ow=w st= ex= 
+#   
+Desktop/    
+Documents/  
+Dwnloads/   
+Music/      
+Pictures/   
+Videos/     
+.config/   
+.git/      󰊢
+
+*.txt 
 # file extensions (vim-devicons)
 *.styl          
 *.sass          
@@ -53,8 +64,8 @@ fi             # FILE
 *.rmd           
 *.json          
 *.webmanifest   
-*.js            
-*.mjs           
+*.js            
+*.mjs           
 *.jsx           
 *.rb            
 *.gemspec       
@@ -82,13 +93,13 @@ fi             # FILE
 # *.gif           
 # *.ico           
 *.twig          
-*.cpp           
-*.c++           
-*.cxx           
-*.cc            
-*.cp            
-*.c             
-*.cs            
+*.cpp           󰙲
+*.c++           󰙲
+*.cxx           󰙲
+*.cc            󰙲
+*.cp            󰙲
+*.c             󰙱
+*.cs            󰌛
 *.h             
 *.hh            
 *.hpp           
@@ -98,14 +109,14 @@ fi             # FILE
 *.nix           
 *.lua           
 *.java          
-*.sh            
-*.fish          
-*.bash          
-*.zsh           
-*.ksh           
-*.csh           
-*.awk           
-*.ps1           
+*.sh             
+*.fish          
+*.bash          
+*.zsh           
+*.ksh           
+*.csh           
+*.awk           
+*.ps1           
 *.ml            λ
 *.mli           λ
 *.diff          
@@ -131,7 +142,7 @@ fi             # FILE
 *.fsx           
 *.fs            
 *.fsi           
-*.rs            
+*.rs            󱘗
 *.rlib          
 *.d             
 *.erl           
@@ -149,15 +160,16 @@ fi             # FILE
 *.tsx           
 *.jl            
 *.pp            
-*.vue           ﵂
+*.vue           󰡄
 *.elm           
 *.swift         
 *.xcplayground  
-*.tex           ﭨ
-*.r             ﳒ
-*.rproj         鉶
-*.sol           ﲹ
-*.pem           
+*.tex           󰙩
+*.r             󰟔
+*.rproj         󰗆
+*.sol           󰞻
+*.pem           󰌋
+*.gd            
 
 # file names (vim-devicons) (case-insensitive not supported in lf)
 *gruntfile.coffee       
@@ -169,9 +181,9 @@ fi             # FILE
 *mix.lock               
 *dropbox                
 *.ds_store              
-*.gitconfig             
-*.gitignore             
-*.gitattributes         
+*.gitconfig             
+*.gitignore             
+*.gitattributes         
 *.gitlab-ci.yml         
 *.bashrc                
 *.zshrc                 
@@ -194,7 +206,7 @@ fi             # FILE
 *gemfile                
 *makefile               
 *cmakelists.txt         
-*robots.txt             ﮧ
+*robots.txt             󰚩
 
 # file names (case-sensitive adaptations)
 *Gruntfile.coffee       
@@ -286,28 +298,29 @@ Vagrantfile             
 *.esd   
 
 # # image formats (extensions from dircolors defaults)
-*.jpg   
-*.jpeg  
-*.mjpg  
-*.mjpeg 
-*.gif   
-*.bmp   
-*.pbm   
-*.pgm   
-*.ppm   
-*.tga   
-*.xbm   
-*.xpm   
-*.tif   
-*.tiff  
-*.png   
-*.svg   
-*.svgz  
-*.mng   
-*.pcx   
-*.webp  
-*.ico   
-*.icns  
+*.jpg   
+*.jpeg  
+*.mjpg  
+*.mjpeg 
+*.gif   
+*.bmp   
+*.pbm   
+*.pgm   
+*.ppm   
+*.tga   
+*.xbm   
+*.xpm   
+*.tif   
+*.tiff  
+*.png   
+*.svg   
+*.svgz  
+*.mng   
+*.pcx   
+*.webp  
+*.ico   
+*.icns  
+*.xcf   
 
 *.mov   
 *.mpg   
@@ -332,7 +345,6 @@ Vagrantfile             
 *.flv   
 *.gl    
 *.dl    
-*.xcf   
 *.xwd   
 *.yuv   
 *.cgm   
@@ -359,9 +371,12 @@ Vagrantfile             
 *.xspf  
 
 # # other formats
-*.pdf   
-*.blend 
-# *.blend1 
+*.pdf  
+*.blend 󰂫
+# *.blend1 󰂫
 *.epub 
 *.exe 
 *.bin 
+*.ods 󰧷
+*.csv 󰧷
+*.log 󱂅
