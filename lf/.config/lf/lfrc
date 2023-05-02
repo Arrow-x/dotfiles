@@ -131,6 +131,7 @@ map "'"
 map '"'
 map d
 map w
+map r
 
 map au unarchive
 
@@ -150,6 +151,11 @@ map R reload
 map bg setwallpaper
 map C clear
 map b bulkrenamevimv
+
+map rA rename
+map rI push rA<c-a>
+map rw push rA<a-b><a-b><a-f>
+map rd push rA<c-u>
 
 map dd trash
 map dR restore_trash
