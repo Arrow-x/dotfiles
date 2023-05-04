@@ -80,6 +80,9 @@ znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-completions
 znap source hlissner/zsh-autopair
+
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 #  }}}
 
 # Vi mode keybids {{{
