@@ -15,7 +15,7 @@ c.aliases = {'w': 'session-save', 'q': 'close',
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = ['http://searxng.nicfab.eu/']
+c.url.start_pages = ['https://searx.tuxcloud.net/']
 
 
 i = interceptor
@@ -27,12 +27,13 @@ def zooming(info: i.Request):
         return
     url = info.request_url
     if url.host() == 'archiveofourown.org':
-        config.set('zoom.default', '140%')
-        # c.zoom.default = '140%'
+        # config.set('zoom.default', '140%')
+        c.zoom.default = '140%'
 
     else:
-        config.set('zoom.default', '115%')
-        # c.zoom.default = '115%'
+        # config.set('zoom.default', '115%')
+        c.zoom.default = '115%'
+
 
 i.register(zooming)
 

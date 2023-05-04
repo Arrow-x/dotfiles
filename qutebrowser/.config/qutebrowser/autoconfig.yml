@@ -28,6 +28,6 @@ settings:
     - en-US
   url.searchengines:
     global:
-      DEFAULT: http://searxng.nicfab.eu/searxng/search?q={}
+      DEFAULT: https://searx.tuxcloud.net/search?q={}
   # zoom.default:
   #   global: 115%
