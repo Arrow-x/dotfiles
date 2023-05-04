@@ -275,6 +275,12 @@ bindsym XF86AudioMute exec --no-startup-id amixer sset 'Master' toggle
 bindsym XF86AudioPlay exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
 bindsym XF86AudioNext exec --no-startup-id ~/.local/bin/pl_dmenu next
 bindsym XF86AudioPrev exec --no-startup-id ~/.local/bin/pl_dmenu previous
+bindsym XF86AudioStop exec --no-startup-id ~/.local/bin/pl_dmenu stop
+
+bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
+bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
+bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
+bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
 
 #Brightness control
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
@@ -420,6 +426,7 @@ bindsym $mod+semicolon exec --no-startup-id i3run --summon --instance scratch_cm
 bindsym $mod+apostrophe exec --no-startup-id i3run --summon --instance scratch_btop -- st -n scratch_btop btop
 bindsym $mod+n exec --no-startup-id "i3run --summon --instance scratch_lf -- st -n scratch_lf sh -c '. /usr/share/LS_COLORS/dircolors.sh ; lfu'"
 bindsym $mod+grave exec --no-startup-id i3run --summon --instance scratch_drop -- st -n scratch_drop
+bindsym $mod+m exec --no-startup-id i3run --summon --class mpv
 
 for_window [instance="scratch_cmus"] floating enable
 for_window [instance="scratch_cmus"] resize set 1200 700
