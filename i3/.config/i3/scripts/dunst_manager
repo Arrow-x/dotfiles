@@ -1,8 +1,8 @@
 #! /bin/sh
-if [ "$1" -eq 1 ]; 
+if [ "$1" -eq 3 ]; 
 then
 	dunstctl history-pop
-elif [ "$1" -eq 3 ]; 
+elif [ "$1" -eq 1 ]; 
 then
 	dunstctl set-paused toggle
 fi
