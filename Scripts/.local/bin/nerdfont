@@ -1,0 +1,9 @@
+#! /bin/sh
+selection=$(cat ~/.local/share/shiny-resources/font-awesome | dmenu -l 6 -g 6 | sed "s/ .*//g" | xargs echo)
+if [ -z $selection ];
+then
+	exit 1
+fi
+echo "$selection" | xclip -i -selection clipboard
+coproc (xdotool  key --clearmodifiers "ctrl+shift+v" &)
+exit 0

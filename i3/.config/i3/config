@@ -409,6 +409,7 @@ bindsym $mod+d exec --no-startup-id rofi -terminal st -modi drun -show drun \
 bindsym $mod+r exec --no-startup-id rofi -show run
 
 bindsym $mod+i exec --no-startup-id rofimoji --selector-args="-theme ~/.config/rofi/rofidmenu.rasi"
+bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/nerdfont
 
 #####################################
 # Clipboard                         #
