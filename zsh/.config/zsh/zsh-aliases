@@ -102,7 +102,11 @@ openh(){
 	par=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d)
 	tan=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d)
 	echo -e "$doj\n$par\n$tan"| fzfueb -d
+
+openc(){
+	find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d
 }
+
 #show installed packages and sort them by installed date 
 pacsd(){
 	expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n "$1"
