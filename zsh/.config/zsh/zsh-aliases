@@ -98,10 +98,11 @@ getpt(){
 }
 
 openh(){
-	doj=$(find ~/File/Homework/H-Manga/Doujinshi -mindepth 1 -type d)
-	par=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d)
-	tan=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d)
-	echo -e "$doj\n$par\n$tan"| fzfueb -d
+	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi -mindepth 1 -type d -printf "%T+ %p\n")
+	PAR=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d -printf "%T+ %p\n")
+	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
+	echo -e "$DOJ\n$PAR\n$TAN"| sort -r | sed "s#.*/home#/home#" | fzfueb -d
+}
 
 openc(){
 	find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d
