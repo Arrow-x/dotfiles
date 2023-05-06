@@ -11,7 +11,7 @@ export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
 
 PICS="/home/arrowx/Pictures/"
 
-fd -t f -L -0 . $PICS -E Vertical | xargs --null ls -t | fzf \
+fd -t f -L -0 . $PICS -E Vertical -E .tmsu | xargs --null ls -t | fzf \
     --preview-window='up,30' \
     --preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}'\
     --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $PICS | xargs --null ls -t )' \
