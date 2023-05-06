@@ -13,7 +13,7 @@ PICS="/home/arrowx/Pictures/"
 
 fd -t f -L -0 . $PICS -E Vertical | xargs --null ls -t | fzf \
     --preview-window='up,30' \
-    --preview='ueberzugpp cmd $SOCKET 1 1 $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES {}' \
+    --preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}'\
     --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $PICS | xargs --null ls -t )' \
     --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
 
