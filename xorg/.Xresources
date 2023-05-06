@@ -8,7 +8,6 @@ st.alphaUnfocused: 0.9
 !! Set a default font and font size as below:
 *font: FiraCode Nerd Font:style=Regular:pixelsize=16:antialias=true
 
-
 ! st.termname: st-256color
 *borderpx: 0
 
