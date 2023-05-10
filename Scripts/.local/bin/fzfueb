@@ -10,14 +10,12 @@ export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
 
 
 imgs(){
-	export X=$(($(tput cols) / 2 + 2))
-	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $X -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' --reverse "$@"
+	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' --bind "ctrl-l:execute($IMAGE -- {} &)" --header 'CTRL-l to open without closing' --reverse "$@"
 }
 
 dirs(){
 	fzf --preview-window wrap --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES \
-		-f {}/"$(ls {} | head -n 1)"' --bind 'ctrl-l:execute(nsxiv {})' --header 'CTRL-l to open without closing' --print0 | \
-			xargs -I _ -0 setsid -f $IMAGE _ >/dev/null 2>&2
+		-f {}/"$(ls {} | head -n 1)"' --bind "ctrl-l:execute($IMAGE -- {} &)" --header 'CTRL-l to open without closing' --print0 
 }
 
 # TODO: Auto detect if file or dir are passed
