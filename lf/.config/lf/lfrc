@@ -144,6 +144,7 @@ map mX chmod_minus_x
 map mt tagfiles $fx
 map md mkdir
 map mf mkfile
+map mw setwallpaper
 
 # Basic Functions
 map . set hidden!
@@ -152,7 +153,6 @@ map p paste
 map x cut
 map y copy
 map R reload
-map bg setwallpaper
 map C clear
 map b bulkrenamevimv
 
