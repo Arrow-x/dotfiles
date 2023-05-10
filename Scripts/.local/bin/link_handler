@@ -10,7 +10,7 @@ web="$BROWSER"
 edit="$TERMINAL -e $EDITOR"
 podcast="mpv --no-audio-display"
 video="mpv --really-quiet"
-youtube="ytfzf -D --detach"
+youtube="/home/arrowx/.local/bin/yt_link_handler"
 picture="nsxiv-url"
 document="$READER"
 
