@@ -13,7 +13,7 @@ alias nrc='nvim ~/Notes-And-Tasks'
 #Neovim for Godot 
 alias vig='nvim --listen /tmp/godothost.pipe'
 alias vigg='st godot & ; vig'
-alias vin='nvim ~/File/Documents/Notes/Trail/index.md'
+alias vin='nvim ~/.local/share/Obsidian/index.md'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
