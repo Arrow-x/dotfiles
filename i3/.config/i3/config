@@ -517,16 +517,22 @@ bar {
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers no
 
-colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
+set $dark_blue #24283b
+set $white #c0caf5
+set $off_white #cfc9c2
+set $selected #565f89
+set $red #f7768e
 
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
+colors {
+    background $dark_blue
+    statusline $white
+    separator  $selected
+
+    focused_workspace  $selected  $selected   $white
+    active_workspace   $dark_blue $selected   $white
+    inactive_workspace $dark_blue $dark_blue  $off_white
+    urgent_workspace   $red       $red $white
+    binding_mode       $red       $red $white
   }
 }
 # you can add different bars for multidisplay setups on each display:
