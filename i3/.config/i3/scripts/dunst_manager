@@ -9,6 +9,8 @@ fi
 if [ $(dunstctl is-paused) = "true" ];
 then
 	echo "󰂛"
+	echo
+	echo \#f7768e
 else
 	echo "󰂚"
 fi
