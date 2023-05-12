@@ -2,13 +2,15 @@
 # Generaic youtube link handeler depends on yt-dlp and dmenu
 VIDEO_OPTIONS=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
 PRECHOICE=$(echo "$VIDEO_OPTIONS" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d" )
-CHOICE=$(echo -e "Audio\n" "$PRECHOICE" | dmenu)
+CHOICE=$(echo -e "Audio\n" "720pMP4\n" "$PRECHOICE" | dmenu)
 if [ -z "$CHOICE" ]; then
 	exit 128
 fi
 
 if [ "$CHOICE" = "Audio" ]; then
 	mpv --ytdl-format=bestaudio "$1" --really-quiet --no-terminal --force-window --no-video &
+elif [ "$CHOICE" = " 720pMP4" ]; then
+	mpv --ytdl-format=22 "$1" --really-quiet --no-terminal &
 else
 	CODE=$(echo "$VIDEO_OPTIONS" | grep "$CHOICE" | awk '{print $1}')
 	mpv --ytdl-format="$CODE"+bestaudio "$1" --really-quiet --no-terminal &
