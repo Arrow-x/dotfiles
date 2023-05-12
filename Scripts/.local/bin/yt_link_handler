@@ -1,17 +1,28 @@
 #! /bin/sh
-# Generaic youtube link handeler depends on yt-dlp and dmenu
+
+# Generaic youtube link handeler depends on yt-dlp and dmenu, and uses invidious to get the video
+# TODO: is this taking more or less time ?
+
+LINK=$(echo "$1" | sed "s#www.youtube.com#farside.link/invidious#")
 VIDEO_OPTIONS=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
 PRECHOICE=$(echo "$VIDEO_OPTIONS" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d" )
-CHOICE=$(echo -e "Audio\n" "720pMP4\n" "$PRECHOICE" | dmenu)
-if [ -z "$CHOICE" ]; then
+
+if [ -z "$PRECHOICE" ]; then
 	exit 128
 fi
 
-if [ "$CHOICE" = "Audio" ]; then
-	mpv --ytdl-format=bestaudio "$1" --really-quiet --no-terminal --force-window --no-video &
+CHOICE=$(echo -e "Audio\n" "720pMP4\n" "$PRECHOICE" | dmenu)
+
+if [ -z "$CHOICE" ]; then
+	exit 128
+
 elif [ "$CHOICE" = " 720pMP4" ]; then
-	mpv --ytdl-format=22 "$1" --really-quiet --no-terminal &
+	mpv --ytdl-format=22 "$LINK" --really-quiet --no-terminal &
+
+elif [ "$CHOICE" = "Audio" ]; then
+	mpv --ytdl-format=bestaudio "$LINK" --really-quiet --no-terminal --force-window --no-video &
+
 else
 	CODE=$(echo "$VIDEO_OPTIONS" | grep "$CHOICE" | awk '{print $1}')
-	mpv --ytdl-format="$CODE"+bestaudio "$1" --really-quiet --no-terminal &
+	mpv --ytdl-format="$CODE"+bestaudio "$LINK" --really-quiet --no-terminal &
 fi
