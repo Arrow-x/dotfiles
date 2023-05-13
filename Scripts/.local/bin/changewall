@@ -1,12 +1,9 @@
 #!/bin/bash
-ueberzugpp layer --no-stdin --silent &
-UB_PID=$!
+UB_PID_FILE="/tmp/.$(uuidgen)"
+ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE
 
-# sleep some time for U++ startup
-sleep 0.2
-
+UB_PID=$(cat $UB_PID_FILE)
 export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
-
 # TODO: support a config file for the folder of pictures
 
 PICS="/home/arrowx/Pictures/"
@@ -17,4 +14,5 @@ fd -t f -L -0 . $PICS -E Vertical -E .tmsu | xargs --null ls -t | fzf \
     --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $PICS | xargs --null ls -t )' \
     --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
 
-kill -TERM $UB_PID
+ueberzugpp cmd -s $SOCKET -a exit
+rm $UB_PID_FILE
