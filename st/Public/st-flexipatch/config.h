@@ -9,6 +9,7 @@ static char *font = "FiraCode Nerd Font:style=Regular:pixelsize=16:antialias=tru
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
+	"Symbola:style=Regular:pixelsize=14:antialias=true:autohint=true"
 	"Noto Sans Symbols:style=Regular:pixelsize=14:antialias=true:autohint=true",
 	"Noto Sans Symbols2:style=Regular:pixelsize=14:antialias=true:autohint=true",
 	"Noto Sans CJK JP:style=Regular:pixelsize=14:antialias=true:autohint=true",

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 UB_PID_FILE="/tmp/.$(uuidgen)"
 ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE
@@ -6,18 +6,30 @@ ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE
 UB_PID=$(cat $UB_PID_FILE)
 export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
 
-imgs(){
-	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' --bind "ctrl-l:execute($IMAGE -- {} &)" --header 'CTRL-l to open without closing' --reverse "$@"
+imgs() {
+	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
+		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' \
+		--bind "ctrl-l:execute($IMAGE -- {} &)" \
+		--header 'CTRL-l to open without closing' \
+		--reverse "$@"
 }
 
-dirs(){
-	fzf --preview-window wrap --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES \
-		-f {}/"$(ls {} | head -n 1)"' --bind "ctrl-l:execute($IMAGE -- {} &)" --header 'CTRL-l to open without closing' --print0 
 }
+
+dirs() {
+	fzf --preview-window wrap --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
+		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES \
+		-f {}/"$(ls {} | head -n 1)"' \
+		--bind "ctrl-l:execute($IMAGE -- {} &)" \
+		--header 'CTRL-l to open without closing' \
+		--print0 
+}
+
 if [ -z "$1" ]; then
 	echo -e "please specifiy if you want to previw:\n -f image files\n -d dirs with images on them (the first one will be the preview)"
 	exit 128
 fi
+
 case "$1" in
 	-d) dirs;;
 	-f) imgs;;
