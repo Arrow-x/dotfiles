@@ -14,6 +14,12 @@ imgs() {
 		--reverse "$@"
 }
 
+ffmpeg() {
+	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
+		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f "$(thumbs4fzf {})"' \
+		--bind "ctrl-l:execute(mimeopen -- {}>/dev/null &)" \
+		--header 'CTRL-l to open without closing' \
+		--reverse "$@"
 }
 
 dirs() {
@@ -33,6 +39,7 @@ fi
 case "$1" in
 	-d) dirs;;
 	-f) imgs;;
+	-m) ffmpeg;;
 	*) exit 1
 esac
 
