@@ -521,7 +521,7 @@ set $dark_blue #24283b
 set $white #c0caf5
 set $off_white #cfc9c2
 set $selected #565f89
-set $red #f7768e
+set $red #8c4351
 
 colors {
     background $dark_blue

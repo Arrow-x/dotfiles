@@ -5,6 +5,6 @@ TEMP="$(printf '%s/.cache/lf/%s.jpg' "$HOME" \
 if [ -f "$TEMP" ]; then
 	echo "$TEMP"
 else
-	ffmpegthumbnailer -m -i "$1" -o "$TEMP" -s 512 >/dev/null
+	ffmpegthumbnailer -m -i "$1" -o "$TEMP" -s 0
 	echo "$TEMP"
 fi

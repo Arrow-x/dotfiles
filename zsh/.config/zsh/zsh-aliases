@@ -71,6 +71,7 @@ alias changewalln='find -L "/home/arrowx/Pictures/" -type f -printf "%T+ %p\n" |
 #Mpv
 alias mpv4='mpv --profile=480p --really-quiet --no-terminal'
 alias mpv7='mpv --profile=720p --really-quiet --no-terminal'
+alias mpv7mp4='mpv --profile=720pmp4 --really-quiet --no-terminal'
 alias mpv18='mpv --profile=1080p --really-quiet --no-terminal'
 alias mpva='mpv --profile=a'
 
@@ -105,9 +106,9 @@ openh(){
 	echo -e "$DOJ\n$PAR\n$TAN"| sort -r | sed "s#.*/home#/home#" | fzfueb -d
 }
 
-openc(){
-	find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d
-}
+alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d"
+alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzfueb -m"
+alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzfueb -m"
 
 #show installed packages and sort them by installed date 
 pacsd(){

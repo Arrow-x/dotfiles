@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# TODO: make this like the lf previewer where each mimetype will have it's own process of drawing
 UB_PID_FILE="/tmp/.$(uuidgen)"
 ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE
 
