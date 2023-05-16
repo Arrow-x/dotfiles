@@ -17,7 +17,7 @@ imgs() {
 ffmpeg() {
 	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
 		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f "$(thumbs4fzf {})"' \
-		--bind "ctrl-l:execute(mimeopen -- {}>/dev/null &)" \
+		--bind "ctrl-l:execute(xdg-open {}>/dev/null &)" \
 		--header 'CTRL-l to open without closing' \
 		--reverse "$@"
 }
@@ -28,7 +28,8 @@ dirs() {
 		-f {}/"$(ls {} | head -n 1)"' \
 		--bind "ctrl-l:execute($IMAGE -- {} &)" \
 		--header 'CTRL-l to open without closing' \
-		--print0 
+		--print0 \
+		--reverse "$@"
 }
 
 if [ -z "$1" ]; then

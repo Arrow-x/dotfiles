@@ -1,6 +1,6 @@
 #!/bin/sh
 languaages=$(echo "bash sh golang rust lua cpp c csharp python" | tr ' ' '\n')
-core_utils=$(echo "xargs find mv sed awk" | tr ' ' '\n')
+core_utils=$(echo "xargs curl jq find mv sed awk" | tr ' ' '\n')
 
 selected=$(printf "$languaages\n$core_utils" | fzf)
 read -p "query: " query
