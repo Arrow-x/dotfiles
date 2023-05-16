@@ -1,18 +1,18 @@
 #!/bin/sh
-DESTINATION="$HOME/Pictures/Bing/"
-mkdir -p "$DESTINATION"
-URL="$(curl -s "https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=zh-CN" | jq '.url' | sed 's/\"//g')"
-if [ -z "$URL" ]; then
+destination="$HOME/Pictures/Bing/"
+mkdir -p "$destination"
+url="$(curl -s "https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=zh-CN" | jq '.url' | sed 's/\"//g')"
+if [ -z "$url" ]; then
 	exit 128
 fi
-FILE="$(echo "$DESTINATION""$(echo "$URL" | awk -F "/" '{print $4}')")"
+file="$(echo "$destination""$(echo "$url" | awk -F "/" '{print $4}')")"
 set_wallpaper() {
-	nitrogen --set-auto --save "$FILE">/dev/null
+	nitrogen --set-auto --save "$file">/dev/null
 }
-if [ -f "$FILE" ]; then
+if [ -f "$file" ]; then
 	echo "file exist"
 	set_wallpaper
 	exit
 fi
-curl -s -o "$FILE" "$URL"
+curl -s -o "$file" "$url"
 set_wallpaper

@@ -1,10 +1,10 @@
 #!/bin/sh
 
-TEMP="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
+temp="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
-if [ -f "$TEMP" ]; then
-	echo "$TEMP"
+if [ -f "$temp" ]; then
+	echo "$temp"
 else
-	ffmpegthumbnailer -m -i "$1" -o "$TEMP" -s 0
-	echo "$TEMP"
+	ffmpegthumbnailer -m -i "$1" -o "$temp" -s 0
+	echo "$temp"
 fi

@@ -12,9 +12,9 @@ fi
 
 tmux_running=$(pgrep tmux)
 
-if [[ $TMUX ]] && [[ $tmux_running ]]; then
+if [ "$TMUX" ] && [ "$tmux_running" ]; then
 	search_name=$(basename "$search")
-	tmux rename-window $search_name
+	tmux rename-window "$search_name"
 fi
 
-nvim $search
+nvim "$search"
