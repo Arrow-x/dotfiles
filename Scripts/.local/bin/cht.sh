@@ -1,12 +1,15 @@
 #!/bin/sh
-languaages=$(echo "bash sh golang rust lua cpp c csharp python" | tr ' ' '\n')
+languages=$(echo "bash sh golang rust lua cpp c csharp python" | tr ' ' '\n')
 core_utils=$(echo "xargs curl jq find mv sed awk" | tr ' ' '\n')
 
-selected=$(printf "$languaages\n$core_utils" | fzf)
-read -p "query: " query
+selected=$(printf "$languages\n$core_utils" | fzf)
+if [ -z "$selected" ]; then
+	exit 128
+fi
+read -p "Query: " query
 
-if echo $languaages | grep -qs $selected; then
-	tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+if echo "$languages" | grep -qs "$selected"; then
+	curl -s cht.sh/"$selected"/"$query" | bat --paging=always --plain
 else
-	tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
+	curl -s cht.sh/"$selected"~"$query" | bat --paging=always --plain
 fi
