@@ -23,6 +23,6 @@ elif [ "$choice" = "Audio" ]; then
 	mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video &
 
 else
-	CODE=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
-	mpv --ytdl-format="$CODE"+bestaudio "$link" --really-quiet --no-terminal &
+	code=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
+	mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal &
 fi

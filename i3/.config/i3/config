@@ -504,36 +504,36 @@ for_window [instance="TogglDesktop"] floating enable
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango:FiraCode Nerd Font 12
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position top
+  font pango:FiraCode Nerd Font 12
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    position top
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    tray_output primary
-		    tray_padding 0
+    tray_output primary
+    tray_padding 0
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
-strip_workspace_numbers no
+    strip_workspace_numbers no
 
-set $dark_blue #24283b
-set $white #c0caf5
-set $off_white #cfc9c2
-set $selected #565f89
-set $red #8c4351
+    set $dark_blue #24283b
+    set $white #c0caf5
+    set $off_white #cfc9c2
+    set $selected #565f89
+    set $red #8c4351
 
-colors {
-    background $dark_blue
-    statusline $white
-    separator  $selected
+    colors {
+      background $dark_blue
+        statusline $white
+        separator  $selected
 
-    focused_workspace  $selected  $selected   $white
-    active_workspace   $dark_blue $selected   $white
-    inactive_workspace $dark_blue $dark_blue  $off_white
-    urgent_workspace   $red       $red $white
-    binding_mode       $red       $red $white
-  }
+        focused_workspace  $selected  $selected   $white
+        active_workspace   $dark_blue $selected   $white
+        inactive_workspace $dark_blue $dark_blue  $off_white
+        urgent_workspace   $red       $red $white
+        binding_mode       $red       $red $white
+    }
 }
 # you can add different bars for multidisplay setups on each display:
 # set output HDMI-0 to the display you want the bar, --transparency can be set.
