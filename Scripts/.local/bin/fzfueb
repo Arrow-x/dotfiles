@@ -4,6 +4,7 @@ UB_PID_FILE="/tmp/.$(uuidgen)"
 ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE --output sixel
 
 UB_PID=$(cat $UB_PID_FILE)
+rm $UB_PID_FILE
 export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
 
 imgs() {
@@ -45,4 +46,3 @@ case "$1" in
 esac
 
 ueberzugpp cmd -s $SOCKET -a exit
-rm $UB_PID_FILE
