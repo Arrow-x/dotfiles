@@ -11,7 +11,7 @@ if [ -z "$prechoice" ]; then
 	exit 128
 fi
 
-choice=$(echo -e "Audio\n" "720pMP4\n" "$prechoice" | dmenu)
+choice=$(echo -e "Audio\n" "720pMP4\n" "$prechoice" | $MENU)
 
 if [ -z "$choice" ]; then
 	exit 128

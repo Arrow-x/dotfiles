@@ -1,4 +1,4 @@
-# vim: filetype=sh
+# vim: filetype=zsh
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
@@ -6,7 +6,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
 export DOTFILES=$HOME/dotfiles
 
-export ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export HISTFILE="$XDG_DATA_HOME"/zsh/.zsh_history
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 # export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
@@ -38,8 +38,17 @@ export IMAGE="nsxiv"
 export COLORTERM="truecolor"
 export OPENER="mimeopen"
 export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
+export MENU="dmenu -n"
+export FMENU="rofi"
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    export MOZ_ENABLE_WAYLAND=1
+    export MENU="bemenu --accept-single  --fn FiraCode Nerd Font 12"
+    export FMENU="wofi"
+fi
 
 # Path
+typeset -U path PATH
 path=(
 	# "$HOME/scripts"
 	# "$HOME/scripts/alsa"
@@ -59,5 +68,4 @@ path=(
 	"$HOME/.local/bin"
 	"$path[@]"
 	"/usr/local/opt/openjdk/bin:$PATH")
-
 export PATH

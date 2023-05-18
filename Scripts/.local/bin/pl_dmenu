@@ -1,7 +1,7 @@
 #!/bin/sh
 
 p=$(playerctl --list-all)
-s=$(echo "$p" | dmenu -n)
+s=$(echo "$p" | $MENU)
 
 if [ -z "$s" ]; then
 	exit 128

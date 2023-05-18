@@ -5,8 +5,8 @@ if [ "$#" -ne 1 ]; then
 fi
 
 case $1 in 
-	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | dmenu -p "Bookmarks" -l 30 | cut -d ' ' -f1)";;
-	-b) bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | dmenu -p "Bookmarks" -l 30 | cut -d ' ' -f1)
+	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 30 | cut -d ' ' -f1)";;
+	-b) bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 30 | cut -d ' ' -f1)
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
