@@ -1,4 +1,3 @@
-include /etc/sway/config.d/*
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -30,8 +29,10 @@ input "type:keyboard" {
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Pictures/Landscapes/234898329483294.png fill
+
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -84,8 +85,11 @@ exec --no-startup-id ~/.config/sway/scripts/import-gsettings
 # Basics:
 #
 default_border pixel 2
-gaps inner 2 
+gaps inner 4
 gaps outer 2
+smart_borders on
+focus_follows_mouse no
+
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
 
@@ -107,6 +111,17 @@ bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:󰂫"
+set $ws8 "8:🖌️"
+set $ws9 "9"
+set $ws10 "10"
 #
 # Moving around:
 #
@@ -135,27 +150,51 @@ bindsym $mod+Shift+Right move right
 # Workspaces:
 #
 # Switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+#
+# Resizing containers:
+#
+mode "resize" {
+# left will shrink the containers width
+# right will grow the containers width
+# up will shrink the containers height
+# down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+# Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+# Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 #
@@ -236,56 +275,27 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
-mode "resize" {
-# left will shrink the containers width
-# right will grow the containers width
-# up will shrink the containers height
-# down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
 
-# Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+# Title format for windows
+for_window [shell="xdg_shell"] title_format "%title (%app_id)"
+for_window [shell="x_wayland"] title_format "%class - %title"
 
-# Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:󰂫"
-set $ws8 "8:🖌️"
-set $ws9 "9"
-set $ws10 "10"
-
-assign [class=$term] $ws1
+assign [app_id=$term] $ws1
 assign [class="Godot"] $ws2
-assign [class="Pcmanfm"] $ws3
-assign [class="thunderbird"] $ws4
-assign [class="Foliate"] $ws5
-assign [class="(?i)$BROWSER"] $ws6
+assign [app_id="pcmanfm"] $ws3
+assign [app_id="thunderbird"] $ws4
+assign [app_id="foliate"] $ws5
+assign [app_id="firefox"] $ws6
+assign [class="firefox"] $ws6
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
 
-for_window [class=$term] focus
-for_window [class=(?i)$BROWSER] focus
-for_window [class=Pcmanfm] focus
-for_window [class=thunderbird] focus
-for_window [class=Foliate] focus
+for_window [app_id="firefox"] focus
+for_window [class="firefox"] focus
+for_window [app_id=pcmanfm] focus
+for_window [app_id=$term] focus
+for_window [app_id=thunderbird] focus
+for_window [app_id=foliate] focus
 for_window [class=Godot] focus
 for_window [class=Blender] focus
 for_window [class=krita] focus
