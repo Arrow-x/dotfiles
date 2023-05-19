@@ -12,7 +12,6 @@ podcast="mpv --no-audio-display"
 video="mpv --really-quiet"
 youtube="/home/arrowx/.local/bin/yt_link_handler"
 # youtube="ytfzf -a -D --detach"
-
 picture="nsxiv-url"
 document="$READER"
 
@@ -121,7 +120,7 @@ case "$uri_lower" in
       notify-send \
         -u low\
         "link handler - add Manga to taskspooler"
-        st -n st_gal gallery-dl --exec-after 'setsid -f nsxiv {}' "$uri" &
+        "$TERMINAL" gallery-dl --exec-after 'setsid -f "$IMGAE" {}' "$uri"
           ;;
 
     *.mp3 \
