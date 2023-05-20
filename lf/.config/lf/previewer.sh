@@ -51,12 +51,12 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
             gnome-epub-thumbnailer "$1" "$CACHE".jpg
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
-	*.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx|*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
+	*.avi|*.mp4|*.gif|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx|*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
 		[ ! -f "${CACHE}.jpg" ] && \
 			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -m -s 0 -q 5
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
-	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.jfif)
+	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.jfif)
 		image "$1" "$2" "$3" "$4" "$5"
 		;;
 	*.svg)
