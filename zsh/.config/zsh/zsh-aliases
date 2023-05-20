@@ -66,7 +66,7 @@ alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
 alias ydl720mp4='yt-dlp --embed-thumbnail --embed-metadata -f 22'
 
 alias nsxiv='nsxiv -a'
-alias changewalln='find -L "/home/arrowx/Pictures/" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1 &'
+alias changewalln='find -L "/home/arrowx/Pictures/" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | xargs set_bg'
 
 #Mpv
 alias mpv4='mpv --profile=480p --really-quiet --no-terminal'

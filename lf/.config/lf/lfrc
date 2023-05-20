@@ -27,7 +27,7 @@ cmd mkfile %{{
 }}
 
 # Custom Functions
-cmd setwallpaper %nitrogen --set-zoom-fill --save "$f" >/dev/null 2>&1
+cmd setwallpaper %set_bg "$f" >/dev/null 2>&1
 
 # Archive bindings
 cmd unarchive ${{

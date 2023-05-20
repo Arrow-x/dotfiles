@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	notify-send "$1"
+	echo -e "#!/usr/bin/env bash\npkill swaybg\nswaybg -o 'LVDS-1' -i \""$1"\" -m fill &">/home/arrowx/.azotebg 
+	sh -c /home/arrowx/.azotebg>/dev/null
+else
+	nitrogen --set-auto --save "$1">/dev/null
+fi

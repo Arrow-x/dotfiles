@@ -6,13 +6,10 @@ if [ -z "$url" ]; then
 	exit 128
 fi
 file="$(echo "$destination""$(echo "$url" | awk -F "/" '{print $4}')")"
-set_wallpaper() {
-	nitrogen --set-auto --save "$file">/dev/null
-}
 if [ -f "$file" ]; then
 	echo "file exist"
-	set_wallpaper
+	set_bg "$file"
 	exit
 fi
 curl -s -o "$file" "$url"
-set_wallpaper
+set_bg "$file"

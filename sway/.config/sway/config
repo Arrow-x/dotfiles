@@ -47,7 +47,6 @@ exec swayidle -w\
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Pictures/Landscapes/234898329483294.png fill
 
 
 # Example configuration:
@@ -84,6 +83,7 @@ output * bg ~/Pictures/Landscapes/234898329483294.png fill
 # Read `man 5 sway-input` for more information about this section.
 
 # Startup
+exec --no-startup-id ~/.azotebg
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

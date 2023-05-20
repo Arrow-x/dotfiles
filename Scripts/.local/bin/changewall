@@ -1,18 +1,14 @@
 #!/bin/bash
 UB_PID_FILE="/tmp/.$(uuidgen)"
-ueberzugpp layer --no-stdin --silent --pid-file $UB_PID_FILE --output sixel
-
-UB_PID=$(cat $UB_PID_FILE)
-export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
-# TODO: support a config file for the folder of pictures
+ueberzugpp layer --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE"
+UB_PID=$(cat "$UB_PID_FILE")
+export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 
 pics="/home/arrowx/Pictures/"
-
-fd -t f -L -0 . $pics -E Vertical -E .tmsu | xargs --null ls -t | fzf \
+fd -t f -L -0 . "$pics" -E Vertical -E .tmsu | xargs --null ls -t | fzf \
     --preview-window='up,30' \
     --preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}'\
     --bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $pics | xargs --null ls -t )' \
-    --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs -I _ nitrogen --set-zoom-fill --save _ >/dev/null 2>&1
-
-ueberzugpp cmd -s $SOCKET -a exit
-rm $UB_PID_FILE
+    --header "CTRL-d to Delete | CTRL-l to open without closing" | xargs set_bg >/dev/null
+ueberzugpp cmd -s "$SOCKET" -a exit
+rm "$UB_PID_FILE"
