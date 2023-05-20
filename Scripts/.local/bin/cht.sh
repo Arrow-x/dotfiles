@@ -13,7 +13,7 @@ if echo "$languages" | grep -qs "$selected"; then
 else
 	curl -s cht.sh/"$selected"~"$query"> "$file"-new
 fi
-if [ -z $(cat "$file"-new) ]; then
+if [ -z "$(cat "$file"-new)" ]; then
 	rm "$file"-new
 	if [ ! -f "$file" ]; then
 		exit 1
