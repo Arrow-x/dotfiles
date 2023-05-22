@@ -60,10 +60,10 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		image "$1" "$2" "$3" "$4" "$5"
 		;;
 	*.svg)
-    		[ ! -f "${CACHE}.jpg" ] && \
-      		convert "$1" "${CACHE}.jpg"
-    		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-    		;;
+        [ ! -f "${CACHE}.jpg" ] && \
+            convert "$1" "${CACHE}.jpg" 
+        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+                    ;;
 	*)
 		batorcat "$1"
 		;;
