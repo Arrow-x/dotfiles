@@ -1,48 +1,28 @@
 #!/bin/sh
-# TODO: make this like the lf previewer where each mimetype will have it's own process of drawing
-UB_PID_FILE="/tmp/.$(uuidgen)"
-ueberzugpp layer --no-stdin --silent --output sixel --pid-file "$UB_PID_FILE"
-
-UB_PID=$(cat $UB_PID_FILE)
-rm $UB_PID_FILE
-export SOCKET=/tmp/ueberzugpp-$UB_PID.socket
-
-imgs() {
-	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
-		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' \
-		--bind "ctrl-l:execute($IMAGE -- {} &)" \
-		--header 'CTRL-l to open without closing' \
-		--reverse "$@"
-}
-
-ffmpeg() {
-	fzf --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
-		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f "$(thumbs4fzf {})"' \
-		--bind "ctrl-l:execute(xdg-open {}>/dev/null &)" \
-		--header 'CTRL-l to open without closing' \
-		--reverse "$@"
-}
-
-dirs() {
-	fzf --preview-window wrap --preview='ueberzugpp cmd -s $SOCKET -a add -x $(expr $FZF_PREVIEW_COLUMNS + 6) -y 1 \
-		--max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES \
-		-f {}/"$(ls {} | head -n 1)"' \
-		--bind "ctrl-l:execute($IMAGE -- {} &)" \
-		--header 'CTRL-l to open without closing' \
-		--print0 \
-		--reverse "$@"
-}
-
-if [ -z "$1" ]; then
-	echo -e "please specifiy if you want to previw:\n -f image files\n -d dirs with images on them (the first one will be the preview)"
-	exit 128
+fu_pid_file="/tmp/.$(uuidgen)"
+if [ "$TERM" = "foot" ]; then
+	ueberzugpp layer --no-stdin --silent --output sixel --pid-file "$fu_pid_file"
+elif [ "$TERM" = "xterm-kitty" ]; then
+	ueberzugpp layer --no-stdin --silent --output kitty --pid-file "$fu_pid_file"
+else
+	ueberzugpp layer --no-stdin --silent --use-escape-codes --pid-file "$fu_pid_file"
 fi
 
-case "$1" in
-	-d) dirs;;
-	-f) imgs;;
-	-m) ffmpeg;;
-	*) exit 1
-esac
+fu_pid=$(cat "$fu_pid_file")
+rm "$fu_pid_file"
+export FU_SOCKET=/tmp/ueberzugpp-"$fu_pid".socket
 
-ueberzugpp cmd -s $SOCKET -a exit
+opener="xdg-open"
+
+case "$1" in
+	-d) opener="$IMAGE"
+esac
+export "$opener"
+
+fzf --ansi -i --preview='fzf_previewer {} \
+	$FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
+	$(expr $FZF_PREVIEW_COLUMNS + 6) 1'\
+	--bind "ctrl-l:execute(setsid -f "$opener" {}>/dev/null)" \
+	--header 'CTRL-l to open without closing'
+
+ueberzugpp cmd -s $FU_SOCKET -a exit
