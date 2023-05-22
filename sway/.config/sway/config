@@ -36,11 +36,6 @@ input type:touchpad {
 }
 
 
-### Idle configuration
-exec swayidle -w timeout 1070 'swaylock -f -C ~/.config/swaylock/config' timeout 770 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -C ~/.config/swaylock/config'
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Output configuration
 #
@@ -82,6 +77,16 @@ exec swayidle -w timeout 1070 'swaylock -f -C ~/.config/swaylock/config' timeout
 # Read `man 5 sway-input` for more information about this section.
 
 # Startup
+### Idle configuration
+exec --no-startup-id swayidle -w \
+         timeout 300 '/home/arrowx/.config/sway/scripts/lock.sh' \
+         timeout 700 'swaymsg "output * power off"' \
+         timeout 1000 'systemctl suspend' \
+         resume 'swaymsg "output * power on"' \
+         before-sleep '~/.config/sway/scripts/lock.sh'
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
 exec --no-startup-id ~/.azotebg
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
@@ -355,12 +360,6 @@ bar {
     tray_output *
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     position top
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
     strip_workspace_numbers no
     colors {
         background $dark_blue
