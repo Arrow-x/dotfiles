@@ -1,7 +1,7 @@
 #!/bin/sh
 languages=$(echo "bash sh golang rust lua cpp c csharp python" | tr ' ' '\n')
 core_utils=$(echo "xargs curl jq find mv sed awk" | tr ' ' '\n')
-local_copy="/home/arrowx/.local/share/shiny-resources/cht_sh/"
+local_copy="$XDG_CACHE_HOME/cht_sh/"
 selected=$(printf "$languages\n$core_utils" | fzf)
 if [ -z "$selected" ]; then
 	exit 1
@@ -19,7 +19,9 @@ if [ -z "$(cat "$file"-new)" ]; then
 		exit 1
 	fi
 else
-	rm "$file"
+	if [ -f "$file" ]; then
+		rm "$file"
+	fi
 	mv "$file"-new "$file"
 fi
 bat "$file" --paging=always --plain
