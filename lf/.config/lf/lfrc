@@ -66,6 +66,10 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd remove %{{
+  rm -rf $fx
+}}
+
 cmd bulkrenamevimv ${{
   vimv --git -- $fx
   lf -remote "send $id load"
@@ -132,6 +136,7 @@ cmd dlfile %dlfile
 # Bindings
 # Dragon Mapping
 map dr dragon
+map dD remove
 map ds dragon-stay
 map di dragon-individual
 map dm mvdragon
