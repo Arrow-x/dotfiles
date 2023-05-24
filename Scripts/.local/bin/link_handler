@@ -120,7 +120,7 @@ case "$uri_lower" in
       notify-send \
         -u low\
         "link handler - add Manga to taskspooler"
-        "$TERMINAL" gallery-dl --exec-after 'setsid -f "$IMGAE" {}' "$uri"
+        "$TERMINAL" gallery-dl --exec-after 'setsid -f "$IMAGE" {}' "$uri"
           ;;
 
     *.mp3 \
