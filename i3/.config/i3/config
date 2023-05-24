@@ -505,7 +505,7 @@ for_window [instance="TogglDesktop"] floating enable
 # (plus the system information i3status finds out, if available)
 bar {
   font pango:FiraCode Nerd Font 12
-    status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
     position top
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
