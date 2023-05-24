@@ -1,0 +1,17 @@
+#!/bin/sh
+appid="$1"
+appcmd="$2"
+
+# TODO: Summon option
+is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
+if [ -z "$is_focused" ]; then
+	focus="$(swaymsg "[app_id="$appid"] focus" | grep success)"
+	if [ "$(echo "$focus" | grep false)" ]; then
+		sh -c "$appcmd"
+		exit
+	fi
+	exit
+else
+	move="$(swaymsg "[app_id="$appid"] move scratchpad")"
+	exit
+fi

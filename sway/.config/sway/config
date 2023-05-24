@@ -308,6 +308,22 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
+bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "foot -a t_cmus cmus &"
+bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "foot -a t_btop btop &"
+bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "foot -a t_drop &"
+
+for_window [app_id="t_cmus"] floating enable
+for_window [app_id="t_cmus"] resize set 1200 700
+for_window [app_id="t_cmus"] move position center
+
+for_window [app_id="t_btop"] floating enable
+for_window [app_id="t_btop"] resize set 1200 700
+for_window [app_id="t_btop"] move position center
+
+for_window [app_id="t_drop"] floating enable
+for_window [app_id="t_drop"] resize set 1590 400
+for_window [app_id="t_drop"] move position 0 0
+
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
 for_window [shell="x_wayland"] title_format "%class - %title"
