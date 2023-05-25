@@ -1,11 +1,11 @@
 #!/bin/sh
 fu_pid_file="/tmp/.$(uuidgen)"
 if [ "$TERM" = "foot" ]; then
-	ueberzugpp layer --no-stdin --silent --output sixel --pid-file "$fu_pid_file"
+	ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$fu_pid_file"
 elif [ "$TERM" = "xterm-kitty" ]; then
-	ueberzugpp layer --no-stdin --silent --output kitty --pid-file "$fu_pid_file"
+	ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$fu_pid_file"
 else
-	ueberzugpp layer --no-stdin --silent --use-escape-codes --pid-file "$fu_pid_file"
+	ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$fu_pid_file"
 fi
 
 fu_pid=$(cat "$fu_pid_file")
@@ -19,7 +19,7 @@ case "$1" in
 esac
 export "$opener"
 
-fzf --ansi -i --preview='fzf_previewer {} \
+fzf --ansi --preview='fzf_previewer {} \
 	$FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES \
 	$(expr $FZF_PREVIEW_COLUMNS + 6) 1'\
 	--bind "ctrl-l:execute(setsid -f "$opener" {}>/dev/null)" \

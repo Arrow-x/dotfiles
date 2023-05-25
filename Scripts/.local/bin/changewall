@@ -1,6 +1,6 @@
 #!/bin/sh
 UB_PID_FILE="/tmp/.$(uuidgen)"
-ueberzugpp layer --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE"
+ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE"
 UB_PID=$(cat "$UB_PID_FILE")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 pics="/home/arrowx/Pictures/"

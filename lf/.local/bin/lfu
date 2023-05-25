@@ -15,7 +15,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 else
     [ ! -d "$HOME/.cache/lf" ] && mkdir --parents "$HOME/.cache/lf"
     UB_PID_FILE="/tmp/.$(uuidgen)"
-    ueberzugpp layer --silent --no-stdin --use-escape-codes --pid-file $UB_PID_FILE
+    ueberzugpp layer --no-cache --silent --no-stdin --use-escape-codes --pid-file $UB_PID_FILE
     UB_PID=$(cat $UB_PID_FILE)
     rm $UB_PID_FILE
     UB_SOCKET="/tmp/ueberzugpp-${UB_PID}.socket"
