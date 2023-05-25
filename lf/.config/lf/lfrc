@@ -115,16 +115,6 @@ cmd tagfiles %{{
         echo $TAGS | xargs tmsu tag $f
     done
 }}
-# use enter for shell commands
-map <enter> shell
-# show the result of execution of previous commands
-map ` !true
-
-# execute current file (must be executable)
-# map x $$f
-map X !$f &
-
-map P :link
 
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
@@ -133,6 +123,22 @@ cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
 cmd dlfile %dlfile
 
+# Remove some defaults
+map m
+# map o
+map "'"
+map '"'
+map d
+map w
+# map r
+# use enter for shell commands
+map <enter> shell
+# show the result of execution of previous commands
+map ` !true
+# execute current file (must be executable)
+# map x $$f
+map X !$f &
+map P :link
 # Bindings
 # Dragon Mapping
 map dr dragon
@@ -143,14 +149,6 @@ map dm mvdragon
 map dc cpdragon
 map dl dlfile
 
-# Remove some defaults
-map m
-# map o
-map "'"
-map '"'
-map d
-map w
-# map r
 
 map au unarchive
 
