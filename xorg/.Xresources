@@ -1,9 +1,9 @@
 !! St, or * will apply on diffrent classes of st (started with -n) as well like a scratchpad
 !! st. will aplly on the default class of st
 !! Transparency (0-1):
-st.alpha: 0.85
+st.alpha: 0.9
 St.alpha: 1
-st.alphaUnfocused: 0.9
+st.alphaUnfocused: 0.95
 *alphaUnfocused: 0.5
 
 !! Set a default font and font size as below:
