@@ -389,7 +389,7 @@ exec --no-startup-id nm-applet
 # set wallpaper
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
-exec --no-startup-id python3 ~/.local/bin/binger
+exec --no-startup-id python3 ~/.local/bin/binger.sh
 #set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
 

@@ -88,6 +88,7 @@ exec --no-startup-id swayidle -w \
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec --no-startup-id ~/.azotebg
+exec --no-startup-id ~/.local/bin/binger.sh
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
