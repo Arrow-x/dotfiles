@@ -207,30 +207,17 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 #
 # Resizing containers:
 #
-mode "resize" {
-# left will shrink the containers width
-# right will grow the containers width
-# up will shrink the containers height
-# down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+bindsym $mod+$alt+$left resize shrink width 30px
+bindsym $mod+$alt+$down resize grow height 30px
+bindsym $mod+$alt+$up resize shrink height 30px
+bindsym $mod+$alt+$right resize grow width 30px
 
 # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+bindsym $mod+$alt+Left resize shrink width 30px
+bindsym $mod+$alt+Down resize grow height 30px
+bindsym $mod+$alt+Up resize shrink height 30px
+bindsym $mod+$alt+Right resize grow width 30px
 
-# Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-#
 # Layout stuff:
 #
 # workspace_auto_back_and_forth yes
