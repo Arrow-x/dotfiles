@@ -1,10 +1,11 @@
 #!/bin/sh
+# TODO: tidy up the script with options
 appid="$1"
 appcmd="$2"
 
-# TODO: Summon option
 is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
 if [ -z "$is_focused" ]; then
+	swaymsg "[app_id="$appid"]" move container to workspace current
 	focus="$(swaymsg "[app_id="$appid"] focus" | grep success)"
 	if [ "$(echo "$focus" | grep false)" ]; then
 		sh -c "$appcmd"
@@ -12,6 +13,6 @@ if [ -z "$is_focused" ]; then
 	fi
 	exit
 else
-	move="$(swaymsg "[app_id="$appid"] move scratchpad")"
+	move="$(swaymsg "[app_id="$appid"] move container to scratchpad")"
 	exit
 fi
