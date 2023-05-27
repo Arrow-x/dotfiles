@@ -1,13 +1,12 @@
-#! /bin/sh
-if [ "$1" -eq 3 ]; 
-then
-	dunstctl history-pop
-elif [ "$1" -eq 1 ]; 
-then
-	dunstctl set-paused toggle
-fi
-if [ $(dunstctl is-paused) = "true" ];
-then
+#!/bin/sh
+
+case "$1" in
+	1) dunstctl set-paused toggle;;
+	3) dunstctl history-pop;;
+	*) exit
+esac
+
+if [ $(dunstctl is-paused) = "true" ]; then
 	echo "󰂛"
 	echo
 	echo \#f7768e
