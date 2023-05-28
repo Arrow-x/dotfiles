@@ -272,6 +272,7 @@ bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
 bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
 bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
 bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
+bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
 
 # Brightness control
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-

@@ -3,10 +3,18 @@
 toggle=$HOME/.local/state/touchpad/.toggle_touchpad
 if [ ! -e $toggle ]; then
 	touch $toggle
-	xinput disable SynPS/2\ Synaptics\ TouchPad 
+	if [ XDG_CURRENT_DESKTOP="sway" ]; then
+		swaymsg input type:touchpad events disabled
+	else
+		xinput disable SynPS/2\ Synaptics\ TouchPad
+	fi
 	notify-send -u low -i mouse --icon=/usr/share/icons/HighContrast/256x256/status/touchpad-disabled.png "Trackpad disabled"
 else
 	rm $toggle
-	xinput enable SynPS/2\ Synaptics\ TouchPad 
+	if [ XDG_CURRENT_DESKTOP="sway" ]; then
+		swaymsg input type:touchpad events enabled
+	else
+		xinput enable SynPS/2\ Synaptics\ TouchPad
+	fi
 	notify-send -u low -i mouse --icon=/usr/share/icons/HighContrast/256x256/devices/input-touchpad.png "Trackpad enabled"
 fi
