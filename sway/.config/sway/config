@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -101,6 +101,7 @@ exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && \
 exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
 exec --no-startup-id persway daemon -e '[tiling] opacity 1' -f '[tiling] opacity 0.95; opacity 1' -l 'mark --add _prev' -d stack_main
+exec --no-startup-id foot -s
 # Apply gtk theming
 # exec --no-startup-id ~/.config/sway/scripts/import-gsettings
 
@@ -285,6 +286,11 @@ bindsym Print exec --no-startup-id "flameshot gui"
 
 bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 | cliphist decode | wl-copy
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
+
+
+bindsym $mod+s+i exec --no-startup-id $term proj
+bindsym $mod+s+b exec --no-startup-id $term cht.sh
+
 # Scratchpad:
 #
 # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -297,9 +303,9 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "foot -a t_cmus cmus &"
-bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "foot -a t_btop btop &"
-bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "foot -a t_drop &"
+bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "footclient -a t_cmus cmus &"
+bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop btop &"
+bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "footclient -a t_drop &"
 
 for_window [app_id="t_cmus"] floating enable
 for_window [app_id="t_cmus"] resize set 1200 700
