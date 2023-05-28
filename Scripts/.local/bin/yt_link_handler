@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # Generaic youtube link handeler depends on yt-dlp and dmenu, and uses invidious to get the video
 # TODO: is this taking more or less time ?
@@ -8,21 +8,21 @@ video_options=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
 prechoice=$(echo "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d" )
 
 if [ -z "$prechoice" ]; then
-	exit 128
+    exit 128
 fi
 
 choice=$(echo -e "Audio\n" "720pMP4\n" "$prechoice" | $MENU)
 
 if [ -z "$choice" ]; then
-	exit 128
+    exit 128
 
 elif [ "$choice" = " 720pMP4" ]; then
-	mpv --ytdl-format=22 "$link" --really-quiet --no-terminal &
+    mpv --ytdl-format=22 "$link" --really-quiet --no-terminal &
 
 elif [ "$choice" = "Audio" ]; then
-	mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video &
+    mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video &
 
 else
-	code=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
-	mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal &
+    code=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
+    mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal &
 fi

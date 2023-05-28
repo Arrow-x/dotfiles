@@ -103,7 +103,7 @@ openh(){
 	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi -mindepth 1 -type d -printf "%T+ %p\n")
 	PAR=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d -printf "%T+ %p\n")
 	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
-	echo -e "$DOJ\n$PAR\n$TAN"| sort -r | sed "s#.*/home#/home#" | fzfueb -d
+	echo -e "$DOJ\n$PAR\n$TAN" | sort -r | sed "s#.*/home#/home#" | fzfueb -d
 }
 
 alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d"
