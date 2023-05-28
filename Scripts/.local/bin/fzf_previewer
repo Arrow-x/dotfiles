@@ -1,13 +1,13 @@
 #!/bin/sh
 
 draw() {
-    FILE_PATH="$1"
-    X=$4
-    Y=$5
-    MW=$(($2-1))
-    MH=$3
-    ueberzugpp cmd -s $FU_SOCKET -a add -i PREVIEW -x $X -y $Y --max-width $MW --max-height $MH -f "$FILE_PATH"
-    exit 1
+	FILE_PATH="$1"
+	X=$4
+	Y=$5
+	MW=$(($2-1))
+	MH=$3
+	ueberzugpp cmd -s $FU_SOCKET -a add -i PREVIEW -x $X -y $Y --max-width $MW --max-height $MH -f "$FILE_PATH"
+	exit 1
 }
 
 cache="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}').jpg"
@@ -15,49 +15,49 @@ file="$1"
 shift
 
 case "$(mimetype -L -b "$file")" in
-    image/gif)
+	image/gif)
 		[ ! -f "${cashe}" ] && \
-            ffmpegthumbnailer -i "$file" -o "$cache" -s 512
-        draw "$cache" "$@"
-        ;;
-    image/*)
-        draw "$file" "$@"
-        ;;
-    video/*)
+			ffmpegthumbnailer -i "$file" -o "$cache" -s 512
+		draw "$cache" "$@"
+		;;
+	image/*)
+		draw "$file" "$@"
+		;;
+	video/*)
 		[ ! -f "${cashe}" ] && \
-            ffmpegthumbnailer -m -i "$file" -o "$cache" -s 512
-        draw "$cache" "$@"
-        ;;
-    audio/*)
+			ffmpegthumbnailer -m -i "$file" -o "$cache" -s 512
+		draw "$cache" "$@"
+		;;
+	audio/*)
 		[ ! -f "${cashe}" ] && \
-            ffmpegthumbnailer -i "$file" -o "$cache" -s 265
-        draw "$cache" "$@"
-        ;;
-    application/epub+zip)
+			ffmpegthumbnailer -i "$file" -o "$cache" -s 265
+		draw "$cache" "$@"
+		;;
+	application/epub+zip)
 		[ ! -f "${cashe}" ] && \
-            gnome-epub-thumbnailer "$file" "$cache"
-        draw "$cache" "$@"
-        ;;
-    application/pdf)
-        [ ! -f "${cashe}" ] && \
-            gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
-        draw "$cache" "$@"
-        ;;
-    application/x-blender)
+			gnome-epub-thumbnailer "$file" "$cache"
+		draw "$cache" "$@"
+		;;
+	application/pdf)
 		[ ! -f "${cashe}" ] && \
-            blender-thumbnailer "$file" "$cache"
-        draw "$cache" "$@"
-        ;;
-    application/x-compressed-tar) tar tf "$file" ;;
-    application/zip) unzip -l "$file" ;;
-    application/vnd.rar) 7z l "$file" ;;
-    application/x-7z-compressed) 7z l "$file" ;;
-    application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
-    application/x-sharedlib) echo bin;;
-    application/x-executable) echo bin;;
-    application/x-object) echo bin;;
-    application/*) bat -n --color always --wrap never "$file" ;;
-    text/markdown) glow "$file";;
-    inode/directory) draw "$(echo "$file"/"$(ls "$file" | head -n 1)")" "$@";;
-    *) bat -n --color always --wrap never "$file" ;;
+			gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
+		draw "$cache" "$@"
+		;;
+	application/x-blender)
+		[ ! -f "${cashe}" ] && \
+			blender-thumbnailer "$file" "$cache"
+		draw "$cache" "$@"
+		;;
+	application/x-compressed-tar) tar tf "$file" ;;
+	application/zip) unzip -l "$file" ;;
+	application/vnd.rar) 7z l "$file" ;;
+	application/x-7z-compressed) 7z l "$file" ;;
+	application/x-gdscript) bat -l go -n --color always --wrap never "$file" ;;
+	application/x-sharedlib) echo bin ;;
+	application/x-executable) echo bin ;;
+	application/x-object) echo bin ;;
+	application/*) bat -n --color always --wrap never "$file" ;;
+	text/markdown) glow "$file" ;;
+	inode/directory) draw "$(echo "$file"/"$(ls "$file" | head -n 1)")" "$@" ;;
+	*) bat -n --color always --wrap never "$file" ;;
 esac

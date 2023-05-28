@@ -15,7 +15,19 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 else
     [ ! -d "$HOME/.cache/lf" ] && mkdir --parents "$HOME/.cache/lf"
     UB_PID_FILE="/tmp/.$(uuidgen)"
-    ueberzugpp layer --no-cache --silent --no-stdin --use-escape-codes --pid-file $UB_PID_FILE
+
+    case "$TERM" in
+        "foot") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$UB_PID_FILE" ;;
+        "xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$UB_PID_FILE" ;;
+        "tmux-256color")
+            if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+                ueberzugpp layer --no-cache --no-stdin --silent --output sway --pid-file "$UB_PID_FILE"
+            else
+                ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$UB_PID_FILE"
+            fi
+            ;;
+        *) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE" ;;
+    esac
     UB_PID=$(cat $UB_PID_FILE)
     rm $UB_PID_FILE
     UB_SOCKET="/tmp/ueberzugpp-${UB_PID}.socket"

@@ -1,7 +1,19 @@
 #!/bin/sh
-UB_PID_FILE="/tmp/.$(uuidgen)"
-ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE"
-UB_PID=$(cat "$UB_PID_FILE")
+
+pid_file="/tmp/.$(uuidgen)"
+case "$TERM" in
+	"foot") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$pid_file" ;;
+	"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$pid_file" ;;
+	"tmux-256color")
+		if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+			ueberzugpp layer --no-cache --no-stdin --silent --output sway --pid-file "$pid_file"
+		else
+			ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$pid_file"
+		fi
+		;;
+	*) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$pid_file" ;;
+esac
+UB_PID=$(cat "$pid_file")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 pics="/home/arrowx/Pictures/"
 resault="$(fd -t f -L -0 . "$pics" -E Vertical -E .tmsu | xargs --null ls -t | fzf \
@@ -11,9 +23,9 @@ resault="$(fd -t f -L -0 . "$pics" -E Vertical -E .tmsu | xargs --null ls -t | f
     --header "CTRL-d to Delete | CTRL-l to open without closing")"
 
 ueberzugpp cmd -s "$SOCKET" -a exit
-rm "$UB_PID_FILE"
+rm "$pid_file"
 
 if [ -z "$resault" ]; then
-    exit 2
+	exit 2
 fi
 set_bg "$resault">/dev/null
