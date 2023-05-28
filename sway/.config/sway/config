@@ -98,7 +98,7 @@ exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
-exec --no-startup-id persway daemon -e '[tiling] opacity 1' -f '[tiling] opacity 0.95; opacity 1' -l 'mark --add _prev' -d stack_main
+exec --no-startup-id persway daemon -d stack_main
 exec --no-startup-id foot -s
 # Apply gtk theming
 # exec --no-startup-id ~/.config/sway/scripts/import-gsettings
@@ -135,15 +135,14 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-# bindsym $mod+Control+space exec persway stack-main-rotate-next
-bindsym $mod+Control+space exec persway stack-swap-main
-# bindsym $mo)d+p exec persway stack-focus-prev
-# bindsym $mod+n exec persway stack-focus-next
-
-bindsym $mod+Control+c exec persway change-layout stack-main --size 70 --stack-layout tiled
-bindsym $mod+Control+v exec persway change-layout manual
-bindsym $mod+Control+x exec persway change-layout stack-main --size 70
-bindsym $mod+Control+z exec persway change-layout spiral
+bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
+bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next
+# bindsym $mod+p exec --no-startup-id persway stack-focus-prev
+# bindsym $mod+n exec --no-startup-id persway stack-focus-next
+bindsym $mod+Control+c exec --no-startup-id persway change-layout stack-main --size 70 --stack-layout tiled
+bindsym $mod+Control+v exec --no-startup-id persway change-layout manual
+bindsym $mod+Control+x exec --no-startup-id persway change-layout stack-main --size 70
+bindsym $mod+Control+z exec --no-startup-id persway change-layout spiral
 
 set $ws1 "1:"
 set $ws2 "2:"
