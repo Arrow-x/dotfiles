@@ -6,7 +6,7 @@ case "$TERM" in
 	"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$pid_file" ;;
 	"tmux-256color")
 		if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-			ueberzugpp layer --no-cache --no-stdin --silent --output sway --pid-file "$pid_file"
+			ueberzugpp layer --no-cache --no-stdin --silent --output wlroots --pid-file "$pid_file"
 		else
 			ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$pid_file"
 		fi
