@@ -25,13 +25,13 @@ autoload -Uz colors && colors
 # Downloading and Initialazing the plugin manager {{{
 # Download Znap, if it's not there yet.
 
-# zstyle ':znap:*' 
+# zstyle ':znap:*'
 
 # repos-dir # Costum Folder for repos
 zsh_plugs="$XDG_DATA_HOME/zsh/Plugins"
 [[ -f $zsh_plugs/zsh-snap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git $zsh_plugs/zsh-snap
+git clone --depth 1 -- \
+	https://github.com/marlonrichert/zsh-snap.git $zsh_plugs/zsh-snap
 
 source $zsh_plugs/zsh-snap/znap.zsh  # Start Znap
 #  }}}
@@ -50,16 +50,16 @@ bindkey -M menuselect '\r' .accept-line
 
 # Making the cursor a beam in normal mode and a line in insert mode {{{
 bindkey -v
-function zle-keymap-select () {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # beam
-    esac
+zle-keymap-select() {
+	case $KEYMAP in
+		vicmd) echo -ne '\e[1 q' ;;      # block
+		viins|main) echo -ne '\e[5 q' ;; # beam
+	esac
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+	zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+	echo -ne "\e[5 q"
 }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -75,14 +75,18 @@ source $HOME/.config/zsh/zsh-aliases
 #  }}}
 
 # Install Plugins {{{
+eval "$(atuin init zsh)"
+# source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+# bindkey '^I' fzf_completion
+
 znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-completions
 znap source hlissner/zsh-autopair
 
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+# source /usr/share/fzf/key-bindings.zsh
 #  }}}
 
 # Vi mode keybids {{{

@@ -1,18 +1,20 @@
 #!/bin/sh
 
 languages=$(echo "bash sh golang rust lua cpp c csharp python" | tr ' ' '\n')
-core_utils=$(echo "xargs curl jq find mv sed awk" | tr ' ' '\n')
+core_utils=$(echo "xargs curl jq find mv sed awk printf" | tr ' ' '\n')
 local_copy="$XDG_CACHE_HOME/cht_sh/"
-selected=$(printf "$languages\n$core_utils" | fzf)
+selected=$(printf "%s\n%s" "$languages" "$core_utils" | fzf)
 
 if [ -z "$selected" ]; then
 	exit 1
 fi
 
-read -p "Query: " query
+printf "Query: " >&2
+read -r query
+
 file="$local_copy""$selected"-"$query"
 
-if echo "$languages" | grep -qs "$selected"; then
+if printf "%s" "$languages" | grep -qs "$selected"; then
 	curl -s cht.sh/"$selected"/"$query"> "$file"-new
 else
 	curl -s cht.sh/"$selected"~"$query"> "$file"-new

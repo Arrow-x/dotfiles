@@ -5,7 +5,7 @@ url="$(curl -s "https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt
 if [ -z "$url" ]; then
 	exit 128
 fi
-file="$(echo "$destination""$(echo "$url" | awk -F "/" '{print $4}')")"
+file="$destination""$(echo "$url" | awk -F "/" '{print $4}')"
 if [ -f "$file" ]; then
 	echo "file exist"
 	set_bg "$file"

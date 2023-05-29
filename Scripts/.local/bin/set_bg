@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-	echo -e "#!/usr/bin/env bash\npkill swaybg\nswaybg -o 'LVDS-1' -i \""$1"\" -m fill &">/home/arrowx/.azotebg 
+	printf "#!/usr/bin/env bash\npkill swaybg\nswaybg -o 'LVDS-1' -i \"%s\" -m fill &" "$1" >/home/arrowx/.azotebg
 	sh -c /home/arrowx/.azotebg>/dev/null
 else
 	nitrogen --set-zoom-fill --save "$1">/dev/null

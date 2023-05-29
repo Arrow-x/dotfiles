@@ -2,15 +2,15 @@
 
 alias x="exit"
 alias vi='nvim'
-alias virc='nvim ~/.config/nvim/' 
+alias virc='nvim ~/.config/nvim/'
 alias zshrc='nvim ~/.config/zsh/.zshrc'
-alias i3rc='nvim ~/.config/i3/config' 
+alias i3rc='nvim ~/.config/i3/config'
 alias kittyrc='nvim ~/.config/kitty/kitty.conf'
 alias xprc='nvim ~/.xprofile'
 alias dfrc='nvim ~/dotfiles '
 alias nrc='nvim ~/Notes-And-Tasks'
 
-#Neovim for Godot 
+#Neovim for Godot
 alias vig='nvim --listen /tmp/godothost.pipe'
 alias vigg='st godot & ; vig'
 alias vin='nvim ~/.local/share/Obsidian/index.md'
@@ -35,7 +35,7 @@ alias lsl.='lsd -l -a'
 # mkdir recursiv by default
 alias mkdir='mkdir -v -p'
 
-# git 
+# git
 alias lg='lazygit'
 alias gst='git status'
 alias gal='git add .'
@@ -52,7 +52,7 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
 
-gcth(){
+gcth() {
 	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}~ {+1})'
 }
 
@@ -79,48 +79,48 @@ alias mpva='mpv --profile=a'
 alias wttr="curl 'https://wttr.in/Djelfa.Djelfa'"
 
 #fzf usages
-fdrc(){
+fdrc() {
 	fd -t $1 --color=always | fzf --ansi -i
 }
 
-pcd(){
+pcd() {
 	cd "$(fdrc d)"
 }
 
-open(){
+open() {
 	getpt f | xargs -I _ setsid -f $OPENER _ >/dev/null 2>&1
 }
 
-cppt(){
+cppt() {
 	fdrc $1 |  tr -d '\n' | xclip -selection c
 }
 
-getpt(){
+getpt() {
 	fdrc $1 | sed 's/"/\\"/g' | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
-openh(){
+openh() {
 	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi -mindepth 1 -type d -printf "%T+ %p\n")
 	PAR=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d -printf "%T+ %p\n")
 	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
-	echo -e "$DOJ\n$PAR\n$TAN" | sort -r | sed "s#.*/home#/home#" | fzfueb -d
+	printf "%s\n%s\n%s" "$DOJ" "$PAR" "$TAN" | sort -r | sed "s#.*/home#/home#" | fzfueb -d
 }
 
 alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d"
 alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzfueb -m"
 alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzfueb -m"
 
-#show installed packages and sort them by installed date 
-pacsd(){
+#show installed packages and sort them by installed date
+pacsd() {
 	expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n "$1"
 }
 
-#Show all installed packages 
-pacsa(){
+#Show all installed packages
+pacsa() {
 	paru -Qq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | less)'
 }
 
-pacei(){
+pacei() {
 	paru -Qetq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | bat -n)'
 }
 
@@ -132,6 +132,10 @@ alias pacme='paru -S --asexplicit'
 
 # For when keys break
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
+
+t() {
+	termdown "$1"m ; notify-send "$2" ; mpv "/home/arrowx/Music/Music/OH MY DAYUM ft. @Daym Drops.webm"
+}
 
 #replace default programmes with better ones that have diffrent way of use
 alias rename='perl-rename'
@@ -149,13 +153,13 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-lf(){
+lf() {
 	if [ $TMUX ]; then
 		tmux rename-window lf
 	fi
 	tmp="$(mktemp)"
 	# `command` is needed in case `lfcd` is aliased to `lf`
-	lfu -last-dir-path="$tmp" "$@"
+	command lf -last-dir-path="$tmp" "$@"
 	if [ -f "$tmp" ]; then
 		dir="$(cat "$tmp")"
 		rm -f "$tmp"
@@ -167,15 +171,12 @@ lf(){
 	fi
 }
 
-tmux-window-name(){
+tmux-window-name() {
 	if [ $TMUX ]; then
 		tmux rename-window "$(basename $PWD)"
 	fi
 }
 
 add-zsh-hook chpwd tmux-window-name
-t(){
-	termdown "$1"m ; notify-send "$2" ; mpv Music/deemix\ Music/80s\ Happy\ Hits/a-ha\ -\ The\ Sun\ Always\ Shines\ on\ T.V.mp3
-}
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

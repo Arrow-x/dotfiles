@@ -27,4 +27,4 @@ fzf --ansi \
 	--bind "ctrl-l:execute(setsid -f "$opener" {}>/dev/null)" \
 	--header 'CTRL-l to open without closing'
 
-ueberzugpp cmd -s $FU_SOCKET -a exit
+ueberzugpp cmd -s "$FU_SOCKET" -a exit
