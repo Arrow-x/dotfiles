@@ -392,6 +392,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id python3 ~/.local/bin/binger.sh
 #set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
+exec --no-startup-id redshift -l 34.671359:3.254037
 
 #####################################
 # Application menu handled by rofi: #
