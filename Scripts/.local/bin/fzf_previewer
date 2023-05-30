@@ -16,7 +16,7 @@ shift
 
 case "$(mimetype -L -b "$file")" in
 	image/gif)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			ffmpegthumbnailer -i "$file" -o "$cache" -s 512
 		draw "$cache" "$@"
 		;;
@@ -24,27 +24,27 @@ case "$(mimetype -L -b "$file")" in
 		draw "$file" "$@"
 		;;
 	video/*)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			ffmpegthumbnailer -m -i "$file" -o "$cache" -s 512
 		draw "$cache" "$@"
 		;;
 	audio/*)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			ffmpegthumbnailer -i "$file" -o "$cache" -s 265
 		draw "$cache" "$@"
 		;;
 	application/epub+zip)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			gnome-epub-thumbnailer "$file" "$cache"
 		draw "$cache" "$@"
 		;;
 	application/pdf)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
 		draw "$cache" "$@"
 		;;
 	application/x-blender)
-		[ ! -f "${cashe}" ] && \
+		[ ! -f "${cache}" ] && \
 			blender-thumbnailer "$file" "$cache"
 		draw "$cache" "$@"
 		;;
