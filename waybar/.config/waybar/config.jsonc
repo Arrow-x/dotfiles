@@ -7,19 +7,21 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
-        "clock",
-        // "cpu",
-        // "memory",
-        // "custom/weather",
-        "wlr/workspaces"
+        "wlr/workspaces",
+        "sway/workspaces",
+        "hyprland/window" 
     ],
-    "modules-center": ["hyprland/window"],
+    "modules-center": [],
     "modules-right": [
-        // "custom/updates",
-        // "custom/language",
-        // "pulseaudio#microphone",
+        "cpu",
+        "temperature",
+        "memory",
+        "network",
+        "battery",
         "pulseaudio",
-        "tray"
+        "clock",
+        "tray",
+        "custom/power"
     ],
 
     "hyprland/window": {
@@ -32,48 +34,35 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
+            "1": "1:",
+            "2": "2:",
+            "3": "3:",
+            "4": "4:",
+            "5": "5:",
+            "6": "6:",
+            "7": "7:",
+            "8": "8:",
+            "9": "9:"
           }
-    }
-    // "cpu": {
-    //     "interval": 10,
-    //     "format": " {}%",
-    //     "max-length": 10,
-    //     "on-click": ""
-    // },
-    // "memory": {
-    //     "interval": 30,
-    //     "format": " {}%",
-    //     "format-alt":" {used:0.1f}G",
-    //     "max-length": 10
-    // },
-    // "custom/updates": {
-    //     "exec": "(paru -Qua) | wc -l",
-    //     "interval": 7200,
-    //     "format": " {}"
-    // },
-    // "custom/language": {
-    //     "exec": "cat /tmp/kb_layout",
-    //     "interval": 3,
-    //     "format": " {}",
-    //     "tooltip": false
     },
-    "custom/weather" : {
-        "tooltip" : true,
-        "format" : "{}",
-        "restart-interval" : 300,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
+    "sway/workspaces": {
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1:",
+            "2": "2:",
+            "3": "3:",
+            "4": "4:",
+            "5": "5:",
+            "6": "6:",
+            "7": "7:",
+            "8": "8:",
+            "9": "9:"
+          }
     },
     "tray": {
-        "icon-size": 13,
+        "icon-size": 19,
         "tooltip": false,
         "spacing": 10
     },
@@ -86,8 +75,8 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pavucontrol",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
+        "on-scroll-up": "amixer -D pulse sset Master 5%+",
+        "on-scroll-down": "amixer -D pulse sset Master 5%-",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -99,14 +88,38 @@
             "default": ["", "", ""]
         }
     },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "tooltip": false,
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
+    "network": {
+        "format-icons": "",
+        "format": "{icon} {bandwidthDownBytes} - {bandwidthUpBytes}",
+        "interval": 1
+    },
+    "memory": {
+        "interval": 1,
+        "format-icons": "",
+        "format": "{icon} {percentage}%"
+    },
+    "cpu": {
+        "interval": 1,
+        "format-icons": "",
+        "format": "{icon} {load}%"
+    },
+    "temperature": {
+        "format-icons":"",
+        "format": "{icon} {temperatureC}°C"
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ""
+    },
+    "custom/power":{
+        "on-click": "~/.config/i3blocks/scripts/power-menu.sh",
+        "format-icons": "",
+        "format": " {icon} "
+
     }
 }
