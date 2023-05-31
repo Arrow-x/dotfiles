@@ -75,9 +75,6 @@ source $HOME/.config/zsh/zsh-aliases
 #  }}}
 
 # Install Plugins {{{
-eval "$(atuin init zsh)"
-# source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-# bindkey '^I' fzf_completion
 
 znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
@@ -87,6 +84,10 @@ znap source hlissner/zsh-autopair
 
 # source /usr/share/fzf/completion.zsh
 # source /usr/share/fzf/key-bindings.zsh
+
+eval "$(atuin init zsh)"
+# source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+# bindkey '^I' fzf_completion
 #  }}}
 
 # Vi mode keybids {{{
