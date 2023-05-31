@@ -1,7 +1,7 @@
-#! /bin/sh
+#!/bin/sh
 
 # TODO a default icon when no album art
-# TODO Use XDG paths 
+# TODO Use XDG paths
 # TODO put all the tags possible in variables
 
 cmus_query="$(cmus-remote --query)"
@@ -10,7 +10,7 @@ title="$(echo "$cmus_query" | grep "tag title" | sed "s/tag title //")"
 artist="$(echo "$cmus_query" | grep "tag artist" | sed "s/tag artist //")"
 album="$(echo "$cmus_query" | grep "tag album\b" | sed 's/tag album //')"
 
-echo "$cmus_query" | grep "file" | sed "s/file //" | sed 's/"/\\"/g' | sed 's/$/"/;s/^/"/' | xargs -I {} ffmpegthumbnailer -i "{}" -o ~/.cache/cmus_notification_cover.jpg 
+echo "$cmus_query" | grep "file" | sed "s/file //" | sed 's/"/\\"/g' | sed 's/$/"/;s/^/"/' | xargs -I {} ffmpegthumbnailer -i "{}" -o ~/.cache/cmus_notification_cover.jpg
 
 if [ -z "$artist" ];
 then

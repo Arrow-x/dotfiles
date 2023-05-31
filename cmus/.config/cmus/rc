@@ -1,0 +1,2 @@
+set status_display_program=~/.config/cmus/cmus_notify.sh
+colorscheme solarized-dark
