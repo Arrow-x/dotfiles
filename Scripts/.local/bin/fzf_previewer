@@ -6,7 +6,7 @@ draw() {
 	Y=$5
 	MW=$(($2-1))
 	MH=$3
-	ueberzugpp cmd -s $FU_SOCKET -a add -i PREVIEW -x $X -y $Y --max-width $MW --max-height $MH -f "$FILE_PATH"
+	ueberzugpp cmd -s "$FU_SOCKET" -a add -i PREVIEW -x "$X" -y "$Y" --max-width "$MW" --max-height "$MH" -f "$FILE_PATH"
 	exit 1
 }
 
@@ -58,6 +58,6 @@ case "$(mimetype -L -b "$file")" in
 	application/x-object) echo bin ;;
 	application/*) bat -n --color always --wrap never "$file" ;;
 	text/markdown) glow "$file" ;;
-	inode/directory) draw "$(echo "$file"/"$(ls "$file" | head -n 1)")" "$@" ;;
+	inode/directory) draw "$(find "$file" -maxdepth 1 -type f | sort | head -n 1)" "$@" ;;
 	*) bat -n --color always --wrap never "$file" ;;
 esac
