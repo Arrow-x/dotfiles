@@ -38,22 +38,24 @@ export MENU="dmenu -n"
 export FMENU="rofi"
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    export XDG_CURRENT_DESKTOP="sway"
-    export MOZ_ENABLE_WAYLAND=1
-    export MENU="bemenu --accept-single --fn FiraCode Nerd Font 12"
-    export FMENU="wofi"
-    export TERMINAL="footclient"
-    # export IMAGE="vimiv"
+	export XDG_CURRENT_DESKTOP="sway"
+	export MOZ_ENABLE_WAYLAND=1
+	export QT_QPA_PLATFORM="wayland"
+	export MENU="bemenu --accept-single --fn FiraCode Nerd Font 12"
+	export FMENU="wofi"
+	export TERMINAL="footclient"
+	export IMAGE="vimiv"
 fi
 
 # Path
 typeset -U path PATH
 path=(
-    # "$XDG_DATA_HOME/ruby/gems/bin"
-    "$HOME/go/bin"
-    "$HOME/.local/share/cargo/bin"
-    "$XDG_DATA_HOME/npm/bin"
-    "$HOME/.local/bin"
-    "$path[@]"
-"/usr/local/opt/openjdk/bin:$PATH")
+	# "$XDG_DATA_HOME/ruby/gems/bin"
+	"$HOME/go/bin"
+	"$HOME/.local/share/cargo/bin"
+	"$XDG_DATA_HOME/npm/bin"
+	"$HOME/.local/bin"
+	"$path[@]"
+	"/usr/local/opt/openjdk/bin:$PATH")
+
 export PATH
