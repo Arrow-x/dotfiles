@@ -1,9 +1,50 @@
-#! /bin/sh
-selection=$(cat ~/.local/share/shiny-resources/font-awesome | dmenu -l 6 -g 6 | sed "s/ .*//g" | xargs echo)
-if [ -z $selection ];
-then
+#!/bin/sh
+#TODO: test on xorg
+#TODO: remove the black space between symbols
+
+menu() {
+	case "$XDG_SESSION_TYPE" in
+		"wayland") bemenu --accept-single --fn FiraCode Nerd Font 12 -l 12 ;;
+		*) dmenu -l 12 -g 6 ;;
+	esac
+}
+clipboard() {
+	case "$XDG_SESSION_TYPE" in
+		"wayland") wl-copy "$1" ;;
+		*) printf %s "$1" | xclip -i -selection clipboard ;;
+	esac
+}
+dotool() {
+	case "$XDG_SESSION_TYPE" in
+		"wayland") wtype -M ctrl -M shift v -m ctrl -m shift & ;;
+		*) xdotool  key --clearmodifiers \"ctrl+shift+v\" & ;;
+	esac
+}
+
+selection=""
+
+nerdfont() {
+	selection=$(menu<"$HOME"/.local/share/shiny-resources/font-awesome | sed "s/ .*//g" | xargs echo)
+}
+emoji() {
+	selection=$(menu<"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo)
+}
+help() {
+	echo "-e for emoji and -n  for nerdfont"
+	exit 0
+}
+
+case "$1" in
+	-n) nerdfont ;;
+	-e) emoji ;;
+	-h) help ;;
+	*) help ;;
+esac
+
+if [ -z "$selection" ]; then
 	exit 1
 fi
-echo "$selection" | xclip -i -selection clipboard
-coproc (xdotool  key --clearmodifiers "ctrl+shift+v" &)
+
+clipboard "$selection"
+dotool
 exit 0
