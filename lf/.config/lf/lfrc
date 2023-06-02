@@ -13,17 +13,17 @@ set filesep "\n"  # default already
 
 # Custom Functions
 cmd mkdir %{{
-  printf "Directory Name: "
-  read ans
-  mkdir -p $ans
-  lf -remote "send select \"$ans\""
+		printf "Directory Name: "
+		read -r ans
+		mkdir -p "$ans"
+		lf -remote "send select \"$ans\""
 }}
 
 cmd mkfile %{{
-  printf "File Name: "
-  read ans
-  touch $ans
-  lf -remote "send select \"$ans\""
+		printf "File Name: "
+		read ans
+		touch "$ans"
+		lf -remote "send select \"$ans\""
 }}
 
 # Custom Functions
@@ -31,89 +31,94 @@ cmd setwallpaper %set_bg "$f" >/dev/null 2>&1
 
 # Archive bindings
 cmd unarchive ${{
- case "$fx" in
-#      *.zip) unzip "$fx" ;;
-      *.tar.gz) tar -xvf "$fx" ;;
-      *.tar.bz2) tar -xvf "$fx" ;;
-      *.tar.xz) tar -xvf "$fx" ;;
-      *.tar) tar -xvf "$fx" ;;
-      *) for arc in $fx 
-      do
-        7z x "$arc"
-      done;;
-  esac
+		case "$fx" in
+				#      *.zip) unzip "$fx" ;;
+			*.tar.gz) tar -xvf "$fx" ;;
+			*.tar.bz2) tar -xvf "$fx" ;;
+			*.tar.xz) tar -xvf "$fx" ;;
+			*.tar) tar -xvf "$fx" ;;
+			*) for arc in $fx
+				do
+					7z x "$arc"
+				done ;;
+		esac
 }}
 
-# all of this just to disable the flickering
-cmd open %setsid -f sh -c '(case $(mimetype -M -b "$f") in application/x-sharedlib) (setsid -f "$f" >/dev/null 2>&1);; application/x-shellscript) (setsid -f "$f" >/dev/null 2>&1);; application/x-executable) (setsid -f "$f" >/dev/null 2>&1);; application/x-object) (setsid -f "$f" >/dev/null 2>&1);; *) (setsid -f mimeopen -n "$f" >/dev/null 2>&1);; esac)' >/dev/null 2>&1
+cmd open %{{
+		case "$(mimetype -M -b "$f")" in
+			application/x-sharedlib | application/x-shellscript | application/x-executable | application/x-object)
+				"$f" >/dev/null 2>&1 & ;;
+			*)
+				mimeopen -n "$f" >/dev/null 2>&1 & ;;
+		esac
+}}
 
 # Trash bindings
 cmd trash ${{
-  files=$(printf "$fx" | tr '\n' ';')
-  while [ "$files" ]; do
-    file=${files%%;*}
-
-    trash-put -v "$(basename "$file")"
-    if [ "$files" = "$file" ]; then
-      files=''
-    else
-      files="${files#*;}"
-    fi
-  done
+		files=$(printf "$fx" | tr '\n' ';')
+		while [ "$files" ]; do
+			file=${files%%;*}
+			trash-put -v "$(basename "$file")"
+			if [ "$files" = "$file" ]; then
+				files=''
+			else
+				files="${files#*;}"
+			fi
+		done
 }}
 
 cmd restore_trash ${{
-  trash-restore
+		trash-restore
 }}
 
 cmd remove %{{
-  rm -rf $fx
+		rm -rf $fx
 }}
 
 cmd bulkrenamevimv ${{
-  vimv --git -- $fx
-  lf -remote "send $id load"
-  lf -remote "send $id unselect"
+		vimv --git -- $fx
+		lf -remote "send $id load"
+		lf -remote "send $id unselect"
 }}
 
 cmd chmod_plus_x %{{
-  chmod +x $fx
-  lf -remote "send $id reload"
+		chmod +x $fx
+		lf -remote "send $id reload"
 }}
 
 cmd chmod_minus_x %{{
-  chmod -x $fx
-  lf -remote "send $id reload"
+		chmod -x $fx
+		lf -remote "send $id reload"
 }}
 
 cmd link %{{
-    set -- $(cat ~/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echo no files to link"
-        exit 0
-    fi
-    case "$mode" in
-        # symbolically copy mode is indicating a soft link
-        copy) ln -sr -t . -- "$@";;
-        # while a move mode is indicating a hard link
-        move) ln -t . -- "$@";;
-    esac
-    # rm ~/.local/share/lf/files
-    # lf -remote "send clear"
+		set -- $(cat ~/.local/share/lf/files)
+		mode="$1"
+		shift
+		if [ "$#" -lt 1 ]; then
+			lf -remote "send $id echo no files to link"
+			exit 0
+		fi
+		case "$mode" in
+				# symbolically copy mode is indicating a soft link
+			copy) ln -sr -t . -- "$@" ;;
+				# while a move mode is indicating a hard link
+			move) ln -t . -- "$@" ;;
+		esac
+		# rm ~/.local/share/lf/files
+		# lf -remote "send clear"
 }}
 
 cmd tagfiles %{{
-    TAGS=$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")
+		TAGS="$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")"
 
-    if [ -z $TAGS ]; then
-      exit 1
-    fi
+		if [ -z "$TAGS" ]; then
+			exit 1
+		fi
 
-    for f in $fx; do
-        echo $TAGS | xargs tmsu tag $f
-    done
+		for f in $fx; do
+			echo "$TAGS" | xargs tmsu tag $f
+		done
 }}
 
 cmd dragon %dragon-drop -a -x $fx
