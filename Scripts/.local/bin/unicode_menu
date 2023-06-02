@@ -1,6 +1,5 @@
 #!/bin/sh
 #TODO: test on xorg
-#TODO: remove the black space between symbols
 
 menu() {
 	case "$XDG_SESSION_TYPE" in
@@ -27,7 +26,7 @@ nerdfont() {
 	selection=$(menu<"$HOME"/.local/share/shiny-resources/font-awesome | sed "s/ .*//g" | xargs echo)
 }
 emoji() {
-	selection=$(menu<"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo)
+	selection=$(menu<"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo | sed "s/ //g")
 }
 help() {
 	echo "-e for emoji and -n  for nerdfont"

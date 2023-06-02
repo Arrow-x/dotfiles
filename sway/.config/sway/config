@@ -288,8 +288,8 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
 bindsym $mod+s+i exec --no-startup-id $term proj
 bindsym $mod+s+m exec --no-startup-id $term cht.sh
 
-bindsym $mod+i exec --no-startup-id ~/.local/bin/nerdfont -n
-bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/nerdfont -e
+bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -n
+bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -e
 
 # Scratchpad:
 #
