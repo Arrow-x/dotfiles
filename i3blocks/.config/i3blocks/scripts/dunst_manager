@@ -1,12 +1,12 @@
 #!/bin/sh
 
 case "$1" in
-	1) dunstctl set-paused toggle;;
-	3) dunstctl history-pop;;
+	1) dunstctl set-paused toggle ;;
+	3) dunstctl history-pop ;;
 	*) exit
 esac
 
-if [ $(dunstctl is-paused) = "true" ]; then
+if [ "$(dunstctl is-paused)" = "true" ]; then
 	echo "󰂛"
 	echo
 	echo \#f7768e
