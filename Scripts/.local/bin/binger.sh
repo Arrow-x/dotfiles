@@ -8,7 +8,7 @@ fi
 file="$destination""$(echo "$url" | awk -F "/" '{print $4}')"
 if [ -f "$file" ]; then
 	echo "file exist"
-	set_bg "$file"
+	# set_bg "$file"
 	exit
 fi
 curl -s -o "$file" "$url"
