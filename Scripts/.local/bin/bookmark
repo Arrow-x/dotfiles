@@ -1,6 +1,15 @@
 #!/bin/sh
+bookmark=""
+case "$XDG_SESSION_TYPE" in
+	wayland) bookmark="$(wl-paste -p)" ;;
+	*) bookmark="$(xclip -o)" ;;
+esac
 
-bookmark="$(xclip -o)"
+if [ -z "$bookmark" ]; then
+	notify-send "Opps!" "Nothing in primary clipboard to add to bookmarks"
+	exit 1
+fi
+
 file="$HOME/Notes-And-Tasks/bookmarks"
 
 if grep -q "^$bookmark" "$file"; then
