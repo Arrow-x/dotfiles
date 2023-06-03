@@ -281,7 +281,7 @@ bindsym XF86Mail exec --no-startup-id thunderbird
 bindsym XF86HomePage exec --no-startup-id $BROWSER
 bindsym Print exec --no-startup-id "flameshot gui"
 
-bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode | wl-copy
+bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode | wl-copy && wtype -M ctrl -M shift v -m ctrl -m shift
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
 
 
