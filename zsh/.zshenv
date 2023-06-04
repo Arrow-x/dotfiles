@@ -23,6 +23,7 @@ export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
 
 export DOTFILES=$HOME/dotfiles
 
+export LS_COLORS="$(vivid generate tokyonight)"
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
