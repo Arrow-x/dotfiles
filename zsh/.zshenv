@@ -20,7 +20,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
-
+export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n"
 export DOTFILES=$HOME/dotfiles
 
 export LS_COLORS="$(vivid generate tokyonight)"
@@ -42,7 +42,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export XDG_CURRENT_DESKTOP="sway"
 	export MOZ_ENABLE_WAYLAND=1
 	export QT_QPA_PLATFORM="wayland"
-	export MENU="bemenu --accept-single --fn FiraCode Nerd Font 12"
+	export MENU="bemenu"
 	export FMENU="wofi"
 	export TERMINAL="footclient"
 	export IMAGE="vimiv"
