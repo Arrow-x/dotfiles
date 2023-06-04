@@ -1,10 +1,5 @@
 #!/bin/sh
-
-if [ "$#" -eq 1 ]; then
-	selected=$1
-else
-	search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1  -maxdepth 1 -type d | fzf)"
-fi
+search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1  -maxdepth 1 -type d | fzf)"
 
 if [ -z "$search" ]; then
 	exit
@@ -16,5 +11,8 @@ if [ "$TMUX" ] && [ "$tmux_running" ]; then
 	search_name=$(basename "$search")
 	tmux rename-window "$search_name"
 fi
-
-nvim "$search"
+case "$1" in
+	-n | --neovim) nvim "$search" ;;
+	-c | --change-dir) setsid -f footclient -D "$search" ;;
+	*) exit ;;
+esac
