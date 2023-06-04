@@ -22,6 +22,7 @@ fi
 printf "Query: "
 read -r query
 
+mkdir -p "$local_copy"
 file="$local_copy""$selected"-"$query"
 
 case "$mode" in
