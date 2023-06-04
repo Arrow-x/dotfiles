@@ -1,0 +1,26 @@
+#!/bin/sh
+#TODO: change the menu from a argument or config file
+#TODO: make this work with xdotools as well
+key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | bemenu --accept-single --fn FiraCode Nerd Font 12)"
+if [ -z "$key" ]; then
+	exit
+fi
+password="$(printf %s "$key" | xargs pass show)"
+passw() {
+	printf %s "$password" | awk 'NR%2' | xargs wtype
+}
+login() {
+	printf %s "$password" | grep login | sed "s/login\: //" | xargs wtype
+}
+case "$1" in
+	-p | --pass)
+		passw ;;
+	-l | --login)
+		login ;;
+	-b | --both)
+		login
+		wtype -P tab
+		passw ;;
+esac
+key=""
+password=""

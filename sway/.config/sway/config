@@ -224,6 +224,7 @@ bindsym $mod+s+m exec --no-startup-id $term cht.sh
 bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -n
 bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -e
 
+bindsym $mod+s exec --no-startup-id ~/.local/bin/pass_menu -b
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
