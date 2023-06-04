@@ -23,14 +23,12 @@ input type:touchpad {
     natural_scroll disabled
     middle_emulation enabled
 }
-
 # Startup
 ### Idle configuration
 exec --no-startup-id swayidle -w \
          timeout 300 '/home/arrowx/.config/sway/scripts/lock.sh' \
          timeout 700 'swaymsg "output * power off"' \
-         resume 'swaymsg "output * power on"' \
-
+         resume 'swaymsg "output * power on"'
 exec --no-startup-id ~/.azotebg
 exec --no-startup-id ~/.local/bin/binger.sh
 exec --no-startup-id nm-applet --indicator
@@ -38,7 +36,6 @@ exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/bin/snapshot-detect
 # exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-# GTK3 applications take a long time to start
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -47,57 +44,13 @@ exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
 exec --no-startup-id persway daemon -d stack_main
 exec --no-startup-id foot -s
 ### Key bindings
-# Basics
-default_border pixel 4
-gaps inner 4
-gaps outer 2
-smart_borders on
-focus_follows_mouse no
-
-# Start a terminal
-bindsym $mod+Return exec --no-startup-id $term
-
-# Kill focused window
-bindsym $mod+c kill
-
-# Start your launcher
-bindsym $mod+d exec --no-startup-id $menu
-
-floating_modifier $mod normal
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-# Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-
-bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
-bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next
-# bindsym $mod+p exec --no-startup-id persway stack-focus-prev
-# bindsym $mod+n exec --no-startup-id persway stack-focus-next
-bindsym $mod+Control+c exec --no-startup-id persway change-layout stack-main --size 70 --stack-layout tiled
-bindsym $mod+Control+v exec --no-startup-id persway change-layout manual
-bindsym $mod+Control+x exec --no-startup-id persway change-layout stack-main --size 70
-bindsym $mod+Control+z exec --no-startup-id persway change-layout spiral
-
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:󰂫"
-set $ws8 "8:🖌️"
-set $ws9 "9"
-set $ws10 "10"
-#
 # Moving around:
-#
 # Move your focus around
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+
 # Or use $mod+[up|down|left|right]
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -109,14 +62,23 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+
 # Ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-#
 # Workspaces:
-#
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:󰂫"
+set $ws8 "8:🖌️"
+set $ws9 "9"
+set $ws10 "10"
 # Switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -139,56 +101,51 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-#
 # Resizing containers:
-#
 bindsym $mod+$alt+$left resize shrink width 30px
 bindsym $mod+$alt+$down resize grow height 30px
 bindsym $mod+$alt+$up resize shrink height 30px
 bindsym $mod+$alt+$right resize grow width 30px
-
 # Ditto, with arrow keys
 bindsym $mod+$alt+Left resize shrink width 30px
 bindsym $mod+$alt+Down resize grow height 30px
 bindsym $mod+$alt+Up resize shrink height 30px
 bindsym $mod+$alt+Right resize grow width 30px
-
+# Basics
+default_border pixel 4
+gaps inner 4
+gaps outer 2
+smart_borders on
+focus_follows_mouse no
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id $term
+# Kill focused window
+bindsym $mod+c kill
+# Start your launcher
+bindsym $mod+d exec --no-startup-id $menu
+floating_modifier $mod normal
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 # Layout stuff:
-#
 # workspace_auto_back_and_forth yes
 bindsym $mod+Control+$right workspace next
 bindsym $mod+Control+$left workspace prev
-
 bindsym $mod+t split toggle
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+e layout toggle splitv splith tabbed stacking
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
 # focus the parent container
 bindsym $mod+a focus parent
-
-# open new empty workspace
-# bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
-
-# Redirect sound to headphones
-# bindsym $mod+p exec /usr/local/bin/switch-audio-port
-
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
 ## App shortcuts
-bindsym $mod+w exec --no-startup-id /usr/bin/$BROWSER
-bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
-# bindsym $mod+m exec --no-startup-id  /usr/bin/thunderbird
-
-bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
-bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b
 ## Multimedia Keys
 # volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
@@ -198,44 +155,53 @@ bindsym XF86AudioPlay exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
 bindsym XF86AudioNext exec --no-startup-id ~/.local/bin/pl_dmenu next
 bindsym XF86AudioPrev exec --no-startup-id ~/.local/bin/pl_dmenu previous
 bindsym XF86AudioStop exec --no-startup-id ~/.local/bin/pl_dmenu stop
-
-bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
-bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
-bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
-bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
-bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
-
 # Brightness control
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
-
 # Top non-standard fn keys
 bindsym XF86Mail exec --no-startup-id firejail thunderbird
 bindsym XF86HomePage exec --no-startup-id $BROWSER
 bindsym Print exec --no-startup-id "flameshot gui"
 
+bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
+bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
+
+bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
+bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
+
+bindsym $mod+w exec --no-startup-id /usr/bin/$BROWSER
+bindsym $mod+Shift+w exec --no-startup-id firejail thunderbird
+
+bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
+
+bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b
+bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
+
 bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode | wl-copy && wtype -M ctrl -M shift v -m ctrl -m shift
+
+bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
 
+bindsym $mod+o exec --no-startup-id $term proj -n
+bindsym $mod+Shift+o exec --no-startup-id $term proj -c
 
-bindsym $mod+s+i exec --no-startup-id $term proj
-bindsym $mod+s+m exec --no-startup-id $term cht.sh
+bindsym $mod+m exec --no-startup-id $term cht.sh
 
-bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -n
-bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -e
+bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -e
+bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -n
 
 bindsym $mod+s exec --no-startup-id ~/.local/bin/pass_menu -b
-
-# Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -p
 
 bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "footclient -a t_cmus cmus &"
 bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop btop &"
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "footclient -a t_drop &"
+
+bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
+bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next
+bindsym $mod+Control+c exec --no-startup-id persway change-layout stack-main --size 70 --stack-layout tiled
+bindsym $mod+Control+v exec --no-startup-id persway change-layout manual
+bindsym $mod+Control+x exec --no-startup-id persway change-layout stack-main --size 70
 
 for_window [app_id="t_cmus"] floating enable
 for_window [app_id="t_cmus"] resize set 1200 700
