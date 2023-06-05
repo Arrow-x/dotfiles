@@ -10,7 +10,7 @@ if [ -z "$prechoice" ]; then
 	exit 2
 fi
 
-choice=$(printf "Audio\n720pMP4\n%s" "$prechoice" | $MENU)
+choice=$(printf "Audio\n720pMP4\n%s" "$prechoice" | $MENU -p "Quality: ")
 
 if [ -z "$choice" ]; then
 	exit 2

@@ -117,12 +117,9 @@ gaps inner 4
 gaps outer 2
 smart_borders on
 focus_follows_mouse no
-# Start a terminal
-bindsym $mod+Return exec --no-startup-id $term
 # Kill focused window
 bindsym $mod+c kill
-# Start your launcher
-bindsym $mod+d exec --no-startup-id $menu
+# Toggle selected window between tiled and floating
 floating_modifier $mod normal
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -137,9 +134,9 @@ bindsym $mod+t split toggle
 bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+e layout toggle splitv splith tabbed stacking
-# toggle tiling / floating
+# toggle tiling and floating
 bindsym $mod+Shift+space floating toggle
-# change focus between tiling / floating windows
+# change focus between tiling and floating windows
 bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
@@ -162,6 +159,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 bindsym XF86Mail exec --no-startup-id firejail thunderbird
 bindsym XF86HomePage exec --no-startup-id $BROWSER
 bindsym Print exec --no-startup-id "flameshot gui"
+
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id $term
+# Start your launcher
+bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+Shift+d exec --no-startup-id wofi -show drun
 
 bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
 bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
@@ -190,8 +193,8 @@ bindsym $mod+m exec --no-startup-id $term cht.sh
 bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -e
 bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -n
 
-bindsym $mod+s exec --no-startup-id ~/.local/bin/pass_menu -b
-bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -p
+bindsym $mod+s exec --no-startup-id ~/.local/bin/pass_menu -bt
+bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -be
 
 bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "footclient -a t_cmus cmus &"
 bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop btop &"
@@ -260,20 +263,21 @@ set $selected #565f89
 set $red #8c4351
 
 bar {
-    font pango:FiraCode Nerd Font 12
+    # font pango:FiraCode Nerd Font 12
     tray_output *
-    status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+    # status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+    swaybar_command waybar
     position top
-    strip_workspace_numbers no
-    colors {
-        background $dark_blue
-        statusline $white
-        separator  $selected
-
-        focused_workspace  $selected  $selected   $white
-        active_workspace   $dark_blue $selected   $white
-        inactive_workspace $dark_blue $dark_blue  $off_white
-        urgent_workspace   $red       $red $white
-        binding_mode       $red       $red $white
-    }
+    # strip_workspace_numbers no
+    # colors {
+    #     background $dark_blue
+    #     statusline $white
+    #     separator  $selected
+    #
+    #     focused_workspace  $selected  $selected   $white
+    #     active_workspace   $dark_blue $selected   $white
+    #     inactive_workspace $dark_blue $dark_blue  $off_white
+    #     urgent_workspace   $red       $red $white
+    #     binding_mode       $red       $red $white
+    # }
 }

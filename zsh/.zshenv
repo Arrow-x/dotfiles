@@ -20,7 +20,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
-export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n"
+export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n --tb #7aa2f7 --tf #1a1b26 --hb #7aa2f7 --hf #1a1b26"
 export DOTFILES=$HOME/dotfiles
 
 export LS_COLORS="$(vivid generate tokyonight)"
@@ -57,6 +57,6 @@ path=(
 	"$XDG_DATA_HOME/npm/bin"
 	"$HOME/.local/bin"
 	"$path[@]"
-	"/usr/local/opt/openjdk/bin:$PATH")
+"/usr/local/opt/openjdk/bin:$PATH")
 
 export PATH

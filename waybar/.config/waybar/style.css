@@ -18,10 +18,10 @@ window#waybar {
 	border-radius: 10px;
 }
 #workspaces button {
-    padding: 5px 10px;
+    padding: 1px;
     color: #c0caf5;
     border-color: #11111b;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 #workspaces button.focused {
@@ -39,6 +39,11 @@ window#waybar {
 #workspaces button:hover {
 	background-color: #7dcfff;
 	color: #24283b;
+	border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #f7768e;
 	border-radius: 10px;
 }
 
