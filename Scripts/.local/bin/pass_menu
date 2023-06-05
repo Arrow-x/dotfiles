@@ -1,7 +1,7 @@
 #!/bin/sh
 #TODO: change the menu from a argument or config file
 #TODO: make this work with xdotools as well
-key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | bemenu --accept-single --fn FiraCode Nerd Font 12)"
+key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | $MENU -p "PASS: " -l 16)"
 if [ -z "$key" ]; then
 	exit
 fi
@@ -17,9 +17,14 @@ case "$1" in
 		passw ;;
 	-l | --login)
 		login ;;
-	-b | --both)
+	-bt | --both-tab)
 		login
 		wtype -P tab
+		passw ;;
+	-be | --both-enter)
+		login
+		wtype -P return
+		sleep 3
 		passw ;;
 esac
 key=""
