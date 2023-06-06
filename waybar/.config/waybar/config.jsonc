@@ -13,9 +13,10 @@
         "cpu",
         "temperature",
         "memory",
-        "network",
+        "custom/bandwidth",
         "battery",
         "pulseaudio",
+        "custom/dunst",
         "clock",
         "tray",
         "custom/power"
@@ -24,38 +25,13 @@
     "hyprland/window": {
         "format": "{}"
     },
-    "wlr/workspaces": {
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "all-outputs": true,
-        "on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            "1": "1:",
-            "2": "2:",
-            "3": "3:",
-            "4": "4:",
-            "5": "5:",
-            "6": "6:",
-            "7": "7:",
-            "8": "8:",
-            "9": "9:"
-          }
-    },
     "sway/workspaces": {
         "all-outputs": true,
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "1": "1:",
-            "2": "2:",
-            "3": "3:",
-            "4": "4:",
-            "5": "5:",
-            "6": "6:",
-            "7": "7:",
-            "8": "8:",
-            "9": "9:"
+            "9": "9:",
+            "10": "10:"
           }
     },
     "tray": {
@@ -64,7 +40,7 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{: %R   %d/%m}",
+        "format": "{: %R   %A-%d-%B(%m)-%g}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "pulseaudio": {
@@ -115,9 +91,31 @@
         "format-icons": ""
     },
     "custom/power":{
-        "on-click": "~/.config/i3blocks/scripts/power-menu.sh",
+        "on-click": "~/.config/waybar/scripts/power-menu.sh",
         "format-icons": "",
         "format": " {icon} "
 
+    },
+    "custom/bandwidth":{
+        "format-icons": "",
+        "format":"{icon} {}",
+        "exec":"$HOME/.config/waybar/scripts/bandwidthc"
+    },
+    "custom/dunst":{
+        "format":"{}",
+        "interval":"once",
+        "exec-on-event": true,
+        "exec":"$HOME/.config/waybar/scripts/dunst",
+        "on-click":"dunstctl set-paused toggle",
+        "on-click-right":"dunstctl history-pop"
+    },
+    "custom/cmus": {
+        "format": "♪ {}",
+        //"max-length": 15,
+        "interval": 10,
+        "exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
+        "exec-if": "pgrep cmus",
+        "on-click": "cmus-remote -u",                        //toggle pause
+        "escape": true                                       //handle markup entities
     }
 }

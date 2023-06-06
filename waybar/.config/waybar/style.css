@@ -46,8 +46,11 @@ window#waybar {
     color: #f7768e;
 	border-radius: 10px;
 }
+#custom-dunst.disabled {
+    color: #f7768e;
+}
 
-#custom-date, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window{
+#custom-date, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst{
 	background-color: #24283b;
 	padding: 5px 10px;
 	margin: 5px 0px;
@@ -84,6 +87,22 @@ window#waybar {
     margin-right: 10px;
 }
 
+#cpu {
+    color: #73daca;
+}
+
+#temperature {
+    color: #ff9e64;
+}
+
+#custom-dunst {
+    color: #7aa2f7;
+}
+
+#memory {
+    color: #cfc9c2;
+}
+
 #battery {
     color: #9ece6a;
 }
@@ -98,7 +117,7 @@ window#waybar {
     border-radius: 5px 5px 5px 5px;
 }
 
-#network {
+#custom-bandwidth{
 	color: #f7768e;
     border-radius: 10px;
 }
