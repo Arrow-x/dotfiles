@@ -1,4 +1,4 @@
-# vim: filetype=sh
+#!/bin/zsh
 # vim:fileencoding=utf-8:foldmethod=marker
 
 # zsh Histroy Options {{{
@@ -98,7 +98,7 @@ bindkey -M menuselect '^N' vi-down-line-or-history
 bindkey -M menuselect '^k' vi-up-line-or-history
 bindkey -M menuselect '^j' vi-down-line-or-history
 
-bindkey '^P' up-line-or-search
+bindkey '^P' _atuin_search_widget
 bindkey '^N' down-line-or-select
 #  }}}
 
