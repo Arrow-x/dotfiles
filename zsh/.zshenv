@@ -22,8 +22,9 @@ export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
 export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n --tb #7aa2f7 --tf #1a1b26 --hb #7aa2f7 --hf #1a1b26"
 export DOTFILES=$HOME/dotfiles
-
+export XCURSOR_SIZE=24
 export LS_COLORS="$(vivid generate tokyonight)"
+
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
