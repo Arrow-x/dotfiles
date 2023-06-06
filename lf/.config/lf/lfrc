@@ -1,4 +1,3 @@
-# vim: filetype=sh
 # Basic Settings
 set hidden true
 set ignorecase true
@@ -13,109 +12,136 @@ set filesep "\n"  # default already
 
 # Custom Functions
 cmd mkdir %{{
-		printf "Directory Name: "
-		read -r ans
-		mkdir -p "$ans"
-		lf -remote "send select \"$ans\""
+	printf "Directory Name: "
+	read -r ans
+	mkdir -p "$ans"
+	lf -remote "send select \"$ans\""
 }}
 
 cmd mkfile %{{
-		printf "File Name: "
-		read ans
-		touch "$ans"
-		lf -remote "send select \"$ans\""
+	printf "File Name: "
+	read ans
+	touch "$ans"
+	lf -remote "send select \"$ans\""
 }}
 
 # Custom Functions
 cmd setwallpaper %set_bg "$f" >/dev/null 2>&1
 
-# Archive bindings
+# Archive some files
+cmd archive ${{
+	ext=$(printf "7z\nzip\ntar.gz" | fzf)
+	if [ -z "$ext" ]; then
+		exit
+	fi
+	printf "Name of the archive: "
+	read -r ans
+	case "$ext" in
+		7z)
+			set -f
+			firejail 7z a "$ans" $fx ;;
+		zip)
+			set -f
+			firejail zip -r "$ans".zip $fx ;;
+		tar.gz)
+			set -f
+			firejail tar czf "$ans".tar.gz $fx ;;
+	esac
+}}
+
+# unarchive bindings
 cmd unarchive ${{
-		for arc in $fx; do
-			case "$arc" in
-				*.tar.gz | *.tar.bz2 | *.tar.xz | *.tar)
-					tar -xvf "$arc" ;;
-				*)
-					7z x "$arc" ;;
-			esac
-		done
+	for arc in $fx; do
+		case "$arc" in
+			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) firejail tar xjvf "$arc" ;;
+			*.tar.gz|*.tgz) firejail tar xzvf "$arc" ;;
+			*.tar.xz|*.txz) firejail tar xJvf "$arc" ;;
+			*.zip) firejail unzip "$arc" ;;
+			*.rar) firejail unrar x "$arc" ;;
+			*) firejail 7z x "$arc" ;;
+		esac
+	done
 }}
 
 cmd open %{{
-		case "$(mimetype -M -b "$f")" in
-			application/x-sharedlib | application/x-shellscript | application/x-executable | application/x-object)
-				"$f" >/dev/null 2>&1 & ;;
-			*)
-				mimeopen -n "$f" >/dev/null 2>&1 & ;;
-		esac
+	case "$(mimetype -M -b "$f")" in
+		application/x-sharedlib | application/x-shellscript | application/x-executable | application/x-object)
+			"$f" >/dev/null 2>&1 & ;;
+		*)
+			mimeopen -n "$f" >/dev/null 2>&1 & ;;
+	esac
 }}
 
 # Trash bindings
 cmd trash ${{
-		files=$(printf "$fx" | tr '\n' ';')
-		while [ "$files" ]; do
-			file=${files%%;*}
-			trash-put -v "$(basename "$file")"
-			if [ "$files" = "$file" ]; then
-				files=''
-			else
-				files="${files#*;}"
-			fi
-		done
+	files=$(printf "$fx" | tr '\n' ';')
+	while [ "$files" ]; do
+		file=${files%%;*}
+		trash-put -v "$(basename "$file")"
+		if [ "$files" = "$file" ]; then
+			files=''
+		else
+			files="${files#*;}"
+		fi
+	done
 }}
 
 cmd restore_trash ${{
-		trash-restore
+	trash-restore
 }}
 
 cmd remove %{{
-		rm -rf $fx
+	rm -rf $fx
 }}
 
 cmd bulkrenamevimv ${{
-		vimv --git -- $fx
-		lf -remote "send $id load"
-		lf -remote "send $id unselect"
+	vimv --git -- $fx
+	lf -remote "send $id load"
+	lf -remote "send $id unselect"
 }}
 
 cmd chmod_plus_x %{{
-		chmod +x $fx
-		lf -remote "send $id reload"
+	chmod +x $fx
+	lf -remote "send $id reload"
 }}
 
 cmd chmod_minus_x %{{
-		chmod -x $fx
-		lf -remote "send $id reload"
+	chmod -x $fx
+	lf -remote "send $id reload"
 }}
 
 cmd link %{{
-		set -- $(cat ~/.local/share/lf/files)
-		mode="$1"
-		shift
-		if [ "$#" -lt 1 ]; then
-			lf -remote "send $id echo no files to link"
-			exit 0
-		fi
-		case "$mode" in
-				# symbolically copy mode is indicating a soft link
-			copy) ln -sr -t . -- "$@" ;;
-				# while a move mode is indicating a hard link
-			move) ln -t . -- "$@" ;;
-		esac
-		# rm ~/.local/share/lf/files
-		# lf -remote "send clear"
+	set -- $(cat ~/.local/share/lf/files)
+	mode="$1"
+	shift
+	if [ "$#" -lt 1 ]; then
+		lf -remote "send $id echo no files to link"
+		exit 0
+	fi
+	case "$mode" in
+			# symbolically copy mode is indicating a soft link
+		copy) ln -sr -t . -- "$@" ;;
+			# while a move mode is indicating a hard link
+		move) ln -t . -- "$@" ;;
+	esac
+	# rm ~/.local/share/lf/files
+	# lf -remote "send clear"
 }}
 
 cmd tagfiles %{{
-		TAGS="$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")"
+	TAGS="$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")"
 
-		if [ -z "$TAGS" ]; then
-			exit 1
-		fi
+	if [ -z "$TAGS" ]; then
+		exit 1
+	fi
 
-		for f in $fx; do
-			echo "$TAGS" | xargs tmsu tag $f
-		done
+	for f in $fx; do
+		echo "$TAGS" | xargs tmsu tag $f
+	done
+}}
+
+cmd full_size %{{
+	du -sh $fx
 }}
 
 cmd dragon %dragon-drop -a -x $fx
@@ -152,6 +178,7 @@ map dc cpdragon
 map dl dlfile
 
 
+map aa archive
 map au unarchive
 
 map mx chmod_plus_x
@@ -175,26 +202,27 @@ map b bulkrenamevimv
 
 map dd trash
 map dR restore_trash
+map ds full_size
 
 # Movement
-map gD cd ~/File/Documents
-map gd cd ~/Downloads
-map gp cd ~/Public
-map glb cd ~/.local/bin
-map gls cd ~/.local/share
-map glt cd ~/.local/state
-map gc cd ~/.config
-map gf cd ~/File
-map gH cd ~/File/Homework/H-Games
-map gP cd ~/File/Projects
-map gt cd ~/File/Tutorials
+map gD cd /home/arrowx/File/Documents
+map gd cd /home/arrowx/Downloads
+map gp cd /home/arrowx/Public
+map glb cd /home/arrowx/.local/bin
+map gls cd /home/arrowx/.local/share
+map glt cd /home/arrowx/.local/state
+map gc cd /home/arrowx/.config
+map gf cd /home/arrowx/File
+map gH cd /home/arrowx/File/Homework/H-Games
+map gP cd /home/arrowx/File/Projects
+map gt cd /home/arrowx/File/Tutorials
 map gm cd /run/media/arrowx/
 
-map grr cd ~/File/Examples\ and\ Refrences
-map gra cd ~/File/Examples\ and\ Refrences/AnimeArt/Random/
-map grp cd ~/File/Examples\ and\ Refrences/pixel\ art
-map grn cd ~/File/Examples\ and\ Refrences/NPR
-map grc cd ~/File/Examples\ and\ Refrences/Cool\ 3d
+map grr cd /home/arrowx/File/Examples\ and\ Refrences
+map gra cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Random/
+map grp cd /home/arrowx/File/Examples\ and\ Refrences/pixel\ art
+map grn cd /home/arrowx/File/Examples\ and\ Refrences/NPR
+map grc cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d
 
-set previewer ~/.config/lf/previewer.sh
-set cleaner ~/.config/lf/clear_img.sh
+set previewer /home/arrowx/.config/lf/previewer.sh
+set cleaner /home/arrowx/.config/lf/clear_img.sh
