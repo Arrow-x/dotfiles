@@ -2,6 +2,9 @@
 # Generaic youtube link handeler depends on yt-dlp and dmenu, and uses invidious to get the video
 # TODO: is this taking more or less time ?
 
+if [ -n "$(pgrep bemenu)" ]; then
+	exit
+fi
 link=$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")
 video_options=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
 prechoice=$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d" )

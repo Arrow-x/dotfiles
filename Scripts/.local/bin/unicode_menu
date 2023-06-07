@@ -1,6 +1,9 @@
 #!/bin/sh
 #TODO: test on xorg
 
+if [ -n "$(pgrep bemenu)" ]; then
+	exit
+fi
 menu() {
 	case "$XDG_SESSION_TYPE" in
 		"wayland") bemenu -l 12 -p "UNICODE: " ;;
