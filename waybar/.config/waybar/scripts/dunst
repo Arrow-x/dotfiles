@@ -1,8 +1,11 @@
 #!/bin/sh
-# it seems that the module exe the exec script at the same time as the on-click event
-sleep 0.01
+sleep 0.05
 if [ "$(dunstctl is-paused)" = "true" ]; then
-	printf "\ndisbled\ndisabled"
+	echo ""
+	echo "Notifications Disabled"
+	echo "disabled"
 else
-	printf "\nenabled\nenabled"
+	echo ""
+	echo "Notifications Enabled"
+	echo "enabled"
 fi
