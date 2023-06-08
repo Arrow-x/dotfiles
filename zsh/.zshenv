@@ -20,11 +20,25 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
-export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n --tb #7aa2f7 --tf #1a1b26 --hb #7aa2f7 --hf #1a1b26"
 export DOTFILES=$HOME/dotfiles
 export XCURSOR_SIZE=24
 export LS_COLORS="$(vivid generate tokyonight)"
 
+export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
+	--tb '#565f89' \
+	--tf '#cfc9c2' \
+	--fb '#24283b' \
+	--ff '#cfc9c2' \
+	--nb '#24283b' \
+	--nf '#cfc9c2' \
+	--ab '#1a1b26' \
+	--af '#cfc9c2' \
+	--hb '#565a6e' \
+	--hf '#ff9e64' \
+	--sb '#565a6e' \
+	--sf '#ff9e64' \
+	--scb '#24283b' \
+	--scf '#f7768e'"
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
