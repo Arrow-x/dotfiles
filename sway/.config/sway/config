@@ -8,7 +8,6 @@ set $up k
 set $right l
 
 set $term footclient
-set $menu bemenu-run -l 10 --accept-single --fn FiraCode Nerd Font 12
 
 input type:keyboard {
     xkb_layout us,ar
@@ -163,7 +162,7 @@ bindsym Print exec --no-startup-id "flameshot gui"
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
 # Start your launcher
-bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+d exec --no-startup-id ~/.local/bin/check_run
 bindsym $mod+Shift+d exec --no-startup-id wofi -show drun
 
 bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
