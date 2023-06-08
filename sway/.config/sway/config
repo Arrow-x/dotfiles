@@ -171,9 +171,13 @@ bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
 bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
 bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
 
+bindsym $mod+braceright exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+braceleft exec --no-startup-id amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+
 bindsym $mod+w exec --no-startup-id /usr/bin/$BROWSER
 bindsym $mod+Shift+w exec --no-startup-id firejail thunderbird
 
+bindsym $mod+n exec --no-startup-id  ~/.local/bin/syrun t_lf "footclient -a t_lf lfu &"
 bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
 
 bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b
@@ -184,8 +188,8 @@ bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 --accept-single
 bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
 
-bindsym $mod+o exec --no-startup-id $term proj -n
-bindsym $mod+Shift+o exec --no-startup-id $term proj -c
+bindsym $mod+o exec --no-startup-id footclient proj -n &
+bindsym $mod+Shift+o exec --no-startup-id footclient proj -c &
 
 bindsym $mod+m exec --no-startup-id $term cht.sh
 
@@ -208,6 +212,10 @@ bindsym $mod+Control+x exec --no-startup-id persway change-layout stack-main --s
 for_window [app_id="t_cmus"] floating enable
 for_window [app_id="t_cmus"] resize set 1200 700
 for_window [app_id="t_cmus"] move position center
+
+for_window [app_id="t_lf"] floating enable
+for_window [app_id="t_lf"] resize set 1200 700
+for_window [app_id="t_lf"] move position center
 
 for_window [app_id="t_btop"] floating enable
 for_window [app_id="t_btop"] resize set 1200 700
