@@ -32,14 +32,16 @@ emoji() {
 	selection=$(menu<"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo | sed "s/ //g")
 }
 help() {
-	echo "-e for emoji and -n  for nerdfont"
+	echo "--emoji    -e  for emoji"
+	echo "--nerdfont -n  for nerdfont"
+	echo "--help     -h  print this message and exit"
 	exit 0
 }
 
 case "$1" in
-	-n) nerdfont ;;
-	-e) emoji ;;
-	-h) help ;;
+	-n | --nerdfont) nerdfont ;;
+	-e | --emoji) emoji ;;
+	-h | --help) help ;;
 	*) help ;;
 esac
 
