@@ -98,7 +98,7 @@
     },
     "custom/bandwidth":{
         "format-icons": "",
-        "format":"{icon} {}",
+        "format":"{icon}{}",
         "exec":"$HOME/.config/waybar/scripts/bandwidthc"
     },
     "custom/dunst":{
