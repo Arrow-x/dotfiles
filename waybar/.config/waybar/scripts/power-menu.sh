@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selected=$(printf "Logout\nSuspend\nReboot\nShutdown" | wofi --conf="$XDG_CONFIG_HOME"/wofi/config.power | awk '{print tolower($1)}')
+selected=$(printf " Logout\n Suspend\n Reboot\n Shutdown" | wofi --conf="$XDG_CONFIG_HOME"/wofi/config.power | awk '{print tolower($2)}')
 
 case "$selected" in
 	logout)
