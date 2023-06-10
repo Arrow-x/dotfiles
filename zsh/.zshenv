@@ -60,7 +60,6 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export MENU="bemenu"
 	export FMENU="wofi"
 	export TERMINAL="footclient"
-	export IMAGE="vimiv"
 fi
 
 # Path
