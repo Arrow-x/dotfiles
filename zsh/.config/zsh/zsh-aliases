@@ -78,6 +78,8 @@ alias mpva='mpv --profile=a'
 #Weather
 alias wttr="curl 'https://wttr.in/Djelfa.Djelfa'"
 
+alias tmuxfo="export TERM='foot-direct'; tmux"
+
 #fzf usages
 fdrc() {
 	fd -t $1 --color=always | fzf --ansi -i
