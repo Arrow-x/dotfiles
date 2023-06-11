@@ -247,17 +247,9 @@ for_window [class=Godot] focus
 for_window [class=Blender] focus
 for_window [class=krita] focus
 
-for_window [class="Yad" instance="yad"] floating enable
-for_window [class="Galculator" instance="galculator"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="mpv"] floating enable
-for_window [class="Xsane" instance="xsane"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="qt5ct" instance="qt5ct"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [instance="TogglDesktop"] floating enable
+for_window [app_id="galculator"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] resize set 710 400
 
 # Status Bar:
 #
