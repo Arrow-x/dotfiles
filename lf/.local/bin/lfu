@@ -21,7 +21,7 @@ else
 		"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$UB_PID_FILE" ;;
 		"tmux-256color")
 			if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-				ueberzugpp layer --no-cache --no-stdin --silent --output wlroots --pid-file "$UB_PID_FILE"
+				ueberzugpp layer --no-cache --no-stdin --silent --output wayland --pid-file "$UB_PID_FILE"
 			else
 				ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$UB_PID_FILE"
 			fi
