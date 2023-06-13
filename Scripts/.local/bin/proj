@@ -1,5 +1,15 @@
 #!/bin/sh
-search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1  -maxdepth 1 -type d | fzf)"
+
+terminal="footclient -D"
+editor="footclient nvim"
+menu() {
+	if [ -n "$(pgrep bemenu)" ]; then
+		exit
+	fi
+	bemenu -l 20 -p Projects:
+}
+
+search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1  -maxdepth 1 -type d | menu)"
 
 if [ -z "$search" ]; then
 	exit
@@ -12,7 +22,7 @@ if [ "$TMUX" ] && [ "$tmux_running" ]; then
 	tmux rename-window "$search_name"
 fi
 case "$1" in
-	-n | --neovim) nvim "$search" ;;
-	-c | --change-dir) setsid -f footclient -D "$search" ;;
+	-n | --neovim) $editor "$search" & ;;
+	-c | --change-dir) $terminal "$search" & ;;
 	*) exit ;;
 esac
