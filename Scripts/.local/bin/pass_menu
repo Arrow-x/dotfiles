@@ -10,12 +10,16 @@ key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg
 if [ -z "$key" ]; then
 	exit
 fi
-password="$(printf %s "$key" | xargs pass show)"
+password="$(pass show "$key")"
 passw() {
-	printf %s "$password" | awk 'NR%2' | xargs wtype
+	wtype "$(printf %s "$password" | awk 'NR%2')"
 }
 login() {
-	printf %s "$password" | grep login | sed "s/login\: //" | xargs wtype
+	login="$(printf %s "$password" | grep login | sed "s/login\: //")"
+	if [ -z "$login" ]; then
+		login="$(echo "$key" | awk -F "/" '{print $2}')"
+	fi
+	wtype "$login"
 }
 case "$1" in
 	-p | --pass)
