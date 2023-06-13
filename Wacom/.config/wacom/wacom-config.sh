@@ -14,3 +14,4 @@ pad=$(echo "${list}" | awk '/pad/{print $9}')
 stylus=$(echo "${list}" | xsetwacom list devices | awk '/stylus/{print $9}')
 
 xsetwacom set "${stylus}" area 0 0 21600 12150
+notify-send "Tablet configed"
