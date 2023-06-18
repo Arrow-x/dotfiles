@@ -9,11 +9,11 @@ fi
 
 case $1 in
 	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 30 | cut -d ' ' -f1)" ;;
-	-b) bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 30 | cut -d ' ' -f1)
+	-b) bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 20 | cut -d ' ' -f1)
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
-		xdg-open "$bookmark" & ;;
+		firefox "$bookmark" & ;;
 	*) echo "Wrong argument expect either t or b">&2
 		exit 1
 esac

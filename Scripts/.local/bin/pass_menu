@@ -6,7 +6,7 @@ if [ -n "$(pgrep bemenu)" ]; then
 	exit
 fi
 
-key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | $MENU -p "PASS: " -l 16)"
+key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | $MENU -p "PASS: " -l 20)"
 if [ -z "$key" ]; then
 	exit
 fi
