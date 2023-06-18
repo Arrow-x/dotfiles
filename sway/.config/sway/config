@@ -161,7 +161,7 @@ bindsym Print exec --no-startup-id "flameshot gui"
 bindsym $mod+Return exec --no-startup-id $term
 # Start your launcher
 bindsym $mod+d exec --no-startup-id ~/.local/bin/check_run
-bindsym $mod+Shift+d exec --no-startup-id wofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
 
 bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
 bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
@@ -181,7 +181,7 @@ bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
 bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b
 bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
 
-bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 10 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode | wl-copy && wtype -M ctrl -M shift v -m ctrl -m shift
+bindsym $mod+v exec --no-startup-id cliphist list | bemenu -l 20 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode | wl-copy && wtype -M ctrl -M shift v -m ctrl -m shift
 
 bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
