@@ -10,7 +10,7 @@ set $right l
 set $term footclient
 
 input type:keyboard {
-    xkb_layout us,ar
+    xkb_layout us,ara
     xkb_options caps:swapescape,grp:alt_shift_toggle
     repeat_delay 400
     repeat_rate 35
