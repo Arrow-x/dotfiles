@@ -14,6 +14,8 @@ export GEM_HOME="$XDG_DATA_HOME/ruby/gems"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export NUGET_PACKAGES="$XDG_DATA_HOME"/NuGetPackages
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
