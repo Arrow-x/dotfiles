@@ -199,7 +199,7 @@ bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -be
 
 bindsym $mod+r exec --no-startup-id  ~/.local/bin/syrun t_newsboat "footclient -a t_newsboat newsboat &"
 bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/syrun t_cmus "footclient -a t_cmus cmus &"
-bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop btop &"
+bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop bpytop &"
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "footclient -a t_drop &"
 
 bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
