@@ -221,7 +221,7 @@ map gm cd /run/media/arrowx/
 map grr cd /home/arrowx/File/Examples\ and\ Refrences
 map gra cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Random/
 map grp cd /home/arrowx/File/Examples\ and\ Refrences/pixel\ art
-map grn cd /home/arrowx/File/Examples\ and\ Refrences/NPR
+map grn cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d/NPR
 map grc cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d
 
 set previewer /home/arrowx/.config/lf/previewer.sh
