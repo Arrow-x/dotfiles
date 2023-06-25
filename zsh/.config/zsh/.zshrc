@@ -76,7 +76,7 @@ source $HOME/.config/zsh/zsh-aliases
 
 # Install Plugins {{{
 
-znap source marlonrichert/zsh-autocomplete
+# znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-completions
@@ -84,22 +84,39 @@ znap source hlissner/zsh-autopair
 
 # source /usr/share/fzf/completion.zsh
 # source /usr/share/fzf/key-bindings.zsh
-
+source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 eval "$(atuin init zsh)"
 # source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 # bindkey '^I' fzf_completion
 #  }}}
+zstyle ':completion:*' fzf-search-display true
+# basic file preview for ls (you can replace with something more sophisticated than head)
+zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
+
+# preview when completing env vars (note: only works for exported variables)
+# eval twice, first to unescape the string, second to expand the $variable
+zstyle ':completion::*:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-completion-opts --preview='eval eval echo {1}'
+
+# preview a `git status` when completing git add
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
+
+# if other subcommand to git is given, show a git diff or git log
+zstyle ':completion::*:git::*,[a-z]*' fzf-completion-opts --preview='
+eval set -- {+1}
+for arg in "$@"; do
+    { git diff --color=always -- "$arg" | git log --color=always "$arg" } 2>/dev/null
+done'
 
 # Vi mode keybids {{{
-bindkey -M menuselect '^h' vi-backward-char
-bindkey -M menuselect '^l' vi-forward-char
-bindkey -M menuselect '^P' vi-up-line-or-history
-bindkey -M menuselect '^N' vi-down-line-or-history
-bindkey -M menuselect '^k' vi-up-line-or-history
-bindkey -M menuselect '^j' vi-down-line-or-history
-
+# bindkey -M menuselect '^h' vi-backward-char
+# bindkey -M menuselect '^l' vi-forward-char
+# bindkey -M menuselect '^P' vi-up-line-or-history
+# bindkey -M menuselect '^N' vi-down-line-or-history
+# bindkey -M menuselect '^k' vi-up-line-or-history
+# bindkey -M menuselect '^j' vi-down-line-or-history
+bindkey '^I' fzf_completion
 bindkey '^P' _atuin_search_widget
-bindkey '^N' down-line-or-select
+# bindkey '^N' down-line-or-select
 #  }}}
 
 # `znap eval` caches and runs any kind of command output for you.
