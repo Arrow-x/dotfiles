@@ -41,6 +41,7 @@ export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
 	--sf '#ff9e64' \
 	--scb '#24283b' \
 	--scf '#f7768e'"
+export FZF_COMPLETION_OPTS="--multi"
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
