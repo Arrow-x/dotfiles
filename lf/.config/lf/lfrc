@@ -153,6 +153,7 @@ cmd dlfile %dlfile
 
 # Remove some defaults
 map m
+map gh
 # map o
 map "'"
 map '"'
@@ -169,14 +170,18 @@ map X !$f &
 map P :link
 # Bindings
 # Dragon Mapping
-map dr dragon
-map dD remove
-map ds dragon-stay
-map di dragon-individual
-map dm mvdragon
-map dc cpdragon
-map dl dlfile
+map drr dragon
+map drd remove
+map drs dragon-stay
+map dri dragon-individual
+map drm mvdragon
+map drc cpdragon
+map drl dlfile
 
+map dd trash
+map dD delete
+map dR restore_trash
+map ds full_size
 
 map aa archive
 map au unarchive
@@ -190,7 +195,6 @@ map mw setwallpaper
 
 # Basic Functions
 map . set hidden!
-map DD delete
 map p paste
 map x cut
 map y copy
@@ -198,24 +202,21 @@ map R reload
 map C clear
 map b bulkrenamevimv
 
-# map r rename
-
-map dd trash
-map dR restore_trash
-map ds full_size
 
 # Movement
-map gD cd /home/arrowx/File/Documents
-map gd cd /home/arrowx/Downloads
-map gp cd /home/arrowx/Public
+map ghh cd /home/arrowx
+map ghd cd /home/arrowx/Downloads
+map ghp cd /home/arrowx/Public
+map ghg cd /home/arrowx/gallery-dl
+map ghc cd /home/arrowx/.config
 map glb cd /home/arrowx/.local/bin
 map gls cd /home/arrowx/.local/share
 map glt cd /home/arrowx/.local/state
-map gc cd /home/arrowx/.config
-map gf cd /home/arrowx/File
-map gH cd /home/arrowx/File/Homework/H-Games
-map gP cd /home/arrowx/File/Projects
-map gt cd /home/arrowx/File/Tutorials
+map gfd cd /home/arrowx/File/Documents
+map gff cd /home/arrowx/File
+map gfh cd /home/arrowx/File/Homework/H-Games
+map gfp cd /home/arrowx/File/Projects
+map gft cd /home/arrowx/File/Tutorials
 map gm cd /run/media/arrowx/
 
 map grr cd /home/arrowx/File/Examples\ and\ Refrences
