@@ -84,7 +84,7 @@ file_name=$dir_name.tar.gz
 #downloading the correct NW.js for your computer
 #wget https://dl.nwjs.io/$version/$file_name -q -O $file_name
 echo 'copying NWjs'
-cp $HOME/File/Homework/H-Games/tools/"$file_name" .
+cp "$HOME"/File/Homework/H-Games/tools/"$file_name" .
 #unpacking archive
 echo 'extracting ...'
 tar -xzf "$file_name"
