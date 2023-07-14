@@ -1,6 +1,5 @@
 #!/bin/zsh
 # vim:fileencoding=utf-8:foldmethod=marker
-
 # zsh Histroy Options {{{
 HISTFILE=~/.local/share/zsh/.zsh_history
 setopt APPEND_HISTORY
@@ -35,18 +34,6 @@ git clone --depth 1 -- \
 
 source $zsh_plugs/zsh-snap/znap.zsh  # Start Znap
 #  }}}
-
-# Completion Menu Options {{{
-zstyle ':autocomplete:*' widget-style menu-select
-
-# Override history menu.
-zstyle ':autocomplete:history-search-backward:*' list-lines 20
-
-# Override history search.
-zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 20
-
-bindkey -M menuselect '\r' .accept-line
-#}}}
 
 # Making the cursor a beam in normal mode and a line in insert mode {{{
 bindkey -v
@@ -89,6 +76,8 @@ eval "$(atuin init zsh)"
 # source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 # bindkey '^I' fzf_completion
 #  }}}
+
+# Completion Menu Options {{{
 zstyle ':completion:*' fzf-search-display true
 # basic file preview for ls (you can replace with something more sophisticated than head)
 zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
@@ -106,6 +95,7 @@ eval set -- {+1}
 for arg in "$@"; do
     { git diff --color=always -- "$arg" | git log --color=always "$arg" } 2>/dev/null
 done'
+#}}}
 
 # Vi mode keybids {{{
 # bindkey -M menuselect '^h' vi-backward-char
