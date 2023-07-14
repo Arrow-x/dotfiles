@@ -159,11 +159,17 @@ map "'"
 map '"'
 map d
 map w
-# map r
-# use enter for shell commands
-map <enter> shell
-# show the result of execution of previous commands
-map ` !true
+map r
+  
+map rA :rename; cmd-end # at the very end
+map rc push rA<c-u> # new rename
+map rI :rename; cmd-home # at the very beginning
+map ri :rename # before extension
+map ra :rename; cmd-right # after extension
+
+map <enter> shell # use enter for shell commands
+map ` !true # show the result of execution of previous commands
+
 # execute current file (must be executable)
 # map x $$f
 map X !$f &
@@ -171,7 +177,6 @@ map P :link
 # Bindings
 # Dragon Mapping
 map drr dragon
-map drd remove
 map drs dragon-stay
 map dri dragon-individual
 map drm mvdragon
@@ -179,7 +184,7 @@ map drc cpdragon
 map drl dlfile
 
 map dd trash
-map dD delete
+map dD remove
 map dR restore_trash
 map ds full_size
 
