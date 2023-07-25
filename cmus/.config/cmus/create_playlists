@@ -1,8 +1,7 @@
 #!/bin/sh
 dirs=$(find -L "$1" -maxdepth 1 -type d)
-printf "%s" "$dirs" | while read -r dir; do
+echo "$dirs" | while read -r dir; do
 	splice="$(echo "$dir"| sed 's#.*/##')"
 	dest="$XDG_CONFIG_HOME"/cmus/playlists/"$splice"
-	# touch "$dest"
 	find "$dir" -maxdepth 1 -type f >"$dest"
 done
