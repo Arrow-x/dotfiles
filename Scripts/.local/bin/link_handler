@@ -6,12 +6,12 @@
 # date:   2023-04-12T10:33:24+0200
 
 # config
-web="$BROWSER"
+web=$BROWSER
 edit="$TERMINAL -e $EDITOR"
 podcast="mpv --no-audio-display"
 video="mpv --really-quiet"
-youtube="/home/arrowx/.local/bin/yt_link_handler"
-# youtube="ytfzf -a -D --detach"
+# youtube="/home/arrowx/.local/bin/yt_link_handler"
+youtube="setsid -f mpv --ytdl-format=22 --really-quiet --no-terminal"
 picture="nsxiv-url"
 document="$READER"
 
