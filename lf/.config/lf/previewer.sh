@@ -1,13 +1,13 @@
 #!/bin/sh
 
 image() {
-    FILE_PATH="$1"
-    X=$4
-    Y=$5
-    MW=$(($2-1))
-    MH=$3
-    ueberzugpp cmd -s $UB_SOCKET -a add -i PREVIEW -x $X -y $Y --max-width $MW --max-height $MH -f "$FILE_PATH"
-    exit 1
+	FILE_PATH="$1"
+	X=$4
+	Y=$5
+	MW=$2
+	MH=$3
+	ueberzugpp cmd -s "$UB_SOCKET" -a add -i PREVIEW -x "$X" -y "$Y" --max-width "$MW" --max-height "$MH" -f "$FILE_PATH"
+	exit 1
 }
 
 batorcat() {
@@ -32,7 +32,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.rar) unrar l "$1" ;;
 	*.7z) 7z l "$1" ;;
 	*.[1-8]) man "$1" | col -b ;;
-	*.o) nm "$1";;
+	*.o) nm "$1" ;;
 	*.torrent) transmission-show "$1" ;;
 	*.iso) iso-info --no-header -l "$1" ;;
 	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
@@ -48,7 +48,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		;;
 	*.epub)
 		[ ! -f "${CACHE}.jpg" ] && \
-            gnome-epub-thumbnailer "$1" "$CACHE".jpg
+			gnome-epub-thumbnailer "$1" "$CACHE".jpg
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.avi|*.mp4|*.gif|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx|*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
@@ -60,10 +60,15 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		image "$1" "$2" "$3" "$4" "$5"
 		;;
 	*.svg)
-        [ ! -f "${CACHE}.jpg" ] && \
-            convert "$1" "${CACHE}.jpg" 
-        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-                    ;;
+		[ ! -f "${CACHE}.jpg" ] && \
+			convert "$1" "${CACHE}.jpg"
+		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+		;;
+	*.blend)
+		[ ! -f "${CACHE}.png" ] && \
+			blender-thumbnailer "$1" "${CACHE}.png"
+		image "${CACHE}.png" "$2" "$3" "$4" "$5"
+		;;
 	*)
 		batorcat "$1"
 		;;
