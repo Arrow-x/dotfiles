@@ -8,7 +8,7 @@ if [ ! -e "$toggle" ]; then
 		*) xinput disable SynPS/2\ Synaptics\ TouchPad ;;
 	esac
 	notify-send -u low -i mouse \
-		--icon=/usr/share/icons/HighContrast/256x256/status/touchpad-disabled.png \
+		--icon=/usr/share/icons/Adwaita/32x32/status/touchpad-disabled-symbolic.symbolic.png \
 		"Trackpad disabled"
 else
 	rm "$toggle"
@@ -17,6 +17,6 @@ else
 		*) xinput enable SynPS/2\ Synaptics\ TouchPad ;;
 	esac
 	notify-send -u low -i mouse \
-		--icon=/usr/share/icons/HighContrast/256x256/devices/input-touchpad.png \
+		--icon=/usr/share/icons/Adwaita/32x32/devices/input-touchpad-symbolic.symbolic.png \
 		"Trackpad enabled"
 fi
