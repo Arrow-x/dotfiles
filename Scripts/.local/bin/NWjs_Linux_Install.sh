@@ -58,6 +58,7 @@ do
 	shift
 done
 
+chmod +w .
 #removes unneeded files
 find . -maxdepth 1 -type f -not -name "." -not -name ".." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "NWjs_Linux_Install.sh" -not -name "patch.sh" -print0 | xargs -0 -r rm --
 find . -maxdepth 1 -type d -not -name "." -not -name ".." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "NWjs_Linux_Install.sh" -not -name "patch.sh" -print0 | xargs -0 -r rm -r --
@@ -79,7 +80,7 @@ find . -maxdepth 1 -type d -not -name "." -not -name ".." -not -name "nw.pak" -n
 #else #32-bit version
 #	cpu="ia32"
 #fi
-dir_name=nwjs-v0.78.0-linux-x64
+dir_name=nwjs-v0.76.0-linux-x64
 file_name=$dir_name.tar.gz
 #downloading the correct NW.js for your computer
 #wget https://dl.nwjs.io/$version/$file_name -q -O $file_name
