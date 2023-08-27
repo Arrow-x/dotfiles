@@ -184,7 +184,7 @@ map drc cpdragon
 map drl dlfile
 
 map dd trash
-map dD remove
+# map dD remove
 map dR restore_trash
 map ds full_size
 
