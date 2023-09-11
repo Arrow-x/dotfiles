@@ -11,8 +11,8 @@ settings:
       normal:
         <Ctrl+/>: hint links spawn --detach mpv --profile=720pmp4 {hint-url}
         <Ctrl+g>: hint links spawn --detach gallery-dl {hint-url}
-        j: run-with-count 10 scroll down
-        k: run-with-count 10 scroll up
+        j: cmd-run-with-count 10 scroll down
+        k: cmd-run-with-count 10 scroll up
   colors.webpage.darkmode.algorithm:
     global: lightness-cielab
   colors.webpage.darkmode.enabled:
