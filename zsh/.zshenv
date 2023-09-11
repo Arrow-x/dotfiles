@@ -25,6 +25,7 @@ export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
 export DOTFILES=$HOME/dotfiles
 export XCURSOR_SIZE=24
 export LS_COLORS="$(vivid generate tokyonight)"
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
 	--tb '#565f89' \
