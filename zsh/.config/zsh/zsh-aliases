@@ -139,9 +139,6 @@ t() {
 	termdown "$1"m ; notify-send "$2" ; mpv "/home/arrowx/Music/Music/OH MY DAYUM ft. @Daym Drops.webm"
 }
 
-#replace default programmes with better ones that have diffrent way of use
-alias rename='perl-rename'
-
 alias aria='aria2c --check-integrity=true'
 
 # easier to read disk
