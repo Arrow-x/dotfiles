@@ -4,66 +4,28 @@
 -- using data from https://github.com/ajayyy/SponsorBlock
 
 local opt = require 'mp.options'
+local utils = require 'mp.utils'
+
+local ON = false
+local ranges = nil
 
 local options = {
 	server = "https://sponsor.ajay.app/api/skipSegments",
 
 	-- Categories to fetch and skip
-	categories = '"sponsor"'
+	categories = '"sponsor"',
+
+	-- Set this to "true" to use sha256HashPrefix instead of videoID
+	hash = ""
 }
 
 opt.read_options(options)
 
-function getranges()
-	local luacurl_available, cURL = pcall(require,'cURL')
-
-	local cstr = ("categories=[%s]"):format(options.categories)
-	local vstr = ("videoID=%s"):format(youtube_id)
-
-	if not(luacurl_available) then -- if Lua-cURL is not available on this system
-		local curl_cmd = {
-			"curl",
-			"-L",
-			"-s",
-			"-G",
-			"-d", cstr,
-			"-d", vstr,
-			options.server
-		}
-		local sponsors = mp.command_native{
-			name = "subprocess",
-			capture_stdout = true,
-			playback_only = false,
-			args = curl_cmd
-		}
-		res = sponsors.stdout
-	else -- otherwise use Lua-cURL (binding to libcurl)
-		local API = ("%s?%s&%s"):format(options.server, cstr, vstr)
-		local buf={}
-		local c = cURL.easy_init()
-		c:setopt_followlocation(1)
-		c:setopt_url(API)
-		c:setopt_writefunction(function(chunk) table.insert(buf,chunk); return true; end)
-		c:perform()
-		res = table.concat(buf)
-	end
-
-	if string.match(res,"%[(.-)%]") then
-		ranges = {}
-		for i in string.gmatch(string.sub(res,2,-2),"%[(.-)%]") do
-			k,v = string.match(i,"(%d+.?%d*),(%d+.?%d*)")
-			ranges[k] = v
-		end
-	end
-	return
-end
-
 function skip_ads(name,pos)
-	if pos ~= nil then
-		for k,v in pairs(ranges) do
-			k = tonumber(k)
-			v = tonumber(v)
-			if k <= pos and v > pos then
+	if pos then
+		for _, i in pairs(ranges) do
+			v = i.segment[2]
+			if i.segment[1] <= pos and v > pos then
 				--this message may sometimes be wrong
 				--it only seems to be a visual thing though
 				mp.osd_message(("[sponsorblock] skipping forward %ds"):format(math.floor(v-mp.get_property("time-pos"))))
@@ -74,7 +36,6 @@ function skip_ads(name,pos)
 			end
 		end
 	end
-	return
 end
 
 function file_loaded()
@@ -91,22 +52,59 @@ function file_loaded()
 		"^ytdl://([%w-_]+)$",
 		"-([%w-_]+)%."
 	}
-	youtube_id = nil
+	local youtube_id = nil
 	local purl = mp.get_property("metadata/by-key/PURL", "")
 	for i,url in ipairs(urls) do
 		youtube_id = youtube_id or string.match(video_path, url) or string.match(video_referer, url) or string.match(purl, url)
+		if youtube_id then break end
 	end
 
 	if not youtube_id or string.len(youtube_id) < 11 then return end
 	youtube_id = string.sub(youtube_id, 1, 11)
 
-	getranges()
-	if ranges then
-		ON = true
-		mp.add_key_binding("b","sponsorblock",toggle)
-		mp.observe_property("time-pos", "native", skip_ads)
+	local args = {"curl", "-L", "-s", "-G", "--data-urlencode", ("categories=[%s]"):format(options.categories)}
+	local url = options.server
+	if options.hash == "true" then
+		local sha = mp.command_native{
+			name = "subprocess",
+			capture_stdout = true,
+			args = {"sha256sum"},
+			stdin_data = youtube_id
+		}
+		url = ("%s/%s"):format(url, string.sub(sha.stdout, 0, 4))
+	else
+		table.insert(args, "--data-urlencode")
+		table.insert(args, "videoID=" .. youtube_id)
 	end
-	return
+	table.insert(args, url)
+
+	local sponsors = mp.command_native{
+		name = "subprocess",
+		capture_stdout = true,
+		playback_only = false,
+		args = args
+	}
+	if sponsors.stdout then
+		local json = utils.parse_json(sponsors.stdout)
+		if type(json) == "table" then
+			if options.hash == "true" then
+				for _, i in pairs(json) do
+					if i.videoID == youtube_id then
+						ranges = i.segments
+						break
+					end
+				end
+			else
+				ranges = json
+			end
+
+			if ranges then
+				ON = true
+				mp.add_key_binding("b","sponsorblock",toggle)
+				mp.observe_property("time-pos", "native", skip_ads)
+			end
+		end
+	end
 end
 
 function end_file()
@@ -121,12 +119,11 @@ function toggle()
 		mp.unobserve_property(skip_ads)
 		mp.osd_message("[sponsorblock] off")
 		ON = false
-		return
+	else
+		mp.observe_property("time-pos", "native", skip_ads)
+		mp.osd_message("[sponsorblock] on")
+		ON = true
 	end
-	mp.observe_property("time-pos", "native", skip_ads)
-	mp.osd_message("[sponsorblock] on")
-	ON = true
-	return
 end
 
 mp.register_event("file-loaded", file_loaded)
