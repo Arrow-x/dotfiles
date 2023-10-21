@@ -149,7 +149,7 @@ cmd dragon-stay %dragon-drop -a $fx
 cmd dragon-individual %dragon-drop $fx
 cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
-cmd dlfile %dlfile
+cmd dlfile %dlfile -lf
 
 # Remove some defaults
 map m

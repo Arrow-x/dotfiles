@@ -203,6 +203,9 @@ bindsym $mod+r exec --no-startup-id  ~/.local/bin/syrun t_newsboat "footclient -
 bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/syrun t_btop "footclient -a t_btop bpytop &"
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/syrun t_drop "footclient -a t_drop &"
 
+bindsym $mod+g exec --no-startup-id  ~/.local/bin/dlfile -v
+bindsym $mod+Shift+g exec --no-startup-id  ~/.local/bin/dlfile -d
+
 bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
 bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next
 bindsym $mod+Control+c exec --no-startup-id persway change-layout stack-main --size 70 --stack-layout tiled
