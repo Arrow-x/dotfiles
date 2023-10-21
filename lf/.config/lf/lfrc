@@ -213,12 +213,14 @@ map ghh cd /home/arrowx
 map ghd cd /home/arrowx/Downloads
 map ghp cd /home/arrowx/Public
 map ghg cd /home/arrowx/gallery-dl
+map ghv cd /home/arrowx/Videos
 map ghc cd /home/arrowx/.config
 map glb cd /home/arrowx/.local/bin
 map gls cd /home/arrowx/.local/share
 map glt cd /home/arrowx/.local/state
 map gfd cd /home/arrowx/File/Documents
 map gff cd /home/arrowx/File
+map gfs cd /home/arrowx/File/Software
 map gfh cd /home/arrowx/File/Homework/H-Games
 map gfp cd /home/arrowx/File/Projects
 map gft cd /home/arrowx/File/Tutorials
