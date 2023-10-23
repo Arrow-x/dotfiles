@@ -65,15 +65,15 @@
         "format-icons": "",
         "format": "{icon} {bandwidthDownBytes} - {bandwidthUpBytes}",
         "interface": "wlan0",
-        "interval": 1
+        "interval": 3
     },
     "memory": {
-        "interval": 1,
+        "interval": 3,
         "format-icons": "",
         "format": "{icon} {percentage}%"
     },
     "cpu": {
-        "interval": 1,
+        "interval": 3,
         "format-icons": "",
         "format": "{icon} {load}%"
     },
