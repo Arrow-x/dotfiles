@@ -1,0 +1,5 @@
+#!/bin/sh
+select="$(cliphist list | bemenu -l 20 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode)"
+
+wl-copy "$select"
+wtype -M ctrl -M shift v -m ctrl -m shift
