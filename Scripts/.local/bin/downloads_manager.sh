@@ -22,11 +22,19 @@ case "$url" in
 		notify-send "$url Download Audio Done"
 		;;
 
-	*'twitter.com'* | *'mangasee'*)
+	*'twitter.com'* | *'mangasee'* | *'tumblr'*)
 		notify-send "downloading the Picture at $url"
 		gallery-dl "$url"
 		notify-send "$url Download Picture Done"
 		;;
+
+	*'pixeldrain'*)
+		notify-send "downloading the pixeldrain at $url"
+		link="$(printf "%s" "$url" | sed 's#.*/u/##')"
+		"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
+		notify-send "$url Download pixeldrain Done"
+		;;
+
 	*)
 		notify-send "downloading the bin at $url"
 		"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$url"
