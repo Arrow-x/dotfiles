@@ -8,9 +8,11 @@ fi
 
 case "$mode" in
 	Language)
-		printf "What Language: " ;;
+		printf "What Language: "
+		;;
 	"Core-util")
-		printf "What Core-util: " ;;
+		printf "What Core-util: "
+		;;
 esac
 
 read -r selected
@@ -27,9 +29,11 @@ file="$local_copy""$selected"-"$query"
 
 case "$mode" in
 	Language)
-		curl -s cht.sh/"$selected"/"$query"> "$file"-new ;;
+		curl -s cht.sh/"$selected"/"$query" >"$file"-new
+		;;
 	"Core-util")
-		curl -s cht.sh/"$selected"~"$query"> "$file"-new ;;
+		curl -s cht.sh/"$selected"~"$query" >"$file"-new
+		;;
 esac
 
 if [ -z "$(cat "$file"-new)" ]; then

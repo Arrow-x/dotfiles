@@ -4,7 +4,7 @@ draw() {
 	FILE_PATH="$1"
 	X=$4
 	Y=$5
-	MW=$(($2-1))
+	MW=$(($2 - 1))
 	MH=$3
 	ueberzugpp cmd -s "$FU_SOCKET" -a add -i PREVIEW -x "$X" -y "$Y" --max-width "$MW" --max-height "$MH" -f "$FILE_PATH"
 	exit 1
@@ -16,7 +16,7 @@ shift
 
 case "$(mimetype -L -b "$file")" in
 	image/gif)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			ffmpegthumbnailer -i "$file" -o "$cache" -s 512
 		draw "$cache" "$@"
 		;;
@@ -24,27 +24,27 @@ case "$(mimetype -L -b "$file")" in
 		draw "$file" "$@"
 		;;
 	video/*)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			ffmpegthumbnailer -m -i "$file" -o "$cache" -s 512
 		draw "$cache" "$@"
 		;;
 	audio/*)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			ffmpegthumbnailer -i "$file" -o "$cache" -s 265
 		draw "$cache" "$@"
 		;;
 	application/epub+zip)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			gnome-epub-thumbnailer "$file" "$cache"
 		draw "$cache" "$@"
 		;;
 	application/pdf)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			gs -o "$cache" -sDEVICE=pngalpha -dLastPage=1 "$file" >/dev/null
 		draw "$cache" "$@"
 		;;
 	application/x-blender)
-		[ ! -f "${cache}" ] && \
+		[ ! -f "${cache}" ] &&
 			blender-thumbnailer "$file" "$cache"
 		draw "$cache" "$@"
 		;;

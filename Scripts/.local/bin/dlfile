@@ -13,11 +13,15 @@ if [ -z "$url" ]; then
 fi
 case "$1" in
 	-d | --download)
-		downloads_manager.sh "$url" ;;
+		downloads_manager.sh "$url"
+		;;
 	-v | --view)
-		link_handler "$url" ;;
+		link_handler "$url"
+		;;
 	-lf)
-		aria2c --check-integrity=true "$url" ;;
+		aria2c --check-integrity=true "$url"
+		;;
 	*)
-		exit 0 ;;
+		exit 0
+		;;
 esac

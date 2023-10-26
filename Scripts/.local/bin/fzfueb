@@ -19,7 +19,7 @@ export FU_SOCKET=/tmp/ueberzugpp-"$fu_pid".socket
 opener="xdg-open"
 
 case "$1" in
-	-d) opener="$IMAGE"
+	-d) opener="$IMAGE" ;;
 esac
 
 fzf --ansi \

@@ -23,18 +23,22 @@ login() {
 }
 case "$1" in
 	-p | --pass)
-		passw ;;
+		passw
+		;;
 	-l | --login)
-		login ;;
+		login
+		;;
 	-bt | --both-tab)
 		login
 		wtype -P tab
-		passw ;;
+		passw
+		;;
 	-be | --both-enter)
 		login
 		wtype -P return
 		sleep 3
-		passw ;;
+		passw
+		;;
 esac
 key=""
 password=""

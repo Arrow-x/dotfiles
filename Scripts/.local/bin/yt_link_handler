@@ -7,7 +7,7 @@ if [ -n "$(pgrep bemenu)" ]; then
 fi
 link=$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")
 video_options=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
-prechoice=$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d" )
+prechoice=$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d")
 
 if [ -z "$prechoice" ]; then
 	exit 2
@@ -21,10 +21,13 @@ fi
 
 case "$choice" in
 	"720pMP4")
-		mpv --ytdl-format=22 "$link" --really-quiet --no-terminal & ;;
+		mpv --ytdl-format=22 "$link" --really-quiet --no-terminal &
+		;;
 	"Audio")
-		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video & ;;
+		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video &
+		;;
 	*)
 		code=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
-		mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal & ;;
+		mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal &
+		;;
 esac

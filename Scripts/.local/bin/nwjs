@@ -1,6 +1,5 @@
 #!/bin/bash
-if [ ! -d "www" ] || [ ! -f "package.json" ] #test to avoid accidental and irreversible deletion of files and directories
-then
+if [ ! -d "www" ] || [ ! -f "package.json" ]; then #test to avoid accidental and irreversible deletion of files and directories
 	echo "This doesn't look like a NW.js program."
 	exit 1
 fi
@@ -10,8 +9,7 @@ create_dt=0
 start_game=1
 use_beta=0
 
-usage() #help message
-{
+usage() { #help message
 	echo "Syntax:"
 	echo "  ./Install_Linux.sh [[-xs] [-xd] [-b] [-ns] | [-h] | [-v]]"
 	echo ""
@@ -28,32 +26,32 @@ usage() #help message
 	echo "  -ns, --no-start   Doesn't start the game after the installation"
 }
 
-while [ "$1" != "" ] #positional parameters
-do
+while [ "$1" != "" ]; do #positional parameters
 	case $1 in
-		-h | --help )
+		-h | --help)
 			usage
 			exit
 			;;
-		-v | --version )
+		-v | --version)
 			echo "Linux Installer for NW.js, version 1.5"
 			exit
 			;;
-		-xs | --exe-sh ) #creates .sh executable to run the game
+		-xs | --exe-sh) #creates .sh executable to run the game
 			create_sh=1
 			;;
-		-xd | --exe-dt ) #creates .desktop executable to run the game
+		-xd | --exe-dt) #creates .desktop executable to run the game
 			create_dt=1
 			;;
-		-ns | --no-start ) #doesn't start the game after the installation
+		-ns | --no-start) #doesn't start the game after the installation
 			start_game=0
 			;;
-		-b | --beta ) #downloads a beta, if it's the last version of NW.js available
+		-b | --beta) #downloads a beta, if it's the last version of NW.js available
 			use_beta=1
 			;;
-		* )
+		*)
 			usage
 			exit 1
+			;;
 	esac
 	shift
 done
@@ -97,35 +95,30 @@ echo "cleaning up"
 rm -r $dir_name
 rm $file_name
 
-if [ ! -x "nw" ] #checks if the game launcher is actually executable
-then
+if [ ! -x "nw" ]; then #checks if the game launcher is actually executable
 	chmod +x nw
 fi
 
-if [ -f "patch.sh" ] #checks if there is a special patch for this installation
-then
+if [ -f "patch.sh" ]; then #checks if there is a special patch for this installation
 	chmod +x patch.sh
 	./patch.sh
 fi
 
-if [ $create_sh -eq 1 ] #creates an executable
-then
-	echo "#!/bin/bash" > nw.sh
-	echo "./nw" >> nw.sh
+if [ $create_sh -eq 1 ]; then #creates an executable
+	echo "#!/bin/bash" >nw.sh
+	echo "./nw" >>nw.sh
 	chmod +x nw.sh
 fi
 
-if [ $create_dt -eq 1 ] #creates an executable
-then
-	echo "[Desktop Entry]" > Game.desktop
-	echo "Name=Game" >> Game.desktop
-	echo 'Exec=sh -c "$(dirname %k)/nw"' >> Game.desktop
-	echo "Terminal=false" >> Game.desktop
-	echo "Type=Application" >> Game.desktop
+if [ $create_dt -eq 1 ]; then #creates an executable
+	echo "[Desktop Entry]" >Game.desktop
+	echo "Name=Game" >>Game.desktop
+	echo 'Exec=sh -c "$(dirname %k)/nw"' >>Game.desktop
+	echo "Terminal=false" >>Game.desktop
+	echo "Type=Application" >>Game.desktop
 	chmod +x Game.desktop
 fi
 
-if [ $start_game -eq 1 ] #starts the game
-then
+if [ $start_game -eq 1 ]; then #starts the game
 	./nw
 fi

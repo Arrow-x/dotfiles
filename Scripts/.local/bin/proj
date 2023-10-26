@@ -9,7 +9,7 @@ menu() {
 	bemenu -l 20 -p Projects:
 }
 
-search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1  -maxdepth 1 -type d | menu)"
+search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | menu)"
 
 if [ -z "$search" ]; then
 	exit

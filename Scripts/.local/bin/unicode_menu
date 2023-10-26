@@ -19,17 +19,17 @@ clipboard() {
 dotool() {
 	case "$XDG_SESSION_TYPE" in
 		"wayland") wtype -M ctrl -M shift v -m ctrl -m shift & ;;
-		*) xdotool  key --clearmodifiers \"ctrl+shift+v\" & ;;
+		*) xdotool key --clearmodifiers \"ctrl+shift+v\" & ;;
 	esac
 }
 
 selection=""
 
 nerdfont() {
-	selection=$(menu<"$HOME"/.local/share/shiny-resources/font-awesome | sed "s/ .*//g" | xargs echo)
+	selection=$(menu <"$HOME"/.local/share/shiny-resources/font-awesome | sed "s/ .*//g" | xargs echo)
 }
 emoji() {
-	selection=$(menu<"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo | sed "s/ //g")
+	selection=$(menu <"$HOME"/.local/share/shiny-resources/emoji | sed "s/ .*//g" | xargs echo | sed "s/ //g")
 }
 help() {
 	echo "--emoji    -e  for emoji"
