@@ -48,4 +48,4 @@ else
 	mv "$file"-new "$file"
 fi
 
-bat "$file" --paging=always --plain
+bat "$file" --paging=always --style plain
