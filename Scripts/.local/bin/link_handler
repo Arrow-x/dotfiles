@@ -109,6 +109,7 @@ case "$uri_lower" in
 
 		*'youtube.com/watch'* \
 			| *'youtube.com/playlist'* \
+			| *'youtube.com/shorts'* \
 		| *'youtu.be'*)
 		notify-send \
 			-u low \
