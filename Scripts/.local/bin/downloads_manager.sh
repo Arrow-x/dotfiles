@@ -19,38 +19,58 @@ case "$url" in
 		*'youtube.com/shorts'* | \
 		*'youtu.be'*)
 
-		notify-send "downloading the Video  at $url"
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+			"downloading the Video  at $url"
+
 		yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f 22 "$url"
-		notify-send "$url Download Video Done"
+
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+			"$url Download Video Done"
 		;;
 
 	*.mp3 | \
 		*.ogg | \
 		*.flac | \
 		*.opus)
-		notify-send "downloading the Audio  at $url"
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+			"downloading the Audio  at $url"
+
 		yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$url"
-		notify-send "$url Download Audio Done"
+
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+			"$url Download Audio Done"
 		;;
 
 	*'twitter.com'* | \
 		*'mangasee'* | \
 		*'tumblr'*)
-		notify-send "downloading the Picture at $url"
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+			"downloading the Picture at $url"
+
 		gallery-dl "$url"
-		notify-send "$url Download Picture Done"
+
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+			"$url Download Picture Done"
 		;;
 
 	*'pixeldrain'*)
-		notify-send "downloading the pixeldrain at $url"
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+			"downloading the pixeldrain at $url"
+
 		link="$(printf "%s" "$url" | sed 's#.*/u/##')"
 		"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
-		notify-send "$url Download pixeldrain Done"
+
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+			"$url Download pixeldrain Done"
 		;;
 
 	*)
-		notify-send "downloading the bin at $url"
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+			"downloading the bin at $url"
+
 		"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$url"
-		notify-send "$url Download Bin Done"
+
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+			"$url Download Bin Done"
 		;;
 esac
