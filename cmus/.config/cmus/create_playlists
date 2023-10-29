@@ -1,7 +1,14 @@
 #!/bin/sh
-dirs=$(find -L "$1" -maxdepth 1 -type d)
+
+#TODO: choose if if the user wants to include the to level dir or not
+#TODO: supress the mkdir error when the playlist folder exist
+#TODO: accepts the file from stdin
+
+dirs=$(find -L "$1" -maxdepth 1 -mindepth 1 -type d)
+# dirs=$(find -L "$1" -maxdepth 1 -type d)
+mkdir "$XDG_CONFIG_HOME"/cmus/playlists/
 echo "$dirs" | while read -r dir; do
-	splice="$(echo "$dir"| sed 's#.*/##')"
+	splice="$(echo "$dir" | sed 's#.*/##')"
 	dest="$XDG_CONFIG_HOME"/cmus/playlists/"$splice"
 	find "$dir" -maxdepth 1 -type f >"$dest"
 done
