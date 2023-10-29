@@ -18,8 +18,11 @@ fi
 tmux_running=$(pgrep tmux)
 
 if [ "$TMUX" ] && [ "$tmux_running" ]; then
-	search_name=$(basename "$search")
-	tmux rename-window "$search_name"
+	tmux rename-window "$(basename "$search")"
+	if [ "$1" = "-n" ]; then
+		tmux new-window nvim "$search"
+		exit
+	fi
 fi
 case "$1" in
 	-n | --neovim) $editor "$search" & ;;
