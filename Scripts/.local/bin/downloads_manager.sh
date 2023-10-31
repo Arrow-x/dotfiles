@@ -1,4 +1,5 @@
 #!/bin/sh
+
 help="this is the help text"
 case "$1" in
 	-h | --help | '')
@@ -9,68 +10,67 @@ case "$1" in
 		url="$1"
 		;;
 esac
+# TODO: handle errors somehow to and notify
+download_url() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+		"downloading the $1 at $2"
 
-case "$url" in
-	*.mkv | \
-		*.mp4 | \
-		*.webm | \
-		*'youtube.com/watch'* | \
-		*'youtube.com/playlist'* | \
-		*'youtube.com/shorts'* | \
-		*'youtu.be'*)
+	case "$1" in
+		"Video")
+			yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f 22 "$2"
+			;;
+		"Audio")
+			yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$2"
+			;;
+		"Picture")
+			gallery-dl "$2"
+			;;
+		"Pixeldrain")
+			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
+			"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
+			;;
+		"General")
+			"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"
+			;;
+	esac
 
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
-			"downloading the Video  at $url"
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
+		"Done Downloading the $1 at $2"
+}
+# TODO: this should return the type only rather then call the function download_url itself
+parse_url() {
+	case "$1" in
+		*.mkv | \
+			*.mp4 | \
+			*.webm | \
+			*'youtube.com/watch'* | \
+			*'youtube.com/playlist'* | \
+			*'youtube.com/shorts'* | \
+			*'youtu.be'*)
+			download_url "Video" "$1"
+			;;
 
-		yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f 22 "$url"
+		*.mp3 | \
+			*.ogg | \
+			*.flac | \
+			*.opus)
+			download_url "Audio" "$1"
+			;;
 
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
-			"$url Download Video Done"
-		;;
+		*'twitter.com'* | \
+			*'mangasee'* | \
+			*'tumblr'*)
+			download_url "Picture" "$1"
+			;;
 
-	*.mp3 | \
-		*.ogg | \
-		*.flac | \
-		*.opus)
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
-			"downloading the Audio  at $url"
+		*'pixeldrain'*)
+			download_url "Pixeldrain" "$1"
+			;;
 
-		yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$url"
+		*)
+			download_url "General" "$1"
+			;;
+	esac
+}
 
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
-			"$url Download Audio Done"
-		;;
-
-	*'twitter.com'* | \
-		*'mangasee'* | \
-		*'tumblr'*)
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
-			"downloading the Picture at $url"
-
-		gallery-dl "$url"
-
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
-			"$url Download Picture Done"
-		;;
-
-	*'pixeldrain'*)
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
-			"downloading the pixeldrain at $url"
-
-		link="$(printf "%s" "$url" | sed 's#.*/u/##')"
-		"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
-
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
-			"$url Download pixeldrain Done"
-		;;
-
-	*)
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
-			"downloading the bin at $url"
-
-		"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$url"
-
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
-			"$url Download Bin Done"
-		;;
-esac
+parse_url "$url"
