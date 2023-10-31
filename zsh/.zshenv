@@ -75,6 +75,6 @@ path=(
 	"$XDG_DATA_HOME/npm/bin"
 	"$HOME/.local/bin"
 	"$path[@]"
-"/usr/local/opt/openjdk/bin:$PATH")
-
+	"/usr/local/opt/openjdk/bin:$PATH"
+)
 export PATH
