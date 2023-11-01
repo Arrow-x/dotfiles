@@ -37,7 +37,7 @@ download_url() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
 		"Done Downloading the $1 at $2"
 }
-# TODO: this should return the type only rather then call the function download_url itself
+
 parse_url() {
 	case "$1" in
 		*.mkv | \
@@ -47,30 +47,30 @@ parse_url() {
 			*'youtube.com/playlist'* | \
 			*'youtube.com/shorts'* | \
 			*'youtu.be'*)
-			download_url "Video" "$1"
+			printf "Video"
 			;;
 
 		*.mp3 | \
 			*.ogg | \
 			*.flac | \
 			*.opus)
-			download_url "Audio" "$1"
+			printf "Audio"
 			;;
 
 		*'twitter.com'* | \
 			*'mangasee'* | \
 			*'tumblr'*)
-			download_url "Picture" "$1"
+			printf "Picture"
 			;;
 
 		*'pixeldrain'*)
-			download_url "Pixeldrain" "$1"
+			printf "Pixeldrain"
 			;;
 
 		*)
-			download_url "General" "$1"
+			printf "General"
 			;;
 	esac
 }
 
-parse_url "$url"
+download_url "$(parse_url "$url")" "$url"
