@@ -41,7 +41,7 @@ def main():
 
 
 def change_wallpaper(path, name):
-    cmd_string = "nitrogen --set-auto --save {img}"
+    cmd_string = "set_bg {img}"
     command = cmd_string.format(img=path + name)
     subprocess.run(command, shell=True)
 
