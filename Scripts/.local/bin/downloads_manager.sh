@@ -17,13 +17,13 @@ download_url() {
 
 	case "$1" in
 		"Video")
-			yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f 22 "$2"
+			"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f 22 "$2"
 			;;
 		"Audio")
-			yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$2"
+			"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$2"
 			;;
 		"Picture")
-			gallery-dl "$2"
+			"$TERMINAL" gallery-dl "$2"
 			;;
 		"Pixeldrain")
 			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
