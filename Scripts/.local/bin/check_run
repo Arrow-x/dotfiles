@@ -1,4 +1,0 @@
-#!/bin/sh
-if [ -z "$(pgrep bemenu)" ]; then
-	bemenu-run -l 18
-fi

@@ -147,9 +147,9 @@ cmd full_size %{{
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
 cmd dragon-individual %dragon-drop $fx
-cmd cpdragon %cpdragon
-cmd mvdragon %mvdragon
-cmd dlfile %dlfile -lf
+cmd dragon_cp %dragon_cp
+cmd dragon_mv %dragon_mv
+cmd dragon_download %dragon_download -lf
 
 # Remove some defaults
 map m
@@ -179,9 +179,9 @@ map P :link
 map drr dragon
 map drs dragon-stay
 map dri dragon-individual
-map drm mvdragon
-map drc cpdragon
-map drl dlfile
+map drm dragon_mv
+map drc dragon_cp
+map drl dragon_download
 
 map dd trash
 # map dD remove

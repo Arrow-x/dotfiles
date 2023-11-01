@@ -13,7 +13,7 @@ if [ -z "$url" ]; then
 fi
 case "$1" in
 	-d | --download)
-		downloads_manager.sh "$url"
+		downloads_manager "$url"
 		;;
 	-v | --view)
 		link_handler "$url"

@@ -1,4 +1,7 @@
 #!/bin/sh
+if [ -n "$(pgrep bemenu)" ]; then
+	exit
+fi
 select="$(cliphist list | bemenu -l 20 --accept-single --fn FiraCode Nerd Font 12 | cliphist decode)"
 
 wl-copy "$select"
