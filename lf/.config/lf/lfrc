@@ -150,6 +150,7 @@ cmd dragon-individual %dragon-drop $fx
 cmd dragon_cp %dragon_cp
 cmd dragon_mv %dragon_mv
 cmd dragon_download %dragon_download -lf
+cmd lazygit $lazygit
 
 # Remove some defaults
 map m
@@ -197,6 +198,8 @@ map mt tagfiles $fx
 map md mkdir
 map mf mkfile
 map mw setwallpaper
+map mg lazygit
+
 
 # Basic Functions
 map . set hidden!
