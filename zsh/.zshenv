@@ -26,6 +26,8 @@ export DOTFILES=$HOME/dotfiles
 export XCURSOR_SIZE=24
 export LS_COLORS="$(vivid generate tokyonight)"
 export QT_QPA_PLATFORMTHEME=qt6ct
+export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 
 export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
 	--tb '#565f89' \
