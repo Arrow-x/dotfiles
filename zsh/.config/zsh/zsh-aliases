@@ -1,15 +1,14 @@
 #!/bin/zsh
 
 alias x="exit"
+
 alias vi='nvim'
-alias virc='nvim ~/.config/nvim/'
-alias zshrc='nvim ~/.config/zsh/'
-alias i3rc='nvim ~/.config/i3/config'
-alias kittyrc='nvim ~/.config/kitty/kitty.conf'
-alias xprc='nvim ~/.xprofile'
+
+alias virc='nvim ~/Public/shinyvim/'
+alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/'
 alias dfrc='nvim ~/dotfiles '
-alias nrc='nvim ~/Notes-And-Tasks'
-alias e-pip=' ~/.local/share/python_env/bin/pip'
+
+alias lpip=' ~/.local/share/python_env/bin/pip'
 
 #Neovim for Godot
 alias vig='nvim --listen /tmp/godothost.pipe'
