@@ -151,6 +151,7 @@ cmd dragon_cp %dragon_cp
 cmd dragon_mv %dragon_mv
 cmd dragon_download %dragon_download -lf
 cmd lazygit $lazygit
+cmd z_shell $zsh
 
 # Remove some defaults
 map m
@@ -199,6 +200,7 @@ map md mkdir
 map mf mkfile
 map mw setwallpaper
 map mg lazygit
+map ~ z_shell
 
 
 # Basic Functions
