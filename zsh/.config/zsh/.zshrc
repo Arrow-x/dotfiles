@@ -104,7 +104,7 @@ done'
 # bindkey -M menuselect '^N' vi-down-line-or-history
 # bindkey -M menuselect '^k' vi-up-line-or-history
 # bindkey -M menuselect '^j' vi-down-line-or-history
-bindkey '^I' fzf_completion
+bindkey '^N' fzf_completion
 bindkey '^P' _atuin_search_widget
 # bindkey '^N' down-line-or-select
 #  }}}
