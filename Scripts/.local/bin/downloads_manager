@@ -23,7 +23,7 @@ download_url() {
 			"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$2"
 			;;
 		"Picture")
-			"$TERMINAL" gallery-dl "$2"
+			gallery-dl "$2"
 			;;
 		"Pixeldrain")
 			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
