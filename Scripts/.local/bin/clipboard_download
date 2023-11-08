@@ -1,0 +1,32 @@
+#!/bin/sh
+
+help="-v to pass the link in clipboard to link_handler
+-d to pass the link in clipboard to downloads_manager"
+
+link_in_clipboard=""
+case "$XDG_SESSION_TYPE" in
+	wayland) link_in_clipboard="$(wl-paste -p)" ;;
+	*) link_in_clipboard="$(xclip -o)" ;;
+esac
+
+if [ -z "$link_in_clipboard" ]; then
+	notify-send "Opps!" "Nothing in primary clipboard to add to link_in_clipboards"
+	exit
+fi
+
+case "$1" in
+	-v | --view)
+		link_handler "$link_in_clipboard"
+		;;
+	-d | --download)
+		downloads_manager "$link_in_clipboard"
+		;;
+	-h | --help)
+		printf "%s\n" "$help"
+		exit
+		;;
+	*)
+		printf "%s\n" "$help"
+		exit
+		;;
+esac
