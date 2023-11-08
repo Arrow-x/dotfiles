@@ -203,8 +203,8 @@ bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/sway_run t_cmus "footc
 bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/sway_run t_btop "footclient -a t_btop bpytop &"
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/sway_run t_drop "footclient -a t_drop &"
 
-bindsym $mod+q exec --no-startup-id  ~/.local/bin/dragon_download -v
-bindsym $mod+Shift+q exec --no-startup-id  ~/.local/bin/dragon_download -d
+bindsym $mod+q exec --no-startup-id  ~/.local/bin/clipboard_download -v
+bindsym $mod+Shift+q exec --no-startup-id  ~/.local/bin/clipboard_download -d
 
 bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
 bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next
