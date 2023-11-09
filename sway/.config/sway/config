@@ -38,7 +38,7 @@ exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
-exec --no-startup-id persway daemon -d stack_main
+exec --no-startup-id persway daemon -d manual
 exec --no-startup-id foot -s
 ### Key bindings
 # Moving around:
