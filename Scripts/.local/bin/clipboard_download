@@ -5,8 +5,8 @@ help="-v to pass the link in clipboard to link_handler
 
 link_in_clipboard=""
 case "$XDG_SESSION_TYPE" in
-	wayland) link_in_clipboard="$(wl-paste -p)" ;;
-	*) link_in_clipboard="$(xclip -o)" ;;
+	wayland) link_in_clipboard="$(wl-paste)" ;;
+	*) link_in_clipboard="$(xclip)" ;;
 esac
 
 if [ -z "$link_in_clipboard" ]; then
