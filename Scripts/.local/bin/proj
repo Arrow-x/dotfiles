@@ -2,30 +2,54 @@
 
 terminal="footclient -D"
 editor="footclient nvim"
+
 menu() {
-	if [ -n "$(pgrep bemenu)" ]; then
-		exit
-	fi
+	[ -n "$(pgrep bemenu)" ] && exit
 	bemenu -l 20 -p Projects:
 }
 
-search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | menu)"
+proj_search() {
+	search="$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | menu)"
+	printf "%s" "$search"
+}
 
-if [ -z "$search" ]; then
-	exit
-fi
+configs() {
+	search="$(find -L "/home/arrowx/.config" -mindepth 1 -maxdepth 1 -type d | menu)"
+	printf "%s" "$search"
+}
 
 tmux_running=$(pgrep tmux)
 
 if [ "$TMUX" ] && [ "$tmux_running" ]; then
+	search="$(proj_search)"
+	[ -z "$search" ] && exit
 	tmux rename-window "$(basename "$search")"
 	if [ "$1" = "-n" ]; then
 		tmux new-window nvim "$search"
 		exit
 	fi
 fi
+
 case "$1" in
-	-n | --neovim) $editor "$search" & ;;
-	-c | --change-dir) $terminal "$search" & ;;
+	-n | --neovim)
+		search="$(proj_search)"
+		[ -z "$search" ] && exit
+		$editor "$search" &
+		;;
+	-c | --change-dir)
+		search="$(proj_search)"
+		[ -z "$search" ] && exit
+		$terminal "$search" &
+		;;
+	-lc | --local-configs)
+		search="$(configs)"
+		[ -z "$search" ] && exit
+		$editor "$search" &
+		;;
+	-Lc | --Local-configs-dir)
+		search="$(configs)"
+		[ -z "$search" ] && exit
+		$terminal "$search" &
+		;;
 	*) exit ;;
 esac

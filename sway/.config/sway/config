@@ -188,6 +188,8 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
 
 bindsym $mod+o exec --no-startup-id proj -n
 bindsym $mod+Shift+o exec --no-startup-id proj -c
+bindsym $mod+Control+o exec --no-startup-id proj -lc
+bindsym $mod+Control+Shift+o exec --no-startup-id proj -Lc
 
 bindsym $mod+m exec --no-startup-id $term cht.sh
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/monset
