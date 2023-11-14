@@ -50,6 +50,7 @@ alias gpl='git pull'
 alias gplo='git pull origin'
 alias gd='git diff'
 alias gcl='git clone'
+alias gcl1='git clone --depth 1'
 alias gco='git checkout'
 alias gbr='git branch'
 
