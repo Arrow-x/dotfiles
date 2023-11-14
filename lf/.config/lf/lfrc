@@ -166,7 +166,7 @@ map r
 map rA :rename; cmd-end # at the very end
 map rc push rA<c-u> # new rename
 map rI :rename; cmd-home # at the very beginning
-map ri :rename # before extension
+map re :rename # before extension
 map ra :rename; cmd-right # after extension
 
 map <enter> shell # use enter for shell commands
