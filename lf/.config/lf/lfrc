@@ -110,6 +110,18 @@ cmd chmod_minus_x %{{
 	lf -remote "send $id reload"
 }}
 
+cmd paste-overwrite %{{
+	mode=$(head -1 ~/.local/share/lf/files)
+	list=$(sed 1d ~/.local/share/lf/files)
+    if [ $mode = 'copy' ]; then
+        cp -r $list .
+    elif [ $mode = 'move' ]; then
+        mv $list .
+    fi
+    lf -remote 'send load'
+    lf -remote 'send clear'
+}}
+
 cmd link %{{
 	set -- $(cat ~/.local/share/lf/files)
 	mode="$1"
@@ -126,18 +138,6 @@ cmd link %{{
 	esac
 	# rm ~/.local/share/lf/files
 	# lf -remote "send clear"
-}}
-
-cmd tagfiles %{{
-	TAGS="$(tmsu tags | dmenu -l 4 -g 5 -p "Tag" | sed "s/,/\n/g")"
-
-	if [ -z "$TAGS" ]; then
-		exit 1
-	fi
-
-	for f in $fx; do
-		echo "$TAGS" | xargs tmsu tag $f
-	done
 }}
 
 cmd full_size %{{
@@ -162,6 +162,7 @@ map '"'
 map d
 map w
 map r
+map p
   
 map rA :rename; cmd-end # at the very end
 map rc push rA<c-u> # new rename
@@ -205,7 +206,8 @@ map ~ z_shell
 
 # Basic Functions
 map . set hidden!
-map p paste
+map pp paste
+map po paste-overwrite
 map x cut
 map y copy
 map R reload
