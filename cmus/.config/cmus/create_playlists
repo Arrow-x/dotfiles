@@ -6,7 +6,7 @@
 
 dirs=$(find -L "$1" -maxdepth 1 -mindepth 1 -type d)
 # dirs=$(find -L "$1" -maxdepth 1 -type d)
-mkdir "$XDG_CONFIG_HOME"/cmus/playlists/
+mkdir -p "$XDG_CONFIG_HOME"/cmus/playlists/
 echo "$dirs" | while read -r dir; do
 	splice="$(echo "$dir" | sed 's#.*/##')"
 	dest="$XDG_CONFIG_HOME"/cmus/playlists/"$splice"
