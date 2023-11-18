@@ -18,18 +18,6 @@ configs() {
 	printf "%s" "$search"
 }
 
-tmux_running=$(pgrep tmux)
-
-if [ "$TMUX" ] && [ "$tmux_running" ]; then
-	search="$(proj_search)"
-	[ -z "$search" ] && exit
-	tmux rename-window "$(basename "$search")"
-	if [ "$1" = "-n" ]; then
-		tmux new-window nvim "$search"
-		exit
-	fi
-fi
-
 case "$1" in
 	-n | --neovim)
 		search="$(proj_search)"

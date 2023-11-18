@@ -1,25 +1,42 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-if [[ $# -eq 1 ]]; then
-	selected=$1
-else
-	selected=$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | fzf)
-fi
+selected=$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | fzf)
 
-if [[ -z $selected ]]; then
-	exit 0
-fi
+[ -z "$selected" ] && exit 0
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-	tmux new-session -s "$selected_name" -c "$selected"
-	exit 0
+if [ ! "$TMUX" ] && [ ! "$tmux_running" ]; then
+	exit
 fi
 
-if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-	tmux new-session -ds "$selected_name" -c "$selected"
-fi
+case "$1" in
+	-we)
+		tmux rename-window "$(basename "$selected")"
+		if [ "$1" = "-n" ]; then
+			tmux new-window nvim "$selected"
+			exit
+		fi
+		;;
+	-wcd)
+		tmux rename-window "$(basename "$selected")"
+		if [ "$1" = "-n" ]; then
+			tmux new-window -c "$selected"
+			exit
+		fi
+		;;
+	-se)
+		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+			tmux new-session -ds "$selected_name" nvim "$selected"
+		fi
+		tmux switch-client -t "$selected_name"
+		;;
+	-scd)
+		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+			tmux new-session -ds "$selected_name" -c "$selected"
+		fi
 
-tmux switch-client -t "$selected_name"
+		tmux switch-client -t "$selected_name"
+		;;
+esac
