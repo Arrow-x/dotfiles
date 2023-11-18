@@ -5,7 +5,8 @@ alias x="exit"
 alias vi='nvim'
 
 alias virc='nvim ~/Public/shinyvim/'
-alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/'
+alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/.zshrc'
+alias zshra='nvim ~/dotfiles/zsh/.config/zsh/zsh-aliases'
 alias dfrc='nvim ~/dotfiles '
 
 alias lpip=' ~/.local/share/python_env/bin/pip'
@@ -61,7 +62,7 @@ gcth() {
 #yt-dlp usage
 alias ydl='yt-dlp  --embed-metadata'
 alias ydlm='yt-dlp --embed-thumbnail --embed-metadata -f 140'
-alias ydla='yt-dlp --embed-thumbnail --embed-metadata -f 250'
+alias ydla='yt-dlp --embed-metadata -f 250'
 alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp --embed-thumbnail --embed-metadata -f'
 alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
@@ -138,7 +139,7 @@ alias pacme='paru -S --asexplicit'
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 t() {
-	termdown "$1"m ; notify-send "$2" ; mpv "/home/arrowx/Music/Music/OH MY DAYUM ft. @Daym Drops.webm"
+	termdown "$1"m ; notify-send "$2" ; mpv "/home/arrowx/Music/deemix Music/Your Alternative/Beck - Colors.mp3"
 }
 
 alias aria='aria2c --check-integrity=true'
