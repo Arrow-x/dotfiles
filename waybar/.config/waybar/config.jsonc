@@ -98,7 +98,7 @@
     },
     "custom/bandwidth":{
         "format-icons": "",
-        "format":"{icon}{}",
+        "format":"{icon} {}",
         "exec":"$HOME/.config/waybar/scripts/bandwidthc"
     },
     "custom/dunst":{
@@ -108,14 +108,5 @@
         "exec":"$HOME/.config/waybar/scripts/dunst",
         "on-click":"dunstctl set-paused toggle",
         "on-click-right":"dunstctl history-pop"
-    },
-    "custom/cmus": {
-        "format": "♪ {}",
-        //"max-length": 15,
-        "interval": 10,
-        "exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
-        "exec-if": "pgrep cmus",
-        "on-click": "cmus-remote -u",                        //toggle pause
-        "escape": true                                       //handle markup entities
     }
 }
