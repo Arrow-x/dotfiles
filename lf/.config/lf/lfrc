@@ -10,6 +10,9 @@ set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"  # default already
 
+set previewer /home/arrowx/.config/lf/previewer.sh
+set cleaner /home/arrowx/.config/lf/clear_img.sh
+
 # Custom Functions
 cmd mkdir %{{
 	printf "Directory Name: "
@@ -234,30 +237,33 @@ map R reload
 map C clear
 map b bulkrenamevimv
 
-
 # Movement
 map ghh cd /home/arrowx
 map ghd cd /home/arrowx/Downloads
 map ghp cd /home/arrowx/Public
 map ghg cd /home/arrowx/gallery-dl
 map ghv cd /home/arrowx/Videos
-map ghc cd /home/arrowx/.config
+map ght cd /home/arrowx/Pictures
+map ghm cd /home/arrowx/Music
+
+map glc cd /home/arrowx/.config
 map glb cd /home/arrowx/.local/bin
 map gls cd /home/arrowx/.local/share
 map glt cd /home/arrowx/.local/state
-map gfd cd /home/arrowx/File/Documents
+
 map gff cd /home/arrowx/File
+map gfd cd /home/arrowx/File/Documents
 map gfs cd /home/arrowx/File/Software
 map gfh cd /home/arrowx/File/Homework/H-Games
 map gfp cd /home/arrowx/File/Projects
 map gft cd /home/arrowx/File/Tutorials
+
 map gm cd /run/media/arrowx/
 
 map grr cd /home/arrowx/File/Examples\ and\ Refrences
 map gra cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Random/
+map grc cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Comics
 map grp cd /home/arrowx/File/Examples\ and\ Refrences/pixel\ art
+map grd cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d
 map grn cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d/NPR
-map grc cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d
-
-set previewer /home/arrowx/.config/lf/previewer.sh
-set cleaner /home/arrowx/.config/lf/clear_img.sh
+map grm cd /home/arrowx/File/Examples\ and\ Refrences/Animations/
