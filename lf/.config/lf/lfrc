@@ -63,6 +63,25 @@ cmd unarchive ${{
 	done
 }}
 
+cmd archive_preveiw ${{
+	batorcat() {
+		if command -v bat >/dev/null 2>&1; then
+			bat --wrap=never --paging=always
+		else
+			cat
+		fi
+	}
+	case "$(printf "%s\n" "$(readlink -f $fx)" | awk '{print tolower($0)}')" in
+		*.tgz | *.tar.gz) tar tzf "$fx" | batorcat ;;
+		*.tar.bz2 | *.tbz2) tar tjf "$fx" | batorcat ;;
+		*.tar.txz | *.txz) xz --list "$fx" | batorcat ;;
+		*.tar) tar tf "$fx" | batorcat ;;
+		*.zip | *.jar | *.war | *.ear | *.oxt) unzip -l "$fx" | batorcat ;;
+		*.rar) unrar l "$fx" | batorcat ;;
+		*.7z) 7z l "$fx" | batorcat ;;
+	esac
+}}
+
 cmd open %{{
 	case "$(mimetype -M -b "$f")" in
 		application/x-sharedlib | application/x-shellscript | application/x-executable | application/x-object)
@@ -193,6 +212,7 @@ map ds full_size
 
 map aa archive
 map au unarchive
+map ap archive_preveiw
 
 map mx chmod_plus_x
 map mX chmod_minus_x
