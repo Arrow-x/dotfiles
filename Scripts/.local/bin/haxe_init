@@ -1,0 +1,15 @@
+#!/bin/sh
+# Haxe need a build.hxml for the lsp to work
+if [ -n "$1" ]; then
+	mkdir "$1"
+	cd "$1" || exit
+fi
+git init --quiet
+touch build.hxml
+
+touch Main.hx
+printf 'class Main {
+    static public function main():Void {
+		//Main Body
+    }
+}' >Main.hx
