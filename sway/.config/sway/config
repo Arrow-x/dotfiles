@@ -9,6 +9,13 @@ set $right l
 
 set $term footclient
 
+# Basics
+default_border pixel 4
+gaps inner 4
+gaps outer 2
+smart_borders on
+focus_follows_mouse no
+
 input type:keyboard {
     xkb_layout us,ara
     xkb_options caps:swapescape,grp:alt_shift_toggle
@@ -108,12 +115,6 @@ bindsym $mod+$alt+Left resize shrink width 30px
 bindsym $mod+$alt+Down resize grow height 30px
 bindsym $mod+$alt+Up resize shrink height 30px
 bindsym $mod+$alt+Right resize grow width 30px
-# Basics
-default_border pixel 4
-gaps inner 4
-gaps outer 2
-smart_borders on
-focus_follows_mouse no
 # Kill focused window
 bindsym $mod+c kill
 # Toggle selected window between tiled and floating
