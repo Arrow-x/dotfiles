@@ -1,7 +1,13 @@
 #!/bin/sh
-# TODO: tidy up the script with options
+
 appid="$1"
-appcmd="$2"
+appcmd=""
+if [ "$2" = "--" ]; then
+	shift 2
+	appcmd="$*"
+else
+	appcmd="$2"
+fi
 
 is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
 if [ -z "$is_focused" ]; then
