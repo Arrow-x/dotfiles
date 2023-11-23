@@ -67,15 +67,10 @@ source $HOME/.config/zsh/zsh-aliases
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-completions
-znap source hlissner/zsh-autopair
 znap source jeffreytse/zsh-vi-mode
 
-# source /usr/share/fzf/completion.zsh
-# source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 eval "$(atuin init zsh)"
-# source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-# bindkey '^I' fzf_completion
 #  }}}
 
 # Completion Menu Options {{{
@@ -109,6 +104,7 @@ done'
 function zvm_after_init() {
   zvm_bindkey viins '^N' fzf_completion
   zvm_bindkey viins '^P' _atuin_search_widget
+  znap source hlissner/zsh-autopair
 }
 
 # bindkey '^N' fzf_completion
