@@ -99,17 +99,16 @@ cmd trash ${{
 	files=$(printf "$fx" | tr '\n' ';')
 	while [ "$files" ]; do
 		file=${files%%;*}
-		trash-put -v "$(basename "$file")"
+		b_file="$(basename "$file")"
+		gio trash "$b_file"
+		[ "$?" -eq 0 ] && printf "Trashed %s\n" "$b_file"
+
 		if [ "$files" = "$file" ]; then
 			files=''
 		else
 			files="${files#*;}"
 		fi
 	done
-}}
-
-cmd restore_trash ${{
-	trash-restore
 }}
 
 cmd remove %{{
@@ -210,7 +209,6 @@ map drl dragon_download
 
 map dd trash
 # map dD remove
-map dR restore_trash
 map ds full_size
 
 map aa archive

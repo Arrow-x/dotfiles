@@ -26,6 +26,10 @@ alias fgrep='fgrep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i -v"
 alias mv='mv -i -v'
+
+alias trash="gio trash"
+alias trash-empty="gio trash --empty --force"
+alias trash-list="gio trash --list"
 # alias rm='trash-put -f -v'
 
 # ls colors
