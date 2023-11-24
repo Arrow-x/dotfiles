@@ -29,6 +29,9 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 
+# for bottles dark mode
+export ADW_DISABLE_PORTAL=1
+
 export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
 	--tb '#565f89' \
 	--tf '#cfc9c2' \
@@ -44,7 +47,9 @@ export BEMENU_OPTS="--accept-single --fn FiraCode Nerd Font 12 -n \
 	--sf '#ff9e64' \
 	--scb '#24283b' \
 	--scf '#f7768e'"
+
 export FZF_COMPLETION_OPTS="--multi --bind=ctrl-l:accept"
+
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
