@@ -22,6 +22,15 @@ core:
 
 text:
   special:
+    - CHANGELOG
+    - CHANGELOG.md
+    - CHANGELOG.txt
+    - CODE_OF_CONDUCT
+    - CODE_OF_CONDUCT.md
+    - CODE_OF_CONDUCT.txt
+    - CONTRIBUTING
+    - CONTRIBUTING.md
+    - CONTRIBUTING.txt
     - CONTRIBUTORS
     - CONTRIBUTORS.md
     - CONTRIBUTORS.txt
@@ -53,6 +62,7 @@ text:
       - .json
       - .tml
       - .toml
+      - .webmanifest
       - .yaml
       - .yml
 
@@ -101,6 +111,7 @@ markup:
 programming:
   source:
     actionscript: [.as]
+    ada: [.adb, .ads]
     applescript: [.applescript]
     asp: [.asa]
     awk: [.awk]
@@ -109,7 +120,7 @@ programming:
     clojure: [.clj]
     crystal: [.cr]
     csharp: [.cs, .csx]
-    css: [.css, .sass, .scss]
+    css: [.css]
     cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inc, .inl, .ipp, .def]
     d: [.d, .di]
     dart: [.dart]
@@ -122,10 +133,11 @@ programming:
     go: [.go]
     graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
+    hack: [.hack]
     haskell: [.hs]
     ipython: [.ipynb]
     java: [.java, .bsh]
-    javascript: [.js, .htc]
+    javascript: [.js, .jsx, .htc]
     julia: [.jl]
     kotlin: [.kt, .kts]
     latex: [.tex, .ltx]
@@ -135,25 +147,32 @@ programming:
     lua: [.lua]
     mathematica: [.nb]
     matlab: [.matlab, .m, .mn]
+    mojo: [.mojo]
+    nim: [.nim, .nims, .nimble]
     ocaml: [.ml, .mli]
     pascal: [.pas, .p, .dpr]
     perl: [.pl, .pm, .pod, .t, .cgi]
     php: [.php]
     powershell: [.ps1, .psm1, .psd1]
+    prql: [.prql]
     puppet: [.pp, .epp]
     purescript: [.purs]
     python: [.py]
     r: [.r]
+    raku: [.raku]
     ruby: [.rb]
     rust: [.rs]
+    sass: [.sass, .scss]
     scala: [.scala, .sbt]
-    shell: [.sh, .bash, .zsh, .fish]
+    shell: [.sh, .bash, .bashrc, .bash_profile, .zsh, .fish]
     sql: [.sql]
     swift: [.swift]
     tablegen: [.td]
     tcl: [.tcl]
     typescript: [.ts, .tsx]
+    v: [.v, .vsh]
     viml: [.vim]
+    zig: [.zig]
 
   tooling:
     vcs:
@@ -162,6 +181,7 @@ programming:
         - .gitmodules
         - .gitattributes
         - .gitconfig
+        - .mailmap
 
       hg:
         - .hgrc
@@ -172,6 +192,7 @@ programming:
         - .ignore
         - .fdignore
         - .rgignore
+        - .tfignore
 
     build:
       cmake:
@@ -198,11 +219,16 @@ programming:
         - requirements.txt
 
     packaging:
+      go:
+        - go.mod
       python:
         - MANIFEST.in
         - setup.py
+        - pyproject.toml
       ruby:
         - .gemspec
+      v:
+        - v.mod
 
     code-style:
       python:
@@ -212,6 +238,8 @@ programming:
         - .clang-format
 
     editors:
+      editorconfig:
+        - .editorconfig
       qt:
         - .pro
       kdevelop:
@@ -224,27 +252,36 @@ programming:
 
     continuous-integration:
       - appveyor.yml
+      - azure-pipelines.yml
+      - .cirrus.yml
       - .gitlab-ci.yml
       - .travis.yml
 
 media:
   image:
+    - .avif
     - .bmp
     - .eps
     - .gif
+    - .heif
     - .ico
     - .jpeg
     - .jpg
+    - .jxl
     - .pbm
+    - .pcx
     - .pgm
     - .png
     - .ppm
     - .psd
+    - .qoi
     - .svg
+    - .tga
     - .tif
     - .tiff
     - .webp
     - .xcf
+    - .xpm
 
   audio:
     - .aif
@@ -270,6 +307,7 @@ media:
     - .mp4
     - .mpeg
     - .mpg
+    - .ogv
     - .rm
     - .swf
     - .vob
@@ -282,6 +320,7 @@ media:
     - .otf
     - .ttf
     - .woff
+    - .woff2
 
 office:
   document:
@@ -315,6 +354,7 @@ archives:
   packages:
     - .apk
     - .deb
+    - .msi
     - .rpm
     - .xbps
 
@@ -357,6 +397,7 @@ executable:
     - .so
     - .a
     - .dll
+    - .dylib
 
   linux:
     - .ko
@@ -408,10 +449,12 @@ unimportant:
     - .CFUserTextEncoding
     - .DS_Store
     - .localized
+    - Icon\r
 
   other:
     - "~"
     - .bak
+    - .ctags
     - .git  # only works for '.git' files (submodules)
     - .lock
     - .log
@@ -419,4 +462,6 @@ unimportant:
     - .pid
     - .swp
     - .tmp
+    - bun.lockb
+    - go.sum
     - package-lock.json
