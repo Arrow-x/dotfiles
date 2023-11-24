@@ -1,0 +1,100 @@
+# vim: filetype=sxhkd
+XF86AudioRaiseVolume
+	amixer -D pulse sset Master 5% +
+XF86AudioLowerVolume
+	amixer -D pulse sset Master 5%-
+XF86AudioMute
+	amixer sset 'Master' toggle
+XF86AudioPlay
+	pl_dmenu play-pause
+XF86AudioNext
+	pl_dmenu next
+XF86AudioPrev
+	pl_dmenu previous
+XF86AudioStop
+	pl_dmenu stop
+# Brightness control
+XF86MonBrightnessDown
+	brightnessctl --min-val=2 -q set 3%-
+XF86MonBrightnessUp
+	brightnessctl -q set 3% +
+# Top non-standard fn keys
+#XF86Mail
+#	firejail thunderbird
+# XF86HomePage
+#	$BROWSER
+Print
+	"flameshot gui"
+
+# Start a terminal
+super + Return
+	$TERMINAL
+# Start your launcher
+super + d
+	bemenu_run
+super + shift + d
+	rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+
+super + u
+	pl_dmenu play-pause
+super + shift + u
+	pl_dmenu stop
+
+super + bracket{left,right}
+	pl_dmenu {previous, next}
+super + shift + bracket{left,right}
+	amixer -D pulse sset Master 5%{+,-}
+
+super + w
+	$BROWSER
+super + shift + w
+	firejail thunderbird
+
+super + n
+	sway_run t_lf -- footclient -a t_lf lfu &
+super + shift + n
+	pcmanfm
+super + b
+	select_bookmark -b
+super + shift + b
+	bookmark
+super + v
+	paster
+super + p
+	trackpad
+super + shift + p
+	~/.config/sway/scripts/lock.sh
+
+super + o
+	proj -n
+super + shift + o
+	proj -c
+super + ctrl + o
+	proj -lc
+super + ctrl + shift + o
+	proj -Lc
+
+super + m
+	$TERMINAL cht.sh
+# super + shift + m
+# 	monset
+super + i
+	unicode_menu -e
+super + shift + i
+	unicode_menu -n
+super + s
+	pass_menu -bt
+super + shift + s
+	pass_menu -p
+super + r
+	sway_run t_newsboat -- footclient -a t_newsboat newsboat &
+super + semicolon
+	sway_run t_cmus -- footclient -a t_cmus cmus &
+super + apostrophe
+	sway_run t_btop -- footclient -a t_btop bpytop &
+super + grave
+	sway_run t_drop -- footclient -a t_drop &
+super + q
+	clipboard_download -v
+super + shift + q
+	clipboard_download -d
