@@ -16,7 +16,7 @@ esac
 UB_PID=$(cat "$pid_file")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 pics="/home/arrowx/Pictures/"
-resault="$(fd -t f -L -0 . "$pics" -E Vertical -E .tmsu | xargs --null ls -t | fzf \
+resault="$(find -L "$pics" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | fzf \
 	--preview-window='up,30' \
 	--preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' \
 	--bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $pics | xargs --null ls -t )' \
