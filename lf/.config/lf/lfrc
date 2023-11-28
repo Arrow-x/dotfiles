@@ -101,7 +101,7 @@ cmd trash ${{
 		file=${files%%;*}
 		b_file="$(basename "$file")"
 		gio trash "$b_file"
-		[ "$?" -eq 0 ] && printf "Trashed %s\n" "$b_file"
+		# [ "$?" -eq 0 ] && printf "Trashed %s\n" "$b_file"
 
 		if [ "$files" = "$file" ]; then
 			files=''
