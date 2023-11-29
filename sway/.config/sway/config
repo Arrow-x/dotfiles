@@ -41,7 +41,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/bin/snapshot-detect
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null && \
+exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
@@ -156,7 +156,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 # Top non-standard fn keys
 bindsym XF86Mail exec --no-startup-id firejail thunderbird
 bindsym XF86HomePage exec --no-startup-id $BROWSER
-bindsym Print exec --no-startup-id "flameshot gui"
+bindsym Print exec --no-startup-id "grim && ls $GRIM_DEFAULT_DIR | head -n1 | nsxiv -i"
+bindsym Shift+Print exec --no-startup-id "flameshot gui"
 
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
@@ -264,7 +265,7 @@ for_window [class=Godot] floating enable
 for_window [app_id="galculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="pavucontrol"] resize set 710 400
-
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 # Status Bar:
 #
 set $dark_blue #24283b
