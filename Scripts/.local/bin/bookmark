@@ -1,8 +1,8 @@
 #!/bin/sh
 bookmark=""
 case "$XDG_SESSION_TYPE" in
-	wayland) bookmark="$(wl-paste -p)" ;;
-	*) bookmark="$(xclip -o)" ;;
+	wayland) bookmark="$(wl-paste)" ;;
+	*) bookmark="$(xclipo)" ;;
 esac
 
 if [ -z "$bookmark" ]; then
