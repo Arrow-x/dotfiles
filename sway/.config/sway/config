@@ -204,7 +204,7 @@ bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -p
 
 bindsym $mod+r exec --no-startup-id  ~/.local/bin/sway_run t_newsboat -- footclient -a t_newsboat newsboat &
 bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/sway_run t_cmus -- footclient -a t_cmus cmus &
-bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/sway_run t_btop -- footclient -a t_btop bpytop &
+bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/sway_run t_btop -- footclient -a t_btop btop &
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/sway_run t_drop -- footclient -a t_drop &
 
 bindsym $mod+q exec --no-startup-id  ~/.local/bin/clipboard_download -v
