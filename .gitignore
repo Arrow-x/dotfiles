@@ -13,3 +13,5 @@ cmus/.config/cmus/command-history
 cmus/.config/cmus/lib.pl
 cmus/.config/cmus/search-history
 cmus/.config/cmus/playlists
+dotfiles/nvim.shada
+nvim.shada

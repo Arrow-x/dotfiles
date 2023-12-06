@@ -4,17 +4,18 @@ alias x="exit"
 
 alias vi='nvim'
 
-alias virc='nvim ~/Public/shinyvim/'
+alias virc='nvim ~/Public/shinyvim/README.md'
 alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/.zshrc'
 alias zshra='nvim ~/dotfiles/zsh/.config/zsh/zsh-aliases'
-alias dfrc='nvim ~/dotfiles '
+alias dfrc='nvim ~/dotfiles/README.md'
 
 alias lpip=' ~/.local/share/python_env/bin/pip'
 
 #Neovim for Godot
-alias vig='nvim --listen /tmp/godothost.pipe'
+vig(){
+	nvim "$1" --listen /tmp/godothost.pipe
+}
 alias vigg='$TERMINAL godot; vig'
-alias vigg4='$TERMINAL godot4; vig'
 alias vin='nvim ~/.local/share/Obsidian/index.md'
 
 # Colorize grep output (good for log files)
