@@ -14,7 +14,7 @@ if [ -z "$is_focused" ]; then
 	swaymsg "[app_id=$appid]" move container to workspace current
 	focus="$(swaymsg "[app_id=$appid] focus" | grep success)"
 	if echo "$focus" | grep -q false; then
-		sh -c "$appcmd"
+		sh -c "$appcmd" &
 		exit
 	fi
 	exit
