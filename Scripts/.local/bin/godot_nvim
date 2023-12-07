@@ -1,0 +1,15 @@
+#!/bin/sh
+appid="g_nvim"
+appcmd="footclient -a g_nvim nvim --listen /tmp/godothost.pipe"
+appargs="$*"
+
+is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
+if [ -z "$is_focused" ]; then
+	swaymsg "[app_id=$appid]" move container to workspace current
+	focus="$(swaymsg "[app_id=$appid] focus" | grep success)"
+	if echo "$focus" | grep -q false; then
+		sh -c "$appcmd" &
+		sleep 0.05
+	fi
+fi
+nvim --server /tmp/godothost.pipe --remote-send "$appargs" &
