@@ -1,3 +1,8 @@
 #! /bin/sh
-xrandr --output LVDS-1 --mode 1400x900
-xrandr --output LVDS-1 --mode 1600x900
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	swaymsg output LVDS-1 toggle
+	swaymsg output LVDS-1 toggle
+else
+	xrandr --output LVDS-1 --mode 1400x900
+	xrandr --output LVDS-1 --mode 1600x900
+fi
