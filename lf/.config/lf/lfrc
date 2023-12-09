@@ -185,6 +185,8 @@ map w
 map r
 map p
   
+map T :filter
+
 map rA :rename; cmd-end # at the very end
 map rc push rA<c-u> # new rename
 map rI :rename; cmd-home # at the very beginning
@@ -257,7 +259,6 @@ map gfp cd /home/arrowx/File/Projects
 map gft cd /home/arrowx/File/Tutorials
 
 map gm cd /run/media/arrowx/
-
 map grr cd /home/arrowx/File/Examples\ and\ Refrences
 map gra cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Random/
 map grc cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Comics
