@@ -85,6 +85,13 @@ cmd archive_preveiw ${{
 	esac
 }}
 
+cmd archive_mount ${{
+    mntdir="$(printf '%s.mnt' $f)"
+    mkdir -p "$mntdir"
+    archivemount "$f" "$mntdir"
+    lf -remote "send $id cd \"$mntdir\""
+}}
+
 cmd open %{{
 	case "$(mimetype -M -b "$f")" in
 		application/x-sharedlib | application/x-shellscript | application/x-executable | application/x-object)
@@ -216,6 +223,7 @@ map ds full_size
 map aa archive
 map au unarchive
 map ap archive_preveiw
+map am archive_mount
 
 map mx chmod_plus_x
 map mX chmod_minus_x

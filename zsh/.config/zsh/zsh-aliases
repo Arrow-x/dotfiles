@@ -166,47 +166,13 @@ pass-gen() {
 }
 
 lf() {
-	if [ $TMUX ]; then
-		tmux rename-window lf
-	fi
-	tmp="$(mktemp)"
-	# `command` is needed in case `lfcd` is aliased to `lf`
-	command lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		if [ -d "$dir" ]; then
-			if [ "$dir" != "$(pwd)" ]; then
-				cd "$dir"
-			fi
-		fi
-	fi
+    dir=$(command lf -print-last-dir "$@")
+    while ! cd "$dir" 2> /dev/null
+    do
+        dir=$(dirname "$dir")
+    done
 }
 
-lfu() {
-	if [ $TMUX ]; then
-		tmux rename-window lf
-	fi
-	tmp="$(mktemp)"
-	# `command` is needed in case `lfcd` is aliased to `lf`
-	command lfu -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		if [ -d "$dir" ]; then
-			if [ "$dir" != "$(pwd)" ]; then
-				cd "$dir"
-			fi
-		fi
-	fi
-}
-tmux-window-name() {
-	if [ $TMUX ]; then
-		tmux rename-window "$(basename $PWD)"
-	fi
-}
-
-add-zsh-hook chpwd tmux-window-name
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias abook=abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook
