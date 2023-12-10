@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: FiraCode Nerd Font, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -13,7 +13,7 @@ window#waybar {
 
 #workspaces {
 	background-color: #24283b;
-	margin: 5px;
+	margin: 1px;
     padding: 1px;
 	border-radius: 10px;
 }
@@ -51,16 +51,11 @@ window#waybar {
 #custom-date, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst{
 	background-color: #24283b;
 	padding: 5px 10px;
-	margin: 5px 0px;
 	border-radius: 10px;
 }
 
 #tray {
     border-radius: 10px;
-	margin-right: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 0px;
 	padding: 5px 10px;
 }
 
@@ -72,17 +67,12 @@ window#waybar {
 	color: #24283b;
 	background-color: #db4b4b;
 	border-radius: 10px;
-	margin-right: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 0px;
 	padding: 5px 10px;
 }
 
 #clock {
     color: #b48ead;
     border-radius: 10px;
-    margin-right: 10px;
 }
 
 #cpu {
@@ -112,12 +102,10 @@ window#waybar {
 #battery.warning:not(.charging) {
     background-color: #f7768e;
     color: #24283b;
-    border-radius: 5px 5px 5px 5px;
 }
 
 #custom-bandwidth{
 	color: #f7768e;
-    border-radius: 10px;
 }
 
 #pulseaudio {
