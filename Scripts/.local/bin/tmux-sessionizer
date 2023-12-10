@@ -12,27 +12,27 @@ if [ ! "$TMUX" ] && [ ! "$tmux_running" ]; then
 fi
 
 case "$1" in
-	-we)
+	-we | --new-window-nvim)
 		tmux rename-window "$(basename "$selected")"
 		if [ "$1" = "-n" ]; then
 			tmux new-window nvim "$selected"
 			exit
 		fi
 		;;
-	-wcd)
+	-wcd | --new-window-cd)
 		tmux rename-window "$(basename "$selected")"
 		if [ "$1" = "-n" ]; then
 			tmux new-window -c "$selected"
 			exit
 		fi
 		;;
-	-se)
+	-se | --new-session-nvim)
 		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
 			tmux new-session -ds "$selected_name" nvim "$selected"
 		fi
 		tmux switch-client -t "$selected_name"
 		;;
-	-scd)
+	-scd | --new-session-cd)
 		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
 			tmux new-session -ds "$selected_name" -c "$selected"
 		fi
