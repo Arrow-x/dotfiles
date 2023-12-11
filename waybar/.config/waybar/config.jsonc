@@ -10,14 +10,16 @@
     ],
     "modules-center": [],
     "modules-right": [
+        "custom/term",
+        "custom/launcher",
         "cpu",
         "temperature",
         "memory",
         "custom/bandwidth",
         "battery",
         "pulseaudio",
-        "custom/dunst",
         "clock",
+        "custom/dunst",
         "tray",
         "custom/power"
     ],
@@ -106,7 +108,19 @@
         "interval":"once",
         "exec-on-event": true,
         "exec":"$HOME/.config/waybar/scripts/dunst",
-        "on-click":"dunstctl set-paused toggle",
-        "on-click-right":"dunstctl history-pop"
+        "on-click-right":"dunstctl set-paused toggle",
+        "on-click":"dunstctl history-pop"
+    },
+    "custom/term":{
+        "format":" ",
+        "interval":"once",
+        "exec-on-event": true,
+        "on-click":"footclient"
+    },
+    "custom/launcher":{
+        "format":"",
+        "interval":"once",
+        "exec-on-event": true,
+        "on-click":"rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
     }
 }
