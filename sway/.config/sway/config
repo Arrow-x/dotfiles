@@ -281,7 +281,7 @@ bar {
     tray_output *
     # status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     swaybar_command waybar
-    position bottom
+    position top
     # strip_workspace_numbers no
     # colors {
     #     background $dark_blue
