@@ -2,20 +2,13 @@
 
 pid_file="/tmp/.$(uuidgen)"
 case "$TERM" in
-	"foot") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$pid_file" ;;
+	"xterm-256color" | "foot" | "tmux-256color") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$pid_file" ;;
 	"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$pid_file" ;;
-	"tmux-256color")
-		if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-			ueberzugpp layer --no-cache --no-stdin --silent --output wayland --pid-file "$pid_file"
-		else
-			ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$pid_file"
-		fi
-		;;
 	*) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$pid_file" ;;
 esac
 UB_PID=$(cat "$pid_file")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
-pics="/home/arrowx/Pictures/"
+pics="/home/arrowx/Pictures/Wallpapers"
 resault="$(find -L "$pics" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | fzf \
 	--preview-window='up,30' \
 	--preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' \

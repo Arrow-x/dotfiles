@@ -1,5 +1,5 @@
 #!/bin/sh
 case "$TERM" in
-	foot) ueberzugpp cmd -s "$UB_SOCKET" -a remove -i PREVIEW -d true ;;
+	foot | xterm-256color | tmux-256color) ueberzugpp cmd -s "$UB_SOCKET" -a remove -i PREVIEW -d true ;;
 	*) ueberzugpp cmd -s "$UB_SOCKET" -a remove -i PREVIEW ;;
 esac
