@@ -113,14 +113,10 @@
     },
     "custom/term":{
         "format":" ",
-        "interval":"once",
-        "exec-on-event": true,
         "on-click":"footclient"
     },
     "custom/launcher":{
         "format":"",
-        "interval":"once",
-        "exec-on-event": true,
         "on-click":"rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
     }
 }
