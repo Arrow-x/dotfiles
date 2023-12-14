@@ -79,14 +79,4 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 fi
 
 # Path
-typeset -U path PATH
-path=(
-	# "$XDG_DATA_HOME/ruby/gems/bin"
-	"$HOME/go/bin"
-	"$HOME/.local/share/cargo/bin"
-	"$XDG_DATA_HOME/npm/bin"
-	"$HOME/.local/bin"
-	"$path[@]"
-	"/usr/local/opt/openjdk/bin:$PATH"
-)
-export PATH
+path+=("$HOME/.local/bin")
