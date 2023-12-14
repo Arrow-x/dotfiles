@@ -15,7 +15,8 @@ window#waybar {
 	background-color: #24283b;
 	padding: 5px 10px;
 	border-radius: 10px;
-    margin-top: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 #workspaces {
