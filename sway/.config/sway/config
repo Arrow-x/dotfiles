@@ -11,8 +11,8 @@ set $term footclient
 
 # Basics
 default_border pixel 3
-gaps inner 1
-gaps outer 1
+gaps inner 0
+gaps outer 0
 smart_borders on
 focus_follows_mouse no
 
