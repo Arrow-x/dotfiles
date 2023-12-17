@@ -171,6 +171,10 @@ lf() {
     do
         dir=$(dirname "$dir")
     done
+	awk '$1 == "archivemount" { print $2 }' /etc/mtab | sed 's/\\040/ /g' | while read -r mntdir; do
+		umount "$mntdir"
+		rmdir "$mntdir"
+	done
 }
 
 
