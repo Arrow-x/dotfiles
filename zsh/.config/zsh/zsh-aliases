@@ -8,6 +8,7 @@ alias virc='nvim ~/Public/shinyvim/README.md'
 alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/.zshrc'
 alias zshra='nvim ~/dotfiles/zsh/.config/zsh/zsh-aliases'
 alias dfrc='nvim ~/dotfiles/README.md'
+alias vin='nvim ~/Notes-And-Tasks/Obsidian/.local/share/Obsidian/index.md'
 
 alias lpip=' ~/.local/share/python_env/bin/pip'
 
