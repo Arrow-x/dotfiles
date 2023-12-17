@@ -1,15 +1,8 @@
 #!/bin/sh
 fu_pid_file="/tmp/.$(uuidgen)"
 case "$TERM" in
-	"foot") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$fu_pid_file" ;;
-	"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$fu_pid_file" ;;
-	"tmux-256color")
-		if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-			ueberzugpp layer --no-cache --no-stdin --silent --output wayland --pid-file "$fu_pid_file"
-		else
-			ueberzugpp layer --no-cache --no-stdin --silent --output x11 --pid-file "$fu_pid_file"
-		fi
-		;;
+	foot | xterm-256color | tmux-256color) ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$fu_pid_file" ;;
+	xterm-kitty) ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$fu_pid_file" ;;
 	*) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$fu_pid_file" ;;
 esac
 
@@ -18,12 +11,7 @@ rm "$fu_pid_file"
 export FU_SOCKET=/tmp/ueberzugpp-"$fu_pid".socket
 opener="xdg-open"
 
-case "$1" in
-	-d) opener="$IMAGE" ;;
-esac
-
-fzf --ansi \
-	--preview='fzf_previewer {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES $(expr $FZF_PREVIEW_COLUMNS + 6) 1' \
+fzf --ansi -i --preview='fzf_previewer {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES $(expr $FZF_PREVIEW_COLUMNS + 6) 1' \
 	--bind "ctrl-l:execute(setsid -f "$opener" {}>/dev/null)" \
 	--header 'CTRL-l to open without closing'
 
