@@ -13,18 +13,12 @@ fi
 
 case "$1" in
 	-we | --new-window-nvim)
+		tmux new-window nvim "$selected"
 		tmux rename-window "$(basename "$selected")"
-		if [ "$1" = "-n" ]; then
-			tmux new-window nvim "$selected"
-			exit
-		fi
 		;;
 	-wcd | --new-window-cd)
+		tmux new-window -c "$selected"
 		tmux rename-window "$(basename "$selected")"
-		if [ "$1" = "-n" ]; then
-			tmux new-window -c "$selected"
-			exit
-		fi
 		;;
 	-se | --new-session-nvim)
 		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
