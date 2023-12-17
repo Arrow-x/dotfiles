@@ -235,7 +235,7 @@ for_window [app_id="t_btop"] resize set 1200 700
 for_window [app_id="t_btop"] move position center
 
 for_window [app_id="t_drop"] floating enable
-for_window [app_id="t_drop"] resize set 1590 400
+for_window [app_id="t_drop"] resize set 1600 400
 for_window [app_id="t_drop"] move position 0 0
 
 # Title format for windows
