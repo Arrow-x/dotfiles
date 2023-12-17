@@ -11,13 +11,6 @@ alias dfrc='nvim ~/dotfiles/README.md'
 
 alias lpip=' ~/.local/share/python_env/bin/pip'
 
-#Neovim for Godot
-vig(){
-	nvim "$1" --listen /tmp/godothost.pipe
-}
-alias vigg='$TERMINAL godot; vig'
-alias vin='nvim ~/.local/share/Obsidian/index.md'
-
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias rg='rg --color=auto'
