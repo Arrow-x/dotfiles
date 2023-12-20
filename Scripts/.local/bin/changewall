@@ -8,17 +8,19 @@ case "$TERM" in
 esac
 UB_PID=$(cat "$pid_file")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
-pics="/home/arrowx/Pictures/Wallpapers"
-resault="$(find -L "$pics" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | fzf \
+export pics="/home/arrowx/Pictures/Wallpapers"
+resault="$(fd -t f -L -0 . "$pics" -X ls -t | fzf \
 	--preview-window='up,30' \
-	--preview='ueberzugpp cmd -s $SOCKET -a add -x 1 -y 1 --max-width $FZF_PREVIEW_COLUMNS --max-height $FZF_PREVIEW_LINES -f {}' \
-	--bind 'ctrl-l:execute(xdg-open {})' --bind 'ctrl-d:reload(trash {}; fd -t f -L -0 . $pics | xargs --null ls -t )' \
-	--header "CTRL-d to Delete | CTRL-l to open without closing")"
+	--preview 'ueberzugpp cmd -s "$SOCKET" -a add -x 1 -y 1 --max-width "$FZF_PREVIEW_COLUMNS" --max-height "$FZF_PREVIEW_LINES" -f {}' \
+	--bind 'ctrl-l:execute(xdg-open {})' \
+	--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
+	--bind 'ctrl-f:execute(convert {} -flop {})' \
+	--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-f to flip the image")"
 
 ueberzugpp cmd -s "$SOCKET" -a exit
 rm "$pid_file"
 
 if [ -z "$resault" ]; then
-	exit 2
+	exit 0
 fi
 set_bg "$resault" >/dev/null
