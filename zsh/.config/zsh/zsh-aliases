@@ -4,11 +4,28 @@ alias x="exit"
 
 alias vi='nvim'
 
-alias virc='nvim ~/Public/shinyvim/README.md'
-alias zshrc='nvim ~/dotfiles/zsh/.config/zsh/.zshrc'
-alias zshra='nvim ~/dotfiles/zsh/.config/zsh/zsh-aliases'
-alias dfrc='nvim ~/dotfiles/README.md'
-alias vin='nvim ~/Notes-And-Tasks/Obsidian/.local/share/Obsidian/index.md'
+pushit(){
+	pushd "$1" >/dev/null
+	nvim "$2"
+	pushd -0 >/dev/null
+	popd -0
+}
+
+virc(){
+	pushit ~/Public/shinyvim README.md
+}
+zshrc(){
+	pushit ~/dotfiles zsh/.config/zsh/.zshrc
+}
+zshra(){
+	pushit ~/dotfiles zsh/.config/zsh/zsh-aliases
+}
+dfrc(){
+	pushit ~/dotfiles README.md
+}
+vin(){
+	pushit ~/Notes-And-Tasks "Obsidian/.local/share/Obsidian/index.md"
+}
 
 alias lpip=' ~/.local/share/python_env/bin/pip'
 
