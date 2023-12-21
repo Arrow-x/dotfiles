@@ -13,7 +13,7 @@ fi
 
 case "$1" in
 	-we | --new-window-nvim)
-		tmux new-window nvim "$selected"
+		tmux new-window -c "$selected" nvim .
 		tmux rename-window "$(basename "$selected")"
 		;;
 	-wcd | --new-window-cd)
@@ -22,7 +22,7 @@ case "$1" in
 		;;
 	-se | --new-session-nvim)
 		if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-			tmux new-session -ds "$selected_name" nvim "$selected"
+			tmux new-session -ds "$selected_name" -c "$selected" nvim .
 		fi
 		tmux switch-client -t "$selected_name"
 		;;

@@ -1,7 +1,8 @@
 #!/bin/sh
 
 terminal="footclient -D"
-editor="footclient nvim"
+term_editor="footclient nvim"
+editor="nvim"
 
 menu() {
 	[ -n "$(pgrep bemenu)" ] && exit
@@ -22,7 +23,7 @@ case "$1" in
 	-n | --neovim)
 		search="$(proj_search)"
 		[ -z "$search" ] && exit
-		$editor "$search" &
+		$terminal "$search" "$editor" .
 		;;
 	-c | --change-dir)
 		search="$(proj_search)"
@@ -32,7 +33,7 @@ case "$1" in
 	-lc | --local-configs)
 		search="$(configs)"
 		[ -z "$search" ] && exit
-		$editor "$search" &
+		$term_editor "$search" &
 		;;
 	-Lc | --Local-configs-dir)
 		search="$(configs)"
