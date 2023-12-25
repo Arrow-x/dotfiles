@@ -9,13 +9,16 @@ esac
 UB_PID=$(cat "$pid_file")
 export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 export pics="/home/arrowx/Pictures/Wallpapers"
-resault="$(fd -t f -L -0 . "$pics" -X ls -t | fzf \
-	--preview-window='up,30' \
-	--preview 'ueberzugpp cmd -s "$SOCKET" -a add -x 1 -y 1 --max-width "$FZF_PREVIEW_COLUMNS" --max-height "$FZF_PREVIEW_LINES" -f {}' \
-	--bind 'ctrl-l:execute(xdg-open {})' \
-	--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
-	--bind 'ctrl-f:execute(convert {} -flop {})' \
-	--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-f to flip the image")"
+resault="$(
+	fd -t f -L -0 . "$pics" -X ls -t | fzf \
+		--preview-window='up,30' \
+		--preview 'ueberzugpp cmd -s "$SOCKET" -a add -x 1 -y 1 --max-width "$FZF_PREVIEW_COLUMNS" --max-height "$FZF_PREVIEW_LINES" -f {}' \
+		--bind 'ctrl-l:execute(xdg-open {})' \
+		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
+		--bind 'ctrl-o:execute(convert {} -flop {})' \
+		--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/favs && fd -t f -L -0 . "$pics" -X ls -t)' \
+		--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
+)"
 
 ueberzugpp cmd -s "$SOCKET" -a exit
 rm "$pid_file"
