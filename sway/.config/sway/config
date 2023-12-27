@@ -217,6 +217,7 @@ bindsym $mod+Control+v exec --no-startup-id persway change-layout manual
 bindsym $mod+Control+x exec --no-startup-id persway change-layout stack-main --size 70
 
 bindsym $mod+x exec killall -SIGUSR1 waybar
+bindsym $mod+insert  exec --no-startup-id wtype "$(wl-paste --no-newline --primary --type text/plain)"
 
 for_window [app_id="t_newsboat"] floating enable
 for_window [app_id="t_newsboat"] resize set 1200 700
