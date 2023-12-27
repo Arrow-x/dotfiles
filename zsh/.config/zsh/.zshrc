@@ -35,24 +35,6 @@ git clone --depth 1 -- \
 source $zsh_plugs/zsh-snap/znap.zsh  # Start Znap
 #  }}}
 
-# Making the cursor a beam in normal mode and a line in insert mode {{{
-# bindkey -v
-# zle-keymap-select() {
-# 	case $KEYMAP in
-# 		vicmd) echo -ne '\e[1 q' ;;      # block
-# 		viins|main) echo -ne '\e[5 q' ;; # beam
-# 	esac
-# }
-# zle -N zle-keymap-select
-# zle-line-init() {
-# 	zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-# 	echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-#  }}}
-
 # Initialazing the prmompt {{{
 znap prompt ivan-volnov/pure
 #  }}}
@@ -93,27 +75,10 @@ for arg in "$@"; do
 done'
 #}}}
 
-# Vi mode keybids {{{
-# bindkey -M menuselect '^h' vi-backward-char
-# bindkey -M menuselect '^l' vi-forward-char
-# bindkey -M menuselect '^P' vi-up-line-or-history
-# bindkey -M menuselect '^N' vi-down-line-or-history
-# bindkey -M menuselect '^k' vi-up-line-or-history
-# bindkey -M menuselect '^j' vi-down-line-or-history
-
+# Vi supported keymaps {{{
 function zvm_after_init() {
   zvm_bindkey viins '^N' fzf_completion
   zvm_bindkey viins '^P' _atuin_search_widget
   znap source hlissner/zsh-autopair
 }
-
-# bindkey '^N' fzf_completion
-# bindkey '^P' _atuin_search_widget
-#  }}}
-
-# `znap eval` caches and runs any kind of command output for you.
-# znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
-
-# `znap function` lets you lazy-load features you don't always need.
-# znap function _pyenv pyenvn 'eval "$( pyenv init - --no-rehash )"'
-# compctl -K    _pyenv pyenv
+#}}}
