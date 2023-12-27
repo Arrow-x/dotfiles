@@ -81,3 +81,4 @@ fi
 
 # Path
 path+=("$HOME/.local/bin")
+path+=("$HOME/Applications")
