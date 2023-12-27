@@ -1,51 +1,47 @@
 #!/bin/sh
+
 local_copy="$XDG_CACHE_HOME/cht_sh/"
-mode="$(printf "Language\nCore-util" | fzf)"
+mkdir -p "$local_copy"
+file=""
 
-if [ -z "$mode" ]; then
-	exit
-fi
+make_local_copy() {
+	if [ -z "$(cat "$file"-new)" ]; then
+		rm "$file"-new
+		if [ ! -f "$file" ]; then
+			exit 1
+		fi
+	else
+		if [ -f "$file" ]; then
+			rm "$file"
+		fi
+		mv "$file"-new "$file"
+	fi
+	bat "$file" --paging=always --style plain
+	exit 0
+}
 
-case "$mode" in
-	Language)
-		printf "What Language: "
-		;;
-	"Core-util")
-		printf "What Core-util: "
-		;;
-esac
-
-read -r selected
+selected="$(curl -s cht.sh/:list | fzf --print-query | tail -1)"
 
 if [ -z "$selected" ]; then
 	exit 1
 fi
 
-printf "Query: "
-read -r query
+selected=$(printf '%s' "$selected" | sed 's#/##g' | tr -d '\n')
 
-mkdir -p "$local_copy"
-file="$local_copy""$selected"-"$query"
-
-case "$mode" in
-	Language)
-		curl -s cht.sh/"$selected"/"$query" >"$file"-new
-		;;
-	"Core-util")
-		curl -s cht.sh/"$selected"~"$query" >"$file"-new
-		;;
-esac
-
-if [ -z "$(cat "$file"-new)" ]; then
-	rm "$file"-new
-	if [ ! -f "$file" ]; then
-		exit 1
-	fi
-else
-	if [ -f "$file" ]; then
-		rm "$file"
-	fi
-	mv "$file"-new "$file"
+if [ -n "$(printf '%s' "$selected" | grep "+")" ]; then
+	file="$local_copy""$selected"
+	curl -s cht.sh/"$selected" >"$file"-new
+	make_local_copy
 fi
 
-bat "$file" --paging=always --style plain
+query="$(curl -s cht.sh/"$selected"/:list | fzf)"
+
+if [ -z "$query" ]; then
+	file="$local_copy""$selected"
+	curl -s cht.sh/"$selected" >"$file"-new
+	make_local_copy
+else
+	file="$local_copy""$selected"-"$query"
+	curl -s cht.sh/"$selected"/"$query" >"$file"-new
+	make_local_copy
+fi
