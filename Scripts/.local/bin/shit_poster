@@ -1,0 +1,21 @@
+#!/bin/sh
+
+fu_pid_file="/tmp/.$(uuidgen)"
+case "$TERM" in
+	foot | xterm-256color | tmux-256color) ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$fu_pid_file" ;;
+	xterm-kitty) ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$fu_pid_file" ;;
+	*) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$fu_pid_file" ;;
+esac
+
+fu_pid=$(cat "$fu_pid_file")
+rm "$fu_pid_file"
+export FU_SOCKET=/tmp/ueberzugpp-"$fu_pid".socket
+
+find "/home/arrowx/Downloads/meme" -type f | fzf \
+	--preview='fzf_previewer {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES $(expr $FZF_PREVIEW_COLUMNS + 6) 1' \
+	--bind "enter:execute(setsid -f dragon-drop {})" \
+	--bind "ctrl-c:execute(wl-copy < {})" \
+	--bind "ctrl-y:execute(wl-copy {})" \
+	--header 'Enter: to send to Dragon-Drop, CTRL-C: send selection to clipboard, CTRL-Y to copy link'
+
+ueberzugpp cmd -s "$FU_SOCKET" -a exit
