@@ -12,7 +12,7 @@ pushit(){
 }
 
 virc(){
-	pushit ~/Public/shinyvim README.md
+	pushit ~/Public/shinyvim lazy-lock.json
 }
 zshrc(){
 	pushit ~/dotfiles zsh/.config/zsh/.zshrc
@@ -21,7 +21,7 @@ zshra(){
 	pushit ~/dotfiles zsh/.config/zsh/zsh-aliases
 }
 dfrc(){
-	pushit ~/dotfiles README.md
+	pushit ~/dotfiles README
 }
 vin(){
 	pushit ~/Notes-And-Tasks "Obsidian/.local/share/Obsidian/index.md"
