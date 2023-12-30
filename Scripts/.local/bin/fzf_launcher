@@ -1,0 +1,8 @@
+#!/bin/sh
+launched="$(swaymsg -t get_tree | grep "\"app_id\": \"t_launcher\"")"
+[ -n "$launched" ] && exit
+select="$(
+	echo "$PATH" | xargs -d : -I _ -r find -L _ -maxdepth 1 -mindepth 1 -type f -executable -printf '%P\n' 2>/dev/null | sort -u | fzf --layout=reverse
+)"
+[ -z "$select" ] && exit
+sh -c "${select}" &

@@ -162,7 +162,8 @@ bindsym Shift+Print exec --no-startup-id "flameshot gui"
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
 # Start your launcher
-bindsym $mod+d exec --no-startup-id ~/.local/bin/bemenu_run
+# bindsym $mod+d exec --no-startup-id ~/.local/bin/bemenu_run
+bindsym $mod+d exec --no-startup-id footclient -a t_launcher fzf_launcher
 bindsym $mod+Shift+d exec --no-startup-id rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
 
 bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
@@ -208,6 +209,8 @@ bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/sway_run t_cmus -- foo
 bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/sway_run t_btop -- footclient -a t_btop btop &
 bindsym $mod+grave exec --no-startup-id ~/.local/bin/sway_run t_drop -- footclient -a t_drop &
 
+bindsym $mod+backslash exec --no-startup-id rofi -show window
+
 bindsym $mod+q exec --no-startup-id  ~/.local/bin/clipboard_download -v
 bindsym $mod+Shift+q exec --no-startup-id  ~/.local/bin/clipboard_download -d
 
@@ -243,6 +246,10 @@ for_window [app_id="t_shit_poster"] move position center
 for_window [app_id="t_drop"] floating enable
 for_window [app_id="t_drop"] resize set 1600 400
 for_window [app_id="t_drop"] move position 0 0
+
+for_window [app_id="t_launcher"] floating enable
+for_window [app_id="t_launcher"] resize set 1600 400
+for_window [app_id="t_launcher"] move position 0 0
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
