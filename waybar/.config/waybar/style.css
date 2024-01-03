@@ -13,7 +13,7 @@ window#waybar {
 
 #custom-date, #custom-term, #custom-launcher, #workspaces, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst, #custom-power{
 	background-color: #24283b;
-	padding: 5px 10px;
+	padding: 1px 10px;
 	border-radius: 10px;
     margin-top: 1px;
     margin-bottom: 1px;
