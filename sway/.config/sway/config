@@ -9,6 +9,7 @@ set $right l
 
 set $term footclient
 
+include ~/.config/sway/outputs
 # Basics
 default_border pixel 3
 gaps inner 0
