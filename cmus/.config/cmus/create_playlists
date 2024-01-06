@@ -1,7 +1,6 @@
 #!/bin/sh
 
 #TODO: choose if if the user wants to include the to level dir or not
-#TODO: supress the mkdir error when the playlist folder exist
 #TODO: accepts the file from stdin
 
 dirs=$(find -L "$1" -maxdepth 1 -mindepth 1 -type d)

@@ -92,7 +92,7 @@ set pause_on_output_change=false
 set pl_sort=
 set play_library=false
 set play_sorted=false
-set repeat=true
+set repeat=false
 set repeat_current=false
 set replaygain=disabled
 set replaygain_limit=true
@@ -199,7 +199,7 @@ bind common s toggle shuffle
 bind common space win-toggle
 bind common t toggle show_remaining_time
 bind common tab win-next
-bind common u update-cache
+bind common u shell ~/.config/cmus/updater.sh
 bind common up win-up
 bind common v player-stop
 bind common x player-play
