@@ -11,7 +11,7 @@ export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 export pics="/home/arrowx/Pictures/Wallpapers"
 resault="$(
 	fd -t f -L -0 . "$pics" -X ls -t | fzf \
-		--preview-window='up,30' \
+		--preview-window='up,25' \
 		--preview 'ueberzugpp cmd -s "$SOCKET" -a add -x 1 -y 1 --max-width "$FZF_PREVIEW_COLUMNS" --max-height "$FZF_PREVIEW_LINES" -f {}' \
 		--bind 'ctrl-l:execute(xdg-open {})' \
 		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
