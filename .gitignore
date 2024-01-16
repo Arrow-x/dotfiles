@@ -16,3 +16,4 @@ cmus/.config/cmus/playlists
 dotfiles/nvim.shada
 nvim.shada
 tmux/.config/tmux/plugins
+mpv/.config/mpv/subtitles
