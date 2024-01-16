@@ -32,8 +32,8 @@ alias lpip=' ~/.local/share/python_env/bin/pip'
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias rg='rg --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
 
 # confirm before overwriting something
 alias cp="cp -i -v"
@@ -83,8 +83,6 @@ alias ydlF='yt-dlp -F'
 alias ydlf='yt-dlp --embed-thumbnail --embed-metadata -f'
 alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
 alias ydl720mp4='yt-dlp --embed-thumbnail --embed-metadata --embed-chapters --embed-subs -f 22'
-
-alias nsxiv='nsxiv -a'
 
 changewalln() {
 	find "/home/arrowx/Pictures/Wallpapers" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | read -r pic; [[ -n "$pic" ]] && set_bg "$pic"
