@@ -183,11 +183,15 @@ assign [app_id="thunderbird"] $ws4
 assign [app_id="com.github.johnfactotum.Foliate"] $ws5
 assign [app_id="firefox"] $ws6
 assign [class="firefox"] $ws6
+assign [app_id="floorp"] $ws6
+assign [class="floorp"] $ws6
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
 
 for_window [app_id="firefox"] focus
 for_window [class="firefox"] focus
+for_window [app_id="floorp"] focus
+for_window [class="floorp"] focus
 for_window [app_id=pcmanfm] focus
 for_window [app_id=$term] focus
 for_window [app_id=thunderbird] focus
