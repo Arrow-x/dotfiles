@@ -30,6 +30,7 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export WINEPREFIX="$XDG_DATA_HOME"/wine
+export HAXESHIM_ROOT="$XDG_CONFIG_HOME"/haxe
 # for bottles dark mode
 export ADW_DISABLE_PORTAL=1
 
