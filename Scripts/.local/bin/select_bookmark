@@ -14,7 +14,7 @@ case $1 in
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
-		firefox "$bookmark" &
+		$BROWSER "$bookmark" &
 		;;
 	*)
 		echo "Wrong argument expect either -t or -b" >&2
