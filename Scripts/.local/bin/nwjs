@@ -5,6 +5,8 @@ if [ ! -d "www" ] || [ ! -f "package.json" ]; then #test to avoid accidental and
 fi
 
 start_game=1
+use_old_nwjs=0
+old_version="v0.71.0"
 
 usage() { #help message
 	echo "This program converts a Windows version of an NW.js program into its Linux counterpart."
@@ -25,6 +27,9 @@ while [ "$1" != "" ]; do #positional parameters
 		-ns | --no-start) #doesn't start the game after the installation
 			start_game=0
 			;;
+		-o | --old)
+			use_old_nwjs=1
+			;;
 		*)
 			usage
 			exit 1
@@ -34,17 +39,21 @@ while [ "$1" != "" ]; do #positional parameters
 done
 
 chmod +w .
-#removes unneeded files
+echo "removes unneeded files"
 find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -print0 | xargs -0 -r rm -r --
 
-content=$(wget https://dl.nwjs.io/ -q -O -)
-version="$(echo "$content" | tail -n -5 | head -n 1 | sed -E 's#.*href="(.*)\/".*#\1#')"
+if [ "$use_old_nwjs" -eq 1 ]; then
+	version="$old_version"
+else
+	content=$(wget https://dl.nwjs.io/ -q -O -)
+	version="$(echo "$content" | tail -n -5 | head -n 1 | sed -E 's#.*href="(.*)\/".*#\1#')"
+fi
 dir_name="nwjs-""$version""-linux-x64"
 file_name="$dir_name"".tar.gz"
 destination="/home/arrowx/File/Homework/tools/""$file_name"
 link="https://dl.nwjs.io/""$version""/""$destination"
 
-if [ ! -f "$destination" ]; then
+if [ ! -f "$destination" ] && [ "$use_old_nwjs" -eq 0 ]; then
 	echo "downloading the correct NW.js for your computer"
 	wget "$link" -q -O "$destination"
 fi
@@ -62,10 +71,12 @@ echo "cleaning useless file and directory"
 rm -r "$dir_name"
 rm "$file_name"
 
-if [ ! -x "nw" ]; then #checks if the game launcher is actually executable
+if [ ! -x "nw" ]; then
+	echo "checks if the game launcher is actually executable"
 	chmod +x nw
 fi
 
-if [ $start_game -eq 1 ]; then #starts the game
+if [ $start_game -eq 1 ]; then
+	echo "Running the game"
 	./nw
 fi
