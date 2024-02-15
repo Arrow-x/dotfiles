@@ -38,7 +38,7 @@ bindsym $mod+braceleft exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym $mod+w exec --no-startup-id $browser
 bindsym $mod+Shift+w exec --no-startup-id firejail thunderbird
 
-bindsym $mod+n exec --no-startup-id  ~/.local/bin/sway_run t_lf "footclient -a t_lf tmux new-session -s lf 'lfu'"
+bindsym $mod+n exec --no-startup-id  ~/.local/bin/sway_run t_lf "footclient -a t_lf tmux new-session -s lf 'lf'"
 bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
 
 bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b

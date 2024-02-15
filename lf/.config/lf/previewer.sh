@@ -1,13 +1,7 @@
 #!/bin/sh
 
 image() {
-	FILE_PATH="$1"
-	X=$4
-	Y=$5
-	MW=$2
-	MH=$3
-	ueberzugpp cmd -s "$UB_SOCKET" -a add -i PREVIEW -x "$X" -y "$Y" --max-width "$MW" --max-height "$MH" -f "$FILE_PATH"
-	exit 1
+	chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
 }
 
 batorcat() {
