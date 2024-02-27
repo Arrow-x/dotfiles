@@ -1,27 +1,16 @@
 #!/bin/sh
 
-pid_file="/tmp/.$(uuidgen)"
-case "$TERM" in
-	"xterm-256color" | "foot" | "tmux-256color") ueberzugpp layer --no-cache --no-stdin --silent --output sixel --pid-file "$pid_file" ;;
-	"xterm-kitty") ueberzugpp layer --no-cache --no-stdin --silent --output kitty --pid-file "$pid_file" ;;
-	*) ueberzugpp layer --no-cache --no-stdin --silent --use-escape-codes --pid-file "$pid_file" ;;
-esac
-UB_PID=$(cat "$pid_file")
-export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 export pics="/home/arrowx/Pictures/Wallpapers"
 resault="$(
 	fd -t f -L -0 . "$pics" -X ls -t | fzf \
 		--preview-window='up,25' \
-		--preview 'ueberzugpp cmd -s "$SOCKET" -a add -x 1 -y 1 --max-width "$FZF_PREVIEW_COLUMNS" --max-height "$FZF_PREVIEW_LINES" -f {}' \
+		--preview 'chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --dither fs --animate off --polite on {}' \
 		--bind 'ctrl-l:execute(xdg-open {})' \
 		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
 		--bind 'ctrl-o:execute(convert {} -flop {})' \
 		--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/favs && fd -t f -L -0 . "$pics" -X ls -t)' \
 		--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
 )"
-
-ueberzugpp cmd -s "$SOCKET" -a exit
-rm "$pid_file"
 
 if [ -z "$resault" ]; then
 	exit 0

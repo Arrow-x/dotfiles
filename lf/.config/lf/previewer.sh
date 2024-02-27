@@ -1,7 +1,7 @@
 #!/bin/sh
 
 image() {
-	chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+	chafa -f sixel -s "$2x$3" --dither fs -O 9 --animate off --polite on "$1"
 }
 
 batorcat() {
