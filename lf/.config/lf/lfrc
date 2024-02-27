@@ -14,8 +14,8 @@ set sixel true
 set previewer /home/arrowx/.config/lf/previewer.sh
 # set cleaner /home/arrowx/.config/lf/clear_img.sh
 
-set info size
-set dircounts
+# set info size
+# set dircounts
 # Custom Functions
 cmd mkdir %{{
 	printf "Directory Name: "
@@ -216,11 +216,10 @@ map gh
 # map o
 map "'"
 map '"'
-map d
 map w
   
-map p fzf_jump
-map r fzf_search
+map J fzf_jump
+map S fzf_search
 map T :filter
 
 map rA :rename; cmd-end # at the very end
@@ -238,6 +237,7 @@ map X !$f &
 map P :link
 # Bindings
 # Dragon Mapping
+map d
 map drr dragon
 map drs dragon-stay
 map dri dragon-individual
@@ -266,6 +266,7 @@ map ~ z_shell
 
 # Basic Functions
 map . set hidden!
+map p
 map pp paste
 map po paste-overwrite
 map x cut
@@ -289,6 +290,7 @@ map gls cd /home/arrowx/.local/share
 map glt cd /home/arrowx/.local/state
 
 map gff cd /home/arrowx/File
+map gfg cd /home/arrowx/File/Games
 map gfd cd /home/arrowx/File/Documents
 map gfs cd /home/arrowx/File/Software
 map gfh cd /home/arrowx/File/Homework/H-Games
