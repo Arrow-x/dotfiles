@@ -278,7 +278,7 @@ map b bulkrenamevimv
 # Movement
 map ghh cd /home/arrowx
 map ghd cd /home/arrowx/Downloads
-map ghp cd /home/arrowx/Public
+map ghs cd /home/arrowx/Sources
 map ghg cd /home/arrowx/gallery-dl
 map ghv cd /home/arrowx/Videos
 map ght cd /home/arrowx/Pictures

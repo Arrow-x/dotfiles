@@ -12,7 +12,7 @@ pushit(){
 }
 
 virc(){
-	pushit ~/Public/shinyvim lazy-lock.json
+	pushit ~/Sources/shinyvim lazy-lock.json
 }
 zshrc(){
 	pushit ~/dotfiles zsh/.config/zsh/.zshrc

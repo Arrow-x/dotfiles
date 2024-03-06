@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selected=$(find -L "/home/arrowx/Public" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | fzf)
+selected=$(find -L "/home/arrowx/Sources" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | fzf)
 
 [ -z "$selected" ] && exit 0
 
