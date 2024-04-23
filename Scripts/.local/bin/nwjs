@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+#TODO: support RPGMV
 if [ ! -d "www" ] || [ ! -f "package.json" ]; then #test to avoid accidental and irreversible deletion of files and directories
 	echo "This doesn't look like a NW.js program."
 	exit 1
@@ -51,7 +52,7 @@ fi
 dir_name="nwjs-""$version""-linux-x64"
 file_name="$dir_name"".tar.gz"
 destination="/home/arrowx/File/Homework/tools/""$file_name"
-link="https://dl.nwjs.io/""$version""/""$destination"
+link="https://dl.nwjs.io/""$version""/""$file_name"
 
 if [ ! -f "$destination" ] && [ "$use_old_nwjs" -eq 0 ]; then
 	echo "downloading the correct NW.js for your computer"
