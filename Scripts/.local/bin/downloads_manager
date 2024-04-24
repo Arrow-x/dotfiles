@@ -29,6 +29,9 @@ download_url() {
 			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
 			"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
 			;;
+		"Fic")
+			"$TERMINAL" sh -c "fichub_cli -o "/home/arrowx/Documents" --force -u \"$2\""
+			;;
 		"General")
 			"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"
 			;;
@@ -66,6 +69,9 @@ parse_url() {
 
 		*'pixeldrain'*)
 			printf "Pixeldrain"
+			;;
+		*'spacebattles'* | *'alternatehistory'*)
+			printf "Fic"
 			;;
 
 		*)
