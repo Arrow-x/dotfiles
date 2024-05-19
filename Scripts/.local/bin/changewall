@@ -8,7 +8,7 @@ resault="$(
 		--bind 'ctrl-l:execute(xdg-open {})' \
 		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
 		--bind 'ctrl-o:execute(convert {} -flop {})' \
-		--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/favs && fd -t f -L -0 . "$pics" -X ls -t)' \
+		--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/Favs && fd -t f -L -0 . "$pics" -X ls -t)' \
 		--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
 )"
 
