@@ -126,12 +126,12 @@ openh() {
 	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi -mindepth 1 -type d -printf "%T+ %p\n")
 	PAR=$(find ~/File/Homework/H-Manga/Parody -mindepth 2 -type d -printf "%T+ %p\n")
 	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
-	printf "%s\n%s\n%s" "$DOJ" "$PAR" "$TAN" | sort -r | sed "s#.*/home#/home#" | fzfueb -d
+	printf "%s\n%s\n%s" "$DOJ" "$PAR" "$TAN" | sort -r | sed "s#.*/home#/home#" | fzfueb
 }
 
-alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb -d"
-alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzfueb -m"
-alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzfueb -m"
+alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzfueb"
+alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzfueb"
+alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzfueb"
 
 #show installed packages and sort them by installed date
 pacsd() {
