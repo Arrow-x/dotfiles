@@ -4,5 +4,5 @@ opener="nsxiv"
 
 fzf --ansi -i \
 	--preview='draw_thumb {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES' \
-	--bind "ctrl-l:execute(setsid -f "$opener" {}>/dev/null)" \
+	--bind "ctrl-l:execute(setsid -f $opener {}>/dev/null)" \
 	--header 'CTRL-l to open without closing'
