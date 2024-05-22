@@ -167,7 +167,7 @@ for_window [app_id="t_shit_poster"] move position center
 
 for_window [app_id="t_drop"] floating enable
 for_window [app_id="t_drop"] resize set 1600 400
-for_window [app_id="t_drop"] move position 0 0
+for_window [app_id="t_drop"] move position 5 2
 
 for_window [app_id="t_launcher"] floating enable
 for_window [app_id="t_launcher"] resize set 1600 400
