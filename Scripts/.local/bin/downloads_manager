@@ -26,7 +26,7 @@ download_url() {
 			gallery-dl "$2"
 			;;
 		"Hentai")
-			gallery-dl --exec-after "setsid -f $IMAGE {}" "$2"
+			gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2"
 			;;
 		"Pixeldrain")
 			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
