@@ -26,7 +26,9 @@ dfrc(){
 vin(){
 	pushit ~/Notes-And-Tasks "Obsidian/.local/share/Obsidian/index.md"
 }
-
+bookmarks(){
+	pushit ~/Notes-And-Tasks bookmarks
+}
 alias lpip=' ~/.local/share/python_env/bin/pip'
 
 # Colorize grep output (good for log files)
