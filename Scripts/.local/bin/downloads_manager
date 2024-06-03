@@ -65,7 +65,8 @@ parse_url() {
 
 		*'twitter.com'* | \
 			*'mangasee'* | \
-			*'tumblr'*)
+			*'tumblr'* | \
+			*'x.com'*)
 			printf "Picture"
 			;;
 
