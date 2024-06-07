@@ -1,4 +1,5 @@
 #!/bin/sh
+
 trash_list="$(gio trash --list)"
 
 if [ -z "$trash_list" ]; then
@@ -6,10 +7,12 @@ if [ -z "$trash_list" ]; then
 	exit
 fi
 
-selection="$(echo "$trash_list" | cut -f2 | fzf -i -e -m \
-	--bind 'home:first,end:last,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all' \
-	--header "ctrl-a: select all, ctrl-d: deselect-all, ctrl-t: toggle selection" \
-	--prompt="gio trash restore file(s): ")"
+selection="$(
+	echo "$trash_list" | cut -f2 | fzf -i -e -m \
+		--bind 'home:first,end:last,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all' \
+		--header "ctrl-a: select all, ctrl-d: deselect-all, ctrl-t: toggle selection" \
+		--prompt="gio trash restore file(s): "
+)"
 
 [ -z "$selection" ] && exit
 
@@ -22,10 +25,10 @@ restorer() {
 			continue
 		fi
 
-		proper_name="$(echo "$trash_list" | grep "$line" | cut -f2)"
+		proper_name="$(echo "$trash_list" | grep --fixed-strings "$line" | cut -f2)"
 		printf "restored: %s\n" "$proper_name"
 
 	done
 }
 
-echo "$trash_list" | grep "$selection" | cut -f1 | restorer
+printf "%s" "$trash_list" | grep --fixed-strings "$selection" | cut -f1 | restorer
