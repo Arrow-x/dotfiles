@@ -124,17 +124,6 @@ getpt() {
 	fdrc $1 | sed 's/"/\\"/g' | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
-openh() {
-	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi/ -mindepth 1 -type d -printf "%T+ %p\n")
-	PAR=$(find ~/File/Homework/H-Manga/Parody/ -mindepth 2 -type d -printf "%T+ %p\n")
-	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
-	list=""
-	[ -n "$DOJ" ] && list="$(printf "%s\n" "$DOJ")"
-	[ -n "$PAR" ] && list="$(printf "%s\n%s" "$list" "$PAR")"
-	[ -n "$TAN" ] && list="$(printf "%s\n%s" "$list" "$TAN")"
-	printf "%s" "$list" | sort -r | sed "s#.*/home#/home#" | fzf_preview
-}
-
 alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzf_preview"
 alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzf_preview"
 alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzf_preview"
