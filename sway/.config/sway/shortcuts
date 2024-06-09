@@ -23,7 +23,6 @@ bindsym Shift+Print exec --no-startup-id "flameshot gui"
 bindsym $mod+Return exec --no-startup-id $term
 # Start your launcher
 bindsym $mod+d exec --no-startup-id ~/.local/bin/bemenu_run
-# bindsym $mod+d exec --no-startup-id footclient -a t_launcher fzf_launcher
 bindsym $mod+Shift+d exec --no-startup-id rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
 
 bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
