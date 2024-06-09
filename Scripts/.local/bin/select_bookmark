@@ -1,16 +1,16 @@
 #!/bin/sh
-if [ -n "$(pgrep bemenu)" ]; then
-	exit
-fi
 if [ "$#" -ne 1 ]; then
 	echo "Too Little Arguments! chose either to type the chararcters with -t or open in a browser with -b" >&2
 	exit 1
 fi
 
+menu() {
+	fzfmenu.sh
+}
 case $1 in
-	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 30 | cut -d ' ' -f1)" ;;
+	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
 	-b)
-		bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | $MENU -p "Bookmarks" -l 20 | cut -d ' ' -f1)
+		bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
