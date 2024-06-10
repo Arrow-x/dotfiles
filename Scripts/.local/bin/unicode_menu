@@ -1,14 +1,11 @@
 #!/bin/sh
-#TODO: test on xorg
 
-if [ -n "$(pgrep bemenu)" ]; then
-	exit
-fi
 menu() {
-	case "$XDG_SESSION_TYPE" in
-		"wayland") bemenu -l 20 -p "UNICODE: " ;;
-		*) dmenu -l 20 -g 6 -p "UNICODE: " ;;
-	esac
+	# case "$XDG_SESSION_TYPE" in
+	# 	"wayland") bemenu -l 20 -p "UNICODE: " ;;
+	# 	*) dmenu -l 20 -g 6 -p "UNICODE: " ;;
+	# esac
+	fzfmenu.sh -m
 }
 clipboard() {
 	case "$XDG_SESSION_TYPE" in

@@ -5,8 +5,9 @@ term_editor="footclient nvim"
 editor="nvim"
 
 menu() {
-	[ -n "$(pgrep bemenu)" ] && exit
-	bemenu -l 20 -p Projects:
+	# [ -n "$(pgrep bemenu)" ] && exit
+	# bemenu -l 20 -p Projects:
+	fzfmenu.sh
 }
 
 proj_search() {

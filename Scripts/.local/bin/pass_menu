@@ -2,11 +2,7 @@
 #TODO: change the menu from a argument or config file
 #TODO: make this work with xdotools as well
 
-if [ -n "$(pgrep bemenu)" ]; then
-	exit
-fi
-
-key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | $MENU -p "PASS: " -l 20)"
+key="$(find "$XDG_DATA_HOME"/pass -type f | sed "s#$XDG_DATA_HOME/pass/##;s/.gpg//" | fzfmenu.sh)"
 if [ -z "$key" ]; then
 	exit
 fi
