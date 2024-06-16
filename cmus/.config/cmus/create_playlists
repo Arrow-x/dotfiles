@@ -1,10 +1,10 @@
 #!/bin/sh
 
-#TODO: choose if if the user wants to include the to level dir or not
-#TODO: accepts the file from stdin
+target=""
+[ -z "$1" ] && read -r target
+[ -z "$target" ] && target="$1"
 
-dirs=$(find -L "$1" -maxdepth 1 -mindepth 1 -type d)
-# dirs=$(find -L "$1" -maxdepth 1 -type d)
+dirs=$(find -L "$target" -mindepth 1 -type d)
 mkdir -p "$XDG_CONFIG_HOME"/cmus/playlists/
 echo "$dirs" | while read -r dir; do
 	splice="$(echo "$dir" | sed 's#.*/##')"
