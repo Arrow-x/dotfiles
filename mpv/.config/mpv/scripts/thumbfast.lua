@@ -1,1 +1,0 @@
-../../../../../Public/thumbfast/thumbfast.lua
