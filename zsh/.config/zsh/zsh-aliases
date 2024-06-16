@@ -29,7 +29,6 @@ vin(){
 bookmarks(){
 	pushit ~/Notes-And-Tasks bookmarks
 }
-alias lpip=' ~/.local/share/python_env/bin/pip'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
