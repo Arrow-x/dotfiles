@@ -11,17 +11,11 @@ album="$(echo "$cmus_query" | grep "tag album\b" | sed 's/tag album //')"
 
 echo "$cmus_query" | grep "file" | sed "s/file //" | sed 's/"/\\"/g' | sed 's/$/"/;s/^/"/' | xargs -I {} ffmpegthumbnailer -i "{}" -o "$XDG_CACHE_HOME"/cmus_notification_cover.jpg
 
-if [ -z "$artist" ]; then
-	artist="Unknown"
-fi
+[ -z "$artist" ] && artist="Unknown"
 
-if [ -z "$album" ]; then
-	album="Unknown"
-fi
+[ -z "$album" ] && album="Unknown"
 
-if [ -z "$title" ]; then
-	title="$(echo "$cmus_query" | grep "file" | sed "s/file //" | sed 's/"/\\"/g' | sed 's/$/"/;s/^/"/' | xargs basename)"
-fi
+[ -z "$title" ] && title="$(echo "$cmus_query" | grep "file" | sed "s/file //" | sed 's/"/\\"/g' | sed 's/$/"/;s/^/"/' | xargs basename)"
 
 notify-send -u low --icon="$XDG_CACHE_HOME"/cmus_notification_cover.jpg "Now Playing:" "<b>$title</b>\nby: <b>$artist</b> from: <b>$album</b>"
 
