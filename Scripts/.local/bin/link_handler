@@ -11,7 +11,7 @@ edit="$TERMINAL -e $EDITOR"
 podcast="mpv --no-audio-display"
 video="mpv --really-quiet"
 # youtube="/home/arrowx/.local/bin/yt_link_handler"
-youtube="setsid -f mpv --ytdl-format=22 --really-quiet --no-terminal"
+youtube="setsid -f mpv --ytdl-format=247+251 --really-quiet --no-terminal"
 picture="nsxiv-url"
 document="$READER"
 
