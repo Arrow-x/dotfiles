@@ -86,7 +86,7 @@ alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
 alias ydl720mp4='yt-dlp --embed-thumbnail --embed-metadata --embed-chapters --embed-subs -f 136+140'
 
 changewalln() {
-	find "/home/arrowx/Pictures/Wallpapers" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | read -r pic; [[ -n "$pic" ]] && set_bg "$pic"
+	find "/home/arrowx/Pictures/Wallpapers" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | read -r pic; [ -n "$pic" ] && set_bg "$pic"
 }
 
 
