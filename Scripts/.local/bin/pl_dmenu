@@ -1,12 +1,15 @@
 #!/bin/sh
-if [ -n "$(pgrep bemenu)" ]; then
-	exit
-fi
+menu() {
+	fzfmenu.sh
+}
 p=$(playerctl --list-all)
-s=$(echo "$p" | $MENU)
+p_count=$(playerctl --list-all | wc -l)
+if [ "$p_count" -gt 1 ]; then
+	s=$(echo "$p" | menu)
 
-if [ -z "$s" ]; then
-	exit 128
+	if [ -z "$s" ]; then
+		exit 128
+	fi
 fi
 
 playerctl --player="$s" "$1"
