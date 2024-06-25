@@ -25,6 +25,9 @@ case "$1" in
 		printf "%s\n" "$help"
 		exit
 		;;
+	-m | --music)
+		footclient mpv --ytdl-format=251 "$link_in_clipboard" &
+		;;
 	*)
 		printf "%s\n" "$help"
 		exit
