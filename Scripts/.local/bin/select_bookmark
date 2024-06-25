@@ -7,6 +7,9 @@ fi
 menu() {
 	fzfmenu.sh
 }
+browser() {
+	firefox "$1"
+}
 case $1 in
 	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
 	-b)
@@ -14,7 +17,7 @@ case $1 in
 		if [ -z "$bookmark" ]; then
 			exit 1
 		fi
-		$BROWSER "$bookmark" &
+		browser "$bookmark" &
 		;;
 	*)
 		echo "Wrong argument expect either -t or -b" >&2
