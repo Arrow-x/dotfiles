@@ -10,33 +10,66 @@ case "$1" in
 		url="$1"
 		;;
 esac
-# TODO: handle errors somehow to and notify
+
+y_tube() {
+	"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f "$1" "$2"
+}
+d_failed() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg \
+		"Failed to download"
+	exit 1
+}
+retry() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-reboot.svg \
+		"Couldn't get MP4, attempting WEBM"
+}
+
 download_url() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
 		"downloading the $1 at $2"
 
 	case "$1" in
 		"Video")
-			"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f '247+251' "$2"
+			if ! y_tube '136+140' "$2"; then
+				retry
+				if ! y_tube '247+251' "$2"; then
+					d_failed
+				fi
+			fi
 			;;
 		"Audio")
-			"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Music -f 140 "$2"
+			if ! y_tube 140 "$2"; then
+				retry
+				if ! y_tube 251 "$2"; then
+					d_failed
+				fi
+			fi
 			;;
 		"Picture")
-			gallery-dl "$2"
+			if ! gallery-dl "$2"; then
+				d_failed
+			fi
 			;;
 		"Hentai")
-			gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2"
+			if ! gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2"; then
+				d_failed
+			fi
 			;;
 		"Pixeldrain")
 			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
-			"$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"
+			if ! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
+				d_failed
+			fi
 			;;
 		"Fic")
-			"$TERMINAL" sh -c "fichub_cli -o "/home/arrowx/Documents" --force -u \"$2\""
+			if ! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\""; then
+				d_failed
+			fi
 			;;
 		"General")
-			"$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"
+			if ! "$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"; then
+				d_failed
+			fi
 			;;
 	esac
 
