@@ -1,197 +1,138 @@
 #!/bin/sh
 
-# path:   /home/klassiker/.local/share/repos/link-handler/link_handler.sh
-# author: klassiker [mrdotx]
-# github: https://github.com/mrdotx/link-handler
-# date:   2023-04-12T10:33:24+0200
-
-# config
-web=$BROWSER
-edit="$TERMINAL -e $EDITOR"
-podcast="mpv --no-audio-display"
-video="mpv --really-quiet"
-# youtube="/home/arrowx/.local/bin/yt_link_handler"
-youtube="setsid -f mpv --ytdl-format=247+251 --really-quiet --no-terminal"
-picture="nsxiv-url"
-document="$READER"
-
-tmp_download="curl -fsS "
-tmp_readable="python -W ignore -m readability.readability -u"
-
-# help
-script=$(basename "$0")
-help="$script [-h/--help] -- script to open links on basis of extensions
-Usage:
-$script [--clipboard] [--readable] [uri]
-
-Settings:
-[--clipboard] = open uri from clipboard
-[--readable]  = make the html content readable with python readability-lxml
-(Mozilla's Readability library)
-[uri]         = uniform resource identifier
-
-Examples:
-$script suckless.org
-$script https://raw.githubusercontent.com/mrdotx/dotfiles/master/screenshot.png
-$script --clipboard
-$script --readable suckless.org
-
-Config:
-web           = $web
-edit          = $edit
-podcast       = $podcast
-video         = $video
-picture       = $picture
-document      = $document
-download      = $download
-
-tmp_download  = $tmp_download
-tmp_readable  = $tmp_readable"
-
+help="this is the help text"
 case "$1" in
 	-h | --help | '')
 		printf "%s\n" "$help"
-		[ -z "$1" ] &&
-			exit 1
 		exit 0
 		;;
-	--clipboard)
-		[ "$(command -v "xsel")" ] &&
-			uri="$(xsel -n -o -b)"
-		;;
 	*)
-		uri="$1"
+		url="$1"
 		;;
 esac
 
-uri_lower="$(printf "%s" "$uri" | tr '[:upper:]' '[:lower:]')"
+y_tube() {
+	mpv --ytdl-format="$1" --really-quiet --no-terminal "$2"
+}
 
-# open with/-out tmp file or readable
-open() {
-	open_tmp() {
-		tmp_file=$(mktemp -t link_handler.XXXXXX --suffix=".$1")
-		$2 "$3" >"$tmp_file" &&
-			$4 "$tmp_file" &&
-			rm -rf "$tmp_file"
-	}
+d_failed() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg \
+		"Failed to open"
+	exit 1
+}
+retry() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-reboot.svg \
+		"Retrying link.."
+}
+
+get_link() {
+	gallery-dl -q -g "$1"
+}
+
+manage_url() {
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+		"opening the $1 at $2"
 
 	case "$1" in
-		"--readable")
-			open_tmp "html" "$tmp_readable" "$2" "$web"
+		"Video")
+			! y_tube "" "$2" && d_failed
 			;;
-		"--tmp")
-			open_tmp "${uri_lower##*.}" "$tmp_download" "$uri" "$2"
+		"Youtube")
+			if ! y_tube '136+140' "$2"; then
+				retry
+				if ! y_tube '247+251' "$2"; then
+					retry
+					! y_tube "best" "$2" && d_failed
+				fi
+			fi
 			;;
-		*)
-			$1 "$uri"
+
+		"Audio")
+			if ! y_tube 140 "$2"; then
+				retry
+				if ! y_tube 251 "$2"; then
+					d_failed
+				fi
+			fi
+			;;
+		"Picture")
+			! nsxiv-url "$(get_link "$2")" && d_failed
+			;;
+		"X")
+			link="$(get_link "$2")"
+			[ -z "$link" ] && d_failed
+			if echo "$link" | grep video; then
+				! mpv "$link" && d_failed
+			else
+				! nsxiv-url "$(echo "$link" | grep orig)" && d_failed
+			fi
+			;;
+		"Tumblr")
+			parse_url "$(get_link "$2")"
+			;;
+		"Read")
+			! gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2" && d_failed
+			;;
+		"Fic")
+			! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" && d_failed
+			;;
+		"General")
+			! "$BROWSER" "$2" && d_failed
 			;;
 	esac
 }
 
-case "$uri_lower" in
-	--readable)
-		[ -n "$2" ] &&
-			notify-send \
-				-u low \
-				"link handler - open link readable" \
-				"$2"
-		open "$uri_lower" "$2"
-		;;
-	*.mkv | \
-		*.mp4 | \
-		*.webm)
-		notify-send \
-			-u low \
-			"link handler - add video to taskspooler" \
-			"$uri"
-		open "$video"
-		;;
+parse_url() {
+	case "$1" in
+		*.mkv | \
+			*.mp4 | \
+			*.webm)
+			printf "Video"
+			;;
 
-	*'youtube.com/watch'* | \
-		*'youtube.com/playlist'* | \
-		*'youtube.com/shorts'* | \
-		*'youtu.be'*)
-		notify-send \
-			-u low \
-			"link handler - add youtube video to taskspooler" \
-			"$uri"
-		open "$youtube"
-		;;
-	*'mangasee'*)
-		notify-send \
-			-u low "link handler - add Manga to taskspooler"
-		"$TERMINAL" gallery-dl --exec-after 'setsid -f "$IMAGE" {}' "$uri"
-		;;
+		*'youtube.com/watch'* | \
+			*'youtube.com/playlist'* | \
+			*'youtube.com/shorts'* | \
+			*'youtu.be'*)
+			printf "Youtube"
+			;;
 
-	*.mp3 | \
-		*.ogg | \
-		*.flac | \
-		*.opus)
-		notify-send \
-			-u low \
-			"link handler - add audio to taskspooler" \
-			"$uri"
-		open "$podcast"
-		;;
-	*.jpg | \
-		*.jpe | \
-		*.jpeg | \
-		*.png | \
-		*.gif | \
-		*.webp)
-		notify-send \
-			-u low \
-			"link handler - open picture" \
-			"$uri"
-		open "$picture"
-		;;
-	*.pdf | \
-		*.ps | \
-		*.djvu | \
-		*.epub | \
-		*.cbr | \
-		*.cbz)
-		notify-send \
-			-u low \
-			"link handler - open document" \
-			"$uri"
-		open --tmp "$document" &
-		;;
-	*.torrent | \
-		'magnet\:'* | \
-		*.metalink | \
-		*.iso | \
-		*.img | \
-		*.bin | \
-		*.tar | \
-		*.tar.bz2 | \
-		*.tbz2 | \
-		*.tar.gz | \
-		*.tgz | \
-		*.tar.xz | \
-		*.txz | \
-		*.zip | \
-		*.7z | \
-		*.rar)
-		notify-send \
-			-u low \
-			"link handler - download file" \
-			"$uri"
-		open "$download"
-		;;
-	*)
-		if [ -f "$uri" ]; then
-			notify-send \
-				-u low \
-				"link handler - edit file" \
-				"$uri"
-			open "$edit"
-		else
-			notify-send \
-				-u low \
-				"link handler - open link" \
-				"$uri"
-			open "$web"
-		fi
-		;;
-esac
+		*.mp3 | \
+			*.ogg | \
+			*.flac | \
+			*.opus)
+			printf "Audio"
+			;;
+
+		*'twitter.com'* | \
+			*'x.com'*)
+			printf "X"
+			;;
+
+		*.png* | \
+			*.jpg* | \
+			*.jpeg* | \
+			*.gif* | \
+			*.webp*)
+			printf "Picture"
+			;;
+
+		*'tumblr'*)
+			printf "Tumblr"
+			;;
+
+		*'hentai'* | \
+			*'mangasee'*)
+			printf "Read"
+			;;
+
+		*'spacebattles'* | *'alternatehistory'*)
+			printf "Fic"
+			;;
+
+		*)
+			printf "General"
+			;;
+	esac
+}
+manage_url "$(parse_url "$url")" "$url"
