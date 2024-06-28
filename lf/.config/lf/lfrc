@@ -276,15 +276,16 @@ map C clear
 map b bulkrenamevimv
 
 # Movement
+map gd cd /home/arrowx/Downloads
+map gc cd /home/arrowx/.config
+
 map ghh cd /home/arrowx
-map ghd cd /home/arrowx/Downloads
 map ghs cd /home/arrowx/Sources
 map ghg cd /home/arrowx/gallery-dl
 map ghv cd /home/arrowx/Videos
 map ght cd /home/arrowx/Pictures
 map ghm cd /home/arrowx/Music
 
-map glc cd /home/arrowx/.config
 map glb cd /home/arrowx/.local/bin
 map gls cd /home/arrowx/.local/share
 map glt cd /home/arrowx/.local/state
