@@ -8,6 +8,7 @@ fi
 start_game=1
 use_old_nwjs=0
 old_version="v0.71.0"
+ci=0
 
 usage() { #help message
 	echo "This program converts a Windows version of an NW.js program into its Linux counterpart."
@@ -15,8 +16,10 @@ usage() { #help message
 	echo "The installation process takes a while. Don't worry if almost everything disappears from the directory and then nothing seems to happen. It's normal."
 	echo ""
 	echo "Parameters:"
-	echo "  -h, --help        Shows this message and exits"
-	echo "  -ns, --no-start   Doesn't start the game after the installation"
+	echo "  -h, --help                  Shows this message and exits"
+	echo "  -ns, --no-start             Doesn't start the game after the installation"
+	echo "  -o, --old                   Use NWJS v0.71.0"
+	echo "  -ci, --case-insensitive     set up a case insensitive game data folder"
 }
 
 while [ "$1" != "" ]; do #positional parameters
@@ -30,6 +33,9 @@ while [ "$1" != "" ]; do #positional parameters
 			;;
 		-o | --old)
 			use_old_nwjs=1
+			;;
+		-ci | --case-insensitive)
+			ci=1
 			;;
 		*)
 			usage
@@ -75,6 +81,26 @@ rm "$file_name"
 if [ ! -x "nw" ]; then
 	echo "checks if the game launcher is actually executable"
 	chmod +x nw
+fi
+
+if [ "$ci" -eq 1 ]; then
+	echo "setting up data to be case insensitive"
+	mv www www_cs
+	mkidr -p case_insensitive
+	mkdir -p www
+	ciopfs "$PWD"/case_insensitive "$PWD"/www
+	cp -r www_cs/* www
+	rm -rf www_cs
+
+	echo "creating launcher script"
+	touch playme.sh
+	{
+		echo "#!/bin/sh"
+		echo "ciopfs $PWD/case_insensitive $PWD/www"
+		echo "./nw"
+	} >playme.sh
+
+	chmod +x playme.sh
 fi
 
 if [ $start_game -eq 1 ]; then
