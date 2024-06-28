@@ -72,7 +72,6 @@ bindsym $mod+backslash exec --no-startup-id rofi -show window
 
 bindsym $mod+q exec --no-startup-id  ~/.local/bin/clipboard_download -v
 bindsym $mod+Shift+q exec --no-startup-id  ~/.local/bin/clipboard_download -d
-bindsym $mod+Control+q exec --no-startup-id ~/.local/bin/clipboard_download -m
 
 bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
 bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next

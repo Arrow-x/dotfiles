@@ -37,27 +37,19 @@ manage_url() {
 		"Video")
 			! y_tube "" "$2" && d_failed
 			;;
+
 		"Youtube")
-			if ! y_tube '136+140' "$2"; then
-				retry
-				if ! y_tube '247+251' "$2"; then
-					retry
-					! y_tube "best" "$2" && d_failed
-				fi
-			fi
+			! yt_format_parser "$2" && d_failed
 			;;
 
 		"Audio")
-			if ! y_tube 140 "$2"; then
-				retry
-				if ! y_tube 251 "$2"; then
-					d_failed
-				fi
-			fi
+			! mpv --really-quiet --no-terminal --force-window "$2" && d_failed
 			;;
+
 		"Picture")
 			! nsxiv-url "$(get_link "$2")" && d_failed
 			;;
+
 		"X")
 			link="$(get_link "$2")"
 			[ -z "$link" ] && d_failed
@@ -67,18 +59,23 @@ manage_url() {
 				! nsxiv-url "$(echo "$link" | grep orig)" && d_failed
 			fi
 			;;
+
 		"Tumblr")
 			parse_url "$(get_link "$2")"
 			;;
+
 		"Read")
-			! gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2" && d_failed
+			! gallery-dl -q --exec-after "setsid -f $IMAGE {_directory}" "$2" && d_failed
 			;;
+
 		"Fic")
-			! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" && d_failed
+			! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" >/dev/null && d_failed
 			;;
+
 		"General")
 			! "$BROWSER" "$2" && d_failed
 			;;
+
 	esac
 }
 

@@ -1,33 +1,33 @@
 #!/bin/sh
-# Generaic youtube link handeler depends on yt-dlp and dmenu, and uses invidious to get the video
-# TODO: is this taking more or less time ?
+# Generic YouTube link handler depends on yt-dlp and fzf, and uses invidious to get the video
 
-if [ -n "$(pgrep bemenu)" ]; then
-	exit
-fi
-link=$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")
-video_options=$(yt-dlp -F "$1" | grep webm_dash | grep "video only")
-prechoice=$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d")
+menu() {
+	fzfmenu.sh
+}
+
+link="$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")"
+video_options="$(yt-dlp -q -F "$1" | grep webm_dash | grep "video only")"
+prechoice="$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d")"
 
 if [ -z "$prechoice" ]; then
-	exit 2
+	exit 1
 fi
 
-choice=$(printf "Audio\n720pMP4\n%s" "$prechoice" | $MENU -p "Quality: ")
+choice="$(printf "%s\nAudio\nBest" "$prechoice" | menu)"
 
 if [ -z "$choice" ]; then
-	exit 2
+	exit 1
 fi
 
 case "$choice" in
-	"720pMP4")
-		mpv --ytdl-format=22 "$link" --really-quiet --no-terminal &
+	"Best")
+		mpv --ytdl-format=best "$link" --really-quiet --no-terminal
 		;;
 	"Audio")
-		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window --no-video &
+		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window
 		;;
 	*)
-		code=$(echo "$video_options" | grep "$choice" | awk '{print $1}')
-		mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal &
+		code="$(printf '%s' "$video_options" | grep "\b$choice\b" | awk '{print $1}')"
+		mpv --ytdl-format="$code"+bestaudio "$link" --really-quiet --no-terminal
 		;;
 esac
