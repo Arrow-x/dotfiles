@@ -37,7 +37,7 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
 # -- navigation ----------------------------------------------------------------
 goto-next-feed no
 
-browser "/home/arrowx/.local/bin/link_handler %u"
+browser "setsid -f /home/arrowx/.local/bin/link_handler %u"
 
 bind-key j down feedlist
 bind-key k up feedlist
