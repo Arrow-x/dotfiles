@@ -7,17 +7,22 @@ menu() {
 
 link="$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")"
 video_options="$(yt-dlp -q -F "$1" | grep webm_dash | grep "video only")"
-prechoice="$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d")"
+if [ -z "$video_options" ]; then
+	video_options="$(yt-dlp -q -F "$1" | grep mp4_dash | grep "video only")"
+fi
 
-if [ -z "$prechoice" ]; then
+if [ -z "$video_options" ]; then
+	echo "Can't get video"
 	exit 1
 fi
+
+prechoice="$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed "/.*144p.*/d")"
+
+[ -z "$prechoice" ] && exit 1
 
 choice="$(printf "%s\nAudio\nBest" "$prechoice" | menu)"
 
-if [ -z "$choice" ]; then
-	exit 1
-fi
+[ -z "$choice" ] && exit 1
 
 case "$choice" in
 	"Best")
