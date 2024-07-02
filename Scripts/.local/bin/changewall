@@ -1,17 +1,32 @@
 #!/bin/sh
-
+resault=""
 export pics="/home/arrowx/Pictures/Wallpapers"
-resault="$(
-	fd -t f -L -0 . "$pics" -X ls -t | fzf \
-		--preview-window='up,25' \
-		--preview 'chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --dither fs --animate off --polite on {}' \
-		--bind 'ctrl-l:execute(xdg-open {})' \
-		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
-		--bind 'ctrl-o:execute(convert {} -flop {})' \
-		--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/Favs && fd -t f -L -0 . "$pics" -X ls -t)' \
-		--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
-)"
 
+#HACK: tmux doesn't like bing's resoulution so smaller previews
+if [ "$TMUX" ]; then
+	resault="$(
+		fd -t f -L -0 . "$pics" -X ls -t | fzf \
+			--preview-window='up,19' \
+			--preview 'chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --dither fs --animate off --polite on {}' \
+			--bind 'ctrl-l:execute(xdg-open {})' \
+			--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
+			--bind 'ctrl-o:execute(convert {} -flop {})' \
+			--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/Favs && fd -t f -L -0 . "$pics" -X ls -t)' \
+			--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
+	)"
+else
+	resault="$(
+		fd -t f -L -0 . "$pics" -X ls -t | fzf \
+			--preview-window='up,25' \
+			--preview 'chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --dither fs --animate off --polite on {}' \
+			--bind 'ctrl-l:execute(xdg-open {})' \
+			--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
+			--bind 'ctrl-o:execute(convert {} -flop {})' \
+			--bind 'ctrl-f:reload(ln -s {} $HOME/Pictures/Wallpapers/waifu/Favs && fd -t f -L -0 . "$pics" -X ls -t)' \
+			--header "CTRL-d to Delete | CTRL-l to open without closing | CTRL-o to flip the image | CTRL-f to move to favorites folder"
+	)"
+
+fi
 if [ -z "$resault" ]; then
 	exit 0
 fi
