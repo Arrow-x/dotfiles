@@ -1,7 +1,7 @@
 #!/bin/sh
 
 image() {
-	chafa -f sixel -s "$2x$3" --dither fs -O 9 --animate off --polite on "$1"
+	chafa -f sixel -s $(($2 - 1))x$(($3 - 1)) --dither fs -O 9 --animate off --polite on "$1"
 }
 
 batorcat() {
@@ -66,4 +66,3 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		batorcat "$1"
 		;;
 esac
-exit 0
