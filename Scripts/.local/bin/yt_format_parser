@@ -6,13 +6,16 @@ menu() {
 }
 
 link="$(printf %s "$1" | sed "s#www.youtube.com#farside.link/invidious#")"
-video_options="$(yt-dlp -q -F "$1" | grep webm_dash | grep "video only")"
+video_options="$(yt-dlp -q -F "$link" | grep webm_dash | grep "video only")"
 if [ -z "$video_options" ]; then
-	video_options="$(yt-dlp -q -F "$1" | grep mp4_dash | grep "video only")"
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-reboot.svg \
+		"Couldn't get Webm, attempting MP4"
+	video_options="$(yt-dlp -q -F "$link" | grep mp4_dash | grep "video only")"
 fi
 
 if [ -z "$video_options" ]; then
-	echo "Can't get video"
+	notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg \
+		"Can't get video"
 	exit 1
 fi
 
@@ -22,7 +25,7 @@ prechoice="$(printf %s "$video_options" | awk '{print $14}' | sed "s/,//g" | sed
 
 choice="$(printf "%s\nAudio\nBest" "$prechoice" | menu)"
 
-[ -z "$choice" ] && exit 1
+[ -z "$choice" ] && exit 0
 
 case "$choice" in
 	"Best")
