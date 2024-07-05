@@ -3,14 +3,6 @@
 	name = Arrow-x
 [color]
 	ui = true
-[maintenance]
-	repo = /home/arrowx/Git/zsh-autocomplete
-	repo = /home/arrowx/Git/zsh-autosuggestions
-	repo = /home/arrowx/Git/zsh-snap
-	repo = /home/arrowx/Git/zsh-syntax-highlighting
-	repo = /home/arrowx/Git/pure
-	repo = /home/arrowx/Git/zsh-autopair
-	repo = /home/arrowx/Git/zsh-completions
 [color "status"]
 	branch = 14 normal
 	added = 10 normal
