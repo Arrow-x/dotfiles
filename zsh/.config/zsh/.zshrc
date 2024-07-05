@@ -78,6 +78,7 @@ done'
 # Vi supported keymaps {{{
 function zvm_after_init() {
   zvm_bindkey viins '^N' fzf_completion
+  # zvm_bindkey viins '^N' menu-select
   zvm_bindkey viins '^P' _atuin_search_widget
   znap source hlissner/zsh-autopair
 }
