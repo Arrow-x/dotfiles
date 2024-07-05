@@ -193,37 +193,35 @@ for_window [shell="xdg_shell"] title_format "%title (%app_id)"
 for_window [shell="x_wayland"] title_format "%class - %title"
 
 assign [app_id=$term] $ws1
-assign [class="Godot"] $ws2
-assign [app_id="pcmanfm"] $ws3
+assign [app_id=org.godotengine.ProjectManager] $ws2
+assign [app_id=org.godotengine.Editor] $ws2
+assign [app_id=pcmanfm] $ws3
 assign [title="mpv"] $ws3
-assign [app_id="thunderbird"] $ws4
-assign [app_id="com.github.johnfactotum.Foliate"] $ws5
-assign [app_id="firefox"] $ws6
-assign [class="firefox"] $ws6
-assign [app_id="floorp"] $ws6
-assign [class="floorp"] $ws6
+assign [app_id=thunderbird] $ws4
+assign [app_id=com.github.johnfactotum.Foliate] $ws5
+assign [app_id=firefox] $ws6
+assign [app_id=bforartists] $ws7
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
 
-for_window [app_id="firefox"] focus
-for_window [class="firefox"] focus
-for_window [app_id="floorp"] focus
-for_window [class="floorp"] focus
+for_window [app_id=firefox] focus
+for_window [app_id=floorp] focus
 for_window [app_id=pcmanfm] focus
 for_window [app_id=$term] focus
 for_window [app_id=thunderbird] focus
 for_window [app_id=com.github.johnfactotum.Foliate] focus
-for_window [class=Godot] focus
-for_window [class=Blender] focus
-for_window [class=krita] focus
+for_window [app_id=org.godotengine.ProjectManager] focus
+for_window [app_id=org.godotengine.Editor] focus
+for_window [app_id=bforartists] focus
+for_window [class="Blender"] focus
+for_window [class="krita"] focus
 for_window [title="mpv"] focus
 
-for_window [class=Godot_Engine] floating enable
-for_window [class=Godot] floating enable
-for_window [app_id="galculator"] floating enable
-for_window [app_id="pavucontrol"] floating enable
-for_window [app_id="pavucontrol"] resize set 710 400
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [app_id=org.godotengine.ProjectManager] floating enable
+for_window [app_id=galculator] floating enable
+for_window [app_id=pavucontrol] floating enable
+for_window [app_id=pavucontrol] resize set 710 400
+for_window [app_id=flameshot] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 # Status Bar:
 #
 set $dark_blue #24283b
