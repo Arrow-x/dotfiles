@@ -31,6 +31,7 @@ export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export HAXESHIM_ROOT="$XDG_CONFIG_HOME"/haxe
+export LC_TIME=en_US.UTF-8
 # for bottles dark mode
 export ADW_DISABLE_PORTAL=1
 
@@ -57,7 +58,7 @@ export EDITOR="nvim"
 export READER="zathura"
 export VISUAL="nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="brave"
 export VIDEO="mpv"
 export IMAGE="nsxiv"
 export COLORTERM="truecolor"
