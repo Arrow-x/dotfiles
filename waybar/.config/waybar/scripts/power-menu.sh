@@ -4,11 +4,15 @@ selected=$(printf " Logout\n Suspend\n Reboot\n Shutdown" | wofi --c
 
 case "$selected" in
 	logout)
-		swaymsg exit ;;
+		swaymsg exit
+		;;
 	suspend)
-		exec systemctl suspend ;;
+		systemctl suspend
+		;;
 	reboot)
-		exec systemctl reboot ;;
+		systemctl reboot
+		;;
 	shutdown)
-		exec systemctl poweroff -i ;;
+		systemctl poweroff -i
+		;;
 esac
