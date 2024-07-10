@@ -18,7 +18,7 @@ gaps outer 0
 smart_borders on
 focus_follows_mouse no
 
-
+font pango:FiraCode Nerd Font Medium 11
 input type:keyboard {
     xkb_layout us,ara
     # xkb_options caps:swapescape,grp:alt_shift_toggle
@@ -51,6 +51,8 @@ exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 34.671359 -L 3.254037
 exec --no-startup-id persway daemon -d manual
 exec --no-startup-id foot -s
+exec --no-startup-id export LC_TIME=en_US.UTF-8
+
 ### Key bindings
 # Moving around:
 # Move your focus around
@@ -82,7 +84,7 @@ set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6:"
+set $ws6 "6:"
 set $ws7 "7:󰂫"
 set $ws8 "8:"
 set $ws9 "9"
@@ -195,11 +197,13 @@ for_window [shell="x_wayland"] title_format "%class - %title"
 assign [app_id=$term] $ws1
 assign [app_id=org.godotengine.ProjectManager] $ws2
 assign [app_id=org.godotengine.Editor] $ws2
+assign [class="Godot"] $ws2
 assign [app_id=pcmanfm] $ws3
 assign [title="mpv"] $ws3
 assign [app_id=thunderbird] $ws4
 assign [app_id=com.github.johnfactotum.Foliate] $ws5
 assign [app_id=firefox] $ws6
+assign [app_id=brave-browser] $ws6
 assign [app_id=bforartists] $ws7
 assign [class="Blender"] $ws7
 assign [class="krita"] $ws8
@@ -213,6 +217,8 @@ for_window [app_id=com.github.johnfactotum.Foliate] focus
 for_window [app_id=org.godotengine.ProjectManager] focus
 for_window [app_id=org.godotengine.Editor] focus
 for_window [app_id=bforartists] focus
+for_window [app_id=brave-browser] focus
+for_window [class="Godot"] focus
 for_window [class="Blender"] focus
 for_window [class="krita"] focus
 for_window [title="mpv"] focus
