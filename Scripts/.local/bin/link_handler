@@ -47,7 +47,7 @@ manage_url() {
 			;;
 
 		"Picture")
-			! nsxiv-url "$(get_link "$2")" && d_failed
+			! nsxiv-url $2 && d_failed
 			;;
 
 		"X")
@@ -61,7 +61,8 @@ manage_url() {
 			;;
 
 		"Tumblr")
-			parse_url "$(get_link "$2")"
+			_link="$(get_link "$2")"
+			! manage_url "$(parse_url "$_link")" "$_link" && d_failed
 			;;
 
 		"Read")
@@ -83,6 +84,7 @@ parse_url() {
 	case "$1" in
 		*.mkv | \
 			*.mp4 | \
+			*'twitch'* | \
 			*.webm)
 			printf "Video"
 			;;
