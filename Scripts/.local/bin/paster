@@ -4,5 +4,5 @@ menu() {
 }
 select="$(cliphist list | menu | cliphist decode)"
 
-wl-copy "$select"
+wl-copy -- "$select"
 wtype -M ctrl -M shift v -m ctrl -m shift
