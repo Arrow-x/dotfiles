@@ -1,5 +1,5 @@
 # vim: filetype=swayconfig
-set $browser firejail brave --enable-features=VaapiVideoDecoder
+set $browser firejail firefox
 ## App shortcuts
 ## Multimedia Keys
 # volume

@@ -8,7 +8,7 @@ menu() {
 	fzfmenu.sh
 }
 browser() {
-	brave --enable-features=VaapiVideoDecoder "$1"
+	firefox "$1"
 }
 case $1 in
 	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
