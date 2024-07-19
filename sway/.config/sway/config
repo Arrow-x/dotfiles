@@ -37,7 +37,7 @@ input type:touchpad {
 ### Idle configuration
 exec_always --no-startup-id ~/.config/sway/scripts/ideling.sh
 
-exec --no-startup-id ~/.azotebg
+exec --no-startup-id ~/.local/bin/current_bg
 exec --no-startup-id ~/.local/bin/binger
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
