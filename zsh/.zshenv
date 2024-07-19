@@ -31,6 +31,9 @@ export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export HAXESHIM_ROOT="$XDG_CONFIG_HOME"/haxe
+export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
+export RENPY_PATH_TO_SAVES="$XDG_DATA_HOME"/renpy
+
 export LC_TIME=en_US.UTF-8
 # for bottles dark mode
 export ADW_DISABLE_PORTAL=1
