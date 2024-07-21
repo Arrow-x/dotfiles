@@ -13,7 +13,7 @@ batorcat() {
 		cat "$file"
 	fi
 }
-
+mkdir "$HOME/.cache/lf"
 CACHE="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
 case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
