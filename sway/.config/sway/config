@@ -203,6 +203,8 @@ assign [app_id=thunderbird] $ws4
 assign [app_id=com.github.johnfactotum.Foliate] $ws5
 assign [app_id=firefox] $ws6
 assign [app_id=brave-browser] $ws6
+assign [app_id=chromium] $ws6
+assign [class="Chromium"] $ws6
 assign [class="Brave-browser"] $ws6
 assign [app_id=bforartists] $ws7
 assign [class="Blender"] $ws7
@@ -218,6 +220,8 @@ for_window [app_id=org.godotengine.ProjectManager] focus
 for_window [app_id=org.godotengine.Editor] focus
 for_window [app_id=bforartists] focus
 for_window [app_id=brave-browser] focus
+for_window [app_id=chromium] focus
+for_window [class="Chromium"] focus
 for_window [class="Godot"] focus
 for_window [class="Brave-browser"] focus
 for_window [class="Blender"] focus
@@ -229,6 +233,7 @@ for_window [app_id=galculator] floating enable
 for_window [app_id=pavucontrol] floating enable
 for_window [app_id=pavucontrol] resize set 710 400
 for_window [app_id=flameshot] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [class="Godot"] floating enable
 # Status Bar:
 #
 set $dark_blue #24283b
