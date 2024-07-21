@@ -3,11 +3,21 @@
 target=""
 [ -z "$1" ] && read -r target
 [ -z "$target" ] && target="$1"
+dirs=$(find -L "$target" -maxdepth 1 -type d)
 
-dirs=$(find -L "$target" -mindepth 1 -type d)
 mkdir -p "$XDG_CONFIG_HOME"/cmus/playlists/
 echo "$dirs" | while read -r dir; do
 	splice="$(echo "$dir" | sed 's#.*/##')"
 	dest="$XDG_CONFIG_HOME"/cmus/playlists/"$splice"
-	find "$dir" -maxdepth 1 -type f >"$dest"
+	clist=$(find "$dir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" | wc -l)
+	if [ "$clist" -eq 0 ]; then
+		[ "$dir" = "$target" ] && continue
+		find "$dir" -mindepth 1 -maxdepth 1 -type d ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" | while read -r subdir; do
+			subsplice="$(echo "$subdir" | sed 's#.*/##')"
+			subdest=$(printf '%s_%s' "$dest" "$subsplice")
+			find "$subdir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" >"$subdest"
+		done
+	else
+		find "$dir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" >"$dest"
+	fi
 done
