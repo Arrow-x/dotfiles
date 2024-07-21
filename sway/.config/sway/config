@@ -51,7 +51,6 @@ exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 36.736647 -L 3.100180
 exec --no-startup-id persway daemon -d manual
 exec --no-startup-id foot -s
-exec --no-startup-id export LC_TIME=en_US.UTF-8
 
 ### Key bindings
 # Moving around:
