@@ -120,7 +120,7 @@ executable: # Libs and exec binaries (without exec permissions)
   foreground: green2
 
 archives:
-  foreground: red1
+  foreground: blue2
   font-style: bold
 
 media:
