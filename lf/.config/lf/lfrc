@@ -176,7 +176,7 @@ cmd full_size %{{
 }}
 
 cmd fzf_jump ${{
-    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    res="$(find . -type d | fzf_preview --reverse --header='Jump to location')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -294,7 +294,7 @@ map gff cd /home/arrowx/File
 map gfg cd /home/arrowx/File/Games
 map gfd cd /home/arrowx/File/Documents
 map gfs cd /home/arrowx/File/Software
-map gfh cd /home/arrowx/File/Homework/H-Games
+map gfh cd /home/arrowx/File/Homework
 map gfp cd /home/arrowx/File/Projects
 map gft cd /home/arrowx/File/Tutorials
 
