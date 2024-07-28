@@ -39,7 +39,7 @@ manage_url() {
 			;;
 
 		"Youtube")
-			! yt_format_parser "$2" && d_failed
+			! yt_default "$2" && d_failed
 			;;
 
 		"Audio")

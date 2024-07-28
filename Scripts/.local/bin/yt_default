@@ -1,0 +1,32 @@
+#!/bin/sh
+
+menu() {
+	fzfmenu.sh
+}
+
+link="$1"
+
+choice="$(printf "720p\nAudio\nBest\n" | menu)"
+
+[ -z "$choice" ] && exit 0
+
+case "$choice" in
+	"Best")
+		mpv --ytdl-format=best "$link" --really-quiet --no-terminal
+		;;
+	"Audio")
+		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window
+		;;
+	"720p")
+		if ! mpv --ytdl-format=247+bestaudio "$link" --really-quiet --no-terminal; then
+			notify-send "Couldn't get webm trying mp4"
+			if ! mpv --ytdl-format=136+bestaudio "$link" --really-quiet --no-terminal; then
+				mpv -ytdl-format=best "$link" --really-quieta --no-terminal
+			else
+				exit 0
+			fi
+		else
+			exit 0
+		fi
+		;;
+esac
