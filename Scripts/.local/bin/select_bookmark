@@ -5,10 +5,12 @@ if [ "$#" -ne 1 ]; then
 fi
 
 menu() {
+	# dmenu -l 16
 	fzfmenu.sh
 }
 browser() {
-	firefox "$1"
+	chromium "$1"
+	# firefox "$1"
 }
 case $1 in
 	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;

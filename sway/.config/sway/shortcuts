@@ -1,5 +1,6 @@
 # vim: filetype=swayconfig
-set $browser firejail firefox
+set $browser firejail chromium
+
 ## App shortcuts
 ## Multimedia Keys
 # volume
