@@ -144,8 +144,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+Control+$right workspace next
 bindsym $mod+Control+$left workspace prev
 
-bindsym $alt+Tab workspace next
-bindsym $alt+Tab+Control workspace prev 
+# bindsym $alt+Tab+Control workspace prev 
 
 bindsym $mod+t split toggle
 # enter fullscreen mode for the focused container
