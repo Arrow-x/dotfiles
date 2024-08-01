@@ -53,6 +53,7 @@ znap source jeffreytse/zsh-vi-mode
 
 source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
 #  }}}
 
 # Completion Menu Options {{{
