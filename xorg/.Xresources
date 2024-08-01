@@ -1,8 +1,8 @@
 !! St, or * will apply on diffrent classes of st (started with -n) as well like a scratchpad
 !! st. will aplly on the default class of st
 !! Transparency (0-1):
-st.alpha: 0.9
-St.alpha: 1
+
+St.alpha: 0.9 
 st.alphaUnfocused: 0.95
 *alphaUnfocused: 0.5
 
@@ -40,6 +40,6 @@ Xft.autohint: 1
 Xft.antialias: 1
 Xft.hinting: true
 Xft.hintstyle: hintslight
-! Xft.dpi: 100
+Xft.dpi: 100
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
