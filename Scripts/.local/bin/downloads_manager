@@ -29,18 +29,10 @@ download_url() {
 		"downloading the $1 at $2"
 
 	case "$1" in
-		"Video")
+		"Youtube")
 			if ! y_tube '136+140' "$2"; then
 				retry
 				if ! y_tube '247+251' "$2"; then
-					d_failed
-				fi
-			fi
-			;;
-		"Audio")
-			if ! y_tube 140 "$2"; then
-				retry
-				if ! y_tube 251 "$2"; then
 					d_failed
 				fi
 			fi
@@ -66,6 +58,9 @@ download_url() {
 				d_failed
 			fi
 			;;
+		"Emulation")
+			! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Games/Emulators/ "$2" && d_failed
+			;;
 		"General")
 			if ! "$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"; then
 				d_failed
@@ -79,21 +74,11 @@ download_url() {
 
 parse_url() {
 	case "$1" in
-		*.mkv | \
-			*.mp4 | \
-			*.webm | \
-			*'youtube.com/watch'* | \
+		*'youtube.com/watch'* | \
 			*'youtube.com/playlist'* | \
 			*'youtube.com/shorts'* | \
 			*'youtu.be'*)
-			printf "Video"
-			;;
-
-		*.mp3 | \
-			*.ogg | \
-			*.flac | \
-			*.opus)
-			printf "Audio"
+			printf "Youtube"
 			;;
 
 		*'twitter.com'* | \
@@ -113,6 +98,10 @@ parse_url() {
 
 		*'spacebattles'* | *'alternatehistory'*)
 			printf "Fic"
+			;;
+
+		*'cdromance'*)
+			printf "Emulation"
 			;;
 
 		*)
