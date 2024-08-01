@@ -1,15 +1,27 @@
 #!/bin/sh
+
 menu() {
 	fzfmenu.sh
 }
-p=$(playerctl --list-all)
-p_count=$(playerctl --list-all | wc -l)
-if [ "$p_count" -gt 1 ]; then
-	s=$(echo "$p" | menu)
 
-	if [ -z "$s" ]; then
-		exit 128
+list_clients() {
+	l_a="$(playerctl --list-all)"
+	if ! printf '%s' "$l_a" | grep -q cmus; then
+		printf '%s' "$l_a"
+	else
+		ed="$(printf '%s' "$l_a" | sed 's/\bcmus.*\b//')"
+		printf 'cmus\n%s' "$ed"
+	fi
+}
+
+clients="$(list_clients)"
+clients_count=$(echo "$clients" | wc -l)
+if [ "$clients_count" -gt 1 ]; then
+	selected_client=$(echo "$clients" | menu)
+
+	if [ -z "$selected_client" ]; then
+		exit 1
 	fi
 fi
 
-playerctl --player="$s" "$1"
+playerctl --player="$selected_client" "$1"
