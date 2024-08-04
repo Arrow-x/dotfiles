@@ -9,7 +9,7 @@ list_clients() {
 	if ! printf '%s' "$l_a" | grep -q cmus; then
 		printf '%s' "$l_a"
 	else
-		ed="$(printf '%s' "$l_a" | sed 's/\bcmus.*\b//')"
+		ed="$(printf '%s' "$l_a" | sed '/^cmus$/d')"
 		printf 'cmus\n%s' "$ed"
 	fi
 }
