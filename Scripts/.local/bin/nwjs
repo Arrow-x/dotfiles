@@ -64,10 +64,8 @@ link="https://dl.nwjs.io/""$version""/""$file_name"
 
 mkdir --parents "$parent_dir_name"
 
-if [ ! -f "$destination" ]; then
-	echo "downloading the correct NW.js for your computer ..."
-	wget "$link" --no-verbose --output-document "$destination"
-fi
+echo "downloading/checking the correct NW.js for your computer ..."
+wget "$link" --continue --output-document "$destination"
 
 echo 'copying NWjs ...'
 cp "$destination" .
