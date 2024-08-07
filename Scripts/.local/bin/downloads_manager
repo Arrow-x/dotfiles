@@ -12,16 +12,17 @@ case "$1" in
 esac
 
 y_tube() {
-	"$TERMINAL" yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f "$1" "$2"
+	yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f "$1" "$2"
 }
 d_failed() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg \
 		"Failed to download"
 	exit 1
 }
+
 retry() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-reboot.svg \
-		"Couldn't get MP4, attempting WEBM"
+		"$(printf "Couldn't get %s, attempting %s" "$1" "$2")"
 }
 
 download_url() {
@@ -31,9 +32,13 @@ download_url() {
 	case "$1" in
 		"Youtube")
 			if ! y_tube '136+140' "$2"; then
-				retry
+				retry "webm" "mp4"
 				if ! y_tube '247+251' "$2"; then
-					d_failed
+					retry "mp4" "mp4 60fps"
+					if ! y_tube '298+bestaudio' "$2"; then
+						d_failed
+					fi
+
 				fi
 			fi
 			;;
