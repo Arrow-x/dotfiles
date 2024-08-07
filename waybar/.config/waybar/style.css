@@ -11,7 +11,7 @@ window#waybar {
     color: white;
 }
 
-#custom-date, #custom-term, #custom-launcher, #workspaces, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst, #custom-power{
+#custom-date, #custom-term, #custom-launcher, #workspaces, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst, #custom-power, #privacy{
 	background-color: #24283b;
 	padding: 1px 10px;
 	border-radius: 10px;
@@ -105,6 +105,6 @@ window#waybar {
 	color: #f7768e;
 }
 
-#pulseaudio {
+#pulseaudio, #privacy {
 	color: #e0af68;
 }

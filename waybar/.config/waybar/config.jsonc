@@ -9,6 +9,7 @@
         "sway/workspaces"
     ],
     "modules-center": [],
+
     "modules-right": [
         "custom/term",
         "custom/launcher",
@@ -18,6 +19,7 @@
         "custom/bandwidth",
         "battery",
         "pulseaudio",
+        "privacy",
         "clock",
         "custom/dunst",
         "tray",
@@ -118,5 +120,22 @@
     "custom/launcher":{
         "format":"",
         "on-click":"rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
+    },
+    "privacy": {
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "audio-out",
+                "tooltip": true
+            },
+            {
+                "type": "screenshare",
+                "tooltip": true
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true
+            }
+        ]
     }
 }
