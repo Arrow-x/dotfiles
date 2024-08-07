@@ -202,6 +202,7 @@ cmd fzf_search ${{
 map gs :fzf_search
 map <c-f> :fzf_jump
 cmd dragon %dragon-drop -a -x $fx
+cmd dragon-x %export GDK_BACKEND=x11 && dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
 cmd dragon-individual %dragon-drop $fx
 cmd dragon_cp %dragon_cp
@@ -239,6 +240,7 @@ map P :link
 # Dragon Mapping
 map d
 map drr dragon
+map drx dragon-x
 map drs dragon-stay
 map dri dragon-individual
 map drm dragon_mv
