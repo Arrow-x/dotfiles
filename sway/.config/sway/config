@@ -35,6 +35,7 @@ input type:touchpad {
 }
 # Startup
 ### Idle configuration
+exec --no-startup-id sway-audio-idle-inhibit
 exec_always --no-startup-id ~/.config/sway/scripts/ideling.sh
 
 exec --no-startup-id ~/.local/bin/current_bg
@@ -51,6 +52,7 @@ exec --no-startup-id wl-paste --watch cliphist store
 exec --no-startup-id wlsunset -l 36.736647 -L 3.100180
 exec --no-startup-id persway daemon -d manual
 exec --no-startup-id foot -s
+exec --no-startup-id pcmanfm -d
 
 ### Key bindings
 # Moving around:
