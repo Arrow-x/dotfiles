@@ -1,7 +1,12 @@
 #! /bin/sh
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-	swaymsg output LVDS-1 toggle
-	swaymsg output LVDS-1 toggle
+	if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
+		hyprctl dispatch dpms off
+		hyprctl dispatch dpms on
+	else
+		swaymsg output LVDS-1 toggle
+		swaymsg output LVDS-1 toggle
+	fi
 else
 	xrandr --output LVDS-1 --mode 1400x900
 	xrandr --output LVDS-1 --mode 1600x900
