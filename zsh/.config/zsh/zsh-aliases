@@ -156,9 +156,8 @@ t() {
 
 alias aria='aria2c --check-integrity=true'
 
-# easier to read disk
-alias df='df -h'     # human-readable sizes
-alias free='free -m' # show sizes in MB
+alias df="df -h | sed '/tmpfs/d' | sed '/var/d'"     # human-readable sizes
+alias free='free -m'                                 # show ram usage in MB
 alias du='du -h'
 
 # get top process eating memory
