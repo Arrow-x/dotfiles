@@ -1,5 +1,9 @@
 #!/bin/zsh
 # vim:fileencoding=utf-8:foldmethod=marker
+# Run Taks everytime {{{
+task
+#}}}
+
 # zsh Histroy Options {{{
 HISTFILE=~/.local/share/zsh/.zsh_history
 setopt APPEND_HISTORY
