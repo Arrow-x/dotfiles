@@ -1,0 +1,24 @@
+#!/bin/sh
+
+appid="$1"
+appcmd=""
+if [ "$2" = "--" ]; then
+	shift 2
+	appcmd="$*"
+else
+	appcmd="$2"
+fi
+
+is_focused="$(hyprctl activewindow -j | jq .class | grep "$appid")"
+if [ -z "$is_focused" ]; then
+	hyprctl dispatch movetoworkspace +0,"$appid"
+	focus="$(hyprctl activewindow -j | jq .class | grep "$appid")"
+	if [ -z "$focus" ]; then
+		sh -c "$appcmd" &
+		exit
+	fi
+	exit
+else
+	hyprctl dispatch movetoworkspacesilent special,"$appid"
+	exit
+fi
