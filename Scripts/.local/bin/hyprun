@@ -9,11 +9,11 @@ else
 	appcmd="$2"
 fi
 
-is_focused="$(hyprctl activewindow -j | jq .class | grep "$appid")"
-if [ -z "$is_focused" ]; then
+if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
 	hyprctl dispatch movetoworkspace +0,"$appid"
-	focus="$(hyprctl activewindow -j | jq .class | grep "$appid")"
-	if [ -z "$focus" ]; then
+	hyprctl dispatch alterzorder top,class:"$appid"
+	hyprctl dispatch focuswindow class:"$appid"
+	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
 		sh -c "$appcmd" &
 		exit
 	fi
