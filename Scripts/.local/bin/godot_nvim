@@ -1,13 +1,24 @@
 #!/bin/sh
 appid="g_nvim"
 appargs="$*"
-
-is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
-if [ -z "$is_focused" ]; then
-	focus="$(swaymsg "[app_id=$appid] focus" | grep success)"
-	if echo "$focus" | grep -q false; then
-		sh -c "footclient -a g_nvim nvim --listen /tmp/godothost.pipe" &
-		sleep 0.5
+if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
+	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
+		hyprctl dispatch movetoworkspace +0, "$appid"
+		hyprctl dispatch alterzorder top, class:"$appid"
+		hyprctl dispatch focuswindow class:"$appid"
+		if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
+			sh -c "footclient -a g_nvim nvim --listen /tmp/godothost.pipe" &
+			sleep 0.5
+		fi
+	fi
+else
+	is_focused="$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)' | grep "$appid")"
+	if [ -z "$is_focused" ]; then
+		focus="$(swaymsg "[app_id=$appid] focus" | grep success)"
+		if echo "$focus" | grep -q false; then
+			sh -c "footclient -a g_nvim nvim --listen /tmp/godothost.pipe" &
+			sleep 0.5
+		fi
 	fi
 fi
 nvim --server /tmp/godothost.pipe --remote-send "$appargs" &
