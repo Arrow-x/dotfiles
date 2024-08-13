@@ -4,7 +4,7 @@ opener="nsxiv"
 
 find_hentai() {
 	DOJ=$(find ~/File/Homework/H-Manga/Doujinshi/ -mindepth 1 -type d -printf "%T+ %p\n")
-	PAR=$(find ~/File/Homework/H-Manga/Parody/ -mindepth 2 -type d -printf "%T+ %p\n")
+	PAR=$(find ~/File/Homework/H-Manga/Parody/ -mindepth 1 -type d -printf "%T+ %p\n")
 	TAN=$(find ~/File/Homework/H-Manga/Tankebons/ -mindepth 1 -type d -printf "%T+ %p\n")
 	list=""
 	[ -n "$DOJ" ] && list="$(printf "%s\n" "$DOJ")"
