@@ -1,7 +1,31 @@
 #!/bin/sh
-#TODO: support RPGMV
-if [ ! -d "www" ] || [ ! -f "package.json" ]; then #test to avoid accidental and irreversible deletion of files and directories
-	echo "This doesn't look like a NW.js program."
+
+IS_RPGMV=false
+IS_RPGMZ=false
+
+#test to avoid accidental and irreversible deletion of files and directories
+if [ -d "www" ] && [ -f "package.json" ]; then
+	echo "This looks like an RPGMV Game."
+	IS_RPGMV=true
+elif 
+	[ -d "audio" ] &&
+	[ -d "css" ] &&
+	[ -d "data" ] &&
+	[ -d "effects" ] &&
+	[ -f "package.json" ] &&
+	[ -d "fonts" ] &&
+	[ -d "img" ] &&
+	[ -d "icon" ] &&
+	[ -d "js" ] &&
+	[ -d "swiftshader" ] &&
+	[ -d "locales" ]; 
+	then
+	echo "This looks like an RPGMZ Game."
+	IS_RPGMZ=true
+fi
+
+if [ $IS_RPGMV = false ] && [ $IS_RPGMZ = false ]; then
+	echo "This doesn't look like nwjs program"
 	exit 1
 fi
 
@@ -47,7 +71,13 @@ done
 
 chmod +w .
 echo "removes unneeded files ..."
-find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -print0 | xargs -0 -r rm -r --
+if $IS_RPGMV; then
+	notify-send "is RPGMV"
+	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -print0 | xargs -0 -r rm -r --
+elif $IS_RPGMZ; then
+	notify-send "is RPGMz"
+	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
+fi
 
 if [ "$use_old_nwjs" -eq 1 ]; then
 	version="$old_version"
@@ -86,25 +116,27 @@ if [ ! -x "nw" ]; then
 fi
 
 if [ "$ci" -eq 1 ]; then
-	echo "setting up data to be case insensitive ..."
-	mv www/ www_cs/
-	mkdir -p case_insensitive
-	mkdir -p www/
-	ciopfs "$PWD"/case_insensitive "$PWD"/www
-	cp -r www_cs/* www/
-	rm -rf www_cs
+	if $IS_RPGMV; then
+		echo "setting up data to be case insensitive ..."
+		mv www/ www_cs/
+		mkdir -p case_insensitive
+		mkdir -p www/
+		ciopfs "$PWD"/case_insensitive "$PWD"/www
+		cp -r www_cs/* www/
+		rm -rf www_cs
 
-	echo "creating launcher script ..."
-	touch playme.sh
-	{
-		echo "#!/bin/sh"
-		echo "ciopfs $PWD/case_insensitive $PWD/www"
-		echo "./nw"
-	} >playme.sh
+		echo "creating launcher script ..."
+		touch playme.sh
+		{
+			echo "#!/bin/sh"
+			echo "ciopfs $PWD/case_insensitive $PWD/www"
+			echo "./nw"
+		} >playme.sh
 
-	chmod +x playme.sh
-	./playme.sh
-	exit 0
+		chmod +x playme.sh
+		./playme.sh
+		exit 0
+	fi
 fi
 
 if [ $start_game -eq 1 ]; then
