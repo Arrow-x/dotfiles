@@ -1,10 +1,10 @@
 #!/bin/sh
 
-scale=25
-
 export pics="/home/arrowx/Pictures/Wallpapers"
+mkdir -p "$pics"/waifu/Favs
 
 #HACK: tmux doesn't like big resoulutions so smaller previews
+scale=25
 [ "$TMUX" ] && scale=19
 
 resault="$(

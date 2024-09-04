@@ -21,7 +21,7 @@ case "$choice" in
 		if ! mpv --ytdl-format=247+bestaudio "$link" --really-quiet --no-terminal; then
 			notify-send "Couldn't get webm trying mp4"
 			if ! mpv --ytdl-format=136+bestaudio "$link" --really-quiet --no-terminal; then
-				mpv -ytdl-format=best "$link" --really-quieta --no-terminal
+				mpv -ytdl-format=best "$link" --really-quiet --no-terminal
 			else
 				exit 0
 			fi
