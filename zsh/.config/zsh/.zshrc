@@ -1,7 +1,7 @@
 #!/bin/zsh
 # vim:fileencoding=utf-8:foldmethod=marker
 # Run Taks everytime {{{
-task
+# task
 #}}}
 
 # zsh Histroy Options {{{
