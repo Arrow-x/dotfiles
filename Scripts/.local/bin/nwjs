@@ -129,7 +129,7 @@ if [ "$ci" -eq 1 ]; then
 		touch playme.sh
 		{
 			echo "#!/bin/sh"
-			echo "ciopfs $PWD/case_insensitive $PWD/www"
+			echo "ciopfs \"$PWD/case_insensitive\" \"$PWD/www\""
 			echo "./nw"
 		} >playme.sh
 
