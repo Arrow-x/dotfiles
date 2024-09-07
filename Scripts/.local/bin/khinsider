@@ -1,0 +1,43 @@
+#!/bin/bash
+full_page="$(curl "$1")"
+full_album_links=$(
+	echo "$full_page" |
+		grep '<td class="clickable-row"><a href="/.*\.mp3' |
+		sed 's/^\s*//' |
+		sed -E 's#.*href="(.*)">.*#https://downloads.khinsider.com\1#'
+)
+album_name="$(echo "$full_page" |
+	grep "<title>" |
+	sed -E 's#<title>(.*) MP3.*#\1#')"
+
+mkdir "$album_name"
+pushd "$album_name" >/dev/null || exit 1
+
+echo "-- Downloading Album: " "$album_name" " ..."
+echo "-- Downloading covers ..."
+
+echo "$full_page" |
+	grep "<a href=\"https://eta.vgmtreasurechest.com" |
+	sed -E 's#.*<a href="(.*)" tar.*#\1#' |
+	while read -r cover; do
+		curl --continue-at - --remote-name "$cover"
+	done
+
+track_name=""
+echo "$full_album_links" |
+	while read -r track_link; do
+		track_page="$(curl "$track_link")"
+		track_name="$(echo "$track_page" |
+			grep "Song name" |
+			sed -E 's#\sSong name: <b>(.*)</b></p>#\1#')"
+
+		echo "-- Downloading track: " "$track_name" " ..."
+
+		echo "$track_page" |
+			grep "audio id" |
+			sed -E 's#.*src="(.*)" >.*#\1#' |
+			xargs -I _ curl --continue-at - _ --output "$track_name".mp3
+	done
+
+pushd -0 >/dev/null || exit 1
+popd -0 >/dev/null || exit 1
