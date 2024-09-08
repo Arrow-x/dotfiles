@@ -6,5 +6,3 @@ find "/home/arrowx/Downloads/meme" -type f | fzf \
 	--bind "ctrl-c:execute(wl-copy < {})" \
 	--bind "ctrl-y:execute(wl-copy {})" \
 	--header 'Enter: to send to Dragon-Drop, CTRL-C: send selection to clipboard, CTRL-Y to copy link'
-
-ueberzugpp cmd -s "$FU_SOCKET" -a exit
