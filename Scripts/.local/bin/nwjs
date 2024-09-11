@@ -72,10 +72,8 @@ done
 chmod +w .
 echo "removes unneeded files ..."
 if $IS_RPGMV; then
-	notify-send "is RPGMV"
 	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -print0 | xargs -0 -r rm -r --
 elif $IS_RPGMZ; then
-	notify-send "is RPGMz"
 	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
 fi
 
@@ -119,17 +117,12 @@ if [ "$ci" -eq 1 ]; then
 	if $IS_RPGMV; then
 		echo "setting up data to be case insensitive ..."
 		mv www/ www_cs/
-		mkdir -p case_insensitive
-		mkdir -p www/
-		ciopfs "$PWD"/case_insensitive "$PWD"/www
-		cp -r www_cs/* www/
-		rm -rf www_cs
-
+		mkdir www
 		echo "creating launcher script ..."
 		touch playme.sh
 		{
 			echo "#!/bin/sh"
-			echo "ciopfs \"$PWD/case_insensitive\" \"$PWD/www\""
+			echo "cicpoffs \"$PWD/www_cs\" \"$PWD/www\""
 			echo "./nw"
 		} >playme.sh
 
