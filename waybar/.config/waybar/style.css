@@ -101,7 +101,7 @@ window#waybar {
     color: #24283b;
 }
 
-#custom-bandwidth{
+#custom-bandwidth, #network{
 	color: #f7768e;
 }
 

@@ -18,6 +18,7 @@
         "temperature",
         "memory",
         "custom/bandwidth",
+        // "network",
         "battery",
         "pulseaudio",
         "privacy",
@@ -70,7 +71,7 @@
         "format-icons": "",
         "format": "{icon} {bandwidthDownBytes} - {bandwidthUpBytes}",
         "interface": "wlan0",
-        "interval": 3
+        "interval": 1
     },
     "memory": {
         "interval": 3,
@@ -103,8 +104,7 @@
     },
     "custom/bandwidth":{
         "format-icons": "",
-        "format":"{icon} {}",
-        "exec":"$HOME/.config/waybar/scripts/bandwidthc"
+        "exec":"$HOME/.config/waybar/scripts/bandwithcnew | xargs -I _ echo    _"
     },
     "custom/dunst":{
         "format":"{}",
