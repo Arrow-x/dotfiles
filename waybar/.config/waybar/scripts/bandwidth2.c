@@ -83,13 +83,13 @@ void display(int const unit, int const divisor,
 {
   char fmtstr[7];
 
-  if (critical != 0 && b > critical) {
-    printf("<span fallback='true' color='%s'>", RED);
-  } else if (warning != 0 && b > warning) {
-    printf("<span fallback='true' color='%s'>", ORANGE);
-  } else {
-    printf("<span fallback='true'>");
-  }
+  // if (critical != 0 && b > critical) {
+  //   printf("<span fallback=\"true\" color=\"%s\">", RED);
+  // } else if (warning != 0 && b > warning) {
+  //   printf("<span fallback=\"true\" color=\"%s\">", ORANGE);
+  // } else {
+  //   printf("<span fallback=\"true\">");
+  // }
 
   if (unit == 'b')
     b = b * 8;
@@ -99,21 +99,22 @@ void display(int const unit, int const divisor,
   if (b < divisor) {
     // printf(fmtstr, b);
     // printf(" %c/s", unit);
-    printf(fmtstr, b / divisor);
-    printf("K%c/s", unit);
+  // } else if (b < divisor * divisor) {
+  //   printf(fmtstr, b / divisor);
+  //   printf("K%c/s", unit);
+    printf(fmtstr, b / (divisor * divisor));
+    printf("M%c/s", unit);
   } else if (b < divisor * divisor) {
-    printf(fmtstr, b / divisor);
-    printf("K%c/s", unit);
+    printf(fmtstr, b / (divisor * divisor));
+    printf("M%c/s", unit);
   } else if (b < divisor * divisor * divisor) {
-    printf(fmtstr, b / divisor);
-    printf("K%c/s", unit);
-    // printf(fmtstr, b / (divisor * divisor));
-    // printf("M%c/s", unit);
+    printf(fmtstr, b / (divisor * divisor));
+    printf("M%c/s", unit);
   } else {
     printf(fmtstr, b / (divisor * divisor * divisor));
     printf("G%c/s", unit);
   }
-  printf("</span>");
+  // printf("</span>");
 }
 
 void parse_ifaces(char *str, char ***ifaces, int *num_ifaces)
