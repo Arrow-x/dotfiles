@@ -17,8 +17,8 @@ echo "-- Downloading Album: " "$album_name" " ..."
 echo "-- Downloading covers ..."
 
 echo "$full_page" |
-	grep "<a href=\"https://eta.vgmtreasurechest.com" |
-	sed -E 's#.*<a href="(.*)" tar.*#\1#' |
+	grep "<a href=\"https://.*" |
+	sed -E 's#.*<a href="(.*)" tar.*#\1#' | grep -E ".*.jpg|.*.png" |
 	while read -r cover; do
 		curl --continue-at - --remote-name "$cover"
 	done
