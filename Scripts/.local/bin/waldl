@@ -1,0 +1,269 @@
+#!/bin/sh
+
+# https://github.com/pystardust/waldl
+# https://github.com/arrowx/waldl
+# script to find and download wallpapers from wallhaven
+version="1.0.0"
+
+# Usage:
+# 	waldl <query>
+# if query left empty then sh_menu will be used (dmenu by default)
+# after the thumbnails are cached, sxiv would open up with the thumbnails
+# Select the wallpapers using `m` on the image. ( marking the image in sxiv )
+# press `q` to quit sxiv, the marked images would start downloading
+
+####################
+## User variables ##
+####################
+
+[ -z "$VIEWER" ] && VIEWER=sxiv
+# the dir where wallpapers are stored
+walldir="$HOME/.local/share/wallhaven"
+# the dir used to cache thumbnails
+cachedir="$HOME/.cache/wallhaven"
+# sxiv options
+sxiv_otps=" -tfpo -z 200" # o is needed for selection
+# sxiv options when selecting a wallpaper after download
+sxiv_otps_w="-io" # o is needed for selection
+# number of pages to show in search results
+# each page contains 24 results
+max_pages=4
+# sorting : date_added, relevance, random, views, favorites, toplist
+sorting=relevance
+# quality : large original small
+quality=large
+# atleast : least res
+atleast=""
+# ratios; comma seperated aspect ratios
+ratios=16x9,16x10
+# general/anime/people
+categories=111
+# sfw/sketchy/nsfw
+purity=111
+# #660000 #990000 #cc0000 #cc3333 #ea4c88
+# #993399 #663399 #333399 #0066cc #0099cc #66cccc
+# #77cc33 #669900 #336600 #666600 #999900
+# #cccc33 #ffff00 #ffcc33 #ff9900 #ff6600
+# #cc6633 #996633 #663300
+# #cccccc #ffffff #424153 #000000 #999999
+# without the #
+colors=""
+# add your apikey
+apikey=""
+# wallpaper_command: specify the command that can set your wallpaper
+wallpaper_command=""
+# the menu command used when no query is provided
+menu_command="rofi -dmenu -l 0 -p 'search wallpapers'"
+
+# allow the user to customize the defaults
+[ -e "$HOME/.config/waldlrc" ] && . "$HOME/.config/waldlrc"
+
+help_cmd() {
+	echo "a script to search and download wallpaper form wallhaven"
+	echo "Usage:"
+	echo "waldl [options] [optionally pass the search prompt]"
+	echo "Options:"
+	echo "  -s    --sorting: defaults to relevance can be set to date_added, relevance, random, views, favorites, toplist"
+	echo "  -q    --quality: defaults to large can be set to large, original or small"
+	echo "  -r    --atleast: minimum resolution allowed"
+	echo "  -t    --ratios: wallpaper's aspect ration defaults to 16x9,16x10"
+	echo "  -g    --categories: three binaries to set up general/anime/people defaults to 111"
+	echo "  -p    --purity: three binaries to set up sfw/sketchy/nsfw defaults to 111"
+	echo "  -c    --colors: set the wanted colors hax code"
+	echo "        --walldir: to set the destination folder for the wallpaper"
+	echo "        --chachdir: to set the directory where the thumbnails are temporarily stored"
+	echo "        --sxiv-opts: to pass different arguments to sxiv when viewing thumbnails (advanced users only)"
+	echo "        --sxiv-opts-w: to pass different arguments to sxiv when viewing wallpapers (advanced users only)"
+	echo "        --max-pages: to set up a limit of how many pages the script searches"
+	echo "        --help: show this message and exit"
+}
+
+while [ "$#" -gt 0 ]; do
+	case "$1" in
+		--walldir)
+			walldir="$2"
+			shift 2
+			;;
+		--chachdir)
+			cachedir="$2"
+			shift 2
+			;;
+		--sxiv-opts)
+			sxiv_otps="$2"
+			shift 2
+			;;
+		--sxiv-opts-w)
+			sxiv_otps_w="$2"
+			shift 2
+			;;
+		--max-pages)
+			max_pages="$2"
+			shift 2
+			;;
+		--sorting | -s)
+			sorting="$2"
+			shift 2
+			;;
+		--quality | -q)
+			quality="$2"
+			shift 2
+			;;
+		--atleast | -r)
+			atleast="$2"
+			shift 2
+			;;
+		--ratios | -t)
+			ratios="$2"
+			shift 2
+			;;
+		--categories | -g)
+			categories="$2"
+			shift 2
+			;;
+		--purity | -p)
+			purity="$2"
+			shift 2
+			;;
+		--colors | -c)
+			ratios="$2"
+			shift 2
+			;;
+		--help | -h)
+			help_cmd
+			exit 0
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
+sh_menu() {
+	eval "$menu_command"
+}
+
+set_wall() {
+	read -r url
+	[ -z "$url" ] && exit
+	"$wallpaper_command" "$url"
+}
+
+##########################
+## getting search query ##
+##########################
+
+[ -n "$*" ] && query="$*" || query=$(sh_menu)
+[ -z "$query" ] && exit 1
+query=$(printf '%s' "$query" | tr ' ' '+')
+
+######################
+## start up commands #
+######################
+
+rm -rf "$cachedir"
+mkdir -p "$walldir" "$cachedir"
+
+# progress display command
+sh_info() {
+	printf "%s\n" "$1" >&2
+	notify-send "wallhaven" "$1"
+	[ -n "$2" ] && exit "$2"
+}
+
+# dependency checking
+dep_ck() {
+	for pr; do
+		command -v "$pr" >/dev/null 2>&1 || sh_info "command $pr not found, install: $pr" 1
+	done
+}
+dep_ck "$VIEWER" "curl" "jq"
+
+# clean up command that would be called when the program exits
+clean_up() {
+	printf "%s\n" "cleaning up..." >&2
+	rm -rf "$datafile" "$cachedir"
+}
+
+# data file to store the api information
+datafile="/tmp/wald.$$"
+
+# clean up if killed
+trap "exit" INT TERM
+trap "clean_up" EXIT
+
+##################
+## getting data ##
+##################
+
+full_link="https://wallhaven.cc/api/v1/search"
+[ -n "$apikey" ] && full_link="$full_link""?apikey=""$apikey"
+# request the search results for each page
+get_results() {
+	for page_no in $(seq "$max_pages"); do
+		{
+			json=$(
+				curl -s -G "$full_link" \
+					-d "q=$1" \
+					-d "page=$page_no" \
+					-d "atleast=$atleast" \
+					-d "sorting=$sorting" \
+					-d "ratios=$ratios" \
+					-d "categories=$categories" \
+					-d "purity=$purity" \
+					-d "colors=$colors"
+			)
+			printf "%s\n" "$json" >>"$datafile"
+		} &
+		sleep 0.001
+	done
+	wait
+}
+
+# search wallpapers
+sh_info "getting data..."
+get_results "$query"
+
+# check if data file is empty, if so then exit
+[ -s "$datafile" ] || sh_info "no images found" 1
+
+############################
+## downloading thumbnails ##
+############################
+
+# get a list of thumnails from the data
+thumbnails=$(jq -r '.data[]?|.thumbs.'"$quality" <"$datafile")
+
+[ -z "$thumbnails" ] && sh_info "no-results found" 1
+
+# download the thumbnails
+sh_info "caching thumbnails..."
+for url in $thumbnails; do
+	printf "url = %s\n" "$url"
+	printf "output = %s\n" "$cachedir/${url##*/}"
+done | curl -Z -K -
+
+###########################
+## user selection (sxiv) ##
+###########################
+
+# extract the id's out of the thumbnail name
+image_ids="$($VIEWER $sxiv_otps "$cachedir")"
+[ -z "$image_ids" ] && exit
+
+#########################
+## download wallpapers ##
+#########################
+
+# download the selected wall papers
+cd "$walldir" || exit
+sh_info "downloading wallpapers..."
+for ids in $image_ids; do
+	ids="${ids##*/}"
+	ids="${ids%.*}"
+	url=$(jq -r '.data[]?|select( .id == "'$ids'" )|.path' <"$datafile")
+	printf "url = %s\n" "$url"
+	printf -- "-O\n"
+done | curl --parallel --parallel-immediate -K -
+
+sh_info "wallpapers downloaded in:- '$walldir'"
+find "$walldir" -type f -printf "%T+ %p\n" | sort -r | sed "s#.* /#/#" | "$VIEWER" "$sxiv_otps_w" | set_wall
