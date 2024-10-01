@@ -7,19 +7,19 @@ IS_RPGMZ=false
 if [ -d "www" ] && [ -f "package.json" ]; then
 	echo "This looks like an RPGMV Game."
 	IS_RPGMV=true
-elif 
+elif
 	[ -d "audio" ] &&
-	[ -d "css" ] &&
-	[ -d "data" ] &&
-	[ -d "effects" ] &&
-	[ -f "package.json" ] &&
-	[ -d "fonts" ] &&
-	[ -d "img" ] &&
-	[ -d "icon" ] &&
-	[ -d "js" ] &&
-	[ -d "swiftshader" ] &&
-	[ -d "locales" ]; 
-	then
+		[ -d "css" ] &&
+		[ -d "data" ] &&
+		[ -d "effects" ] &&
+		[ -f "package.json" ] &&
+		[ -d "fonts" ] &&
+		[ -d "img" ] &&
+		[ -d "icon" ] &&
+		[ -d "js" ] &&
+		[ -d "swiftshader" ] &&
+		[ -d "locales" ]
+then
 	echo "This looks like an RPGMZ Game."
 	IS_RPGMZ=true
 fi
@@ -114,8 +114,8 @@ if [ ! -x "nw" ]; then
 fi
 
 if [ "$ci" -eq 1 ]; then
+	echo "setting up data to be case insensitive ..."
 	if $IS_RPGMV; then
-		echo "setting up data to be case insensitive ..."
 		mv www/ www_cs/
 		mkdir www
 		echo "creating launcher script ..."
@@ -126,10 +126,20 @@ if [ "$ci" -eq 1 ]; then
 			echo "./nw"
 		} >playme.sh
 
-		chmod +x playme.sh
-		./playme.sh
-		exit 0
+	elif $IS_RPGMZ; then
+		mv img/ img_cs/
+		mkdir img
+		echo "creating launcher script ..."
+		touch playme.sh
+		{
+			echo "#!/bin/sh"
+			echo "cicpoffs \"$PWD/img_cs\" \"$PWD/img\""
+			echo "./nw"
+		} >playme.sh
 	fi
+	chmod +x playme.sh
+	./playme.sh
+	exit 0
 fi
 
 if [ $start_game -eq 1 ]; then
