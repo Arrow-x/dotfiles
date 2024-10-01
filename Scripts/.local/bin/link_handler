@@ -87,6 +87,7 @@ parse_url() {
 		*.mkv | \
 			*.mp4 | \
 			*'twitch'* | \
+			*'tiktok'*| \
 			*.webm)
 			printf "Video"
 			;;
