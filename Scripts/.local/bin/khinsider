@@ -36,7 +36,7 @@ echo "$full_album_links" |
 		echo "$track_page" |
 			grep "audio id" |
 			sed -E 's#.*src="(.*)" >.*#\1#' |
-			xargs -I _ curl --continue-at - _ --output "$track_name".mp3
+			xargs -I _ curl --continue-at - _ --output "$track_name"".mp3"
 	done
 
 pushd -0 >/dev/null || exit 1
