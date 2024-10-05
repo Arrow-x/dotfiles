@@ -64,7 +64,6 @@ bind-key x pb-delete
 bind-key c toggle-show-read-feeds
 
 #--Macros----------------------------------------------------------------------
-macro o set browser "setsid -f yt_format_parser" ; open-in-browser ; set browser  "/home/arrowx/.local/bin/link_handler %u"
 
 # macro Y set browser "setsid -f mpv --profile=720pmp4 --really-quiet --no-terminal"
 # macro y set browser "setsid -f mpv --profile=720pmp4 --really-quiet --no-terminal" ; open-in-browser ; set browser "setsid -f $BROWSER"
