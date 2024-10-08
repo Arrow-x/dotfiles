@@ -47,7 +47,7 @@ manage_url() {
 			;;
 
 		"Picture")
-			# double quotes break multi line links
+			#NOTE: double quotes break multi line links
 			! nsxiv-url $2 && d_failed
 			;;
 
@@ -57,7 +57,7 @@ manage_url() {
 			if echo "$link" | grep video; then
 				! mpv "$link" && d_failed
 			else
-				# double quotes break multi line links
+				#NOTE: double quotes break multi line links
 				! nsxiv-url $(printf '%s' "$link" | grep orig | sed 's/\&name=orig//') && d_failed
 			fi
 			;;
