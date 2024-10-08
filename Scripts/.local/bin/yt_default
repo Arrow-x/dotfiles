@@ -11,15 +11,23 @@ choice="$(printf "720p\n720p60\nAudio\nBest\n" | menu)"
 
 [ -z "$choice" ] && exit 0
 
+get_audio() {
+	if ! yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o /tmp/ytaudio; then
+		notify-send "No Audio"
+	fi
+}
+
 get_best() {
-	yt-dlp -N $threads --no-part -f "bestaudio" "$link" -o /tmp/ytaudio | yt-dlp -f "bestvideo" "$link" -o - | mpv --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -
+	get_audio
+	yt-dlp --quiet -f "bestvideo" "$link" -o - | mpv  --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -
 	rm -rf /tmp/ytaudio
 }
 
 attempt_720() {
-	if ! yt-dlp -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+	get_audio
+	if ! yt-dlp --quiet -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
 		notify-send "Couldn't get webm trying mp4"
-		if ! yt-dlp -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -; then
+		if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio  | yt-dlp --quiet -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
 			get_best
 		fi
 	fi
