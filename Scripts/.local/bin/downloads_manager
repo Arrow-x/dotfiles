@@ -14,6 +14,7 @@ esac
 y_tube() {
 	yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f "$1" "$2"
 }
+
 d_failed() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg \
 		"Failed to download"
@@ -79,25 +80,19 @@ download_url() {
 
 parse_url() {
 	case "$1" in
-		*'youtube.com/watch'* | \
-			*'youtube.com/playlist'* | \
-			*'youtube.com/shorts'* | \
-			*'youtu.be'*)
+		*'youtube.com/watch'* | *'youtube.com/playlist'* | *'youtube.com/shorts'* | *'youtu.be'*)
 			printf "Youtube"
 			;;
 
-		*'twitter.com'* | \
-			*'mangasee'* | \
-			*'tumblr'* | \
-			*'x.com'*)
+		*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'*)
 			printf "Picture"
 			;;
 
-		*'hentai'*)
+		*'nhentai.net'*)
 			printf "Hentai"
 			;;
 
-		*'pixeldrain'*)
+		*'pixeldrain'* )
 			printf "Pixeldrain"
 			;;
 
