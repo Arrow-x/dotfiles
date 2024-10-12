@@ -19,15 +19,15 @@ get_audio() {
 
 get_best() {
 	get_audio
-	yt-dlp --quiet -f "bestvideo" "$link" -o - | mpv  --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -
+	yt-dlp --quiet -N $threads --no-part -f "bestvideo" "$link" -o - | mpv --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -
 	rm -rf /tmp/ytaudio
 }
 
 attempt_720() {
 	get_audio
-	if ! yt-dlp --quiet -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+	if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
 		notify-send "Couldn't get webm trying mp4"
-		if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio  | yt-dlp --quiet -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+		if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
 			get_best
 		fi
 	fi
@@ -39,7 +39,7 @@ case "$choice" in
 		get_best
 		;;
 	"Audio")
-		mpv --ytdl-format=bestaudio "$link" --really-quiet --no-terminal --force-window
+		yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o - | mpv --really-quiet --no-terminal --force-window -
 		;;
 	"720p")
 		attempt_720 247 136
