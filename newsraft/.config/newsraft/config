@@ -1,0 +1,28 @@
+# Command binding for opening links with feh image viewer.
+bind i exec nsxiv-url "%l"
+
+# copy to system clipboard and tmux clipboard
+bind y copy-to-clipboard ; exec tmux set-buffer "%l"
+
+# This will launch mpv in the background.
+bind m exec tsp yt_default "%l"
+
+# edit rss feeds or config (require restart newsraft to apply changes)
+bind E exec $EDITOR ~/.config/newsraft/feeds
+bind C exec $EDITOR ~/.config/newsraft/config
+
+# open with tui/gui web browser
+bind o exec $BROWSER "%l"
+
+# show database size
+bind V exec (ls -lh ~/.local/share/newsraft/ && echo ~/.local/share/newsraft) | less -C
+
+# view manpages and hotkey action section
+bind H exec man newsraft
+bind A exec man -P 'less -p "^ACTIONS"' newsraft
+
+# watch task-spooler queue (ctrl-c to return)
+bind t exec watch -t "tsp | cut -c-"$(tput cols)""
+
+# clear all finished task-spooler jobs
+bind T exec tsp -C
