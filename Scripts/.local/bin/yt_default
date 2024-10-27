@@ -25,9 +25,10 @@ get_best() {
 
 attempt_720() {
 	get_audio
-	if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
-		notify-send "Couldn't get webm trying mp4"
-		if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+	if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+		notify-send "Couldn't get mp4 trying webm"
+		if ! yt-dlp --quiet -N $threads --no-part -f bestaudio "$link" -o /tmp/ytaudio | yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
+			notify-send "Couldn't get webm trying Best"
 			get_best
 		fi
 	fi
