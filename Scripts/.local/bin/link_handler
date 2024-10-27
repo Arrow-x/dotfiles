@@ -12,7 +12,7 @@ case "$1" in
 esac
 
 y_tube() {
-	mpv --ytdl-format="$1" --really-quiet --no-terminal "$2"
+	tsp mpv --ytdl-format="$1" --really-quiet --no-terminal "$2"
 }
 
 d_failed() {
@@ -39,7 +39,7 @@ manage_url() {
 			;;
 
 		"Youtube")
-			! yt_default "$2" && d_failed
+			! tsp yt_default "$2" && d_failed
 			;;
 
 		"Audio")
