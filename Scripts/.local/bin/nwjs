@@ -72,7 +72,7 @@ done
 chmod +w .
 echo "removes unneeded files ..."
 if $IS_RPGMV; then
-	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -print0 | xargs -0 -r rm -r --
+	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "css" -not -name "data" -not -name "csv" -not -name "*.xlsx" -print0 | xargs -0 -r rm -r --
 elif $IS_RPGMZ; then
 	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
 fi
@@ -138,7 +138,10 @@ if [ "$ci" -eq 1 ]; then
 		} >playme.sh
 	fi
 	chmod +x playme.sh
-	./playme.sh
+	if [ $start_game -eq 1 ]; then
+		echo "Running the game ..."
+		./playme.sh
+	fi
 	exit 0
 fi
 
