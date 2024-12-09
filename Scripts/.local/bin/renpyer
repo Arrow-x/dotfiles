@@ -4,3 +4,4 @@ rm "$name".py
 cp "$HOME"/File/Homework/tools/renpy.py ./"$name".py
 chmod +x "$name".sh
 chmod +x ./lib/*linux-x86_64/"$name"
+./"$name".sh
