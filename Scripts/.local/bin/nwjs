@@ -122,7 +122,7 @@ if [ "$ci" -eq 1 ]; then
 		touch playme.sh
 		{
 			echo "#!/bin/sh"
-			echo "cicpoffs \"$PWD/www_cs\" \"$PWD/www\""
+			echo "cicpoffs www_cs www"
 			echo "./nw"
 		} >playme.sh
 
@@ -133,7 +133,7 @@ if [ "$ci" -eq 1 ]; then
 		touch playme.sh
 		{
 			echo "#!/bin/sh"
-			echo "cicpoffs \"$PWD/img_cs\" \"$PWD/img\""
+			echo "cicpoffs img_cs img"
 			echo "./nw"
 		} >playme.sh
 	fi
