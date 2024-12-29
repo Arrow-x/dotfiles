@@ -3,7 +3,7 @@ appid="g_nvim"
 appargs="$*"
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
 	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-		hyprctl dispatch movetoworkspace +0, "$appid"
+		hyprctl dispatch movetoworkspace +0, class:"$appid"
 		hyprctl dispatch alterzorder top, class:"$appid"
 		hyprctl dispatch focuswindow class:"$appid"
 		if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then

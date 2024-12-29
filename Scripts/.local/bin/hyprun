@@ -10,7 +10,7 @@ else
 fi
 
 if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-	hyprctl dispatch movetoworkspace +0,"$appid"
+	hyprctl dispatch movetoworkspace +0,class:"$appid"
 	hyprctl dispatch alterzorder top,class:"$appid"
 	hyprctl dispatch focuswindow class:"$appid"
 	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
@@ -19,6 +19,6 @@ if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
 	fi
 	exit
 else
-	hyprctl dispatch movetoworkspacesilent special,"$appid"
+	hyprctl dispatch movetoworkspacesilent special,class:"$appid"
 	exit
 fi
