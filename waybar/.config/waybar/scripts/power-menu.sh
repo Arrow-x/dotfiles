@@ -4,7 +4,11 @@ selected=$(printf " Logout\n Suspend\n Reboot\n Shutdown" | wofi --c
 
 case "$selected" in
 	logout)
-		swaymsg exit
+		if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
+			hyprctl dispatch exit
+		else
+			swaymsg exit
+		fi
 		;;
 	suspend)
 		systemctl suspend
