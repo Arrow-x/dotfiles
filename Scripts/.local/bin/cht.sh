@@ -4,7 +4,7 @@ if pidof -o %PPID -x "cht.sh" >/dev/null; then
 	exit
 fi
 
-local_copy="$XDG_CACHE_HOME/cht_sh/"
+local_copy="$XDG_DATA_HOME/cht_sh/"
 mkdir -p "$local_copy"
 file=""
 
