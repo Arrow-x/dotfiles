@@ -38,7 +38,11 @@ if printf '%s' "$selected" | grep -q "+"; then
 	make_local_copy
 fi
 
-query="$(curl -s cht.sh/"$selected"/:list | fzf)"
+pre_query="$(curl -s cht.sh/"$selected"/:list)"
+query=""
+if [ -n "$pre_query" ]; then
+	query="$(printf '%s' "$pre_query" | fzf)"
+fi
 
 if [ -z "$query" ]; then
 	file="$local_copy""$selected"
