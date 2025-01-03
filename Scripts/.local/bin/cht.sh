@@ -32,7 +32,7 @@ fi
 
 selected=$(printf '%s' "$selected" | sed 's#/##g' | tr -d '\n')
 
-if [ -n "$(printf '%s' "$selected" | grep "+")" ]; then
+if printf '%s' "$selected" | grep -q "+"; then
 	file="$local_copy""$selected"
 	curl -s cht.sh/"$selected" >"$file"-new
 	make_local_copy
