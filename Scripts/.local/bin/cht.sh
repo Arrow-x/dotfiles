@@ -20,7 +20,7 @@ make_local_copy() {
 		fi
 		mv "$file"-new "$file"
 	fi
-	bat "$file" --paging=always --style plain
+	cat "$file" | bat --paging=always --style plain
 	exit 0
 }
 
