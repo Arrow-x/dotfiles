@@ -59,12 +59,12 @@ cmd archive ${{
 cmd unarchive ${{
 	for arc in $fx; do
 		case "$arc" in
-			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) firejail tar xjvf "$arc" ;;
-			*.tar.gz|*.tgz) firejail tar xzvf "$arc" ;;
-			*.tar.xz|*.txz) firejail tar xJvf "$arc" ;;
-			*.zip) firejail unzip "$arc" ;;
-			*.rar) firejail unrar x "$arc" ;;
-			*) firejail 7z x "$arc" ;;
+			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) footclient firejail tar xjvf "$arc" & ;;
+			*.tar.gz|*.tgz) footclient firejail tar xzvf "$arc" & ;;
+			*.tar.xz|*.txz) footclient firejail tar xJvf "$arc" & ;;
+			*.zip) footclient firejail unzip "$arc" & ;;
+			*.rar) footclient firejail unrar x "$arc" & ;;
+			*) footclient firejail 7z x "$arc" & ;;
 		esac
 	done
 }}
