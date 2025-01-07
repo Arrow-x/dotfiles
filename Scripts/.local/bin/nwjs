@@ -32,7 +32,7 @@ fi
 start_game=1
 use_old_nwjs=0
 old_version="v0.71.0"
-ci=0
+ci=1
 
 usage() { #help message
 	echo "This program converts a Windows version of an NW.js program into its Linux counterpart."
