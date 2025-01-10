@@ -4,6 +4,7 @@ selected=$(printf " Logout\n Suspend\n Reboot\n Shutdown" | wofi --c
 
 case "$selected" in
 	logout)
+		lock.sh
 		if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
 			hyprctl dispatch exit
 		else
