@@ -11,7 +11,7 @@ window#waybar {
     color: white;
 }
 
-#custom-date, #custom-term, #custom-launcher, #workspaces, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst, #custom-power, #privacy{
+#custom-date, #custom-term, #custom-launcher, #workspaces, #clock, #tray, #battery, #pulseaudio, #network,#cpu, #temperature, #memory ,#window,#custom-bandwidth, #custom-dunst, #custom-power, #privacy, #idle_inhibitor{
 	background-color: #24283b;
 	padding: 1px 10px;
 	border-radius: 10px;
@@ -76,7 +76,7 @@ window#waybar {
     color: #73daca;
 }
 
-#temperature {
+#temperature, #idle_inhibitor {
     color: #ff9e64;
 }
 

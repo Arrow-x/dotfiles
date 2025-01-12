@@ -22,6 +22,7 @@
         "battery",
         "pulseaudio",
         "privacy",
+        "idle_inhibitor",
         "clock",
         "custom/dunst",
         "tray",
@@ -138,5 +139,13 @@
                 "tooltip": true
             }
         ]
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "timeout": 30.5
     }
 }
