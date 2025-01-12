@@ -151,7 +151,7 @@ alias pacme='paru -S --asexplicit'
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 t() {
-	termdown "$1"m ; notify-send "$2" ; mpv --really-quiet "/home/arrowx/Music/deemix Music/Random/Soolking - Guerilla.mp3"
+	termdown "$1"m ; notify-send "$2" ; mpv --really-quiet "/home/arrowx/Music/Killer Instinct The Complete Soundtrack (2017)/The Instinct.mp3"
 }
 
 alias aria='aria2c --check-integrity=true'
