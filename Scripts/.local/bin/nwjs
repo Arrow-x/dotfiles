@@ -31,7 +31,7 @@ fi
 
 start_game=1
 use_old_nwjs=0
-old_version="v0.71.0"
+old_version="v0.94.1"
 ci=1
 
 usage() { #help message
@@ -92,9 +92,10 @@ link="https://dl.nwjs.io/""$version""/""$file_name"
 
 mkdir --parents "$parent_dir_name"
 
-echo "downloading/checking the correct NW.js for your computer ..."
-wget "$link" --continue --output-document "$destination"
-
+if [ "$use_old_nwjs" -eq 0 ]; then
+	echo "downloading/checking the correct NW.js for your computer ..."
+	wget "$link" --continue --output-document "$destination"
+fi
 echo 'copying NWjs ...'
 cp "$destination" .
 
