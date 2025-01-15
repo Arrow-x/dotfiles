@@ -13,30 +13,21 @@ album_name="$(echo "$full_page" |
 mkdir "$album_name"
 pushd "$album_name" >/dev/null || exit 1
 
-echo "-- Downloading Album: " "$album_name" " ..."
-echo "-- Downloading covers ..."
+mkdir covers
 
 echo "$full_page" |
 	grep "<a href=\"https://.*" |
 	sed -E 's#.*<a href="(.*)" tar.*#\1#' | grep -E ".*.jpg|.*.png" |
 	while read -r cover; do
-		curl --continue-at - --remote-name "$cover"
+		wget --directory-prefix=covers --continue "$cover"
 	done
 
-track_name=""
 echo "$full_album_links" |
 	while read -r track_link; do
-		track_page="$(curl "$track_link")"
-		track_name="$(echo "$track_page" |
-			grep "Song name" |
-			sed -E 's#\sSong name: <b>(.*)</b></p>#\1#')"
-
-		echo "-- Downloading track: " "$track_name" " ..."
-
-		echo "$track_page" |
+		curl "$track_link" |
 			grep "audio id" |
 			sed -E 's#.*src="(.*)" >.*#\1#' |
-			xargs -I _ curl --continue-at - _ --output "$track_name"".mp3"
+			xargs wget --continue
 	done
 
 pushd -0 >/dev/null || exit 1
