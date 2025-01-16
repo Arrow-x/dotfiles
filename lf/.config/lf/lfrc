@@ -59,23 +59,22 @@ cmd archive ${{
 cmd unarchive ${{
 	new_window(){
 		if [ -n "$(echo "$TMUX")" ]; then
-			tmux new-session -ds "Unarchiving" "$@"
-			tmux switch-client -t "Unarchiving"
+			name="$(tmux new-session -d -P -F "#{session_name}" "$@")"
+			tmux switch-client -t "$name"
 		else
-			footclient "$@"
+			footclient "$@" &
 		fi
 
-		lf -remote "send $id reload"
 	}
 
 	for arc in $fx; do
 		case "$arc" in
-			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) new_window firejail tar xjvf "$arc" & ;;
-			*.tar.gz|*.tgz) new_window firejail tar xzvf "$arc" & ;;
-			*.tar.xz|*.txz) new_window firejail tar xJvf "$arc" & ;;
-			*.zip) new_window firejail unzip "$arc" & ;;
-			*.rar) new_window firejail unrar x "$arc" & ;;
-			*) new_window firejail 7z x "$arc" & ;;
+			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) new_window firejail tar xjvf "$arc" ;;
+			*.tar.gz|*.tgz) new_window firejail tar xzvf "$arc" ;;
+			*.tar.xz|*.txz) new_window firejail tar xJvf "$arc" ;;
+			*.zip) new_window firejail unzip "$arc" ;;
+			*.rar) new_window firejail unrar x "$arc" ;;
+			*) new_window firejail 7z x "$arc" ;;
 		esac
 	done
 }}
