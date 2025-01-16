@@ -57,14 +57,25 @@ cmd archive ${{
 
 # unarchive bindings
 cmd unarchive ${{
+	new_window(){
+		if [ -n "$(echo "$TMUX")" ]; then
+			tmux new-session -ds "Unarchiving" "$@"
+			tmux switch-client -t "Unarchiving"
+		else
+			footclient "$@"
+		fi
+
+		lf -remote "send $id reload"
+	}
+
 	for arc in $fx; do
 		case "$arc" in
-			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) footclient firejail tar xjvf "$arc" & ;;
-			*.tar.gz|*.tgz) footclient firejail tar xzvf "$arc" & ;;
-			*.tar.xz|*.txz) footclient firejail tar xJvf "$arc" & ;;
-			*.zip) footclient firejail unzip "$arc" & ;;
-			*.rar) footclient firejail unrar x "$arc" & ;;
-			*) footclient firejail 7z x "$arc" & ;;
+			*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) new_window firejail tar xjvf "$arc" & ;;
+			*.tar.gz|*.tgz) new_window firejail tar xzvf "$arc" & ;;
+			*.tar.xz|*.txz) new_window firejail tar xJvf "$arc" & ;;
+			*.zip) new_window firejail unzip "$arc" & ;;
+			*.rar) new_window firejail unrar x "$arc" & ;;
+			*) new_window firejail 7z x "$arc" & ;;
 		esac
 	done
 }}
@@ -218,7 +229,7 @@ map gh
 map "'"
 map '"'
 map w
-  
+
 map J fzf_jump
 map S fzf_search
 map T :filter
