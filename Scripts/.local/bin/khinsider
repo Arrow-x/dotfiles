@@ -10,8 +10,11 @@ album_name="$(echo "$full_page" |
 	grep "<title>" |
 	sed -E 's#<title>(.*) MP3.*#\1#')"
 
-mkdir "$album_name"
-pushd "$album_name" >/dev/null || exit 1
+if ! mkdir "$album_name"; then
+	mkdir "rename me later" && pushd "rename me later" >/dev/null || exit 1
+else
+	pushd "$album_name" >/dev/null || exit 1
+fi
 
 mkdir covers
 
