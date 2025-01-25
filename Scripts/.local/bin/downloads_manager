@@ -85,7 +85,7 @@ parse_url() {
 			printf "Youtube"
 			;;
 
-		*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'*)
+		*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'* | *'bsky.app'* )
 			printf "Picture"
 			;;
 
