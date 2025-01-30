@@ -61,7 +61,7 @@ download_url() {
 			fi
 			;;
 		"Fic")
-			if ! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\""; then
+			if ! "$TERMINAL" sh -c "fichub_cli -o ~/File/Documents/Books/Fanfiction/ --force -u \"$2\""; then
 				d_failed
 			fi
 			;;
