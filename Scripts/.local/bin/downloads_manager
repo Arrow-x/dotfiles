@@ -44,7 +44,7 @@ download_url() {
 			fi
 			;;
 		"Picture")
-			if ! gallery-dl "$2"; then
+			if ! gallery-dl --cookies-from-browser firefox::H-twitter "$2"; then
 				d_failed
 			fi
 			;;
