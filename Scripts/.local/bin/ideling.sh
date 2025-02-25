@@ -1,8 +1,14 @@
 #!/bin/sh
+
+if [ -z "$(pgrep sway-audio-idle-inhibit)" ]; then
+	setsid -f sway-audio-idle-inhibit
+fi
+
 if [ -n "$(pgrep swayidle)" ]; then
 	notify-send "swayidle is already running"
 	exit
 fi
+
 
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
 	swayidle -w \
