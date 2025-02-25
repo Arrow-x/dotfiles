@@ -125,6 +125,7 @@ if [ "$ci" -eq 1 ]; then
 			echo "#!/bin/sh"
 			echo "cicpoffs www_cs www"
 			echo "./nw"
+			echo "umount -l img"
 		} >playme.sh
 
 	elif $IS_RPGMZ; then
@@ -136,6 +137,7 @@ if [ "$ci" -eq 1 ]; then
 			echo "#!/bin/sh"
 			echo "cicpoffs img_cs img"
 			echo "./nw"
+			echo "umount -l img"
 		} >playme.sh
 	fi
 	chmod +x playme.sh
