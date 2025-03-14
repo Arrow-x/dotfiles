@@ -2,7 +2,7 @@
 SHELL=/bin/bash
 opener="nsxiv"
 
-find ~/gallery-dl/nhentai/ -mindepth 1 -type d -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | fzf \
+find ~/gallery-dl/nhentai/ -mindepth 1 -type d -printf "%T+ %p\n" | sort -r | cut -d' ' -f2- | fzf \
 	--preview='draw_thumb {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES' \
 	--bind "ctrl-l:execute: setsid -f $opener {}>/dev/null" \
 	--bind "ctrl-d:reload(gio trash {} && find_hentai)" \
