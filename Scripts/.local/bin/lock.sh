@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-	hyprlock
+	setsid -f hyprlock
 else
 	PICTURE=/tmp/swaylock.png
 
