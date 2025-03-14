@@ -1,23 +1,36 @@
 #!/bin/sh
 
-target=""
-[ -z "$1" ] && read -r target
-[ -z "$target" ] && target="$1"
-dirs=$(find -L "$target" -maxdepth 1 -type d)
+# Get the target directory, either from the argument or user input
+target="$1"
+[ -z "$target" ] && read -r target
+[ -z "$target" ] && exit 1  # Exit if no target is provided
 
-mkdir -p "$XDG_CONFIG_HOME"/cmus/playlists/
-echo "$dirs" | while read -r dir; do
-	splice="$(echo "$dir" | sed 's#.*/##')"
-	dest="$XDG_CONFIG_HOME"/cmus/playlists/"$splice"
-	clist=$(find "$dir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" | wc -l)
-	if [ "$clist" -eq 0 ]; then
-		[ "$dir" = "$target" ] && continue
-		find "$dir" -mindepth 1 -maxdepth 1 -type d ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" | while read -r subdir; do
-			subsplice="$(echo "$subdir" | sed 's#.*/##')"
-			subdest=$(printf '%s_%s' "$dest" "$subsplice")
-			find "$subdir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" >"$subdest"
-		done
-	else
-		find "$dir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.png" ! -name "*.webp" >"$dest"
-	fi
+# Ensure the cmus playlists directory exists
+playlist_dir="${XDG_CONFIG_HOME:-$HOME/.config}/cmus/playlists"
+mkdir -p "$playlist_dir"
+
+# Function to sort files by modification date
+sort_by_date() {
+    find "$1" -maxdepth 1 -type f ! -iname "*.jpg" ! -iname "*.png" ! -iname "*.webp" | sort -n
+}
+
+# Process directories
+find -L "$target" -maxdepth 1 -type d | while read -r dir; do
+    playlist_name="$(basename "$dir")"
+    playlist_path="$playlist_dir/$playlist_name"
+
+    # Count number of non-image files in the directory
+    file_count=$(find "$dir" -maxdepth 1 -type f ! -iname "*.jpg" ! -iname "*.png" ! -iname "*.webp" | wc -l)
+
+    if [ "$file_count" -eq 0 ] && [ "$dir" != "$target" ]; then
+        # Process subdirectories if the main directory has no files
+        find "$dir" -mindepth 1 -maxdepth 1 -type d | while read -r subdir; do
+            sub_playlist="$(basename "$subdir")"
+            sub_playlist_path="${playlist_path}_${sub_playlist}"
+            sort_by_date "$subdir" > "$sub_playlist_path"
+        done
+    else
+        # Create the main playlist with files sorted by date
+        sort_by_date "$dir" > "$playlist_path"
+    fi
 done
