@@ -24,7 +24,7 @@ dfrc(){
 	pushit ~/dotfiles README
 }
 vin(){
-	pushit ~/Notes-And-Tasks "Obsidian/.local/share/Obsidian/index.md"
+	pushit ~/Sources/Vault/ index.md
 }
 bks(){
 	pushit ~/Notes-And-Tasks bookmarks
