@@ -209,8 +209,6 @@ cmd fzf_search ${{
     [ -n "$res" ] && lf -remote "send $id select \"$res\""
 }}
 
-map gs :fzf_search
-map <c-f> :fzf_jump
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-x %export GDK_BACKEND=x11 && dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
@@ -233,6 +231,7 @@ map J fzf_jump
 map S fzf_search
 map T :filter
 
+map r
 map rA :rename; cmd-end # at the very end
 map rc push rA<c-u> # new rename
 map rI :rename; cmd-home # at the very beginning
@@ -268,7 +267,6 @@ map am archive_mount
 
 map mx chmod_plus_x
 map mX chmod_minus_x
-map mt tagfiles $fx
 map md mkdir
 map mf mkfile
 map mw setwallpaper
