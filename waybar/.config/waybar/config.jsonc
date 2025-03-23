@@ -6,7 +6,7 @@
     "passtrough": false,
     "gtk-layer-shell": true,
     "modules-left": [
-        "sway/workspaces",
+        // "sway/workspaces",
         "hyprland/workspaces"
     ],
     "modules-center": [],
@@ -30,16 +30,10 @@
     ],
 
     "hyprland/window": {
-        "format": "{}"
+        "format": "{name}"
     },
     "sway/workspaces": {
-        "all-outputs": true,
-        "on-click": "activate",
         "format": "{icon}",
-        "format-icons": {
-            "9": "9:",
-            "10": "10:"
-          }
     },
     "tray": {
         "icon-size": 19,
@@ -55,8 +49,8 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pavucontrol",
-        "on-scroll-up": "amixer -D pulse sset Master 5%+",
-        "on-scroll-down": "amixer -D pulse sset Master 5%-",
+        "on-scroll-up": "amixer sset Master 5%+",
+        "on-scroll-down": "amixer sset Master 5%-",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -69,10 +63,18 @@
         }
     },
     "network": {
-        "format-icons": "",
-        "format": "{icon} {bandwidthDownBytes} - {bandwidthUpBytes}",
+        "format-icons": " ",
+        "format-wifi": "{icon} {bandwidthDownBytes} - {bandwidthUpBytes}",
         "interface": "wlan0",
-        "interval": 1
+        "interval": 1,
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "format-disconnected": "",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        // "max-length": 50
     },
     "memory": {
         "interval": 3,
