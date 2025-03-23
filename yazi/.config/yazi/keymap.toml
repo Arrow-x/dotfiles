@@ -25,8 +25,8 @@ keymap = [
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "g", "g" ], run = "arrow -99999999", desc = "Move cursor to the top" },
-	{ on = "G",          run = "arrow 99999999",  desc = "Move cursor to the bottom" },
+	{ on = [ "g", "g" ], run = "arrow top", desc = "Move cursor to the top" },
+	{ on = "G",          run = "arrow bot",  desc = "Move cursor to the bottom" },
 
 	# Navigation
 	{ on = "h", run = "leave", desc = "Go back to the parent directory" },
@@ -120,7 +120,7 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
-	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
+	{ on = [ "g", "h", "h" ],       run = "cd ~",             desc = "Go home" },
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Goto ~/.config" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Goto ~/Downloads" },
 
@@ -141,7 +141,7 @@ keymap = [
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
+	# { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to the first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to the second tab" },
@@ -163,7 +163,6 @@ keymap = [
 	{ on = "w", run = "tasks_show", desc = "Show task manager" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -364,3 +363,38 @@ keymap = [
 	# Filtering
 	{ on = "f", run = "filter", desc = "Apply a filter for the help items" },
 ]
+
+[[manager.prepend_keymap]]
+	on   = "~"
+	run  = 'shell "$SHELL" --block'
+	desc = "Open shell here"
+
+[[manager.prepend_keymap]]
+	on   = "l"
+	run  = "plugin smart-enter"
+	desc = "Enter the child directory, or open the file"
+
+[[mnager.prepend_keymap]]
+	on   = "p"
+	run  = "plugin smart-paste"
+	desc = "Paste into the hovered directory or CWD"
+
+[[manager.prepend_keymap]]
+	on   = "t"
+	run  = "plugin smart-tab"
+	desc = "Create a tab and enter the hovered directory"
+
+[[manager.prepend_keymap]]
+	on = ["C"]
+	run = "plugin ouch zip"
+	desc = "Compress with ouch"
+
+[[manager.prepend_keymap]]
+	on   = [ "c", "m" ]
+	run  = "plugin chmod"
+	desc = "Chmod on selected files"
+
+[[manager.prepend_keymap]]
+	on   = [ "g", "i" ]
+	run  = "plugin lazygit"
+	desc = "run lazygit"
