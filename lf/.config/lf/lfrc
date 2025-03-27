@@ -309,10 +309,10 @@ map gfp cd /home/arrowx/File/Projects
 map gft cd /home/arrowx/File/Tutorials
 
 map gm cd /run/media/arrowx/
-map grr cd /home/arrowx/File/Examples\ and\ Refrences
-map gra cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Random/
-map grc cd /home/arrowx/File/Examples\ and\ Refrences/AnimeArt/Comics
-map grp cd /home/arrowx/File/Examples\ and\ Refrences/pixel\ art
-map grd cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d
-map grn cd /home/arrowx/File/Examples\ and\ Refrences/Cool\ 3d/NPR
-map grm cd /home/arrowx/File/Examples\ and\ Refrences/Animations/
+map grr cd /home/arrowx/File/Refrences
+map gra cd /home/arrowx/File/Refrences/AnimeArt/Random/
+map grc cd /home/arrowx/File/Refrences/AnimeArt/Comics
+map grp cd /home/arrowx/File/Refrences/pixel_art
+map grd cd /home/arrowx/File/Refrences/Cool3D
+map grn cd /home/arrowx/File/Refrences/Cool3D/NPR
+map grm cd /home/arrowx/File/Refrences/Animations/
