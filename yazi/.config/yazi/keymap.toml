@@ -120,25 +120,24 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
-	{ on = [ "g", "h", "h" ],       run = "cd ~",             desc = "Go home" },
-	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Goto ~/.config" },
-	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Goto ~/Downloads" },
-
-	{ on = [ "g", "l", "s" ],       run = "cd ~/.local/share",   desc = "Goto ~/.local/share" },
-	{ on = [ "g", "l", "b" ],       run = "cd ~/.local/bin",   desc = "Goto ~/.local/bin" },
-
-	{ on = [ "g", "f", "h" ],       run = "cd ~/File/Homework/",   desc = "Goto Homework" },
-	{ on = [ "g", "f", "t" ],       run = "cd ~/File/Tutorials/",   desc = "Goto Tutorials" },
-	{ on = [ "g", "f", "p" ],       run = "cd ~/File/Projects/",   desc = "Goto Projects" },
-
-	{ on = [ "g", "r", "a" ],       run = "cd ~/File/Examples and Refrences/AnimeArt/",   desc = "Goto Homework" },
-	{ on = [ "g", "r", "b" ],       run = "cd ~/File/Examples and Refrences/bachgrounds/",   desc = "Goto Homework" },
-	{ on = [ "g", "r", "d" ],       run = "cd ~/File/Examples and Refrences/Cool 3d/",   desc = "Goto Homework" },
-
-	{ on = [ "g", "h", "g" ],       run = "cd ~/gallery-dl/",   desc = "Goto gallery-dl" },
-	{ on = [ "g", "h", "d" ],       run = "cd ~/Desktop/",   desc = "Goto gallery-dl" },
-
-	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
+	{ on = [ "g", "h", "h" ],       run = "cd ~",                               desc = "Go home" },
+	{ on = [ "g", "c" ],            run = "cd ~/.config",                       desc = "Goto ~/.config" },
+	{ on = [ "g", "d" ],            run = "cd ~/Downloads",                     desc = "Goto ~/Downloads" },
+	{ on = [ "g", "l", "s" ],       run = "cd ~/.local/share",                  desc = "Goto ~/.local/share" },
+	{ on = [ "g", "l", "b" ],       run = "cd ~/.local/bin",                    desc = "Goto ~/.local/bin" },
+	{ on = [ "g", "f", "f" ],       run = "cd ~/File/",                         desc = "Goto Files" },
+	{ on = [ "g", "f", "h" ],       run = "cd ~/File/Homework/",                desc = "Goto Homework" },
+	{ on = [ "g", "f", "t" ],       run = "cd ~/File/Tutorials/",               desc = "Goto Tutorials" },
+	{ on = [ "g", "f", "p" ],       run = "cd ~/File/Projects/",                desc = "Goto Projects" },
+	{ on = [ "g", "f", "s" ],       run = "cd ~/File/Software/",                desc = "Goto Software" },
+	{ on = [ "g", "f", "d" ],       run = "cd ~/File/Documents/",               desc = "Goto Downloads" },
+	{ on = [ "g", "r", "a" ],       run = "cd ~/File/Refrences/AnimeArt/",      desc = "Goto AnimeArt Refrences" },
+	{ on = [ "g", "r", "b" ],       run = "cd ~/File/Refrences/bachgrounds/",   desc = "Goto bachgrounds Refrences" },
+	{ on = [ "g", "r", "d" ],       run = 'cd ~/File/Refrences/Cool3D/',        desc = "Goto Cool3D Refrences" },
+	{ on = [ "g", "h", "g" ],       run = "cd ~/gallery-dl/",                   desc = "Goto gallery-dl" },
+	{ on = [ "g", "h", "d" ],       run = "cd ~/Desktop/",                      desc = "Goto to Desktop" },
+	{ on = [ "g", "h", "s" ],       run = "cd ~/Sources/",                      desc = "Goto to Sources" },
+	{ on = [ "g", "<Space>" ],      run = "cd --interactive",                   desc = "Jump interactively" },
 
 	# Tabs
 	# { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
