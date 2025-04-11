@@ -4,19 +4,27 @@ toggle=/tmp/toggle_touchpad.tmp
 if [ ! -e "$toggle" ]; then
 	touch "$toggle"
 	case "$XDG_SESSION_TYPE" in
-		"wayland") swaymsg input type:touchpad events disabled ;;
+		"wayland")
+			case "$XDG_SESSION_DESKTOP" in
+				"sway") swaymsg input type:touchpad events disabled ;;
+				"Hyprland") hyprctl keyword 'device[synps\/2-synaptics-touchpad]:enabled' 'false'  ;;
+			esac;;
 		*) xinput disable SynPS/2\ Synaptics\ TouchPad ;;
 	esac
 	notify-send -u low -i mouse \
-		--icon=/usr/share/icons/Adwaita/32x32/status/touchpad-disabled-symbolic.symbolic.png \
+		--icon=/usr/share/icons/Adwaita/symbolic/status/touchpad-disabled-symbolic.svg \
 		"Trackpad disabled"
 else
 	rm "$toggle"
 	case "$XDG_SESSION_TYPE" in
-		"wayland") swaymsg input type:touchpad events enabled ;;
+		"wayland")
+			case "$XDG_SESSION_DESKTOP" in
+				"sway") swaymsg input type:touchpad events enabled ;;
+				"Hyprland") hyprctl keyword 'device[synps\/2-synaptics-touchpad]:enabled' 'true'  ;;
+			esac;;
 		*) xinput enable SynPS/2\ Synaptics\ TouchPad ;;
 	esac
 	notify-send -u low -i mouse \
-		--icon=/usr/share/icons/Adwaita/32x32/devices/input-touchpad-symbolic.symbolic.png \
+		--icon=/usr/share/icons/Adwaita/symbolic/devices/input-touchpad-symbolic.svg \
 		"Trackpad enabled"
 fi
