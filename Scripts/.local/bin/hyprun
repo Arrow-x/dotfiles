@@ -9,6 +9,10 @@ else
 	appcmd="$2"
 fi
 
+if [ -z "$2" ]; then
+	appcmd="$1"
+fi
+
 if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
 	hyprctl dispatch movetoworkspace +0,class:"$appid"
 	hyprctl dispatch alterzorder top,class:"$appid"
