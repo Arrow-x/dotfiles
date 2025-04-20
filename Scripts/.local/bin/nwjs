@@ -131,13 +131,19 @@ if [ "$ci" -eq 1 ]; then
 	elif $IS_RPGMZ; then
 		mv img/ img_cs/
 		mkdir img
+		mv audio/ audio_cs/
+		mkdir audio
 		echo "creating launcher script ..."
 		touch playme.sh
 		{
 			echo "#!/bin/sh"
 			echo "cicpoffs img_cs img"
+			echo "cicpoffs audio_cs audio"
 			echo "./nw"
 			echo "umount -l img"
+			echo "umount -l audio"
+			echo "mv img_cs/ img/"
+			echo "mv audio_cs/ audio/"
 		} >playme.sh
 	fi
 	chmod +x playme.sh
