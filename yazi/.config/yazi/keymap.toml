@@ -131,6 +131,7 @@ keymap = [
 	{ on = [ "g", "f", "p" ],       run = "cd ~/File/Projects/",                desc = "Goto Projects" },
 	{ on = [ "g", "f", "s" ],       run = "cd ~/File/Software/",                desc = "Goto Software" },
 	{ on = [ "g", "f", "d" ],       run = "cd ~/File/Documents/",               desc = "Goto Downloads" },
+	{ on = [ "g", "f", "g" ],       run = "cd ~/File/Games/",               	desc = "Goto Games" },
 	{ on = [ "g", "r", "a" ],       run = "cd ~/File/Refrences/AnimeArt/",      desc = "Goto AnimeArt Refrences" },
 	{ on = [ "g", "r", "b" ],       run = "cd ~/File/Refrences/bachgrounds/",   desc = "Goto bachgrounds Refrences" },
 	{ on = [ "g", "r", "d" ],       run = 'cd ~/File/Refrences/Cool3D/',        desc = "Goto Cool3D Refrences" },
