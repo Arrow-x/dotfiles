@@ -209,6 +209,19 @@ cmd fzf_search ${{
     [ -n "$res" ] && lf -remote "send $id select \"$res\""
 }}
 
+cmd make_file_dir %{{
+	printf "Name dir-file: "
+	read ans
+	if [[ "$ans" == */ ]]; then
+		mkdir --parents "$ans"
+	else
+		mkdir --parents "$(dirname -- "$ans")"
+		touch "$ans"
+	fi
+	lf -remote "send $id reload"
+	lf -remote "send select \"$and\""
+}}
+
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-x %export GDK_BACKEND=x11 && dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
@@ -267,8 +280,8 @@ map am archive_mount
 
 map mx chmod_plus_x
 map mX chmod_minus_x
-map md mkdir
-map mf mkfile
+map md make_file_dir
+# map mf mkfile
 map mw setwallpaper
 map mg lazygit
 map ~ z_shell
