@@ -12,9 +12,9 @@ client_dup = "{icon}{counter_sup}{delim}"
 client_dup_fullscreen = "[{icon}]{delim}{icon}{counter_unfocused_sup}"
 client_fullscreen = "[{icon}]{delim}"
 
-[class_active]
-DEFAULT="{icon}"
-"(?i)firefox" = "<span color='orange'> {class}</span>"
+# [class_active]
+# DEFAULT="{icon}"
+# "(?i)firefox" = "<span color='orange'> {class}</span>"
 
 # [initial_class]
 # "DEFAULT" = " {class}: {title}"
@@ -65,7 +65,8 @@ DEFAULT="{icon}"
 
 [class]
 DEFAULT = ""
-"(?i)firefox" = "<span color='orange'> </span>"
+# "(?i)firefox" = "<span color='orange'> </span>"
+firefox = ""
 "(?i)kitty" = ""
 footclient = ""
 "(?i)alacritty" = ""
@@ -154,6 +155,7 @@ t_btop = ""
 godot = ""
 Godot = ""
 g_nvim = ""
+t_newsraft = ""
 blender = "󰂫"
 Foliate = ""
 zoom = ""
