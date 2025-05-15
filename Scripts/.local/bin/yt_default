@@ -92,8 +92,8 @@ attempt_720() {
 }
 
 clean_exit() {
-	rm /tmp/ytaudio
-	rm /tmp/ytvideo
+	rm -rf /tmp/ytaudio*
+	rm -rf /tmp/ytvideo*
 	exit "$1"
 }
 
