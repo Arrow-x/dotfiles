@@ -2,50 +2,113 @@
 
 link="$1"
 threads=4
+cant_get_audio=0
+cant_get_vid=0
 
 menu() {
 	fzfmenu.sh
 }
 
-choice="$(printf "720p\n720p60\nAudio\nBest\n" | menu)"
+choice="$(printf "720p\n720p60\nAudio\n" | menu)"
 
-[ -z "$choice" ] && exit 0
+[ -z "$choice" ] && exit 1
 
-get_audio() {
+try_audio() {
+	cant_get_audio=0
 	if ! yt-dlp --embed-subs --quiet -N $threads --no-part -f "bestaudio" "$link" -o /tmp/ytaudio; then
 		notify-send "No Audio"
+		cant_get_audio=1
 	fi
 }
 
-get_best() {
-	get_audio
-	yt-dlp --quiet -N $threads --no-part -f "bestvideo" "$link" -o - | mpv --really-quiet --no-terminal --force-window --audio-file="/tmp/ytaudio" -
-	rm -rf /tmp/ytaudio*
+try_video() {
+	cant_get_vid=0
+	if ! yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o /tmp/ytvideo; then
+		notify-send "$2"
+		cant_get_vid=1
+	fi
+
+}
+
+check_audio() {
+	file_path="/tmp/ytaudio"
+	timeout_seconds=300
+	check_interval=1
+	start_time=$(date +%s)
+	elapsed=0
+
+	while [ ! -f "$file_path" ]; do
+		if [ ! "$cant_get_audio" -eq 1 ]; then
+			if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
+				notify-send "Timout reached while waiting "
+				return 1
+			fi
+			sleep $check_interval
+			elapsed=$(($(date +%s) - start_time))
+			# notify-send "nothing yet! we have been waiting" "$elapsed"
+		fi
+	done
+	return 0
+}
+check_video() {
+	file_path="/tmp/ytvideo"
+	timeout_seconds=300
+	check_interval=1
+	start_time=$(date +%s)
+	elapsed=0
+
+	while [ ! -f "$file_path" ]; do
+		if [ ! "$cant_get_vid" -eq 1 ]; then
+			if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
+				notify-send "Timout reached while waiting"
+				return 1
+			fi
+			sleep $check_interval
+			elapsed=$(($(date +%s) - start_time))
+			# notify-send "nothing yet! we have been waiting" "$elapsed"
+		fi
+	done
+	return 0
+}
+
+get_audio() {
+	try_audio &
+	check_audio
 }
 
 attempt_720() {
-	get_audio
-	if ! yt-dlp --quiet -N $threads --no-part -f "$2" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" --sub-files-append="/tmp/ytaudio.*.vtt" -; then
-		notify-send "Couldn't get mp4 trying webm"
-		if ! yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o - | mpv --really-quiet --no-terminal --audio-file="/tmp/ytaudio" -; then
-			notify-send "Couldn't get webm trying Best"
-			get_best
+	try_audio &
+	try_video "$1" "Couldn't get MP4 trying webm" &
+	check_audio
+	if ! check_video; then
+		try_video "$2" "Couldn't get webm trying best" &
+		if ! check_video; then
+			try_video "bestvideo" "Couldn't get webm trying best" &
+			if ! check_video; then
+				clean_exit 1
+			fi
 		fi
 	fi
-	rm /tmp/ytaudio*
+}
+
+clean_exit() {
+	rm /tmp/ytaudio
+	rm /tmp/ytvideo
+	exit "$1"
 }
 
 case "$choice" in
-	"Best")
-		get_best
-		;;
 	"Audio")
 		yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o - | mpv --really-quiet --no-terminal --force-window -
 		;;
 	"720p")
 		attempt_720 247 136
+		mpv "/tmp/ytvideo" --audio-file="/tmp/ytaudio"
+		clean_exit 0
 		;;
 	"720p60")
 		attempt_720 302 294
+		mpv "/tmp/ytvideo" --audio-file="/tmp/ytaudio"
+		clean_exit 0
 		;;
 esac
