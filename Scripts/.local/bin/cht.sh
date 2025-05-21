@@ -20,8 +20,7 @@ make_local_copy() {
 		fi
 		mv "$file"-new "$file"
 	fi
-	cat "$file" | bat --paging=always --style plain
-	exit 0
+	bat --paging=always --style plain < "$file"
 }
 
 selected="$(curl -s cht.sh/:list | fzf --print-query | tail -1)"
