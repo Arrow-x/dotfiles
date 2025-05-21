@@ -2,8 +2,6 @@
 
 link="$1"
 threads=4
-cant_get_audio=0
-cant_get_vid=0
 
 menu() {
 	fzfmenu.sh
@@ -14,20 +12,19 @@ choice="$(printf "720p\n720p60\nAudio\n" | menu)"
 [ -z "$choice" ] && exit 1
 
 try_audio() {
-	cant_get_audio=0
+	rm -rf "/tmp/cantgetaudio"
 	if ! yt-dlp --embed-subs --quiet -N $threads --no-part -f "bestaudio" "$link" -o /tmp/ytaudio; then
 		notify-send "No Audio"
-		cant_get_audio=1
+		touch "/tmp/cantgetaudio"
 	fi
 }
 
 try_video() {
-	cant_get_vid=0
-	if ! yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o /tmp/ytvideo; then
+	rm -rf "/tmp/cantgetvid"
+	if ! yt-dlp -N $threads --no-part -f "$1" "$link" -o /tmp/ytvideo; then
+		touch "/tmp/cantgetvid"
 		notify-send "$2"
-		cant_get_vid=1
 	fi
-
 }
 
 check_audio() {
@@ -38,15 +35,17 @@ check_audio() {
 	elapsed=0
 
 	while [ ! -f "$file_path" ]; do
-		if [ ! "$cant_get_audio" -eq 1 ]; then
-			if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
-				notify-send "Timout reached while waiting "
-				return 1
-			fi
-			sleep $check_interval
-			elapsed=$(($(date +%s) - start_time))
-			# notify-send "nothing yet! we have been waiting" "$elapsed"
+		if [ -f "/tmp/cantgetaudio" ]; then
+			rm -rf "/tmp/cantgetaudio"
+			return 1
 		fi
+
+		if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
+			notify-send "Timout reached while waiting "
+			return 1
+		fi
+		sleep $check_interval
+		elapsed=$(($(date +%s) - start_time))
 	done
 	return 0
 }
@@ -58,15 +57,17 @@ check_video() {
 	elapsed=0
 
 	while [ ! -f "$file_path" ]; do
-		if [ ! "$cant_get_vid" -eq 1 ]; then
-			if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
-				notify-send "Timout reached while waiting"
-				return 1
-			fi
-			sleep $check_interval
-			elapsed=$(($(date +%s) - start_time))
-			# notify-send "nothing yet! we have been waiting" "$elapsed"
+		if [ -f "/tmp/cantgetvid" ] ; then
+			rm -rf "/tmp/cantgetvid"
+			return 1
 		fi
+
+		if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
+			notify-send "Timout reached while waiting"
+			return 1
+		fi
+		sleep $check_interval
+		elapsed=$(($(date +%s) - start_time))
 	done
 	return 0
 }
@@ -94,6 +95,8 @@ attempt_720() {
 clean_exit() {
 	rm -rf /tmp/ytaudio*
 	rm -rf /tmp/ytvideo*
+	rm -rf "/tmp/cantgetaudio"
+	rm -rf "/tmp/cantgetvid"
 	exit "$1"
 }
 
@@ -102,7 +105,7 @@ case "$choice" in
 		yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o - | mpv --really-quiet --no-terminal --force-window -
 		;;
 	"720p")
-		attempt_720 247 136
+		attempt_720 136 247 
 		mpv "/tmp/ytvideo" --audio-file="/tmp/ytaudio"
 		clean_exit 0
 		;;
