@@ -89,7 +89,7 @@ parse_url() {
 			printf "Picture"
 			;;
 
-		*'nhentai.net'*)
+		*'nhentai.net'* | *'e-hentai.org'*)
 			printf "Hentai"
 			;;
 
