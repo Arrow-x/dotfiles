@@ -13,17 +13,9 @@ choice="$(printf "720p\n720p60\nAudio\n" | menu)"
 
 try_audio() {
 	rm -rf "/tmp/cantgetaudio"
-	if ! yt-dlp --embed-subs --quiet -N $threads --no-part -f "bestaudio" "$link" -o /tmp/ytaudio; then
-		notify-send "No Audio"
+	if ! yt-dlp --quiet -N $threads --no-part -f "ba" "$link" -o /tmp/ytaudio; then
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg "No Audio"
 		touch "/tmp/cantgetaudio"
-	fi
-}
-
-try_video() {
-	rm -rf "/tmp/cantgetvid"
-	if ! yt-dlp -N $threads --no-part -f "$1" "$link" -o /tmp/ytvideo; then
-		touch "/tmp/cantgetvid"
-		notify-send "$2"
 	fi
 }
 
@@ -41,7 +33,7 @@ check_audio() {
 		fi
 
 		if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
-			notify-send "Timout reached while waiting "
+			notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg "Timout reached while waiting "
 			return 1
 		fi
 		sleep $check_interval
@@ -49,55 +41,19 @@ check_audio() {
 	done
 	return 0
 }
-check_video() {
-	file_path="/tmp/ytvideo"
-	timeout_seconds=300
-	check_interval=1
-	start_time=$(date +%s)
-	elapsed=0
 
-	while [ ! -f "$file_path" ]; do
-		if [ -f "/tmp/cantgetvid" ] ; then
-			rm -rf "/tmp/cantgetvid"
-			return 1
-		fi
 
-		if [ "$timeout_seconds" -gt 0 ] && [ "$elapsed" -ge "$timeout_seconds" ]; then
-			notify-send "Timout reached while waiting"
-			return 1
-		fi
-		sleep $check_interval
-		elapsed=$(($(date +%s) - start_time))
-	done
-	return 0
+clean_exit() {
+	rm -rf /tmp/ytaudio*
+	rm -rf "/tmp/cantgetaudio"
+	exit "$1"
 }
 
 get_audio() {
 	try_audio &
-	check_audio
-}
-
-attempt_720() {
-	try_audio &
-	try_video "$1" "Couldn't get MP4 trying webm" &
-	check_audio
-	if ! check_video; then
-		try_video "$2" "Couldn't get webm trying best" &
-		if ! check_video; then
-			try_video "bestvideo" "Couldn't get webm trying best" &
-			if ! check_video; then
-				clean_exit 1
-			fi
-		fi
+	if ! check_audio; then
+		clean_exit 1
 	fi
-}
-
-clean_exit() {
-	rm -rf /tmp/ytaudio*
-	rm -rf /tmp/ytvideo*
-	rm -rf "/tmp/cantgetaudio"
-	rm -rf "/tmp/cantgetvid"
-	exit "$1"
 }
 
 case "$choice" in
@@ -105,13 +61,17 @@ case "$choice" in
 		yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o - | mpv --really-quiet --no-terminal --force-window -
 		;;
 	"720p")
-		attempt_720 136 247 
-		mpv "/tmp/ytvideo" --audio-file="/tmp/ytaudio"
+		get_audio
+		if ! yt-dlp --quiet -N $threads --no-part -f "bv[height<=720] [fps<=30]" "$link" -o - | mpv --audio-file="/tmp/ytaudio" --really-quiet --no-terminal --force-window -; then
+			clean_exit 1
+		fi
 		clean_exit 0
 		;;
 	"720p60")
-		attempt_720 302 294
-		mpv "/tmp/ytvideo" --audio-file="/tmp/ytaudio"
+		get_audio
+		if ! yt-dlp --quiet -N $threads --no-part -f "bv[height<=720] [fps<=60]" "$link" -o - | mpv --audio-file="/tmp/ytaudio" --really-quiet --no-terminal --force-window -; then
+			clean_exit 1
+		fi
 		clean_exit 0
 		;;
 esac
