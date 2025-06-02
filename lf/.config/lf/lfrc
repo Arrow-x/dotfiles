@@ -53,6 +53,7 @@ cmd archive ${{
 			set -f
 			firejail tar czf "$ans".tar.gz $fx ;;
 	esac
+	lf -remote "send $id select \"$ans\""
 }}
 
 # unarchive bindings
@@ -218,8 +219,8 @@ cmd make_file_dir %{{
 		mkdir --parents "$(dirname -- "$ans")"
 		touch "$ans"
 	fi
-	lf -remote "send $id reload"
-	lf -remote "send select \"$and\""
+	#lf -remote "send $id reload"
+	lf -remote "send select \"$ans\""
 }}
 
 cmd dragon %dragon-drop -a -x $fx
