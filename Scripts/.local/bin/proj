@@ -26,6 +26,12 @@ case "$1" in
 		[ -z "$search" ] && exit
 		$terminal "$search" "$editor" .
 		;;
+	-N | --neovide)
+		search="$(proj_search)"
+		[ -z "$search" ] && exit
+		cd "$search" || exit
+		neovide . &
+		;;
 	-c | --change-dir)
 		search="$(proj_search)"
 		[ -z "$search" ] && exit
