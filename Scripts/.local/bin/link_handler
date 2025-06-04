@@ -30,7 +30,7 @@ get_link() {
 }
 
 manage_url() {
-	notify-send -u low -i /usr/share/icons/Qogir/32/status/system-save-session.svg \
+	notify-send -u low -i /usr/share/icons/Qogir/32/apps/web-browser.svg \
 		"opening the $1 at $2"
 
 	case "$1" in
