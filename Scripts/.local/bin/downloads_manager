@@ -12,7 +12,7 @@ case "$1" in
 esac
 
 y_tube() {
-	yt-dlp --embed-thumbnail --embed-metadata --embed-chapters -P home:~/Videos -f "$1" "$2"
+	yt-dlp --embed-metadata --embed-thumbnail --embed-chapters -P home:~/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
 }
 
 d_failed() {
@@ -32,15 +32,8 @@ download_url() {
 
 	case "$1" in
 		"Youtube")
-			if ! y_tube '136+140' "$2"; then
-				retry "webm" "mp4"
-				if ! y_tube '247+251' "$2"; then
-					retry "mp4" "mp4 60fps"
-					if ! y_tube '298+bestaudio' "$2"; then
-						d_failed
-					fi
-
-				fi
+			if ! y_tube "$2"; then
+				d_failed
 			fi
 			;;
 		"Picture")
