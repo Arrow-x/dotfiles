@@ -1,0 +1,5 @@
+#!/bin/sh
+
+choice="$(cut -d '|' -f2 < ~/.cache/yttitle | fzf)"
+
+grep --fixed-strings "$choice" ~/.cache/yttitle | cut -d '|' -f1 | xargs yt_default

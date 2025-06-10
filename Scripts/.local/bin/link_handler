@@ -39,6 +39,12 @@ manage_url() {
 			;;
 
 		"Youtube")
+			touch "$HOME"/.cache/yttitle
+			if ! grep "$2" "$HOME"/.cache/yttitle ; then
+				title="$(yt-dlp --get-title "$2")"
+				full_name="$(printf "%s | %s" "$2" "$title")"
+				echo "$full_name" >> "$HOME"/.cache/yttitle
+			fi
 			! tsp yt_default "$2" && d_failed
 			;;
 

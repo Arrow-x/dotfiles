@@ -2,33 +2,39 @@
 
 link="$1"
 threads=4
+video_title="$(grep "$link" "$HOME"/.cache/yttitle | cut -d "|" -f2)"
+video_id="$(printf "%s" "$link" | cut -d "/" -f4)"
+ERROR_AUDIO=/tmp/cantgetaudio
+ERROR_VID=/tmp/cantgetvideo
 
 menu() {
-	fzfmenu.sh
+	cat | bemenu -l 3 --prompt "$video_title"
+	# fzfmenu.sh
 }
 
 choice="$(printf "720p\n720p60\nAudio\n" | menu)"
 
 [ -z "$choice" ] && exit 1
 
-try_audio() {
-	rm -rf "/tmp/cantgetaudio"
-	if ! yt-dlp --quiet -N $threads --no-part -f "ba" "$link" -o /tmp/ytaudio; then
-		notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg "No Audio"
-		touch "/tmp/cantgetaudio"
+try_getting() {
+	rm -rf "$3"
+	if ! yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o "$2"; then
+		notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg "$4"
+		touch "$3"
 	fi
 }
 
-check_audio() {
-	file_path="/tmp/ytaudio"
+check_file() {
+	file_path="$1"
+	error_file="$2"
 	timeout_seconds=300
 	check_interval=1
 	start_time=$(date +%s)
 	elapsed=0
 
 	while [ ! -f "$file_path" ]; do
-		if [ -f "/tmp/cantgetaudio" ]; then
-			rm -rf "/tmp/cantgetaudio"
+		if [ -f "$error_file" ]; then
+			rm -rf "$error_file"
 			return 1
 		fi
 
@@ -42,36 +48,40 @@ check_audio() {
 	return 0
 }
 
-
 clean_exit() {
-	rm -rf /tmp/ytaudio*
-	rm -rf "/tmp/cantgetaudio"
+	rm -rf /tmp/yt*
+	rm -rf /tmp/cantget*
+	rm -rf /tmp/watch*
 	exit "$1"
 }
+#BUG: mpv will stop the moment the video stops downloading,
+get_video() {
+	try_getting "ba" /tmp/ytaudio "$ERROR_AUDIO" "No Audio" &
+	try_getting "bv[height<=720] [fps<=$1]" /tmp/"$video_id" "$ERROR_VID" "No Video" &
 
-get_audio() {
-	try_audio &
-	if ! check_audio; then
+	if ! check_file "/tmp/ytaudio" "$ERROR_AUDIO"; then
 		clean_exit 1
 	fi
+	if ! check_file "/tmp/$video_id" "$ERROR_VID"; then
+		clean_exit 1
+	fi
+	mpv --audio-file="/tmp/ytaudio" --really-quiet --no-terminal --force-window /tmp/"$video_id"
+	clean_exit 0
 }
 
 case "$choice" in
 	"Audio")
-		yt-dlp --quiet -N $threads --no-part -f "bestaudio" "$link" -o - | mpv --really-quiet --no-terminal --force-window -
+		try_getting "ba" /tmp/"$video_id" "$ERROR_AUDIO" "No Audio" &
+		if ! check_file /tmp/"$video_id" "$ERROR_AUDIO"; then
+			clean_exit 1
+		fi
+		mpv --really-quiet --no-terminal --force-window /tmp/"$video_id"
+		clean_exit 0
 		;;
 	"720p")
-		get_audio
-		if ! yt-dlp --quiet -N $threads --no-part -f "bv[height<=720] [fps<=30]" "$link" -o - | mpv --audio-file="/tmp/ytaudio" --really-quiet --no-terminal --force-window -; then
-			clean_exit 1
-		fi
-		clean_exit 0
+		get_video 30
 		;;
 	"720p60")
-		get_audio
-		if ! yt-dlp --quiet -N $threads --no-part -f "bv[height<=720] [fps<=60]" "$link" -o - | mpv --audio-file="/tmp/ytaudio" --really-quiet --no-terminal --force-window -; then
-			clean_exit 1
-		fi
-		clean_exit 0
+		get_video 60
 		;;
 esac
