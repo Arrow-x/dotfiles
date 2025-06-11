@@ -1,0 +1,114 @@
+{
+    "extractor":
+    {
+        "base-directory": "./gallery-dl/",
+        "parent-directory": false,
+        "postprocessors": null,
+        "proxy": null,
+        "skip": true,
+
+        "#": "set global archive file for all extractors",
+        "archive": "~/gallery-dl/archive.sqlite3",
+        "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
+
+        "#": "add two custom keywords into the metadata dictionary",
+        "#": "these can be used to further refine your output directories or filenames",
+        "keywords": {"bkey": "", "ckey": ""},
+        "#": "make sure that custom keywords are empty, i.e. they don't appear unless specified by the user",
+        "keywords-default": "",
+
+        "#": "replace invalid path characters with unicode alternatives",
+        "path-restrict": {
+            "\\": "⧹",
+            "/" : "⧸",
+            "|" : "￨",
+            ":" : "꞉",
+            "*" : "∗",
+            "?" : "？",
+            "\"": "″",
+            "<" : "﹤",
+            ">" : "﹥"
+        },
+
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0",
+        "retries": 100,
+        "timeout": 30.0,
+        "verify": true,
+        "fallback": true,
+
+        "sleep": 0,
+        "sleep-request": 0,
+        "sleep-extractor": 0,
+
+        "path-restrict": "auto",
+        "path-replace": "_",
+        "path-remove": "\\u0000-\\u001f\\u007f",
+        "path-strip": "auto",
+        "extension-map": {
+            "jpeg": "jpg",
+            "jpe" : "jpg",
+            "jfif": "jpg",
+            "jif" : "jpg",
+            "jfi" : "jpg"
+        },
+        "twitter": {
+            "#": "write text content for *all* tweets",
+            "postprocessors": ["content"],
+            "text-tweets": true,
+            "cookies": ["firefox"]
+        },
+		"nhentai": {
+			"dictionary": ["{title_en}"]
+		}
+    },
+    "api-key": "BVrnusE3mbtwZbetLdrOwLd3Zx5NooGoWTJR9P7NPy6vp0G7QY",
+    "api-secrete": "uBveszjPhyF89gAXngmK0cwMo2PSSNqNsISITws6ieUUYaQgUl",
+
+    "downloader":
+    {
+        "filesize-min": null,
+        "filesize-max": null,
+        "mtime": true,
+        "part": true,
+        "part-directory": null,
+        "progress": 3.0,
+        "rate": null,
+        "retries": 4,
+        "timeout": 30.0,
+        "verify": true,
+
+        "http":
+        {
+            "adjust-extensions": true,
+            "headers": null
+        },
+
+        "ytdl":
+        {
+            "format": 22,
+            "forward-cookies": false,
+            "logging": true,
+            "module": null,
+            "outtmpl": null,
+            "raw-options": null
+        }
+    },
+
+    "output":
+    {
+        "mode": "auto",
+        "progress": true,
+        "shorten": true,
+        "ansi": false,
+        "colors": {
+            "success": "1;32",
+            "skip"   : "2"
+        },
+        "skip": true,
+        "log": "[{name}][{levelname}] {message}",
+        "logfile": null,
+        "unsupportedfile": null
+    },
+
+    "netrc": false
+}
