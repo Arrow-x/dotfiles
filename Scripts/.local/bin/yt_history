@@ -2,4 +2,8 @@
 
 choice="$(cut -d '|' -f2 < ~/.cache/yttitle | fzf)"
 
+if [ -z "$choice" ]; then
+	exit
+fi
+
 grep --fixed-strings "$choice" ~/.cache/yttitle | cut -d '|' -f1 | xargs yt_default
