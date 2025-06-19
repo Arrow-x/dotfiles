@@ -5,7 +5,7 @@ bind i exec nsxiv-url "%l"
 bind y copy-to-clipboard ; exec tmux set-buffer "%l"
 
 # This will launch mpv in the background.
-bind m exec tsp yt_default "%l"
+bind m exec tsp link_handler "%l"
 
 # edit rss feeds or config (require restart newsraft to apply changes)
 bind E exec $EDITOR ~/.config/newsraft/feeds
