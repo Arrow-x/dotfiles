@@ -29,12 +29,31 @@
         "custom/power"
     ],
 
-    "hyprland/window": {
-        "format": "{name}"
-    },
     "sway/workspaces": {
         "format": "{icon}",
     },
+
+    "hyprland/workspaces": {
+        "format": "{id:} {windows}",
+        "format-window-separator": "  ",
+        // "window-rewrite-default": " ",
+        "window-rewrite": {
+            // "title<.*youtube.*>": " ", // Windows whose titles contain "youtube"
+            "class<neovide>": "", // Windows whose titles contain "youtube"
+            "class<Brave-browser>": "", // Windows whose classes are "firefox"
+            // "class<brave> title<.*github.*>": " ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "class<t_lf>": "",
+            "class<t_btop>": "",
+            "foot": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+            "blender": "󰂫",
+            "class<org.godotengine.*": "",
+            "class<mpv>": "",
+            "class<Nsxiv>": "",
+            "class<footclient> title<.*Nvim.*>": "",
+            "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output
+        }
+    },
+
     "tray": {
         "icon-size": 19,
         "tooltip": false,
