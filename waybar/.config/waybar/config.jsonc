@@ -39,18 +39,29 @@
         // "window-rewrite-default": " ",
         "window-rewrite": {
             // "title<.*youtube.*>": " ", // Windows whose titles contain "youtube"
+            // "class<brave> title<.*github.*>": " ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            // "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output
+
             "class<neovide>": "", // Windows whose titles contain "youtube"
             "class<Brave-browser>": "", // Windows whose classes are "firefox"
-            // "class<brave> title<.*github.*>": " ", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
             "class<t_lf>": "",
+            "class<pcmanfm>": "",
             "class<t_btop>": "",
-            "foot": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
-            "blender": "󰂫",
+            "class<t_newsraft>": "",
+            "class<t_newsboat>": "",
+            "class<t_cmus>": "",
+            "class<t_drop>": "",
+            "class<krita>": "",
+            "class<com.github.johnfactotum.Foliate>": "",
+            "class<deadbeef>": "",
+            "class<foot>": "",
+            "class<footclient>": "",
+            "class<blender>": "󰂫",
             "class<org.godotengine.*": "",
             "class<mpv>": "",
             "class<Nsxiv>": "",
             "class<footclient> title<.*Nvim.*>": "",
-            "title<.* - (.*) - VSCodium>": "codium $1"  // captures part of the window title and formats it into output
+            "class<footclient> title<.*tmux.*>": "",
         }
     },
 
