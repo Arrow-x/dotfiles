@@ -52,6 +52,7 @@ clean_exit() {
 	rm -rf /tmp/yt*
 	rm -rf /tmp/cantget*
 	rm -rf /tmp/watch*
+	rm -rf /tmp/shorts
 	exit "$1"
 }
 #BUG: mpv will stop the moment the video stops downloading,
