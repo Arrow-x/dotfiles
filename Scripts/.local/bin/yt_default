@@ -55,10 +55,10 @@ clean_exit() {
 	rm -rf /tmp/shorts
 	exit "$1"
 }
-#BUG: mpv will stop the moment the video stops downloading,
+
 get_video() {
 	try_getting "ba" /tmp/ytaudio "$ERROR_AUDIO" "No Audio" &
-	try_getting "bv[height<=720] [fps<=$1]" /tmp/"$video_id" "$ERROR_VID" "No Video" &
+	try_getting "bv*[vcodec=vp9][height<=720][fps<=$1] " /tmp/"$video_id" "$ERROR_VID" "No Video" &
 
 	if ! check_file "/tmp/ytaudio" "$ERROR_AUDIO"; then
 		clean_exit 1
