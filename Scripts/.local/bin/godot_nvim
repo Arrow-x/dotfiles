@@ -7,8 +7,8 @@ if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
 		hyprctl dispatch alterzorder top, class:"$appid"
 		hyprctl dispatch focuswindow class:"$appid"
 		if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-			# sh -c "footclient -a g_nvim nvim --listen /tmp/godothost.pipe" &
-			neovide --wayland_app_id "$appid"  -- --listen /tmp/godothost.pipe &
+			sh -c "footclient -a g_nvim nvim --listen /tmp/godothost.pipe" &
+			# neovide --wayland_app_id "$appid"  -- --listen /tmp/godothost.pipe &
 			hyprctl dispatch workspace 3
 			sleep 0.5
 		fi
