@@ -68,5 +68,28 @@ case "$1" in
 		[ -z "$search" ] && exit
 		$terminal "$search" &
 		;;
+	-ip | --editor-in-this-ternminal-projects)
+		search="$(find_projects | fzf)"
+		[ -z "$search" ] && exit
+		cd "$search" || exit
+		"$editor" .
+		;;
+	-ic | --editor-in-this-ternminal-configs)
+		search="$(find_configs | fzf)"
+		[ -z "$search" ] && exit
+		cd "$search" || exit
+		"$editor" .
+		;;
+	-ipc | --echo-in-this-ternminal-projects)
+		search="$(find_projects | fzf)"
+		[ -z "$search" ] && exit
+		echo "$search"
+		;;
+	-icc | --echo-in-this-ternminal-configs)
+		search="$(find_configs | fzf)"
+		[ -z "$search" ] && exit
+		echo "$search"
+		;;
+
 	*) exit ;;
 esac
