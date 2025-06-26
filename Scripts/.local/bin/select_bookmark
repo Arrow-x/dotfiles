@@ -14,8 +14,8 @@ browser() {
 	brave "$1"
 }
 case $1 in
-	-t) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
-	-b)
+	-t | --type) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
+	-b | --browser)
 		bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)
 		if [ -z "$bookmark" ]; then
 			exit 1
