@@ -29,6 +29,15 @@ get_link() {
 	gallery-dl -q -g "$1"
 }
 
+#BUG: this is a data race I think?
+get_yt_name() {
+	touch "$HOME"/.cache/yttitle
+	if ! grep "$1" "$HOME"/.cache/yttitle ; then
+		title="$(yt-dlp --get-title "$1")"
+		full_name="$(printf "%s | %s" "$1" "$title")"
+		echo "$full_name" >> "$HOME"/.cache/yttitle
+	fi
+}
 manage_url() {
 	notify-send -u low -i /usr/share/icons/Qogir/32/apps/web-browser.svg \
 		"opening the $1 at $2"
@@ -39,12 +48,7 @@ manage_url() {
 			;;
 
 		"Youtube")
-			touch "$HOME"/.cache/yttitle
-			if ! grep "$2" "$HOME"/.cache/yttitle ; then
-				title="$(yt-dlp --get-title "$2")"
-				full_name="$(printf "%s | %s" "$2" "$title")"
-				echo "$full_name" >> "$HOME"/.cache/yttitle
-			fi
+			get_yt_name "$2" &
 			! tsp yt_default "$2" && d_failed
 			;;
 
