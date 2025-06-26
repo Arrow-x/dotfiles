@@ -2,7 +2,7 @@
 
 link="$1"
 threads=4
-video_title="$(grep "$link" "$HOME"/.cache/yttitle | cut -d "|" -f2)"
+video_title="$(grep "$link" "$HOME"/.cache/yttitle | cut -d "|" -f2 | head -n 1)"
 video_id="$(printf "%s" "$link" | cut -d "/" -f4)"
 ERROR_AUDIO=/tmp/cantgetaudio
 ERROR_VID=/tmp/cantgetvideo
