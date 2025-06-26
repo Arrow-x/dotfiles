@@ -9,6 +9,17 @@ menu() {
 	# bemenu -l 20 -p Projects:
 	fzfmenu.sh
 }
+print_help() {
+	echo "-n   | --neovim"
+	echo "-N   | --neovide"
+	echo "-c   | --change-dir"
+	echo "-lc  | --local-configs"
+	echo "-Lc  | --Local-configs-dir"
+	echo "-ip  | --editor-in-this-ternminal-projects"
+	echo "-ic  | --editor-in-this-ternminal-configs"
+	echo "-ipc | --echo-in-this-ternminal-projects"
+	echo "-icc | --echo-in-this-ternminal-configs"
+}
 
 proj_search() {
 	search="$(find -L "/home/arrowx/Sources" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d | menu)"
@@ -21,6 +32,9 @@ configs() {
 }
 
 case "$1" in
+	-h | --help)
+		print_help
+		;;
 	-n | --neovim)
 		search="$(proj_search)"
 		[ -z "$search" ] && exit
