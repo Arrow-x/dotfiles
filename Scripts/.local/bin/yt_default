@@ -18,7 +18,7 @@ choice="$(printf "720p\n720p60\nAudio\n" | menu)"
 
 try_getting() {
 	rm -rf "$3"
-	if ! yt-dlp --quiet -N $threads --no-part -f "$1" "$link" -o "$2"; then
+	if ! yt-dlp --no-playlist --quiet -N $threads --no-part -f "$1" "$link" -o "$2"; then
 		notify-send -u low -i /usr/share/icons/Qogir/32/status/dialog-error.svg "$4"
 		touch "$3"
 	fi
