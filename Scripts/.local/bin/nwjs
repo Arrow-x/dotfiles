@@ -1,11 +1,60 @@
 #!/bin/sh
 
+usage() { #help message
+	printf "This program converts a Windows version of an NW.js program into its Linux counterpart.\n"
+	printf "The Linux version is not guaranteed to work and a backup of the Windows version is always advised.\n"
+	printf "The installation process takes a while. Don't worry if almost everything disappears from the directory and then nothing seems to happen. It's normal.\n"
+	printf "\n"
+	printf "Parameters:\n"
+	printf "  -h, --help                  Shows this message and exits\n"
+	printf "  -ns, --no-start             Doesn't start the game after the installation\n"
+	printf "  -cs, --case-sensitive       Skip the setting up of case_insestive script and setup, on by defult\n"
+}
+
+start_game=1
+ci=1
+
+while [ "$1" != "" ]; do #positional parameters
+	case $1 in
+	-h | --help)
+		usage
+		exit 0
+		;;
+	-ns | --no-start) #doesn't start the game after the installation
+		start_game=0
+		;;
+	-cs | --case-sensitive)
+		ci=0
+		;;
+	*)
+		usage
+		exit 0
+		;;
+	esac
+	shift
+done
+
+if ! cicpoffs --version >/dev/null 2>&1; then
+	printf "please install cicpoffs, it's required\n"
+	exit 1
+fi
+
+if ! wget --version >/dev/null 2>&1; then
+	printf "please install wget , it's required\n"
+	exit 1
+fi
+
+if ! umount --version >/dev/null 2>&1; then
+	printf "please install linux-util, umount is required\n"
+	exit 1
+fi
+
 IS_RPGMV=false
 IS_RPGMZ=false
 
 #test to avoid accidental and irreversible deletion of files and directories
 if [ -d "www" ] && [ -f "package.json" ]; then
-	echo "This looks like an RPGMV Game."
+	printf "This looks like an RPGMV Game.\n"
 	IS_RPGMV=true
 elif
 	[ -d "audio" ] &&
@@ -20,67 +69,20 @@ elif
 		[ -d "swiftshader" ] &&
 		[ -d "locales" ]
 then
-	echo "This looks like an RPGMZ Game."
+	printf "This looks like an RPGMZ Game.\n"
 	IS_RPGMZ=true
 fi
 
 if [ $IS_RPGMV = false ] && [ $IS_RPGMZ = false ]; then
-	echo "This doesn't look like nwjs program"
+	printf "This doesn't look like nwjs program\n"
 	exit 1
 fi
 
-start_game=1
-use_old_nwjs=0
-old_version="v0.94.1"
-ci=1
+version="$(wget https://dl.nwjs.io/ -q -O - | tail -n -5 | head -n 1 | sed -E 's#.*href="(.*)\/".*#\1#')"
 
-usage() { #help message
-	echo "This program converts a Windows version of an NW.js program into its Linux counterpart."
-	echo "The Linux version is not guaranteed to work and a backup of the Windows version is always advised. You've been warned!"
-	echo "The installation process takes a while. Don't worry if almost everything disappears from the directory and then nothing seems to happen. It's normal."
-	echo ""
-	echo "Parameters:"
-	echo "  -h, --help                  Shows this message and exits"
-	echo "  -ns, --no-start             Doesn't start the game after the installation"
-	echo "  -o, --old                   Use NWJS v0.71.0"
-	echo "  -ci, --case-insensitive     set up a case insensitive game data folder"
-}
-
-while [ "$1" != "" ]; do #positional parameters
-	case $1 in
-		-h | --help)
-			usage
-			exit
-			;;
-		-ns | --no-start) #doesn't start the game after the installation
-			start_game=0
-			;;
-		-o | --old)
-			use_old_nwjs=1
-			;;
-		-ci | --case-insensitive)
-			ci=1
-			;;
-		*)
-			usage
-			exit 1
-			;;
-	esac
-	shift
-done
-
-chmod +w .
-echo "removes unneeded files ..."
-if $IS_RPGMV; then
-	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "css" -not -name "data" -not -name "csv" -not -name "*.xlsx" -print0 | xargs -0 -r rm -r --
-elif $IS_RPGMZ; then
-	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
-fi
-
-if [ "$use_old_nwjs" -eq 1 ]; then
-	version="$old_version"
-else
-	version="$(wget https://dl.nwjs.io/ -q -O - | tail -n -5 | head -n 1 | sed -E 's#.*href="(.*)\/".*#\1#')"
+if [ -z "$version" ]; then
+	printf "couldn't quary the latest nwjs version, check your internet connection ...\n"
+	exit 4
 fi
 
 parent_dir_name="/home/arrowx/File/Homework/tools/"
@@ -88,44 +90,58 @@ parent_dir_name="/home/arrowx/File/Homework/tools/"
 dir_name="nwjs-""$version""-linux-x64"
 file_name="$dir_name"".tar.gz"
 destination="$parent_dir_name""$file_name"
-link="https://dl.nwjs.io/""$version""/""$file_name"
 
 mkdir --parents "$parent_dir_name"
 
-if [ "$use_old_nwjs" -eq 0 ]; then
-	echo "downloading/checking the correct NW.js for your computer ..."
-	wget "$link" --continue --output-document "$destination"
+if [ ! -f "$destination" ]; then
+	printf "downloading the lates nwjs for your computer ...\n"
+	link="https://dl.nwjs.io/""$version""/""$file_name"
+	if ! wget "$link" --continue --output-document "$destination"; then
+		"couldn't get the latest nwjs, please check your internet connection"
+		exit 4
+	fi
+else
+	printf "the latest nwjs is already downloaded ...\n"
 fi
-echo 'copying NWjs ...'
+
+chmod +w .
+printf "removes unneeded files ...\n"
+if $IS_RPGMV; then
+	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "css" -not -name "data" -not -name "csv" -not -name "*.xlsx" -print0 | xargs -0 -r rm -r --
+elif $IS_RPGMZ; then
+	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
+fi
+
+printf "copying NWjs ...\n"
 cp "$destination" .
 
-echo 'extracting ...'
+printf "extracting ...\n"
 tar -xzf "$file_name"
 
-echo "files are in a directory, moving them in the right place ..."
+printf "files are in a directory, moving them in the right place ...\n"
 mv "$dir_name"/* .
 
-echo "cleaning useless file and directory ..."
+printf "cleaning useless file and directory ...\n"
 rm -r "$dir_name"
 rm "$file_name"
 
 if [ ! -x "nw" ]; then
-	echo "checks if the game launcher is actually executable ..."
+	printf "making the launching bin excutable ...\n"
 	chmod +x nw
 fi
 
 if [ "$ci" -eq 1 ]; then
-	echo "setting up data to be case insensitive ..."
+	printf "setting up data to be case insensitive ...\n"
 	if $IS_RPGMV; then
 		mv www/ www_cs/
 		mkdir www
-		echo "creating launcher script ..."
+		printf "creating launcher script ...\n"
 		touch playme.sh
 		{
-			echo "#!/bin/sh"
-			echo "cicpoffs www_cs www"
-			echo "./nw"
-			echo "umount -l img"
+			printf "#!/bin/sh\n"
+			printf "cicpoffs www_cs www\n"
+			printf "./nw\n"
+			printf "umount -l www\n"
 		} >playme.sh
 
 	elif $IS_RPGMZ; then
@@ -133,28 +149,28 @@ if [ "$ci" -eq 1 ]; then
 		mkdir img
 		mv audio/ audio_cs/
 		mkdir audio
-		echo "creating launcher script ..."
+		printf "creating launcher script ...\n"
 		touch playme.sh
 		{
-			echo "#!/bin/sh"
-			echo "cicpoffs img_cs img"
-			echo "cicpoffs audio_cs audio"
-			echo "./nw"
-			echo "umount -l img"
-			echo "umount -l audio"
-			echo "mv img_cs/ img/"
-			echo "mv audio_cs/ audio/"
+			printf "#!/bin/sh\n"
+			printf "cicpoffs img_cs img\n"
+			printf "cicpoffs audio_cs audio\n"
+			printf "./nw\n"
+			printf "umount -l img\n"
+			printf "umount -l audio\n"
+			printf "mv img_cs/ img/\n"
+			printf "mv audio_cs/ audio/\n"
 		} >playme.sh
 	fi
 	chmod +x playme.sh
 	if [ $start_game -eq 1 ]; then
-		echo "Running the game ..."
+		printf "Running the game ...\n"
 		./playme.sh
 	fi
 	exit 0
 fi
 
 if [ $start_game -eq 1 ]; then
-	echo "Running the game ..."
+	printf "Running the game ...\n"
 	./nw
 fi
