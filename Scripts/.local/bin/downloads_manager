@@ -2,17 +2,17 @@
 
 help="this is the help text"
 case "$1" in
-	-h | --help | '')
-		printf "%s\n" "$help"
-		exit 0
-		;;
-	*)
-		url="$1"
-		;;
+-h | --help | '')
+	printf "%s\n" "$help"
+	exit 0
+	;;
+*)
+	url="$1"
+	;;
 esac
 
 y_tube() {
-	yt-dlp --embed-metadata --embed-thumbnail --embed-chapters -P home:~/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
+	yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:~/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
 }
 
 d_failed() {
@@ -31,41 +31,41 @@ download_url() {
 		"downloading the $1 at $2"
 
 	case "$1" in
-		"Youtube")
-			if ! y_tube "$2"; then
-				d_failed
-			fi
-			;;
-		"Picture")
-			if ! gallery-dl "$2"; then
-				d_failed
-			fi
-			;;
-		"Hentai")
-			if ! gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2"; then
-				d_failed
-			fi
-			;;
-		"Pixeldrain")
-			link="$(printf "%s" "$2" | sed 's#.*/u/##')"
-			mkdir -p "$HOME"/File/Homework/H-Games
-			if ! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
-				d_failed
-			fi
-			;;
-		"Fic")
-			if ! "$TERMINAL" sh -c "fichub_cli -o ~/File/Documents/Books/Fanfiction/ --force -u \"$2\""; then
-				d_failed
-			fi
-			;;
-		"Emulation")
-			! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Games/Emulators/ "$2" && d_failed
-			;;
-		"General")
-			if ! "$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"; then
-				d_failed
-			fi
-			;;
+	"Youtube")
+		if ! y_tube "$2"; then
+			d_failed
+		fi
+		;;
+	"Picture")
+		if ! gallery-dl "$2"; then
+			d_failed
+		fi
+		;;
+	"Hentai")
+		if ! gallery-dl --exec-after "setsid -f $IMAGE {_directory}" "$2"; then
+			d_failed
+		fi
+		;;
+	"Pixeldrain")
+		link="$(printf "%s" "$2" | sed 's#.*/u/##')"
+		mkdir -p "$HOME"/File/Homework/H-Games
+		if ! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
+			d_failed
+		fi
+		;;
+	"Fic")
+		if ! "$TERMINAL" sh -c "fichub_cli -o ~/File/Documents/Books/Fanfiction/ --force -u \"$2\""; then
+			d_failed
+		fi
+		;;
+	"Emulation")
+		! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Games/Emulators/ "$2" && d_failed
+		;;
+	"General")
+		if ! "$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"; then
+			d_failed
+		fi
+		;;
 	esac
 
 	notify-send -u low -i /usr/share/icons/Qogir/32/status/security-high.svg \
@@ -74,33 +74,33 @@ download_url() {
 
 parse_url() {
 	case "$1" in
-		*'youtube.com/watch'* | *'youtube.com/playlist'* | *'youtube.com/shorts'* | *'youtu.be'*)
-			printf "Youtube"
-			;;
+	*'youtube.com/watch'* | *'youtube.com/playlist'* | *'youtube.com/shorts'* | *'youtu.be'*)
+		printf "Youtube"
+		;;
 
-		*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'* | *'bsky.app'* )
-			printf "Picture"
-			;;
+	*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'* | *'bsky.app'*)
+		printf "Picture"
+		;;
 
-		*'nhentai.net'* | *'e-hentai.org'*)
-			printf "Hentai"
-			;;
+	*'nhentai.net'* | *'e-hentai.org'*)
+		printf "Hentai"
+		;;
 
-		*'pixeldrain'* )
-			printf "Pixeldrain"
-			;;
+	*'pixeldrain'*)
+		printf "Pixeldrain"
+		;;
 
-		*'spacebattles'* | *'alternatehistory'*)
-			printf "Fic"
-			;;
+	*'spacebattles'* | *'alternatehistory'*)
+		printf "Fic"
+		;;
 
-		*'cdromance'*)
-			printf "Emulation"
-			;;
+	*'cdromance'*)
+		printf "Emulation"
+		;;
 
-		*)
-			printf "General"
-			;;
+	*)
+		printf "General"
+		;;
 	esac
 }
 
