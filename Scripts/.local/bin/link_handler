@@ -2,13 +2,13 @@
 
 help="this is the help text"
 case "$1" in
-	-h | --help | '')
-		printf "%s\n" "$help"
-		exit 0
-		;;
-	*)
-		url="$1"
-		;;
+-h | --help | '')
+	printf "%s\n" "$help"
+	exit 0
+	;;
+*)
+	url="$1"
+	;;
 esac
 
 y_tube() {
@@ -29,13 +29,25 @@ get_link() {
 	gallery-dl -q -g "$1"
 }
 
-#BUG: this is a data race I think?
+#BUG: this is a data race I think? so far so good though so eh, shell doesn't have
 get_yt_name() {
 	touch "$HOME"/.cache/yttitle
-	if ! grep "$1" "$HOME"/.cache/yttitle ; then
-		title="$(yt-dlp --get-title "$1")"
+	if printf "%s" "$1" | grep "shorts"; then
+		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f5)"
+	else
+		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f4 | sed 's/watch?v=//')"
+	fi
+
+	json_id="$(printf "/tmp/%s.json" "$video_id")"
+
+	if [ ! -f "$json_id" ]; then
+		yt-dlp --dump-json "$1" >"$json_id"
+	fi
+
+	if ! grep "$1" "$HOME"/.cache/yttitle; then
+		title="$(yt-dlp --load-info-json "$json_id" --get-title)"
 		full_name="$(printf "%s | %s" "$1" "$title")"
-		echo "$full_name" >> "$HOME"/.cache/yttitle
+		printf "%s\n" "$full_name" >>"$HOME"/.cache/yttitle
 	fi
 }
 manage_url() {
@@ -43,108 +55,110 @@ manage_url() {
 		"opening the $1 at $2"
 
 	case "$1" in
-		"Video")
-			! y_tube "" "$2" && d_failed
-			;;
+	"Video")
+		! y_tube "" "$2" && d_failed
+		;;
 
-		"Youtube")
-			get_yt_name "$2" &
-			! tsp yt_default "$2" && d_failed
-			;;
+	"Youtube")
+		get_yt_name "$2"
+		! tsp yt_default "$2" && d_failed
+		;;
 
-		"Audio")
-			! mpv --really-quiet --no-terminal --force-window "$2" && d_failed
-			;;
+	"Audio")
+		! mpv --really-quiet --no-terminal --force-window "$2" && d_failed
+		;;
 
-		"Picture")
-			#NOTE: double quotes break multi line links
-			! nsxiv-url $2 && d_failed
-			;;
+	"Picture")
+		# NOTE: double quotes break multi line links
+		# shellcheck disable=SC2086
+		! nsxiv-url $2 && d_failed
+		;;
 
-		"X")
-			link="$(get_link "$2")"
-			[ -z "$link" ] && d_failed
-			if echo "$link" | grep video; then
-				! mpv "$link" && d_failed
-			else
-				#NOTE: double quotes break multi line links
-				! nsxiv-url $(printf '%s' "$link" | grep orig | sed 's/\&name=orig//') && d_failed
-			fi
-			;;
+	"X")
+		link="$(get_link "$2")"
+		[ -z "$link" ] && d_failed
+		if printf "%s" "$link" | grep video; then
+			! mpv "$link" && d_failed
+		else
+			# NOTE: double quotes break multi line links
+			# shellcheck disable=SC2046
+			! nsxiv-url $(printf '%s' "$link" | grep orig | sed 's/\&name=orig//') && d_failed
+		fi
+		;;
 
-		"Tumblr")
-			_link="$(get_link "$2")"
-			! manage_url "$(parse_url "$_link")" "$_link" && d_failed
-			;;
+	"Tumblr")
+		_link="$(get_link "$2")"
+		! manage_url "$(parse_url "$_link")" "$_link" && d_failed
+		;;
 
-		"Read")
-			! gallery-dl -q --exec-after "setsid -f $IMAGE {_directory}" "$2" && d_failed
-			;;
+	"Read")
+		! gallery-dl -q --exec-after "setsid -f $IMAGE {_directory}" "$2" && d_failed
+		;;
 
-		"Fic")
-			! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" >/dev/null && d_failed
-			;;
+	"Fic")
+		! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" >/dev/null && d_failed
+		;;
 
-		"General")
-			! "$BROWSER" "$2" && d_failed
-			;;
+	"General")
+		! "$BROWSER" "$2" && d_failed
+		;;
 
 	esac
 }
 
 parse_url() {
 	case "$1" in
-		*.mkv | \
-			*.mp4 | \
-			*'twitch'* | \
-			*'tiktok'*| \
-			*.webm)
-			printf "Video"
-			;;
+	*.mkv | \
+		*.mp4 | \
+		*'twitch'* | \
+		*'tiktok'* | \
+		*.webm)
+		printf "Video"
+		;;
 
-		*'youtube.com/watch'* | \
-			*'youtube.com/playlist'* | \
-			*'youtube.com/shorts'* | \
-			*'youtu.be'*)
-			printf "Youtube"
-			;;
+	*'youtube.com/watch'* | \
+		*'youtube.com/playlist'* | \
+		*'youtube.com/shorts'* | \
+		*'youtu.be'*)
+		printf "Youtube"
+		;;
 
-		*.mp3 | \
-			*.ogg | \
-			*.flac | \
-			*.opus)
-			printf "Audio"
-			;;
+	*.mp3 | \
+		*.ogg | \
+		*.flac | \
+		*.opus)
+		printf "Audio"
+		;;
 
-		*'twitter.com'* | \
-			*'x.com'*)
-			printf "X"
-			;;
+	*'twitter.com'* | \
+		*'x.com'*)
+		printf "X"
+		;;
 
-		*.png* | \
-			*.jpg* | \
-			*.jpeg* | \
-			*.gif* | \
-			*.webp*)
-			printf "Picture"
-			;;
+	*.png* | \
+		*.jpg* | \
+		*.jpeg* | \
+		*.gif* | \
+		*.webp*)
+		printf "Picture"
+		;;
 
-		*'tumblr'*)
-			printf "Tumblr"
-			;;
+	*'tumblr'*)
+		printf "Tumblr"
+		;;
 
-		*'hentai'* | \
-			*'mangasee'*)
-			printf "Read"
-			;;
+	*'hentai'* | \
+		*'mangasee'*)
+		printf "Read"
+		;;
 
-		*'spacebattles'* | *'alternatehistory'*)
-			printf "Fic"
-			;;
+	*'spacebattles'* | *'alternatehistory'*)
+		printf "Fic"
+		;;
 
-		*)
-			printf "General"
-			;;
+	*)
+		printf "General"
+		;;
 	esac
 }
 manage_url "$(parse_url "$url")" "$url"
