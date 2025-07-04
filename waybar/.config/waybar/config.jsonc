@@ -137,7 +137,8 @@
     },
     "custom/bandwidth":{
         "format-icons": "",
-        "exec":"$HOME/.config/waybar/scripts/bandwithcnew | xargs -I _ echo    _"
+        "exec":"$HOME/.config/waybar/scripts/bandwithcnew",
+        "format": "{icon}{text}"
     },
     "custom/dunst":{
         "format":"{}",
