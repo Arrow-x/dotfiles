@@ -56,24 +56,9 @@ alias mkdir='mkdir -v -p'
 
 # git
 alias lg='lazygit'
-alias gst='git status'
-alias gal='git add .'
-alias ga='git add'
-alias grs='git restore --staged'
-alias grsa='git restore --staged .'
-alias gct='git commit'
-alias gps='git push'
-alias gpso='git push origin'
-alias gpl='git pull'
-alias gplo='git pull origin'
-alias gd='git diff'
-alias gcl='git clone'
-alias gcl1='git clone --depth 1'
-alias gco='git checkout'
-alias gbr='git branch'
 
 gcth() {
-	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}~ {+1})'
+	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}~ {+1} | diff-so-fancy | bat --plain)'
 }
 
 #yt-dlp usage
