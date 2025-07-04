@@ -25,31 +25,26 @@ window#waybar {
 
 #workspaces button {
     color: #c0caf5;
-    border-color: #11111b;
+    border-radius: 10px;
 }
 
 #workspaces button.focused {
-    color: #24283b;
     background-color: #7aa2f7;
-    border-radius: 10px;
 }
 
 #workspaces button.active{
     color: #2B094B;
     background-color: #7aa2f7;
-    border-radius: 10px;
 }
 
 #workspaces button:hover {
-	background-color: #7dcfff;
-    color: #c0caf5;
-	border-radius: 10px;
+    color: #c0cab0;
 }
 
 #workspaces button.urgent {
     color: #f7768e;
-	border-radius: 10px;
 }
+
 #custom-dunst.disabled {
     color: #f7768e;
 }
@@ -69,7 +64,6 @@ window#waybar {
 
 #clock {
     color: #b48ead;
-    border-radius: 10px;
 }
 
 #cpu {
