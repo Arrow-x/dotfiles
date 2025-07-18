@@ -121,13 +121,13 @@
         "format": "{icon} {temperatureC}°C"
     },
     "battery": {
-        "interval": 60,
         "states": {
-            "warning": 30,
+            "warning": 99,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-icons": ""
+        "format-icons": "",
+        "interval": 1
     },
     "custom/power":{
         "on-click": "~/.config/waybar/scripts/power-menu.sh",
