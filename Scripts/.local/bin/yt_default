@@ -10,7 +10,7 @@ else
 	video_id="$(printf "%s" "$link" | cut -d "/" -f4 | sed 's/watch?v=//')"
 fi
 
-json_id="$(printf "/tmp/%s.json" "$(printf "%s" "$video_id" | sed 's/watch?v=//')")"
+json_id="$(printf "$HOME/.cache/yt/%s.json" "$(printf "%s" "$video_id" | sed 's/watch?v=//')")"
 
 ERROR_AUDIO=/tmp/cantgetaudio
 ERROR_VID=/tmp/cantgetvideo

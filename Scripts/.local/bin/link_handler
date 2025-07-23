@@ -38,7 +38,8 @@ get_yt_name() {
 		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f4 | sed 's/watch?v=//')"
 	fi
 
-	json_id="$(printf "/tmp/%s.json" "$video_id")"
+	mkdir --parents "$HOME"/.cache/yt
+	json_id="$(printf "$HOME/.cache/yt/%s.json" "$video_id")"
 
 	if [ ! -f "$json_id" ]; then
 		yt-dlp --dump-json "$1" >"$json_id"
