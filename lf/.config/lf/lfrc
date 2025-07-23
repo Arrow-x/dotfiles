@@ -12,7 +12,6 @@ set filesep "\n"  # default already
 
 set sixel true
 set previewer /home/arrowx/.config/lf/previewer.sh
-# set cleaner /home/arrowx/.config/lf/clear_img.sh
 
 # set info size
 # set dircounts
