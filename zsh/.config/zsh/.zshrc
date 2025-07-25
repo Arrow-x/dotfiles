@@ -5,7 +5,7 @@
 #}}}
 
 # zsh Histroy Options {{{
-HISTFILE=~/.local/share/zsh/.zsh_history
+HISTFILE=$HOME/.local/share/zsh/.zsh_history
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST

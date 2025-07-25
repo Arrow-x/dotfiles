@@ -37,7 +37,7 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
 # -- navigation ----------------------------------------------------------------
 goto-next-feed no
 
-browser "setsid -f /home/arrowx/.local/bin/link_handler %u"
+browser "setsid -f $HOME/.local/bin/link_handler %u"
 
 bind-key j down feedlist
 bind-key k up feedlist
@@ -74,7 +74,7 @@ bind-key c toggle-show-read-feeds
 # macro I set browser "setsid -f nsxiv-url"
 # macro i set browser "setsid -f nsxiv-url" ; open-in-browser ; set browser "setsid -f $BROWSER"
 #
-# macro M set browser "setsid -f gallery-dl -q --exec 'nsxiv {}" 
+# macro M set browser "setsid -f gallery-dl -q --exec 'nsxiv {}"
 # macro m set browser "setsid -f gallery-dl -q --exec-after 'nsxiv {}'" ; open-in-browser ; set browser "setsid -f $BROWSER"
 
 notify-always yes

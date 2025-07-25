@@ -1,7 +1,7 @@
 #!/bin/sh
 name=$(find . -type f -name "*.sh" | sed -E 's#./(.*).sh#\1#')
 rm "$name".py
-cp "$HOME"/File/Homework/tools/renpy.py ./"$name".py
+cp "$HOME"/Downloads/Homework/tools/renpy.py ./"$name".py
 chmod +x "$name".sh
 chmod +x ./lib/*linux-x86_64/"$name"
 ./"$name".sh

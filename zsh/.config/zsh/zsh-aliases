@@ -12,22 +12,22 @@ pushit(){
 }
 
 virc(){
-	pushit ~/Sources/shinyvim lazy-lock.json
+	pushit $HOME/Sources/shinyvim lazy-lock.json
 }
 zshrc(){
-	pushit ~/dotfiles zsh/.config/zsh/.zshrc
+	pushit $HOME/dotfiles zsh/.config/zsh/.zshrc
 }
 zshra(){
-	pushit ~/dotfiles zsh/.config/zsh/zsh-aliases
+	pushit $HOME/dotfiles zsh/.config/zsh/zsh-aliases
 }
 dfrc(){
-	pushit ~/dotfiles README
+	pushit $HOME/dotfiles README
 }
 vin(){
-	pushit ~/Sources/Vault/ index.md
+	pushit $HOME/Sources/Vault/ index.md
 }
 bks(){
-	pushit ~/Notes-And-Tasks bookmarks
+	pushit $HOME/Notes-And-Tasks bookmarks
 }
 
 # Colorize grep output (good for log files)
@@ -58,7 +58,7 @@ alias mkdir='mkdir -v -p'
 alias lg='lazygit'
 
 gcth() {
-	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}~ {+1} | diff-so-fancy | bat --plain)'
+	git log --oneline --color | fzf --multi --ansi --preview 'git show --color {+1} | diff-so-fancy' --bind 'enter:execute(git diff {+1}$HOME {+1} | diff-so-fancy | bat --plain)'
 }
 
 #yt-dlp usage
@@ -71,7 +71,7 @@ alias ydl720webm='yt-dlp --embed-metadata -f 247+251'
 alias ydl720mp4='yt-dlp --embed-thumbnail --embed-metadata --embed-chapters --embed-subs -f 136+140'
 
 changewalln() {
-	find "/home/arrowx/Pictures/Wallpapers" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | read -r pic; [ -n "$pic" ] && set_bg "$pic"
+	find "$HOME/Pictures/Wallpapers" -type f -printf "%T+ %p\n" | sort -r | sed "s#.*/home#/home#" | nsxiv -o -i | read -r pic; [ -n "$pic" ] && set_bg "$pic"
 }
 
 
@@ -108,9 +108,9 @@ getpt() {
 	fdrc $1 | sed 's/"/\\"/g' | sed 's/^/"/;s/$/"/' | tr -d '\n'
 }
 
-alias openc="find ~/File/Comics/ -mindepth 2 -type d | sort | fzf_preview"
-alias openm="find -L ~/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzf_preview"
-alias openv="find ~/Videos -name '*.mp4' -or -name '*.mkv' | fzf_preview"
+alias openc="find $HOME/File/Comics/ -mindepth 2 -type d | sort | fzf_preview"
+alias openm="find -L $HOME/Music -name '*.mp3' -or -name '*.webm' -or -name '*.m4a' | fzf_preview"
+alias openv="find $HOME/Videos -name '*.mp4' -or -name '*.mkv' | fzf_preview"
 
 #show installed packages and sort them by installed date
 pacsd() {
@@ -136,7 +136,7 @@ alias pacme='yay -S --asexplicit'
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 t() {
-	termdown "$1"m ; notify-send "$2" ; mpv --really-quiet "/home/arrowx/Music/Killer Instinct The Complete Soundtrack (2017)/The Instinct.mp3"
+	termdown "$1"m ; notify-send "$2" ; mpv --really-quiet "$HOME/Music/Killer Instinct The Complete Soundtrack (2017)/The Instinct.mp3"
 }
 
 alias aria='aria2c --check-integrity=true'

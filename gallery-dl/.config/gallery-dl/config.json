@@ -8,7 +8,7 @@
         "skip": true,
 
         "#": "set global archive file for all extractors",
-        "archive": "~/gallery-dl/archive.sqlite3",
+        "archive": "$HOME/gallery-dl/archive.sqlite3",
         "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
 
         "#": "add two custom keywords into the metadata dictionary",

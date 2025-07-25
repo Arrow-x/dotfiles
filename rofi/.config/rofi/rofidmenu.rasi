@@ -25,7 +25,7 @@ configuration {
 }
 
 
-@import "~/.config/rofi/arc_dark_transparent_colors.rasi"
+@import "$HOME/.config/rofi/arc_dark_transparent_colors.rasi"
 
 window {
     background-color: @background;

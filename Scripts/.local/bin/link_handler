@@ -97,7 +97,7 @@ manage_url() {
 		;;
 
 	"Fic")
-		! "$TERMINAL" sh -c "fichub_cli -o /home/arrowx/Documents --force -u \"$2\"" >/dev/null && d_failed
+		! "$TERMINAL" sh -c "fichub_cli -o $HOME/Documents --force -u \"$2\"" >/dev/null && d_failed
 		;;
 
 	"General")

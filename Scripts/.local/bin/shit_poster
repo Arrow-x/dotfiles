@@ -1,6 +1,6 @@
 #!/bin/sh
 
-find "/home/arrowx/Downloads/meme" -type f | fzf \
+find "$HOME/Downloads/meme" -type f | fzf \
 	--preview='chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --dither fs --animate off --polite on {}' \
 	--bind "enter:execute(setsid -f dragon-drop {})" \
 	--bind "ctrl-c:execute(wl-copy < {})" \

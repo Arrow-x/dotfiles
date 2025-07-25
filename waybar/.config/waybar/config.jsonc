@@ -132,7 +132,7 @@
         "interval": 1
     },
     "custom/power":{
-        "on-click": "~/.config/waybar/scripts/power-menu.sh",
+        "on-click": "$HOME/.config/waybar/scripts/power-menu.sh",
         "format-icons": "",
         "format": " {icon} "
 
@@ -156,7 +156,7 @@
     },
     "custom/launcher":{
         "format":"",
-        "on-click":"rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
+        "on-click":"rofi -terminal footclient -modi drun -show drun -config $HOME/.config/rofi/rofidmenu.rasi"
     },
     "privacy": {
         "transition-duration": 250,

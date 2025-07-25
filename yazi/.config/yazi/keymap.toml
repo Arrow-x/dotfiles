@@ -120,24 +120,24 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
-	{ on = [ "g", "h", "h" ],       run = "cd ~",                               desc = "Go home" },
-	{ on = [ "g", "c" ],            run = "cd ~/.config",                       desc = "Goto ~/.config" },
-	{ on = [ "g", "d" ],            run = "cd ~/Downloads",                     desc = "Goto ~/Downloads" },
-	{ on = [ "g", "l", "s" ],       run = "cd ~/.local/share",                  desc = "Goto ~/.local/share" },
-	{ on = [ "g", "l", "b" ],       run = "cd ~/.local/bin",                    desc = "Goto ~/.local/bin" },
-	{ on = [ "g", "f", "f" ],       run = "cd ~/File/",                         desc = "Goto Files" },
-	{ on = [ "g", "f", "h" ],       run = "cd ~/File/Homework/",                desc = "Goto Homework" },
-	{ on = [ "g", "f", "t" ],       run = "cd ~/File/Tutorials/",               desc = "Goto Tutorials" },
-	{ on = [ "g", "f", "p" ],       run = "cd ~/File/Projects/",                desc = "Goto Projects" },
-	{ on = [ "g", "f", "s" ],       run = "cd ~/File/Software/",                desc = "Goto Software" },
-	{ on = [ "g", "f", "d" ],       run = "cd ~/File/Documents/",               desc = "Goto Downloads" },
-	{ on = [ "g", "f", "g" ],       run = "cd ~/File/Games/",               	desc = "Goto Games" },
-	{ on = [ "g", "r", "a" ],       run = "cd ~/File/Refrences/AnimeArt/",      desc = "Goto AnimeArt Refrences" },
-	{ on = [ "g", "r", "b" ],       run = "cd ~/File/Refrences/bachgrounds/",   desc = "Goto bachgrounds Refrences" },
-	{ on = [ "g", "r", "d" ],       run = 'cd ~/File/Refrences/Cool3D/',        desc = "Goto Cool3D Refrences" },
-	{ on = [ "g", "h", "g" ],       run = "cd ~/gallery-dl/",                   desc = "Goto gallery-dl" },
-	{ on = [ "g", "h", "d" ],       run = "cd ~/Desktop/",                      desc = "Goto to Desktop" },
-	{ on = [ "g", "h", "s" ],       run = "cd ~/Sources/",                      desc = "Goto to Sources" },
+	{ on = [ "g", "h", "h" ],       run = "cd $HOME",                               desc = "Go home" },
+	{ on = [ "g", "c" ],            run = "cd $HOME/.config",                       desc = "Goto $HOME/.config" },
+	{ on = [ "g", "d" ],            run = "cd $HOME/Downloads",                     desc = "Goto $HOME/Downloads" },
+	{ on = [ "g", "l", "s" ],       run = "cd $HOME/.local/share",                  desc = "Goto $HOME/.local/share" },
+	{ on = [ "g", "l", "b" ],       run = "cd $HOME/.local/bin",                    desc = "Goto $HOME/.local/bin" },
+	{ on = [ "g", "f", "f" ],       run = "cd $HOME/File/",                         desc = "Goto Files" },
+	{ on = [ "g", "f", "h" ],       run = "cd $HOME/File/Homework/",                desc = "Goto Homework" },
+	{ on = [ "g", "f", "t" ],       run = "cd $HOME/File/Tutorials/",               desc = "Goto Tutorials" },
+	{ on = [ "g", "f", "p" ],       run = "cd $HOME/File/Projects/",                desc = "Goto Projects" },
+	{ on = [ "g", "f", "s" ],       run = "cd $HOME/File/Software/",                desc = "Goto Software" },
+	{ on = [ "g", "f", "d" ],       run = "cd $HOME/File/Documents/",               desc = "Goto Downloads" },
+	{ on = [ "g", "f", "g" ],       run = "cd $HOME/File/Games/",               	desc = "Goto Games" },
+	{ on = [ "g", "r", "a" ],       run = "cd $HOME/File/Refrences/AnimeArt/",      desc = "Goto AnimeArt Refrences" },
+	{ on = [ "g", "r", "b" ],       run = "cd $HOME/File/Refrences/bachgrounds/",   desc = "Goto bachgrounds Refrences" },
+	{ on = [ "g", "r", "d" ],       run = 'cd $HOME/File/Refrences/Cool3D/',        desc = "Goto Cool3D Refrences" },
+	{ on = [ "g", "h", "g" ],       run = "cd $HOME/gallery-dl/",                   desc = "Goto gallery-dl" },
+	{ on = [ "g", "h", "d" ],       run = "cd $HOME/Desktop/",                      desc = "Goto to Desktop" },
+	{ on = [ "g", "h", "s" ],       run = "cd $HOME/Sources/",                      desc = "Goto to Sources" },
 	{ on = [ "g", "<Space>" ],      run = "cd --interactive",                   desc = "Jump interactively" },
 
 	# Tabs
@@ -184,7 +184,7 @@ keymap = [
 	{ on = "x",       run = "cancel",  desc = "Cancel the task" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -210,7 +210,7 @@ keymap = [
 	{ on = [ "c", "c" ], run = "copy cell", desc = "Copy selected cell" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -229,7 +229,7 @@ keymap = [
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -299,7 +299,7 @@ keymap = [
 	{ on = "<C-r>", run = "redo", desc = "Redo the last operation" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -321,7 +321,7 @@ keymap = [
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -342,7 +342,7 @@ keymap = [
 	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "$HOME",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -365,7 +365,7 @@ keymap = [
 ]
 
 [[mgr.prepend_keymap]]
-	on   = "~"
+	on   = "$HOME"
 	run  = 'shell "$SHELL" --block'
 	desc = "Open shell here"
 

@@ -8,8 +8,8 @@ set $right l
 
 set $term footclient
 
-include ~/.config/sway/outputs
-include ~/.config/sway/shortcuts
+include $HOME/.config/sway/outputs
+include $HOME/.config/sway/shortcuts
 
 # Basics
 default_border pixel 3
@@ -36,15 +36,15 @@ input type:touchpad {
 # Startup
 ### Idle configuration
 exec --no-startup-id sway-audio-idle-inhibit
-exec_always --no-startup-id ~/.config/sway/scripts/ideling.sh
+exec_always --no-startup-id $HOME/.config/sway/scripts/ideling.sh
 
-exec --no-startup-id ~/.local/bin/current_bg
-exec --no-startup-id ~/.local/bin/binger
+exec --no-startup-id $HOME/.local/bin/current_bg
+exec --no-startup-id $HOME/.local/bin/binger
 exec --no-startup-id nm-applet --indicator
-exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id dunst --config $HOME/.config/dunst/dunstrc
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/bin/snapshot-detect
-exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec --no-startup-id dex -a -s /etc/xdg/autostart/:$HOME/.config/autostart/
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -146,7 +146,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+Control+$right workspace next
 bindsym $mod+Control+$left workspace prev
 
-# bindsym $alt+Tab+Control workspace prev 
+# bindsym $alt+Tab+Control workspace prev
 
 bindsym $mod+t split toggle
 # enter fullscreen mode for the focused container
@@ -188,7 +188,7 @@ for_window [app_id="t_drop"] move position 5 2
 
 for_window [app_id="t_fzf_menu"] floating enable
 for_window [app_id="t_fzf_menu"] resize set 1600 400
-for_window [app_id="t_fzf_menu"] move position 5 2 
+for_window [app_id="t_fzf_menu"] move position 5 2
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
@@ -248,7 +248,7 @@ set $red #8c4351
 bar {
     # font pango:FiraCode Nerd Font 12
     tray_output *
-    # status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+    # status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
     swaybar_command waybar
     position bottom
     # strip_workspace_numbers no

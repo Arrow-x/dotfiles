@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export pics="/home/arrowx/Pictures/Wallpapers"
+export pics="$HOME/Pictures/Wallpapers"
 mkdir -p "$pics"/waifu/Favs
 
 #HACK: tmux doesn't like big resoulutions so smaller previews

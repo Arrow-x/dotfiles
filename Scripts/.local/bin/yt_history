@@ -1,9 +1,9 @@
 #!/bin/sh
 
-choice="$(tac ~/.cache/yttitle | cut -d '|' -f2  | fzf)"
+choice="$(tac $HOME/.cache/yttitle | cut -d '|' -f2 | fzf)"
 
 if [ -z "$choice" ]; then
 	exit
 fi
 
-grep --fixed-strings "$choice" ~/.cache/yttitle | cut -d '|' -f1 | xargs link_handler &
+grep --fixed-strings "$choice" $HOME/.cache/yttitle | cut -d '|' -f1 | xargs link_handler &

@@ -7,10 +7,10 @@ set $browser firejail chromium
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym XF86AudioMute exec --no-startup-id amixer sset 'Master' toggle
-bindsym XF86AudioPlay exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
-bindsym XF86AudioNext exec --no-startup-id ~/.local/bin/pl_dmenu next
-bindsym XF86AudioPrev exec --no-startup-id ~/.local/bin/pl_dmenu previous
-bindsym XF86AudioStop exec --no-startup-id ~/.local/bin/pl_dmenu stop
+bindsym XF86AudioPlay exec --no-startup-id $HOME/.local/bin/pl_dmenu play-pause
+bindsym XF86AudioNext exec --no-startup-id $HOME/.local/bin/pl_dmenu next
+bindsym XF86AudioPrev exec --no-startup-id $HOME/.local/bin/pl_dmenu previous
+bindsym XF86AudioStop exec --no-startup-id $HOME/.local/bin/pl_dmenu stop
 # Brightness control
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
@@ -23,14 +23,14 @@ bindsym Shift+Print exec --no-startup-id "flameshot gui"
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
 # Start your launcher
-bindsym $mod+d exec --no-startup-id ~/.local/bin/bemenu_run
-bindsym $mod+Shift+d exec --no-startup-id rofi -terminal footclient -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+d exec --no-startup-id $HOME/.local/bin/bemenu_run
+bindsym $mod+Shift+d exec --no-startup-id rofi -terminal footclient -modi drun -show drun -config $HOME/.config/rofi/rofidmenu.rasi
 
-bindsym $mod+u exec --no-startup-id ~/.local/bin/pl_dmenu play-pause
-bindsym $mod+shift+u exec --no-startup-id ~/.local/bin/pl_dmenu stop
+bindsym $mod+u exec --no-startup-id $HOME/.local/bin/pl_dmenu play-pause
+bindsym $mod+shift+u exec --no-startup-id $HOME/.local/bin/pl_dmenu stop
 
-bindsym $mod+bracketright exec --no-startup-id ~/.local/bin/pl_dmenu next
-bindsym $mod+bracketleft exec --no-startup-id ~/.local/bin/pl_dmenu previous
+bindsym $mod+bracketright exec --no-startup-id $HOME/.local/bin/pl_dmenu next
+bindsym $mod+bracketleft exec --no-startup-id $HOME/.local/bin/pl_dmenu previous
 
 bindsym $mod+braceright exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym $mod+braceleft exec --no-startup-id amixer -D pulse sset Master 5%-
@@ -38,16 +38,16 @@ bindsym $mod+braceleft exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym $mod+w exec --no-startup-id $browser
 bindsym $mod+Shift+w exec --no-startup-id firejail thunderbird
 
-bindsym $mod+n exec --no-startup-id  ~/.local/bin/sway_run t_lf -- footclient -a t_lf tmux new-session -A -s lf 'lf'
+bindsym $mod+n exec --no-startup-id  $HOME/.local/bin/sway_run t_lf -- footclient -a t_lf tmux new-session -A -s lf 'lf'
 bindsym $mod+Shift+n exec --no-startup-id  /usr/bin/pcmanfm
 
-bindsym $mod+b exec --no-startup-id  ~/.local/bin/select_bookmark -b
-bindsym $mod+Shift+b exec --no-startup-id  ~/.local/bin/bookmark
+bindsym $mod+b exec --no-startup-id  $HOME/.local/bin/select_bookmark -b
+bindsym $mod+Shift+b exec --no-startup-id  $HOME/.local/bin/bookmark
 
-bindsym $mod+v exec --no-startup-id ~/.local/bin/paster
+bindsym $mod+v exec --no-startup-id $HOME/.local/bin/paster
 
-bindsym $mod+p exec --no-startup-id ~/.local/bin/trackpad
-bindsym $mod+Shift+p exec --no-startup-id ~/.config/sway/scripts/lock.sh
+bindsym $mod+p exec --no-startup-id $HOME/.local/bin/trackpad
+bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/sway/scripts/lock.sh
 
 bindsym $mod+o exec --no-startup-id proj -n
 bindsym $mod+Shift+o exec --no-startup-id proj -c
@@ -55,24 +55,24 @@ bindsym $mod+Control+o exec --no-startup-id proj -lc
 bindsym $mod+Control+Shift+o exec --no-startup-id proj -Lc
 
 bindsym $mod+m exec --no-startup-id $term cht.sh
-bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/monset
+bindsym $mod+Shift+m exec --no-startup-id $HOME/.local/bin/monset
 
-bindsym $mod+i exec --no-startup-id ~/.local/bin/unicode_menu -e
-bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/unicode_menu -n
+bindsym $mod+i exec --no-startup-id $HOME/.local/bin/unicode_menu -e
+bindsym $mod+Shift+i exec --no-startup-id $HOME/.local/bin/unicode_menu -n
 
-bindsym $mod+s exec --no-startup-id ~/.local/bin/pass_menu -bt
-bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/pass_menu -p
+bindsym $mod+s exec --no-startup-id $HOME/.local/bin/pass_menu -bt
+bindsym $mod+Shift+s exec --no-startup-id $HOME/.local/bin/pass_menu -p
 
-bindsym $mod+z exec --no-startup-id  ~/.local/bin/sway_run t_shit_poster -- footclient -a t_shit_poster shit_poster &
-bindsym $mod+r exec --no-startup-id  ~/.local/bin/sway_run t_newsboat -- footclient -a t_newsboat newsboat &
-bindsym $mod+semicolon exec --no-startup-id  ~/.local/bin/sway_run t_cmus -- footclient -a t_cmus cmus &
-bindsym $mod+apostrophe exec --no-startup-id ~/.local/bin/sway_run t_btop -- footclient -a t_btop btop &
-bindsym $mod+tab exec --no-startup-id ~/.local/bin/sway_run t_drop -- footclient -a t_drop &
+bindsym $mod+z exec --no-startup-id  $HOME/.local/bin/sway_run t_shit_poster -- footclient -a t_shit_poster shit_poster &
+bindsym $mod+r exec --no-startup-id  $HOME/.local/bin/sway_run t_newsboat -- footclient -a t_newsboat newsboat &
+bindsym $mod+semicolon exec --no-startup-id  $HOME/.local/bin/sway_run t_cmus -- footclient -a t_cmus cmus &
+bindsym $mod+apostrophe exec --no-startup-id $HOME/.local/bin/sway_run t_btop -- footclient -a t_btop btop &
+bindsym $mod+tab exec --no-startup-id $HOME/.local/bin/sway_run t_drop -- footclient -a t_drop &
 
 bindsym $mod+backslash exec --no-startup-id rofi -show window
 
-bindsym $mod+q exec --no-startup-id  ~/.local/bin/clipboard_download -v
-bindsym $mod+Shift+q exec --no-startup-id  ~/.local/bin/clipboard_download -d
+bindsym $mod+q exec --no-startup-id  $HOME/.local/bin/clipboard_download -v
+bindsym $mod+Shift+q exec --no-startup-id  $HOME/.local/bin/clipboard_download -d
 
 bindsym $mod+Control+space exec --no-startup-id persway stack-swap-main
 bindsym $mod+Control+p exec --no-startup-id persway stack-main-rotate-next

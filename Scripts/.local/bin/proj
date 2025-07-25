@@ -21,11 +21,12 @@ print_help() {
 	echo "-icc | --echo-in-this-ternminal-configs"
 }
 find_projects() {
-	find -L "/home/arrowx/Sources" "/home/arrowx/File/Projects/Godot" "/home/arrowx/File/Projects/Scripts" -mindepth 1 -maxdepth 1 -type d
+	find -L "$HOME/Sources" -mindepth 1 -maxdepth 1 -type d
+
 }
 
 find_configs() {
-	find -L "/home/arrowx/.config" -mindepth 1 -maxdepth 1 -type d
+	find -L "$HOME/.config" -mindepth 1 -maxdepth 1 -type d
 }
 
 proj_search() {
@@ -39,57 +40,57 @@ configs() {
 }
 
 case "$1" in
-	-h | --help)
-		print_help
-		;;
-	-n | --neovim)
-		search="$(proj_search)"
-		[ -z "$search" ] && exit
-		$terminal "$search" "$editor" .
-		;;
-	-N | --neovide)
-		search="$(proj_search)"
-		[ -z "$search" ] && exit
-		cd "$search" || exit
-		neovide . &
-		;;
-	-c | --change-dir)
-		search="$(proj_search)"
-		[ -z "$search" ] && exit
-		$terminal "$search" &
-		;;
-	-lc | --local-configs)
-		search="$(configs)"
-		[ -z "$search" ] && exit
-		$term_editor "$search" &
-		;;
-	-Lc | --Local-configs-dir)
-		search="$(configs)"
-		[ -z "$search" ] && exit
-		$terminal "$search" &
-		;;
-	-ip | --editor-in-this-ternminal-projects)
-		search="$(find_projects | fzf)"
-		[ -z "$search" ] && exit
-		cd "$search" || exit
-		"$editor" .
-		;;
-	-ic | --editor-in-this-ternminal-configs)
-		search="$(find_configs | fzf)"
-		[ -z "$search" ] && exit
-		cd "$search" || exit
-		"$editor" .
-		;;
-	-ipc | --echo-in-this-ternminal-projects)
-		search="$(find_projects | fzf)"
-		[ -z "$search" ] && exit
-		echo "$search"
-		;;
-	-icc | --echo-in-this-ternminal-configs)
-		search="$(find_configs | fzf)"
-		[ -z "$search" ] && exit
-		echo "$search"
-		;;
+-h | --help)
+	print_help
+	;;
+-n | --neovim)
+	search="$(proj_search)"
+	[ -z "$search" ] && exit
+	$terminal "$search" "$editor" .
+	;;
+-N | --neovide)
+	search="$(proj_search)"
+	[ -z "$search" ] && exit
+	cd "$search" || exit
+	neovide . &
+	;;
+-c | --change-dir)
+	search="$(proj_search)"
+	[ -z "$search" ] && exit
+	$terminal "$search" &
+	;;
+-lc | --local-configs)
+	search="$(configs)"
+	[ -z "$search" ] && exit
+	$term_editor "$search" &
+	;;
+-Lc | --Local-configs-dir)
+	search="$(configs)"
+	[ -z "$search" ] && exit
+	$terminal "$search" &
+	;;
+-ip | --editor-in-this-ternminal-projects)
+	search="$(find_projects | fzf)"
+	[ -z "$search" ] && exit
+	cd "$search" || exit
+	"$editor" .
+	;;
+-ic | --editor-in-this-ternminal-configs)
+	search="$(find_configs | fzf)"
+	[ -z "$search" ] && exit
+	cd "$search" || exit
+	"$editor" .
+	;;
+-ipc | --echo-in-this-ternminal-projects)
+	search="$(find_projects | fzf)"
+	[ -z "$search" ] && exit
+	echo "$search"
+	;;
+-icc | --echo-in-this-ternminal-configs)
+	search="$(find_configs | fzf)"
+	[ -z "$search" ] && exit
+	echo "$search"
+	;;
 
-	*) exit ;;
+*) exit ;;
 esac

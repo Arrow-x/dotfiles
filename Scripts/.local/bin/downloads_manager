@@ -12,7 +12,7 @@ case "$1" in
 esac
 
 y_tube() {
-	yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:~/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
+	yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:$HOME/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
 }
 
 d_failed() {
@@ -48,21 +48,21 @@ download_url() {
 		;;
 	"Pixeldrain")
 		link="$(printf "%s" "$2" | sed 's#.*/u/##')"
-		mkdir -p "$HOME"/File/Homework/H-Games
-		if ! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
+		mkdir -p "$HOME"/Downloads/Homework/H-Games
+		if ! "$TERMINAL" aria2c --check-integrity=true -d $HOME/Downloads/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
 			d_failed
 		fi
 		;;
 	"Fic")
-		if ! "$TERMINAL" sh -c "fichub_cli -o ~/File/Documents/Books/Fanfiction/ --force -u \"$2\""; then
+		if ! "$TERMINAL" sh -c "fichub_cli -o $HOME/Documents/Books/Fanfiction/ --force -u \"$2\""; then
 			d_failed
 		fi
 		;;
 	"Emulation")
-		! "$TERMINAL" aria2c --check-integrity=true -d ~/File/Games/Emulators/ "$2" && d_failed
+		! "$TERMINAL" aria2c --check-integrity=true -d $HOME/File/Games/Emulators/ "$2" && d_failed
 		;;
 	"General")
-		if ! "$TERMINAL" aria2c --check-integrity=true -d ~/Downloads "$2"; then
+		if ! "$TERMINAL" aria2c --check-integrity=true -d $HOME/Downloads "$2"; then
 			d_failed
 		fi
 		;;

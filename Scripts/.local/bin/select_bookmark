@@ -14,16 +14,16 @@ browser() {
 	brave "$1"
 }
 case $1 in
-	-t | --type) xdotool type --delay 0ms "$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
-	-b | --browser)
-		bookmark=$(grep -v "^#" ~/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)
-		if [ -z "$bookmark" ]; then
-			exit 1
-		fi
-		browser "$bookmark" &
-		;;
-	*)
-		echo "Wrong argument expect either -t or -b" >&2
+-t | --type) xdotool type --delay 0ms "$(grep -v "^#" $HOME/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
+-b | --browser)
+	bookmark=$(grep -v "^#" $HOME/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)
+	if [ -z "$bookmark" ]; then
 		exit 1
-		;;
+	fi
+	browser "$bookmark" &
+	;;
+*)
+	echo "Wrong argument expect either -t or -b" >&2
+	exit 1
+	;;
 esac

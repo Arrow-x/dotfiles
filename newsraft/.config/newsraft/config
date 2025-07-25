@@ -8,14 +8,14 @@ bind y copy-to-clipboard ; exec tmux set-buffer "%l"
 bind m exec setsid -f link_handler "%l" >/dev/null 2>&1
 
 # edit rss feeds or config (require restart newsraft to apply changes)
-bind E exec $EDITOR ~/.config/newsraft/feeds
-bind C exec $EDITOR ~/.config/newsraft/config
+bind E exec $EDITOR $HOME/.config/newsraft/feeds
+bind C exec $EDITOR $HOME/.config/newsraft/config
 
 # open with tui/gui web browser
 bind o exec $BROWSER "%l"
 
 # show database size
-bind V exec (ls -lh ~/.local/share/newsraft/ && echo ~/.local/share/newsraft) | less -C
+bind V exec (ls -lh $HOME/.local/share/newsraft/ && echo $HOME/.local/share/newsraft) | less -C
 
 # view manpages and hotkey action section
 bind H exec man newsraft
