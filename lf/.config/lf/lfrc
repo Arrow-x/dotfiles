@@ -11,7 +11,7 @@ set ifs "\n"
 set filesep "\n"  # default already
 
 set sixel true
-set previewer $HOME/.config/lf/previewer.sh
+set previewer ~/.config/lf/previewer.sh
 
 # set info size
 # set dircounts
@@ -152,8 +152,8 @@ cmd chmod_minus_x %{{
 }}
 
 cmd paste-overwrite %{{
-	mode=$(head -1 $HOME/.local/share/lf/files)
-	list=$(sed 1d $HOME/.local/share/lf/files)
+	mode=$(head -1 ~/.local/share/lf/files)
+	list=$(sed 1d ~/.local/share/lf/files)
     if [ $mode = 'copy' ]; then
         cp -r $list .
     elif [ $mode = 'move' ]; then
@@ -164,7 +164,7 @@ cmd paste-overwrite %{{
 }}
 
 cmd link %{{
-	set -- $(cat $HOME/.local/share/lf/files)
+	set -- $(cat ~/.local/share/lf/files)
 	mode="$1"
 	shift
 	if [ "$#" -lt 1 ]; then
@@ -177,7 +177,7 @@ cmd link %{{
 			# while a move mode is indicating a hard link
 		move) ln -t . -- "$@" ;;
 	esac
-	# rm $HOME/.local/share/lf/files
+	# rm ~/.local/share/lf/files
 	# lf -remote "send clear"
 }}
 
@@ -284,7 +284,7 @@ map md make_file_dir
 # map mf mkfile
 map mw setwallpaper
 map mg lazygit
-map $HOME z_shell
+map ~ z_shell
 
 
 # Basic Functions
@@ -299,16 +299,16 @@ map C clear
 map b bulkrenamevimv
 
 # Movement
-map gd cd $HOME/Downloads
-map gc cd $HOME/.config
+map gd cd ~/Downloads
+map gc cd ~/.config
 
-map ghh cd $HOME
-map ghs cd $HOME/Sources
-map ghg cd $HOME/gallery-dl
-map ghv cd $HOME/Videos
-map ght cd $HOME/Pictures
-map ghm cd $HOME/Music
+map ghh cd ~
+map ghs cd ~/Sources
+map ghg cd ~/gallery-dl
+map ghv cd ~/Videos
+map ght cd ~/Pictures
+map ghm cd ~/Music
 
-map glb cd $HOME/.local/bin
-map gls cd $HOME/.local/share
-map glt cd $HOME/.local/state
+map glb cd ~/.local/bin
+map gls cd ~/.local/share
+map glt cd ~/.local/state
