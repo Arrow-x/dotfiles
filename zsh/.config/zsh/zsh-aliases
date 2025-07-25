@@ -119,18 +119,18 @@ pacsd() {
 
 #Show all installed packages
 pacsa() {
-	paru -Qq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | less)'
+	yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'
 }
 
 pacei() {
-	paru -Qetq | fzf --preview 'paru -Qil {}' --layout=reverse --bind 'enter:execute(paru -Qil {} | bat -n)'
+	yay -Qetq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | bat -n)'
 }
 
 #delelte all orphans
-alias pacdo='paru -Qtdq | paru -Rns -'
+alias pacdo='yay -Qtdq | yay -Rns -'
 
-#use paru to make package explicitly installed
-alias pacme='paru -S --asexplicit'
+#use yay to make package explicitly installed
+alias pacme='yay -S --asexplicit'
 
 # For when keys break
 alias pacman-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
