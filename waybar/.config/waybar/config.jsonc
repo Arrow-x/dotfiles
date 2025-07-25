@@ -81,6 +81,7 @@
         "on-click": "pavucontrol",
         "on-scroll-up": "amixer sset Master 5%+",
         "on-scroll-down": "amixer sset Master 5%-",
+        "on-click-middle": "amixer sset Master 1+ toggle",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
