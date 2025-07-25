@@ -17,3 +17,4 @@ dotfiles/nvim.shada
 nvim.shada
 tmux/.config/tmux/plugins
 mpv/.config/mpv/subtitles
+newsraft/.config/newsraft/feeds
