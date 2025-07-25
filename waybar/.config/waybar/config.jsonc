@@ -19,9 +19,9 @@
         "memory",
         "custom/bandwidth",
         // "network",
-        "battery",
+        // "battery",
         "pulseaudio",
-        "privacy",
+        // "privacy",
         "idle_inhibitor",
         "clock",
         "custom/dunst",
@@ -118,7 +118,9 @@
     },
     "temperature": {
         "format-icons":"",
-        "format": "{icon} {temperatureC}°C"
+        "format": "{icon} {temperatureC}°C",
+        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input"
+
     },
     "battery": {
         "states": {
