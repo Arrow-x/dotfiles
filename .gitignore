@@ -18,3 +18,5 @@ nvim.shada
 tmux/.config/tmux/plugins
 mpv/.config/mpv/subtitles
 newsraft/.config/newsraft/feeds
+zsh/.config/zsh/.zshrc.zwc
+zsh/.config/zsh/zsh-aliases.zwc
