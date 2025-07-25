@@ -299,33 +299,33 @@ map C clear
 map b bulkrenamevimv
 
 # Movement
-map gd cd /home/arrowx/Downloads
-map gc cd /home/arrowx/.config
+map gd cd ~/Downloads
+map gc cd ~/.config
 
-map ghh cd /home/arrowx
-map ghs cd /home/arrowx/Sources
-map ghg cd /home/arrowx/gallery-dl
-map ghv cd /home/arrowx/Videos
-map ght cd /home/arrowx/Pictures
-map ghm cd /home/arrowx/Music
+map ghh cd ~
+map ghs cd ~/Sources
+map ghg cd ~/gallery-dl
+map ghv cd ~/Videos
+map ght cd ~/Pictures
+map ghm cd ~/Music
 
-map glb cd /home/arrowx/.local/bin
-map gls cd /home/arrowx/.local/share
-map glt cd /home/arrowx/.local/state
+map glb cd ~/.local/bin
+map gls cd ~/.local/share
+map glt cd ~/.local/state
 
-map gff cd /home/arrowx/File
-map gfg cd /home/arrowx/File/Games
-map gfd cd /home/arrowx/File/Documents
-map gfs cd /home/arrowx/File/Software
-map gfh cd /home/arrowx/File/Homework
-map gfp cd /home/arrowx/File/Projects
-map gft cd /home/arrowx/File/Tutorials
+map gff cd ~/File
+map gfg cd ~/File/Games
+map gfd cd ~/File/Documents
+map gfs cd ~/File/Software
+map gfh cd ~/File/Homework
+map gfp cd ~/File/Projects
+map gft cd ~/File/Tutorials
 
 map gm cd /run/media/arrowx/
-map grr cd /home/arrowx/File/Refrences
-map gra cd /home/arrowx/File/Refrences/AnimeArt/Random/
-map grc cd /home/arrowx/File/Refrences/AnimeArt/Comics
-map grp cd /home/arrowx/File/Refrences/pixel_art
-map grd cd /home/arrowx/File/Refrences/Cool3D
-map grn cd /home/arrowx/File/Refrences/Cool3D/NPR
-map grm cd /home/arrowx/File/Refrences/Animations/
+map grr cd ~/File/Refrences
+map gra cd ~/File/Refrences/AnimeArt/Random/
+map grc cd ~/File/Refrences/AnimeArt/Comics
+map grp cd ~/File/Refrences/pixel_art
+map grd cd ~/File/Refrences/Cool3D
+map grn cd ~/File/Refrences/Cool3D/NPR
+map grm cd ~/File/Refrences/Animations/
