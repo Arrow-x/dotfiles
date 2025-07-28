@@ -312,3 +312,5 @@ map ghm cd ~/Music
 map glb cd ~/.local/bin
 map gls cd ~/.local/share
 map glt cd ~/.local/state
+
+map gfh cd ~/Downloads/Homework/H-Games/
