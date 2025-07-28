@@ -1,12 +1,18 @@
 #!/bin/sh
+. utils.sh
 
 help="-v to pass the link in clipboard to link_handler
 -d to pass the link in clipboard to downloads_manager"
 
+case "$XDG_SESSION_TYPE" in
+wayland) check_dep "wl-paste" ;;
+*) check_dep "xclip" ;;
+esac
+
 link_in_clipboard=""
 case "$XDG_SESSION_TYPE" in
-	wayland) link_in_clipboard="$(wl-paste)" ;;
-	*) link_in_clipboard="$(xclip)" ;;
+wayland) link_in_clipboard="$(wl-paste)" ;;
+*) link_in_clipboard="$(xclip)" ;;
 esac
 
 if [ -z "$link_in_clipboard" ]; then
@@ -15,18 +21,19 @@ if [ -z "$link_in_clipboard" ]; then
 fi
 
 case "$1" in
-	-v | --view)
-		link_handler "$link_in_clipboard"
-		;;
-	-d | --download)
-		downloads_manager "$link_in_clipboard"
-		;;
-	-h | --help)
-		printf "%s\n" "$help"
-		exit
-		;;
-	*)
-		printf "%s\n" "$help"
-		exit
-		;;
+-v | --view)
+	link_handler "$link_in_clipboard"
+	;;
+-d | --download)
+	notify-send "hi"
+	downloads_manager "$link_in_clipboard"
+	;;
+-h | --help)
+	printf "%s\n" "$help"
+	exit
+	;;
+*)
+	printf "%s\n" "$help"
+	exit
+	;;
 esac

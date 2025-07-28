@@ -1,4 +1,5 @@
 #!/bin/sh
+. utils.sh
 
 help="this is the help text"
 case "$1" in
@@ -10,6 +11,10 @@ case "$1" in
 	url="$1"
 	;;
 esac
+
+check_dep yt-dlp
+check_dep gallery-dl
+check_dep aria2c
 
 y_tube() {
 	yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:$HOME/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
@@ -91,6 +96,7 @@ parse_url() {
 		;;
 
 	*'spacebattles'* | *'alternatehistory'*)
+		check_dep fichub_cli
 		printf "Fic"
 		;;
 
