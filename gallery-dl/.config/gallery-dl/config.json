@@ -53,9 +53,8 @@
         },
         "twitter": {
             "#": "write text content for *all* tweets",
-            "postprocessors": ["content"],
             "text-tweets": true,
-            "cookies": ["firefox"]
+            "cookies": ["brave", null, "gnomekeyring"]
         },
 		"nhentai": {
 			"dictionary": ["{title_en}"]
