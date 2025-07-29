@@ -25,7 +25,6 @@ case "$1" in
 	link_handler "$link_in_clipboard"
 	;;
 -d | --download)
-	notify-send "hi"
 	downloads_manager "$link_in_clipboard"
 	;;
 -h | --help)
