@@ -82,12 +82,14 @@ keymap = [
 	{ on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
 	# Linemode
-	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
-	{ on = [ "m", "p" ], run = "linemode permissions", desc = "Linemode: permissions" },
-	{ on = [ "m", "b" ], run = "linemode btime",       desc = "Linemode: btime" },
-	{ on = [ "m", "m" ], run = "linemode mtime",       desc = "Linemode: mtime" },
-	{ on = [ "m", "o" ], run = "linemode owner",       desc = "Linemode: owner" },
-	{ on = [ "m", "n" ], run = "linemode none",        desc = "Linemode: none" },
+	{ on = [ "m", "s" ], run = "linemode size",                                          desc = "Linemode: size" },
+	{ on = [ "m", "p" ], run = "linemode permissions",                                   desc = "Linemode: permissions" },
+	{ on = [ "m", "b" ], run = "linemode btime",                                         desc = "Linemode: btime" },
+	{ on = [ "m", "m" ], run = "linemode mtime",                                         desc = "Linemode: mtime" },
+	{ on = [ "m", "o" ], run = "linemode owner",                                         desc = "Linemode: owner" },
+	{ on = [ "m", "n" ], run = "linemode none",                                          desc = "Linemode: none" },
+
+	{ on = [ "m", "w" ], run = 'shell -- set_bg "$1" >/dev/null 2>&1',        desc = "Linemode: none" },
 
 	# Copy
 	{ on = [ "c", "c" ], run = "copy path",             desc = "Copy the file path" },
@@ -125,20 +127,11 @@ keymap = [
 	{ on = [ "g", "d" ],            run = "cd $HOME/Downloads",                     desc = "Goto $HOME/Downloads" },
 	{ on = [ "g", "l", "s" ],       run = "cd $HOME/.local/share",                  desc = "Goto $HOME/.local/share" },
 	{ on = [ "g", "l", "b" ],       run = "cd $HOME/.local/bin",                    desc = "Goto $HOME/.local/bin" },
-	{ on = [ "g", "f", "f" ],       run = "cd $HOME/File/",                         desc = "Goto Files" },
-	{ on = [ "g", "f", "h" ],       run = "cd $HOME/File/Homework/",                desc = "Goto Homework" },
-	{ on = [ "g", "f", "t" ],       run = "cd $HOME/File/Tutorials/",               desc = "Goto Tutorials" },
-	{ on = [ "g", "f", "p" ],       run = "cd $HOME/File/Projects/",                desc = "Goto Projects" },
-	{ on = [ "g", "f", "s" ],       run = "cd $HOME/File/Software/",                desc = "Goto Software" },
-	{ on = [ "g", "f", "d" ],       run = "cd $HOME/File/Documents/",               desc = "Goto Downloads" },
-	{ on = [ "g", "f", "g" ],       run = "cd $HOME/File/Games/",               	desc = "Goto Games" },
-	{ on = [ "g", "r", "a" ],       run = "cd $HOME/File/Refrences/AnimeArt/",      desc = "Goto AnimeArt Refrences" },
-	{ on = [ "g", "r", "b" ],       run = "cd $HOME/File/Refrences/bachgrounds/",   desc = "Goto bachgrounds Refrences" },
-	{ on = [ "g", "r", "d" ],       run = 'cd $HOME/File/Refrences/Cool3D/',        desc = "Goto Cool3D Refrences" },
+	{ on = [ "g", "f", "h" ],       run = "cd $HOME/Downloads/Homework/",           desc = "Goto Homework" },
 	{ on = [ "g", "h", "g" ],       run = "cd $HOME/gallery-dl/",                   desc = "Goto gallery-dl" },
 	{ on = [ "g", "h", "d" ],       run = "cd $HOME/Desktop/",                      desc = "Goto to Desktop" },
 	{ on = [ "g", "h", "s" ],       run = "cd $HOME/Sources/",                      desc = "Goto to Sources" },
-	{ on = [ "g", "<Space>" ],      run = "cd --interactive",                   desc = "Jump interactively" },
+	{ on = [ "g", "<Space>" ],      run = "cd --interactive",                       desc = "Jump interactively" },
 
 	# Tabs
 	# { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
