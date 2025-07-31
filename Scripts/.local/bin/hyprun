@@ -2,7 +2,6 @@
 . utils.sh
 
 check_dep "jq"
-
 check_dep "hyprctl"
 
 appid="$1"
