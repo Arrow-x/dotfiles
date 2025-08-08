@@ -73,7 +73,7 @@ download_url() {
 	"Pixeldrain")
 		link="$(printf "%s" "$2" | sed 's#.*/u/##')"
 		mkdir -p "$HOME"/Downloads/Homework/H-Games
-		if ! "$TERMINAL" aria2c --check-integrity=true -d $HOME/Downloads/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
+		if ! "$TERMINAL" curl -L -OJ --output-dir "$HOME"/Downloads/Homework/H-Games/ "$(printf "https://pixeldrain.com/api/file/%s?download" "$link")"; then
 			d_failed
 		fi
 		;;
@@ -83,10 +83,10 @@ download_url() {
 		fi
 		;;
 	"Emulation")
-		! "$TERMINAL" aria2c --check-integrity=true -d $HOME/File/Games/Emulators/ "$2" && d_failed
+		! "$TERMINAL" aria2c --check-integrity=true -d "$HOME"/File/Games/Emulators/ "$2" && d_failed
 		;;
 	"General")
-		if ! "$TERMINAL" aria2c --check-integrity=true -d $HOME/Downloads "$2"; then
+		if ! "$TERMINAL" aria2c --check-integrity=true -d "$HOME"/Downloads "$2"; then
 			d_failed
 		fi
 		;;
@@ -102,7 +102,7 @@ parse_url() {
 		printf "Youtube"
 		;;
 
-	*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'* | *'bsky.app'*)
+	*'twitter.com'* | *'mangasee'* | *'tumblr'* | *'x.com'* | *'bsky.app'* | *'artstation'*)
 		printf "Picture"
 		;;
 
