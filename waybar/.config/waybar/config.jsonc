@@ -44,6 +44,7 @@
 
             "class<neovide>": "", // Windows whose titles contain "youtube"
             "class<Brave-browser>": "", // Windows whose classes are "firefox"
+            "class<librewolf>": "", // Windows whose classes are "firefox"
             "class<t_lf>": "",
             "class<pcmanfm>": "",
             "class<t_btop>": "",
@@ -51,13 +52,13 @@
             "class<t_newsboat>": "",
             "class<t_cmus>": "",
             "class<t_drop>": "",
+            "class<g_nvim>": "",
             "class<krita>": "",
             "class<com.github.johnfactotum.Foliate>": "",
             "class<deadbeef>": "",
-            "class<foot>": "",
-            "class<footclient>": "",
-            "class<blender>": "󰂫",
-            "class<org.godotengine.*": "",
+            "class<foot.*>": "",
+            "class<[bB]lender>": "󰂫",
+            "class<[gG]odot.*>": "",
             "class<mpv>": "",
             "class<Nsxiv>": "",
             "class<footclient> title<.*Nvim.*>": "",
