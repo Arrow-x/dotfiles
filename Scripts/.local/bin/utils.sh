@@ -6,3 +6,11 @@ check_dep() {
 		exit 1
 	fi
 }
+
+logsout() {
+	printf "%s\n" "$1"
+}
+
+logerr() {
+	printf "%s\n" "$1" >&2
+}
