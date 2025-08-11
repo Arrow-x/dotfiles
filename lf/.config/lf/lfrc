@@ -120,7 +120,7 @@ cmd trash ${{
 	while [ "$files" ]; do
 		file=${files%%;*}
 		b_file="$(basename "$file")"
-		gio trash "$b_file"
+		gio trash -- "$b_file" >/dev/null 2>&1
 		# [ "$?" -eq 0 ] && printf "Trashed %s\n" "$b_file"
 
 		if [ "$files" = "$file" ]; then
