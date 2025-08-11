@@ -74,7 +74,7 @@ if [ -z "$version" ]; then
 	exit 4
 fi
 
-parent_dir_name="$HOME/Downloads/Homework/tools/"
+parent_dir_name="$HOME/Games/VN/tools"
 
 dir_name="nwjs-""$version""-linux-x64"
 file_name="$dir_name"".tar.gz"
