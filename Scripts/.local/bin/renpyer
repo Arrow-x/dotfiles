@@ -1,7 +1,18 @@
 #!/bin/sh
-name=$(find . -type f -name "*.sh" | sed -E 's#./(.*).sh#\1#')
+name=$(find . -maxdepth 1 -type f -name "*.sh" | sed -E 's#./(.*).sh#\1#')
+dir="$HOME/Games/VN/tools"
+path="$(printf '%s/renpy.py' "$dir")"
+
+if [ ! -f "$path" ]; then
+	mkdir -p "$dir"
+	if ! curl -LOJ --output-dir "$dir" "https://raw.githubusercontent.com/renpy/renpy/refs/heads/master/renpy.py"; then
+		echo "couldn't fetch the latetest renpy.py, abort"
+		exit 1
+	fi
+fi
+
 rm "$name".py
-cp "$HOME"/Downloads/Homework/tools/renpy.py ./"$name".py
+cp "$path" ./"$name".py
 chmod +x "$name".sh
 chmod +x ./lib/*linux-x86_64/"$name"
 ./"$name".sh
