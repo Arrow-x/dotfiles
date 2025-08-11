@@ -33,9 +33,9 @@ get_link() {
 get_yt_name() {
 	touch "$HOME"/.cache/yttitle
 	if printf "%s" "$1" | grep "shorts"; then
-		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f5)"
+		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f5 | cut --delimiter="&" -f1)"
 	else
-		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f4 | sed 's/watch?v=//')"
+		video_id="$(printf "%s" "$1" | cut --delimiter=/ -f4 | sed 's/watch?v=//' | cut --delimiter="&" -f1)"
 	fi
 
 	mkdir --parents "$HOME"/.cache/yt
