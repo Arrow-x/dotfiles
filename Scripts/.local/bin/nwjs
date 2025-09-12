@@ -55,8 +55,8 @@ elif
 		[ -d "img" ] &&
 		[ -d "icon" ] &&
 		[ -d "js" ] &&
-		[ -d "swiftshader" ] &&
-		[ -d "locales" ]
+		[ -d "locales" ] &&
+		[ -d "movies" ]
 then
 	logsout "This looks like an RPGMZ Game."
 	IS_RPGMZ=true
@@ -74,7 +74,7 @@ if [ -z "$version" ]; then
 	exit 4
 fi
 
-parent_dir_name="$HOME/Games/VN/tools"
+parent_dir_name="$HOME/Games/VN/tools/"
 
 dir_name="nwjs-""$version""-linux-x64"
 file_name="$dir_name"".tar.gz"
@@ -147,8 +147,6 @@ if [ "$ci" -eq 1 ]; then
 			logsout "./nw"
 			logsout "umount -l img"
 			logsout "umount -l audio"
-			logsout "mv img_cs/ img/"
-			logsout "mv audio_cs/ audio/"
 		} >playme.sh
 	fi
 	chmod +x playme.sh
