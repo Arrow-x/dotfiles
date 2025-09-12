@@ -1,7 +1,6 @@
 #!/bin/sh
 
 link="$(printf "%s" "$1" | cut --delimiter="&" -f1)"
-threads=4
 video_title="$(grep "$link" "$HOME"/.cache/yttitle | cut -d "|" -f2 | head -n 1)"
 
 if printf "%s" "$1" | grep "shorts"; then
@@ -12,6 +11,8 @@ fi
 
 json_id="$(printf "$HOME/.cache/yt/%s.json" "$(printf "%s" "$video_id" | sed 's/watch?v=//' | cut --delimiter="&" -f1)")"
 
+threads=11
+
 ERROR_AUDIO=/tmp/cantgetaudio
 ERROR_VID=/tmp/cantgetvideo
 
@@ -20,7 +21,7 @@ menu() {
 	# fzfmenu.sh
 }
 
-choice="$(printf "720p\n720p60\nAudio\nAuto\n" | menu)"
+choice="$(printf "1080p\n1080p60\nAudio\nAuto\n" | menu)"
 
 [ -z "$choice" ] && exit 1
 
@@ -29,6 +30,7 @@ clean_exit() {
 	rm -rf /tmp/cantget*
 	rm -rf /tmp/watch*
 	rm -rf /tmp/shorts
+	rm -rf /tmp/"$video_id"*
 	exit "$1"
 }
 
@@ -68,7 +70,7 @@ check_file() {
 
 get_video() {
 	try_getting "ba" /tmp/ytaudio "$ERROR_AUDIO" "No Audio" &
-	try_getting "bv*[height<=720][fps<=$1] " /tmp/"$video_id" "$ERROR_VID" "No Video" &
+	try_getting "bv*[height<=1080][fps<=$1][vcodec=vp9] " /tmp/"$video_id" "$ERROR_VID" "No Video" &
 
 	if ! check_file "/tmp/ytaudio" "$ERROR_AUDIO"; then
 		clean_exit 1
@@ -89,10 +91,10 @@ case "$choice" in
 	mpv --really-quiet --no-terminal --force-window /tmp/"$video_id"
 	clean_exit 0
 	;;
-"720p")
+"1080p")
 	get_video 30
 	;;
-"720p60")
+"1080p60")
 	get_video 60
 	;;
 "Auto")
