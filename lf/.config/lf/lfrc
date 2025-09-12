@@ -10,7 +10,7 @@ set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"  # default already
 
-set sixel true
+# set sixel true
 set previewer ~/.config/lf/previewer.sh
 
 # set info size
@@ -186,7 +186,20 @@ cmd full_size %{{
 }}
 
 cmd fzf_jump ${{
-    res="$(find . -type d | fzf_preview --reverse --header='Jump to location')"
+    res="$(find . -type d 2>/dev/null | fzf_preview --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+
+cmd fzf_jump_global ${{
+    res="$(find $HOME -type d 2>/dev/null | fzf_preview --reverse --header='Jump to location')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -199,7 +212,7 @@ cmd fzf_jump ${{
 }}
 
 cmd fzf_search ${{
-    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden "
     res="$(
         FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
             fzf --bind "change:reload:$RG_PREFIX {q} || true" \
@@ -239,9 +252,11 @@ map gh
 map "'"
 map '"'
 map w
+map u
 
-map J fzf_jump
-map S fzf_search
+map uj fzf_jump
+map ug fzf_jump_global
+map us fzf_search
 map T :filter
 
 map r
@@ -313,4 +328,4 @@ map glb cd ~/.local/bin
 map gls cd ~/.local/share
 map glt cd ~/.local/state
 
-map gfh cd ~/Downloads/Homework/H-Games/
+map gfh cd ~/Games/VN/
