@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=NSXIV-RIFLE
+Exec=nsxiv-rifle %F
+Categories=Graphics
+NoDisplay=true
+MimeType=image/*
+Terminal=false

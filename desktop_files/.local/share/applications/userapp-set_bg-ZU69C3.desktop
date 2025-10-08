@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Set Wallpaper
+Exec=set_bg %f
+Categories=Other
+NoDisplay=true
+MimeType=image/jpeg
+Terminal=false
