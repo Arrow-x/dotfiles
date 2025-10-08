@@ -55,8 +55,7 @@ elif
 		[ -d "img" ] &&
 		[ -d "icon" ] &&
 		[ -d "js" ] &&
-		[ -d "locales" ] &&
-		[ -d "movies" ]
+		[ -d "locales" ]
 then
 	logsout "This looks like an RPGMZ Game."
 	IS_RPGMZ=true
