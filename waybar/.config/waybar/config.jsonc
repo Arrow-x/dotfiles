@@ -59,6 +59,7 @@
             "class<foot.*>": "",
             "class<[bB]lender>": "󰂫",
             "class<[gG]odot.*>": "",
+            "class<org.godotengine.*>": "",
             "class<mpv>": "",
             "class<Nsxiv>": "",
             "class<footclient> title<.*Nvim.*>": "",
