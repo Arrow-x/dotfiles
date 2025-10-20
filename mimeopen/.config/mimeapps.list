@@ -1,7 +1,7 @@
 [Default Applications]
 text/plain=nvim.desktop;
 application/epub+zip=com.github.johnfactotum.Foliate.desktop;
-application/x-blender=blender.desktop;
+application/x-blender=blender.desktop
 application/pdf=librewolf.desktop;
 image/jpeg=userapp-nsxiv-rifle-DD30D3.desktop;
 image/png=userapp-nsxiv-rifle-DD30D3.desktop;
