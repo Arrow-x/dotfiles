@@ -186,7 +186,7 @@ cmd full_size %{{
 }}
 
 cmd fzf_jump ${{
-    res="$(find . -type d 2>/dev/null | fzf_preview --reverse --header='Jump to location')"
+    res="$(find . -type f 2>/dev/null | fzf_preview --reverse --header='Jump to location')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -235,6 +235,15 @@ cmd make_file_dir %{{
 	lf -remote "send select \"$ans\""
 }}
 
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+cmd on-cd &{{
+    zoxide add "$PWD"
+}}
+
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-x %export GDK_BACKEND=x11 && dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
@@ -254,9 +263,8 @@ map '"'
 map w
 map u
 
-map uj fzf_jump
+map uu fzf_jump
 map ug fzf_jump_global
-map us fzf_search
 map T :filter
 
 map r
@@ -265,6 +273,8 @@ map rc push rA<c-u> # new rename
 map rI :rename; cmd-home # at the very beginning
 map re :rename # before extension
 map ra :rename; cmd-right # after extension
+
+map zz zi
 
 map <enter> shell # use enter for shell commands
 map ` !true # show the result of execution of previous commands
