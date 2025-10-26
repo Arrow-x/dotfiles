@@ -116,10 +116,6 @@ keymap = [
     "n",
   ], run = "linemode none", desc = "Linemode: none" },
 
-  { on = [
-    "m",
-    "w",
-  ], run = 'shell -- set_bg "$1" >/dev/null 2>&1', desc = "Linemode: none" },
 
   # Copy
   { on = [
@@ -228,6 +224,18 @@ keymap = [
   ], run = "cd $HOME", desc = "Go home" },
   { on = [
     "g",
+    "h",
+    "D",
+  ], run = "cd $HOME/Documents/", desc = "Go to Documents" },
+
+  { on = [
+    "g",
+    "r",
+    "r",
+  ], run = "cd $HOME/Pictures/Random/", desc = "Go to Refrences" },
+
+  { on = [
+    "g",
     "c",
   ], run = "cd $HOME/.config", desc = "Goto $HOME/.config" },
   { on = [
@@ -329,6 +337,11 @@ keymap = [
     "i",
     "c",
   ], run = 'shell -- dragon_mv', desc = "drag in a file to Move here" },
+
+  { on = [
+    "i",
+    "w",
+  ], run = 'shell -- set_bg "$1" >/dev/null 2>&1', desc = "Set Wallpaper" },
 
   { on = "$HOME", run = 'shell "$SHELL" --block', desc = "Open shell here" },
 ]
