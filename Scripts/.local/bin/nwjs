@@ -95,7 +95,7 @@ fi
 chmod +w .
 logsout "removes unneeded files ..."
 if $IS_RPGMV; then
-	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "package.json" -not -name "www" -not -name "css" -not -name "data" -not -name "csv" -not -name "*.xlsx" -print0 | xargs -0 -r rm -r --
+	find . -maxdepth 1 -not -name "." -not -name "nw.pak" -not -name "*.json" -not -name "www" -not -name "css" -not -name "data" -not -name "csv" -not -name "*.xlsx" -print0 | xargs -0 -r rm -r --
 elif $IS_RPGMZ; then
 	rm -r locales swiftshader ./*.exe ./*.dat ./*.dll ./*.pak ./*.bin credits.html
 fi
