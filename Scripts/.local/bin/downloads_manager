@@ -27,10 +27,10 @@ y_tube() {
 	[ -z "$choice" ] && exit 1
 	case $choice in
 	"720p")
-		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "bv[height<=720] [fps<=30]+ba" "$1"
+		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "bv[height<=1080] [fps<=30]+ba" "$1"
 		;;
 	"720p60")
-		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "bv[height<=720] [fps<=60]+ba" "$1"
+		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "bv[height<=1080] [fps<=60]+ba" "$1"
 		;;
 	"Audio")
 		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "ba" "$1"
