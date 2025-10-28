@@ -9,7 +9,9 @@
         // "sway/workspaces",
         "hyprland/workspaces"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "hyprland/window"
+    ],
 
     "modules-right": [
         "custom/term",
@@ -186,5 +188,10 @@
             "deactivated": ""
         },
         "timeout": 30.5
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "expand": true
     }
+
 }
