@@ -46,6 +46,7 @@
             "class<Brave-browser>": "", // Windows whose classes are "firefox"
             "class<librewolf>": "", // Windows whose classes are "firefox"
             "class<t_lf>": "",
+            "class<t_yazi>": "",
             "class<pcmanfm>": "",
             "class<t_btop>": "",
             "class<t_newsraft>": "",
