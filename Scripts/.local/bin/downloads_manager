@@ -18,8 +18,9 @@ check_dep aria2c
 
 y_tube() {
 	menu() {
-		cat | bemenu -l 3
+		# cat | bemenu -l 3
 		# fzfmenu.sh
+		fuzzel --dmenu --placeholder="Chose a Resolution"
 	}
 
 	choice="$(printf "720p\n720p60\nAudio\n" | menu)"

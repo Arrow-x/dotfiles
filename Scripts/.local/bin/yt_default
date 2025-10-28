@@ -17,7 +17,8 @@ ERROR_AUDIO=/tmp/cantgetaudio
 ERROR_VID=/tmp/cantgetvideo
 
 menu() {
-	cat | bemenu -l 3 --prompt "$video_title"
+	# cat | bemenu -l 3 --prompt "$video_title"
+	fuzzel --dmenu --placeholder="$video_title"
 	# fzfmenu.sh
 }
 
