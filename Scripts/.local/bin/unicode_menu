@@ -5,7 +5,8 @@ menu() {
 	# 	"wayland") bemenu -l 20 -p "UNICODE: " ;;
 	# 	*) dmenu -l 20 -g 6 -p "UNICODE: " ;;
 	# esac
-	fzfmenu.sh -m
+	# fzfmenu.sh -m
+	fuzzel --dmenu
 }
 clipboard() {
 	case "$XDG_SESSION_TYPE" in

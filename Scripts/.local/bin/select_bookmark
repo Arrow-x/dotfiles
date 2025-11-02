@@ -6,7 +6,8 @@ fi
 
 menu() {
 	# dmenu -l 16
-	fzfmenu.sh
+	# fzfmenu.sh
+	fuzzel --dmenu
 }
 browser() {
 	# chromium "$1"

@@ -1,6 +1,7 @@
 #!/bin/sh
 menu() {
-	fzfmenu.sh
+	# fzfmenu.sh
+	fuzzel --dmenu
 }
 select="$(cliphist list | menu | cliphist decode)"
 

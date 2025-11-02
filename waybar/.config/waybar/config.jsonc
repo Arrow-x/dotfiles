@@ -162,7 +162,7 @@
     },
     "custom/launcher":{
         "format":"",
-        "on-click":"rofi -terminal footclient -modi drun -show drun -config $HOME/.config/rofi/rofidmenu.rasi"
+        "on-click":"fuzzel"
     },
     "privacy": {
         "transition-duration": 250,

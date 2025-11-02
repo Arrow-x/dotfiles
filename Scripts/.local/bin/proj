@@ -7,7 +7,8 @@ editor="nvim"
 menu() {
 	# [ -n "$(pgrep bemenu)" ] && exit
 	# bemenu -l 20 -p Projects:
-	fzfmenu.sh
+	# fzfmenu.sh
+	fuzzel --dmenu
 }
 print_help() {
 	echo "-n   | --neovim"

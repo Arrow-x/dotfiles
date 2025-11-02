@@ -71,7 +71,6 @@ export COLORTERM="truecolor"
 export OPENER="mimeopen"
 export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
 export MENU="dmenu -n"
-export FMENU="rofi"
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export XDG_CURRENT_DESKTOP="Hyprland"
@@ -80,9 +79,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	# export QT_QPA_PLATFORM=wayland
 	export _JAVA_AWT_WM_NONREPARENTING=1
 	export MOZ_ENABLE_WAYLAND=1
-	export MENU="fuzzel"
-	export FMENU="wofi"
-	export TERMINAL="footclient"
+	export MENU="fuzzel --dmenu"
 	export GRIM_DEFAULT_DIR="$HOME/Pictures/Screenshots"
 fi
 
