@@ -13,7 +13,7 @@ ytdl_pref="247+bestaudio/22"
 #scrape 1 video link per channel instead of the default 2
 show_thumbnails=1
 async_thumbnails=1
-thumbnail_viewer="sixel"
+thumbnail_viewer="kitty"
 is_loop=1
 show_formats=1
 #}}}

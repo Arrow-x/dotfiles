@@ -6,3 +6,6 @@ application/pdf=librewolf.desktop;
 image/jpeg=userapp-nsxiv-rifle-DD30D3.desktop;
 image/png=userapp-nsxiv-rifle-DD30D3.desktop;
 image/webp=userapp-nsxiv-rifle-DD30D3.desktop;
+video/webm=mpv.desktop;
+application/x-shellscript=kitty-open.desktop;
+text/html=brave-browser.desktop;

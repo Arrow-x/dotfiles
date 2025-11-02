@@ -62,7 +62,7 @@ cmd unarchive ${{
 			name="$(tmux new-session -d -P -F "#{session_name}" "$@")"
 			tmux switch-client -t "$name"
 		else
-			footclient "$@" &
+			$TERMINAL "$@" &
 		fi
 
 	}

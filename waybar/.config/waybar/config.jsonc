@@ -60,6 +60,7 @@
             "class<com.github.johnfactotum.Foliate>": "",
             "class<deadbeef>": "",
             "class<foot.*>": "",
+            "class<kitty.*>": "",
             "class<[bB]lender>": "󰂫",
             "class<[gG]odot.*>": "",
             "class<org.godotengine.*>": "",
@@ -138,7 +139,7 @@
         "interval": 1
     },
     "custom/power":{
-        "on-click": "$HOME/.config/waybar/scripts/power-menu.sh",
+        "on-click": "$HOME/.local/bin/power-menu.sh",
         "format-icons": "",
         "format": " {icon} "
 
@@ -158,7 +159,7 @@
     },
     "custom/term":{
         "format":" ",
-        "on-click":"footclient"
+        "on-click":"kitty --single-instance"
     },
     "custom/launcher":{
         "format":"",

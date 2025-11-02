@@ -3,14 +3,12 @@
 export pics="$HOME/Pictures/Wallpapers"
 mkdir -p "$pics"/waifu/Favs
 
-#HACK: tmux doesn't like big resoulutions so smaller previews
 scale=25
-[ "$TMUX" ] && scale=19
 
 resault="$(
 	fd -t f -L -0 . "$pics" -X ls -t | fzf \
 		--preview-window="up,$scale" \
-		--preview 'chafa -O 9 -f sixel -s "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" --clear --dither fs --animate off --polite on {}' \
+		--preview='draw_thumb {} $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES' \
 		--bind 'ctrl-l:execute(xdg-open {})' \
 		--bind 'ctrl-d:reload(gio trash {}; fd -t f -L -0 . "$pics" -X ls -t)' \
 		--bind 'ctrl-o:execute(magick {} -flop {})' \
