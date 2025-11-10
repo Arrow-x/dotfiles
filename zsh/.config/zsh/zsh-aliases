@@ -156,22 +156,23 @@ pass-gen() {
 
 }
 
-lf() {
-    dir=$(command lf -print-last-dir "$@")
-    while ! cd "$dir" 2> /dev/null
-    do
-        dir=$(dirname "$dir")
-    done
-	awk '$1 == "archivemount" { print $2 }' /etc/mtab | sed 's/\\040/ /g' | while read -r mntdir; do
-		umount "$mntdir"
-		rmdir "$mntdir"
-	done
-}
+# lf() {
+#     dir=$(command lf -print-last-dir "$@")
+#     while ! cd "$dir" 2> /dev/null
+#     do
+#         dir=$(dirname "$dir")
+#     done
+# 	awk '$1 == "archivemount" { print $2 }' /etc/mtab | sed 's/\\040/ /g' | while read -r mntdir; do
+# 		umount "$mntdir"
+# 		rmdir "$mntdir"
+# 	done
+# }
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        zoxide add -- "$cwd"
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
