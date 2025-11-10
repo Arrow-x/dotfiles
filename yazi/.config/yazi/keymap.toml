@@ -582,7 +582,7 @@ run = "plugin ouch zip"
 desc = "Compress with ouch"
 
 [[mgr.prepend_keymap]]
-on = ["c", "m"]
+on = ["i", "m"]
 run = "plugin chmod"
 desc = "Chmod on selected files"
 
