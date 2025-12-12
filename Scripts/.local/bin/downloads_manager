@@ -34,7 +34,7 @@ y_tube() {
 		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "bv[height<=1080] [fps<=60]+ba" "$1"
 		;;
 	"Audio")
-		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Videos -f "ba" "$1"
+		yt-dlp --embed-subs --embed-metadata --embed-thumbnail --embed-chapters -P home:"$HOME"/Music -f "ba" "$1"
 		;;
 	esac
 
