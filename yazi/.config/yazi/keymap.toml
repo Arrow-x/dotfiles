@@ -233,6 +233,12 @@ keymap = [
     "r",
     "r",
   ], run = "cd $HOME/Pictures/Random/", desc = "Go to Refrences" },
+  { on = [
+    "g",
+    "h",
+    "m",
+  ], run = "cd $HOME/Music/", desc = "Go to Music" },
+
 
   { on = [
     "g",
