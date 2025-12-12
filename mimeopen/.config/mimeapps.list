@@ -1,11 +1,16 @@
+[Added Associations]
+image/png=nsxiv-rifle.desktop;
+video/x-matroska=mpv-2.desktop;
+
 [Default Applications]
-text/plain=nvim.desktop;
 application/epub+zip=com.github.johnfactotum.Foliate.desktop;
-application/x-blender=blender.desktop
-image/jpeg=userapp-nsxiv-rifle-DD30D3.desktop;
-image/png=userapp-nsxiv-rifle-DD30D3.desktop;
-image/webp=userapp-nsxiv-rifle-DD30D3.desktop;
-video/webm=mpv.desktop;
-application/x-shellscript=kitty-open.desktop;
-text/html=brave-browser.desktop;
 application/pdf=brave-browser.desktop;
+application/x-blender=blender.desktop
+application/x-shellscript=kitty-open.desktop;
+image/jpeg=userapp-nsxiv-rifle-DD30D3.desktop;
+image/png=nsxiv-rifle.desktop;
+image/webp=userapp-nsxiv-rifle-DD30D3.desktop;
+text/html=brave-browser.desktop;
+text/plain=nvim.desktop;
+video/webm=mpv.desktop;
+video/x-matroska=mpv-2.desktop;

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=nsxiv-rifle
+MimeType=image/png;
+Name=nsxiv-rifle
+NoDisplay=true
+Type=Application
