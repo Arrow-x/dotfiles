@@ -5,7 +5,7 @@
 
 #TODO: at least install ly, keyd and opentabletdriver
 
-systemctl enable ly.service
+systemctl enable ly@tty1.service
 
 systemctl enable --now keyd
 systemctl enable --now cronie
