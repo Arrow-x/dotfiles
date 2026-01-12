@@ -68,18 +68,24 @@ fi
 
 version="$(wget https://dl.nwjs.io/ -q -O - | tail -n -5 | head -n 1 | sed -E 's#.*href="(.*)\/".*#\1#')"
 
+parent_dir_name="$HOME/Games/VN/tools/"
+mkdir --parents "$parent_dir_name"
+
 if [ -z "$version" ]; then
 	logerr "couldn't quary the latest nwjs version, check your internet connection ..."
-	exit 4
+	logerr "checking local nwjs version ..."
+	file_name=$(find "$parent_dir_name" -name "nwjs-v*" | sort | tail -n 1 | xargs basename)
+	if [ -z "$file_name" ]; then
+		logerr "there is no local nwjs version, aborting"
+		exit 4
+	fi
+	dir_name=$(echo "$file_name" | sed 's/.tar.gz//')
+else
+	dir_name="nwjs-""$version""-linux-x64"
+	file_name="$dir_name"".tar.gz"
 fi
 
-parent_dir_name="$HOME/Games/VN/tools/"
-
-dir_name="nwjs-""$version""-linux-x64"
-file_name="$dir_name"".tar.gz"
 destination="$parent_dir_name""$file_name"
-
-mkdir --parents "$parent_dir_name"
 
 if [ ! -f "$destination" ]; then
 	logsout "downloading the lates nwjs for your computer ..."
