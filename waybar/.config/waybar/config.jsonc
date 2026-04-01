@@ -65,6 +65,7 @@
             "class<Nsxiv>": "",
             "class<org.qt-project.qtcreator>": "",
             "class<gimp>": "",
+            "class<libreoffice-calc>": "",
             "class<footclient> title<.*Nvim.*>": "",
             "class<footclient> title<.*tmux.*>": "",
         }
@@ -84,9 +85,9 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pavucontrol",
-        "on-scroll-up": "amixer sset Master 5%+",
-        "on-scroll-down": "amixer sset Master 5%-",
-        "on-click-middle": "amixer sset Master 1+ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
