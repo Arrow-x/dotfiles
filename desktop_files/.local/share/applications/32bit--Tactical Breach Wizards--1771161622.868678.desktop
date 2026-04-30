@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Tactical Breach Wizards
+Exec=bottles-cli run -p "Tactical Breach Wizards" -b "32bit" -- %u
+Type=Application
+Terminal=false
+Categories=Application;
+Icon=/home/arrow-x/.local/share/bottles/bottles/32bit/icons/Tactical Breach Wizards.png
+Comment=Launch Tactical Breach Wizards using Bottles.
+StartupWMClass=Tactical Breach Wizards
+Actions=Configure;
+[Desktop Action Configure]
+Name=Configure in Bottles
+Exec=bottles -b "32bit"

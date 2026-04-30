@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Bayonetta
+Exec=bottles-cli run -p 'Bayonetta' -b '32bit' -- %u
+Type=Application
+Terminal=false
+Categories=Application;
+Icon=/home/arrow-x/.local/share/bottles/bottles/32bit/icons/_Bayonetta.png.ico
+Comment=Launch Bayonetta using Bottles.
+StartupWMClass=Bayonetta
+Actions=Configure;
+[Desktop Action Configure]
+Name=Configure in Bottles
+Exec=bottles -b '32bit'

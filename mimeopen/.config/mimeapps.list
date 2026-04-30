@@ -14,3 +14,4 @@ text/html=brave-browser.desktop;
 text/plain=nvim.desktop;
 video/webm=mpv.desktop;
 video/x-matroska=mpv-2.desktop;
+inode/directory=io.elementary.files.desktop;
