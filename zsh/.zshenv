@@ -36,6 +36,8 @@ export WINEPREFIX="$XDG_DATA_HOME"/wine
 export HAXESHIM_ROOT="$XDG_CONFIG_HOME"/haxe
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export RENPY_PATH_TO_SAVES="$XDG_DATA_HOME"/renpy
+export PYTHON_HISTORY="$XDG_STATE_HOME"/python_history
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 
 export LC_TIME=en_US.UTF-8
 # for bottles dark mode

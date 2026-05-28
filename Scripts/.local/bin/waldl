@@ -266,4 +266,4 @@ for ids in $image_ids; do
 done | curl --parallel --parallel-immediate -K -
 
 sh_info "wallpapers downloaded in:- '$walldir'"
-find "$walldir" -type f -printf "%T+ %p\n" | sort -r | sed "s#.* /#/#" | "$IMAGE" "$sxiv_otps_w" | set_bg
+find "$walldir" -type f -printf "%T+ %p\n" | sort -r | sed "s#.* /#/#" | "$IMAGE" "$sxiv_otps_w" | xargs set_bg
