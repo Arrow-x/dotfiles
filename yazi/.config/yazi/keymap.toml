@@ -168,10 +168,10 @@ keymap = [
   { on = [ "O", "o" ], run = 'shell -- "$0"', desc = "Run hovered executable script" },
 
   { on = [ "i", "r" ], run = 'shell -- dragon-drop -a -x "$@"', desc = "drag current item(s)" },
+  { on = [ "i", "R" ], run = 'shell -- dragon-drop -a $@', desc = "drag current item(s) and stay open" },
   { on = [ "i", "x" ], run = 'shell -- export GDK_BACKEND=x11 && dragon-drop -a -x $@', desc = "drag current item(s) in an x-org window" },
-  { on = [ "i", "x" ], run = 'shell -- dragon-drop -a $@', desc = "drag current item(s) and stay open" },
   { on = [ "i", "i" ], run = 'shell -- dragon-drop $@', desc = "drag individual item(s)" },
-  { on = [ "i", "m" ], run = 'shell -- dragon_cp', desc = "drag in a file to copy here " },
+  { on = [ "i", "P" ], run = 'shell -- dragon_cp', desc = "drag in a file to copy here " },
   { on = [ "i", "p" ], run = 'shell -- dragon_mv', desc = "drag in a file to Move here" },
 
   { on = [ "i", "w" ], run = 'shell -- set_bg "$1" >/dev/null 2>&1', desc = "Set Wallpaper" },
