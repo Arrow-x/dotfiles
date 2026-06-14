@@ -1,5 +1,4 @@
-CompileFlags:
-  Add: [-Werror, -Wall,-Wextra,-Wpedantic,-std=c++20]
-  Remove: [-fno-gnu-unique]
+# CompileFlags:
+#   Add: [-Werror, -Wall,-Wextra,-Wpedantic]
 Documentation:
-  CommentFormat: Doxygen
+   CommentFormat: Doxygen
