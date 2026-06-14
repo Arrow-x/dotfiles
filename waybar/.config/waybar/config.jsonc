@@ -41,7 +41,7 @@
         // "window-rewrite-default": " ",
         "window-rewrite": {
             "class<neovide>": "", // Windows whose titles contain "youtube"
-            "class<Brave-browser>": "", // Windows whose classes are "firefox"
+            "class<[bB]rave.*>": "", // Windows whose classes are "firefox"
             "class<librewolf>": "", // Windows whose classes are "firefox"
             "class<t_lf>": "",
             "class<t_yazi>": "",
