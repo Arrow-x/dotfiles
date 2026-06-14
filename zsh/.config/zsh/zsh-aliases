@@ -178,5 +178,16 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+function fancy-ctrl-z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle undefined-key
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias abook=abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook
