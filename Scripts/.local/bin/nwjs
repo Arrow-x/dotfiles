@@ -10,10 +10,12 @@ usage() { #help message
 	logsout "  -h, --help                  Shows this message and exits"
 	logsout "  -ns, --no-start             Doesn't start the game after the installation"
 	logsout "  -cs, --case-sensitive       Skip the setting up of case_insestive script and setup, on by defult"
+	logsout "  -p, --defult-package-json   create a default package.json"
 }
 
 start_game=1
 ci=1
+p=0
 
 while [ "$1" != "" ]; do #positional parameters
 	case $1 in
@@ -26,6 +28,9 @@ while [ "$1" != "" ]; do #positional parameters
 		;;
 	-cs | --case-sensitive)
 		ci=0
+		;;
+	-p | --defult-package-json)
+		p=1
 		;;
 	*)
 		usage
@@ -155,6 +160,25 @@ if [ "$ci" -eq 1 ]; then
 		} >playme.sh
 	fi
 	chmod +x playme.sh
+
+	if [ $p = 1 ]; then
+		rm package.json
+		{
+			logsout '{'
+			logsout '	"name": "s",'
+			logsout '	"main": "www/index.html",'
+			logsout '	"js-flags": "--expose-gc",'
+			logsout '	"window": {'
+			logsout '	    "title": "",'
+			logsout '	    "toolbar": false,'
+			logsout '	    "width": 816,'
+			logsout '	    "height": 624,'
+			logsout '	    "icon": "www/icon/icon.png"'
+			logsout '	}'
+			logsout '}'
+		} >package.json
+	fi
+
 	if [ $start_game -eq 1 ]; then
 		logsout "Running the game ..."
 		./playme.sh
