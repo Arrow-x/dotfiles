@@ -12,9 +12,9 @@ menu() {
 browser() {
 	# chromium "$1"
 	# firefox "$1"
-	# brave-origin-beta "$1"
+	brave-origin "$1"
 	# librewolf "$1"
-	$BROWSER "$1"
+	# $BROWSER "$1"
 }
 case $1 in
 -t | --type) xdotool type --delay 0ms "$(grep -v "^#" $HOME/Notes-And-Tasks/bookmarks | menu | cut -d ' ' -f1)" ;;
