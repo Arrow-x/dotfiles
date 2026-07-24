@@ -1,4 +1,4 @@
-# CompileFlags:
-#   Add: [-Werror, -Wall,-Wextra,-Wpedantic]
+CompileFlags:
+   Add: [-Werror, -Wall,-Wextra,-Wpedantic]
 Documentation:
    CommentFormat: Doxygen
