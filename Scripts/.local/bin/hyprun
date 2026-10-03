@@ -5,28 +5,25 @@ check_dep "jq"
 check_dep "hyprctl"
 
 appid="$1"
-appcmd=""
 if [ "$2" = "--" ]; then
 	shift 2
 	appcmd="$*"
-else
+elif [ -n "$2" ]; then
 	appcmd="$2"
-fi
-
-if [ -z "$2" ]; then
-	appcmd="$1"
-fi
-
-if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-	hyprctl dispatch movetoworkspace +0,class:"$appid"
-	hyprctl dispatch alterzorder top,class:"$appid"
-	hyprctl dispatch focuswindow class:"$appid"
-	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-		sh -c "$appcmd" &
-		exit
-	fi
-	exit
 else
-	hyprctl dispatch movetoworkspacesilent special,class:"$appid"
-	exit
+	appcmd="$appid"
+fi
+
+if hyprctl activewindow -j | jq -r '.class' | grep -q "^$appid$"; then
+	hyprctl dispatch "hl.dsp.window.move({ workspace = 'special:$appid', window = 'class:^$appid$', follow = false })"
+	exit 0
+else
+	if hyprctl clients -j | jq -r '.[].class' | grep -q "^$appid$"; then
+		hyprctl dispatch "hl.dsp.window.move({ workspace = 'm+0', window = 'class:^$appid$' })"
+		hyprctl dispatch "hl.dsp.window.alter_zorder({ mode = 'top', window = 'class:^$appid$' })"
+		hyprctl dispatch "hl.dsp.focus({ window = 'class:^$appid$' })"
+	else
+		sh -c "$appcmd" &
+	fi
+	exit 0
 fi

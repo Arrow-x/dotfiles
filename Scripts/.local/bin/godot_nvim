@@ -3,12 +3,12 @@ appid="g_nvim"
 appargs="$*"
 workspace=5
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-	if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-		hyprctl dispatch movetoworkspace $workspace, class:"$appid"
-		hyprctl dispatch alterzorder top, class:"$appid"
-		hyprctl dispatch focuswindow class:"$appid"
-		if ! hyprctl activewindow -j | jq .class | grep -q "$appid"; then
-			hyprctl dispatch workspace $workspace
+	if ! hyprctl activewindow -j | jq -r '.class // empty' | grep -q "$appid"; then
+		hyprctl dispatch "hl.dsp.window.move({ workspace = \"$workspace\", window = \"class:$appid\" })"
+		hyprctl dispatch "hl.dsp.window.alter_zorder({ mode = \"top\", window = \"class:$appid\" })"
+		hyprctl dispatch "hl.dsp.focus({ window = \"class:$appid\" })"
+		if ! hyprctl activewindow -j | jq -r '.class // empty' | grep -q "$appid"; then
+			hyprctl dispatch "hl.dsp.workspace({ id = $workspace })"
 			sh -c "kitty --single-instance --app-id g_nvim nvim --listen /tmp/godothost.pipe" &
 			# neovide --wayland_app_id "$appid"  -- --listen /tmp/godothost.pipe &
 			sleep 0.5
