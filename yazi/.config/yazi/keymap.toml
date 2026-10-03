@@ -395,6 +395,11 @@ run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
+on   = "<Right>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[mgr.prepend_keymap]]
 on   = "t"
 run  = "plugin smart-tab"
 desc = "Create a tab and enter the hovered directory"
