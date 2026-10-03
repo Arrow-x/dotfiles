@@ -73,6 +73,7 @@ export COLORTERM="truecolor"
 export OPENER="mimeopen"
 export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
 export MENU="dmenu -n"
+export FILEMANAGER="nemo"
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export XDG_CURRENT_DESKTOP="Hyprland"

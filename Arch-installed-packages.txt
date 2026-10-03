@@ -106,7 +106,7 @@ obsidian
 opentabletdriver
 pass-import
 pavucontrol
-pcmanfm-gtk3
+nemo
 perf
 pip-autoremove
 pixelorama-bin

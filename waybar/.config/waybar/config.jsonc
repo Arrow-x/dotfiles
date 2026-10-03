@@ -32,21 +32,18 @@
     ],
 
     "sway/workspaces": {
-        "format": "{icon}",
+        "format": "{icon}"
     },
 
     "hyprland/workspaces": {
         "format": "{id:} {windows}",
         "format-window-separator": "  ",
-        // "window-rewrite-default": " ",
         "window-rewrite": {
-            "class<neovide>": "", // Windows whose titles contain "youtube"
-            "class<[bB]rave.*>": "", // Windows whose classes are "firefox"
-            "class<librewolf>": "", // Windows whose classes are "firefox"
-            "class<t_lf>": "",
-            "class<t_yazi>": "",
-            "class<pcmanfm>": "",
-            "class<io.elementary.files>": "",
+            "class<neovide>": "",
+            "class<[bB]rave.*>": "",
+            "class<librewolf>": "",
+            "class<t_yazi|t_lf>": "",
+            "class<nemo|pcmanfm|io.elementary.files>": "",
             "class<t_btop>": "",
             "class<t_newsraft>": "",
             "class<t_newsboat>": "",
@@ -56,18 +53,16 @@
             "class<krita>": "",
             "class<com.github.johnfactotum.Foliate>": "",
             "class<deadbeef>": "",
-            "class<foot.*>": "",
-            "class<kitty.*>": "",
+            "class<foot.*|kitty.*>": "",
             "class<[bB]lender>": "󰂫",
-            "class<[gG]odot.*>": "",
-            "class<org.godotengine.*>": "",
+            "class<[gG]odot.*|org.godotengine.*>": "",
             "class<mpv>": "",
             "class<Nsxiv>": "",
             "class<org.qt-project.qtcreator>": "",
             "class<gimp>": "",
             "class<libreoffice-calc>": "",
             "class<footclient> title<.*Nvim.*>": "",
-            "class<footclient> title<.*tmux.*>": "",
+            "class<footclient> title<.*tmux.*>": ""
         }
     },
 
