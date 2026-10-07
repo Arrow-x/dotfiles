@@ -166,7 +166,7 @@ keymap = [
   { on = "<F1>", run = "help", desc = "Open help" },
   { on = "~", run = "shell $SHELL --block", desc = "Open the current directory in Nemo" },
 
-  { on = [ "O", "o" ], run = 'shell -- "$0"', desc = "Run hovered executable script" },
+  { on = [ "O", "o" ], run = 'shell -- "$SHELL" -c "%h"' , desc = "Run hovered executable" },
 
   { on = [ "i", "r" ], run = 'shell -- dragon-drop -a -x "$@"', desc = "drag current item(s)" },
   { on = [ "i", "R" ], run = 'shell -- dragon-drop -a $@', desc = "drag current item(s) and stay open" },
